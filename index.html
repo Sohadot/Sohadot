@@ -1,40 +1,187 @@
-<style>
-  :root {
-    --bg-main: #f6f0e8;      /* champagne gray */
-    --card-bg: #ffffff;
-    --text-main: #0f172a;    /* dark blue / navy */
-    --text-muted: #6b7280;
-    --accent: #1d4ed8;       /* primary blue */
-    --accent-soft: #bfdbfe;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sohadot.com – Domain Tools & Premium Portfolio</title>
+  <meta name="description" content="Automatic domain valuation, monthly top keywords, weekly dropping domains, and a curated premium domain portfolio.">
 
-  body {
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg-main);
-    color:var(--text-main);
-  }
+  <style>
+    :root {
+      --bg-main: #f6f0e8;      /* champagne gray */
+      --card-bg: #ffffff;
+      --text-main: #0f172a;    /* dark blue / navy */
+      --text-muted: #6b7280;
+      --accent: #1d4ed8;       /* primary blue */
+    }
 
-  .container {
-    max-width:1200px;
-    margin:0 auto;
-    padding:28px 16px 44px;
-  }
+    body {
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg-main);
+      color:var(--text-main);
+    }
 
-  h1 {
-    text-align:center;
-    color:var(--accent);
-    margin-top:24px;
-    margin-bottom:8px;
-    font-size:3rem;
-    font-weight:800;
-    letter-spacing:0.03em;
-  }
+    .container {
+      max-width:1200px;
+      margin:0 auto;
+      padding:28px 16px 44px;
+    }
 
-  p.subtitle {
-    text-align:center;
-    color:var(--text-muted);
-    margin-bottom:36px;
+    h1 {
+      text-align:center;
+      color:var(--accent);
+      margin-top:24px;
+      margin-bottom:8px;
+      font-size:3rem;
+      font-weight:800;
+      letter-spacing:0.03em;
+    }
+
+    p.subtitle {
+      text-align:center;
+      color:var(--text-muted);
+      margin-bottom:36px;
+      font-size:1.05rem;
+      line-height:1.7;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:22px;
+    }
+
+    .card {
+      background:var(--card-bg);
+      padding:22px 22px 20px;
+      border-radius:20px;
+      box-shadow:0 12px 28px rgba(15,23,42,0.08);
+      border:1px solid rgba(148,163,184,0.45);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 16px 36px rgba(15,23,42,0.14);
+      border-color:var(--accent);
+    }
+
+    .card h3 {
+      margin-top:0;
+      margin-bottom:8px;
+      color:var(--accent);
+      font-size:1.3rem;
+      font-weight:700;
+    }
+
+    .card p {
+      color:var(--text-main);
+      font-size:0.98rem;
+      line-height:1.6;
+    }
+
+    a.btn {
+      display:inline-block;
+      margin-top:14px;
+      padding:10px 22px;
+      border-radius:999px;
+      background:var(--accent);
+      color:#fff;
+      text-decoration:none;
+      font-size:0.96rem;
+      font-weight:600;
+    }
+
+    a.btn:hover {
+      opacity:0.96;
+    }
+
+    footer {
+      text-align:center;
+      margin:40px 0 10px;
+      color:var(--text-muted);
+      font-size:0.85rem;
+    }
+
+    .whatsapp {
+      position:fixed;
+      bottom:22px;
+      right:22px;
+      background:#25d366;
+      color:#fff;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.25);
+      text-decoration:none;
+      z-index:999;
+    }
+
+    @media (max-width:768px){
+      h1{font-size:2.4rem;}
+      .card{padding:18px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sohadot.com</h1>
+    <p class="subtitle">
+      Automatic domain valuation based on real sales data, keyword strength, and simple market-trend signals.<br/>
+      Plus: monthly top keywords, weekly dropping domains, and a curated premium portfolio.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Automatic Domain Valuation (Beta)</h3>
+        <p>
+          Enter any domain and get an instant estimated range, powered by a small aggregated sample of historical sales data,
+          keyword strength analysis, and basic market-trend heuristics.
+        </p>
+        <a href="/valuation.html" class="btn">Try Valuation →</a>
+      </div>
+
+      <div class="card">
+        <h3>Top 10 Monthly Keywords</h3>
+        <p>
+          Hand-picked high-value keywords each month, ideal for SEO, PPC and domain ideation. Based on real CPC and demand,
+          grouped by niche. (Coming soon.)
+        </p>
+        <a href="#" class="btn">View This Month →</a>
+      </div>
+
+      <div class="card">
+        <h3>Weekly Dropping Domains</h3>
+        <p>
+          A curated list of brandable expiring / dropped domains every week, filtered for length, memorability and extension quality.
+          (Coming soon.)
+        </p>
+        <a href="#" class="btn">See Latest List →</a>
+      </div>
+
+      <div class="card">
+        <h3>My Premium Domain Portfolio</h3>
+        <p>
+          300+ hand-selected .com and other premium domains available for acquisition. One click takes you directly
+          to the sale page on your preferred marketplace.
+        </p>
+        <a href="#" class="btn">Browse Portfolio →</a>
+      </div>
+    </div>
+
+    <footer>
+      © 2025 Sohadot.com – Domain Tools & Premium Portfolio
+    </footer>
+  </div>
+
+  <a href="https://wa.me/20123456789" class="whatsapp" target="_blank">💬</a>
+</body>
+</html>    margin-bottom:36px;
     font-size:1.05rem;
     line-height:1.7;
   }
