@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sohadot - Domain Valuation</title>
-  <meta name="description" content="Simple wholesale domain name valuation based on real sales data, keywords and market trends." />
+  <meta name="description" content="Domain name wholesale valuation based on length, TLD, keyword strength and market trends." />
   <style>
     :root {
       --bg: #f4f1ea;          /* champagne grey */
@@ -32,7 +32,7 @@
     }
 
     h1 {
-      font-size: 2.6rem;
+      font-size: 2.7rem;
       text-align: center;
       margin: 0 0 8px;
       color: var(--accent);
@@ -60,10 +60,11 @@
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--text-main);
+      font-size: 0.98rem;
     }
 
-    .hint {
-      font-size: 0.85rem;
+    .help {
+      font-size: 0.86rem;
       color: var(--text-soft);
       margin-bottom: 10px;
     }
@@ -77,17 +78,19 @@
     }
 
     input[type="text"] {
-      flex: 1 1 220px;
+      flex: 1 1 240px;
       padding: 10px 12px;
       border-radius: 10px;
       border: 1px solid var(--border-soft);
       font-size: 1rem;
       outline: none;
+      background: #f8fafc;
     }
 
     input[type="text"]:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 1px var(--accent-soft);
+      background: #ffffff;
     }
 
     button {
@@ -110,47 +113,56 @@
       margin-top: 20px;
       padding-top: 16px;
       border-top: 1px dashed var(--border-soft);
+      font-size: 0.92rem;
     }
 
-    .range {
-      font-size: 1.4rem;
+    .section-title {
       font-weight: 700;
+      margin-bottom: 3px;
+      color: var(--text-main);
+    }
+
+    .number {
+      font-size: 1.4rem;
+      font-weight: 800;
       color: var(--accent);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .tagline {
-      font-size: 0.9rem;
+    .muted {
       color: var(--text-soft);
-      margin-bottom: 16px;
+      font-size: 0.86rem;
     }
 
-    .details {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
       margin-bottom: 16px;
-      font-size: 0.88rem;
     }
 
     .pill {
-      padding: 6px 10px;
-      border-radius: 999px;
+      padding: 7px 10px;
+      border-radius: 12px;
       background: #eff6ff;
       color: #1e3a8a;
       border: 1px solid #dbeafe;
+      font-size: 0.84rem;
     }
 
     .notes {
       font-size: 0.8rem;
       color: var(--text-soft);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    .notes strong { color: var(--text-main); }
+    .notes strong {
+      color: var(--text-main);
+    }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2.1rem; }
+      h1 { font-size: 2.2rem; }
       .card { padding: 20px 16px; }
     }
   </style>
@@ -159,16 +171,18 @@
   <div class="wrapper">
     <h1>Domain Valuation</h1>
     <p class="subtitle">
-      Simple wholesale valuation using real sales, keywords and market trends.
+      Estimated wholesale value and potential retail range based on length, TLD, keywords and market trends.
     </p>
 
     <div class="card">
       <label for="domainInput">Domain name</label>
-      <p class="hint">Example: <code>AiRevolving.com</code>, <code>NewYorkCommodities.com</code>, <code>NeuralGame.com</code></p>
+      <p class="help">
+        Example: yourbrand.com (no http/https, just name.tld)
+      </p>
 
       <div class="input-row">
-        <input id="domainInput" type="text" placeholder="Enter a domain, e.g. BrandNova.com" />
-        <button id="checkBtn" type="button">Get Valuation</button>
+        <input id="domainInput" type="text" placeholder="Type a domain, e.g. premiumbrand.com" />
+        <button id="checkBtn" type="button">Get valuation</button>
       </div>
 
       <div id="result" class="result" style="display:none;"></div>
@@ -176,287 +190,395 @@
   </div>
 
   <script>
-    // --- 1) Base medians per TLD & length bucket (from your real sales data) ---
+    // -----------------------------
+    // 1) Base reference values
+    // -----------------------------
 
-    const BASE_MEDIANS = {
-      com:  { "1_4": 310, "5_7": 345, "8_12": 325, "13_plus": 330 },
-      ai:   { "1_4": 360, "5_7": 295, "8_12": 300 },
-      io:   { "1_4": 255, "5_7": 210, "8_12": 280, "13_plus": 355 },
-      co:   { "5_7": 395, "8_12": 1450, "13_plus": 870 },
-      org:  { "1_4": 10215, "5_7": 200, "8_12": 530, "13_plus": 405 },
-      net:  { "5_7": 265, "8_12": 365, "13_plus": 1175 },
-      info: { "8_12": 145, "13_plus": 6295 },
-      xyz:  { "1_4": 225 },
-      jobs: { "5_7": 65000 },
-      me:   { "8_12": 915 },
-      tv:   { "8_12": 205 },
-      dev:  { "8_12": 220 },
-      site: { "8_12": 515 },
-      vip:  { "5_7": 180 },
-      other:{ "1_4": 280, "5_7": 310, "8_12": 330, "13_plus": 340 }
+    const BASE_TLD = {
+      com: 400,
+      ai:  900,
+      io:  500,
+      co:  300,
+      org: 250,
+      net: 220,
+      info:150,
+      xyz: 120,
+      dev: 260,
+      me:  200,
+      app: 450,
+      tv:  260,
+      vip: 240,
+      site:180,
+      other:180
     };
 
-    // --- 2) TLD quality multipliers (wholesale) ---
-
-    const TLD_MULTIPLIER = {
-      com: 1.00,
-      ai:  1.20,
-      io:  1.10,
-      co:  0.95,
-      org: 0.85,
-      net: 0.85,
-      info:0.70,
-      xyz: 0.65,
-      jobs:1.30,
-      tv:  0.90,
-      dev: 0.90,
-      me:  0.90,
-      site:0.80,
-      vip: 0.90,
-      default: 0.60
+    const TLD_MULT = {
+      com: 1.0,
+      ai:  2.0,
+      io:  1.4,
+      co:  1.0,
+      org: 0.9,
+      net: 0.9,
+      info:0.75,
+      xyz: 0.7,
+      dev: 1.1,
+      me:  0.9,
+      app: 1.3,
+      tv:  1.1,
+      vip: 1.0,
+      site:0.8,
+      default:0.7
     };
 
-    // --- 3) Keyword / trend weights ---
+    // -----------------------------
+    // 2) Keyword power scores
+    // (higher = stronger trend / demand)
+    // -----------------------------
 
-    const KEYWORD_WEIGHTS = {
-      // Tech / AI
-      "ai": 0.9,
-      "agent": 0.7,
-      "agents": 0.7,
-      "bot": 0.6,
-      "cloud": 0.7,
-      "data": 0.6,
-      "analytics": 0.7,
-      "neural": 0.8,
-      "gpt": 0.8,
-      "crypto": 0.9,
-      "blockchain": 0.9,
-      "defi": 0.7,
-      "nft": 0.7,
-      "robot": 0.7,
+    const KEYWORD_SCORES = {
+      // AI / tech
+      "ai": 70,
+      "neural": 90,
+      "model": 40,
+      "vision": 40,
+      "cloud": 55,
+      "data": 55,
+      "datapoint": 60,
+      "quantum": 75,
+      "robot": 50,
+      "gpt": 80,
+      "agent": 55,
+      "agents": 55,
+      "autonomous": 60,
+      "automation": 60,
+      "compute": 50,
+      "chip": 50,
 
-      // Finance / business
-      "finance": 1.0,
-      "capital": 1.0,
-      "fund": 0.9,
-      "funds": 0.9,
-      "trading": 0.8,
-      "trade": 0.7,
-      "loan": 0.8,
-      "bank": 0.9,
-      "cash": 0.7,
-      "pay": 0.7,
-      "payments": 0.8,
-      "market": 0.7,
-      "exchange": 0.8,
-      "invest": 0.9,
-      "equity": 0.9,
-      "commodities": 2.0,
+      // crypto / web3
+      "crypto": 80,
+      "chain": 60,
+      "block": 50,
+      "token": 55,
+      "defi": 55,
+      "wallet": 45,
+      "ledger": 45,
 
-      // Careers / jobs
-      "jobs": 0.8,
-      "career": 0.6,
-      "careers": 0.6,
-      "work": 0.6,
-      "remote": 0.6,
+      // finance / business
+      "finance": 80,
+      "fin": 40,
+      "capital": 85,
+      "invest": 75,
+      "fund": 60,
+      "funds": 60,
+      "trading": 65,
+      "trade": 55,
+      "equity": 65,
+      "loan": 50,
+      "pay": 55,
+      "payments": 60,
+      "cash": 45,
+      "credit": 55,
+      "bank": 70,
+      "wealth": 70,
+      "market": 55,
+      "markets": 60,
+      "commodities": 100,
 
-      // Health / medical
-      "health": 0.8,
-      "med": 0.7,
-      "medical": 0.8,
-      "clinic": 0.7,
-      "pharma": 0.7,
-      "wellness": 0.6,
+      // security / infra
+      "vault": 80,
+      "secure": 60,
+      "security": 65,
+      "lock": 45,
+      "shield": 45,
 
-      // Ecommerce / SaaS
-      "shop": 0.6,
-      "store": 0.6,
-      "marketplace": 0.8,
-      "cart": 0.6,
-      "software": 0.7,
-      "saas": 0.8,
-      "tools": 0.6,
+      // health / medical
+      "health": 65,
+      "med": 55,
+      "medical": 65,
+      "pharma": 60,
+      "clinic": 45,
+      "bio": 55,
+      "lab": 50,
+      "labs": 60,
 
-      // Travel / geo / hospitality
-      "travel": 0.7,
-      "hotel": 0.7,
-      "tour": 0.6,
-      "vacation": 0.6,
-      "resort": 0.7,
+      // SaaS / tools
+      "software": 55,
+      "saas": 60,
+      "stack": 50,
+      "apps": 40,
+      "tool": 40,
+      "tools": 45,
+      "platform": 50,
+      "hub": 45,
+      "engine": 45,
 
-      // Strong geo keywords
-      "newyork": 2.0,
-      "nyc": 1.6,
-      "london": 1.6,
-      "dubai": 1.6,
-      "paris": 1.4
+      // ecommerce / brands
+      "shop": 45,
+      "store": 45,
+      "marketplace": 55,
+      "cart": 40,
+      "deal": 40,
+      "deals": 45,
+      "brand": 50,
+      "brands": 55,
+
+      // geo premium
+      "newyork": 120,
+      "nyc": 90,
+      "london": 90,
+      "dubai": 90,
+      "paris": 80,
+      "tokyo": 80,
+      "miami": 70,
+      "la": 40,
+      "losangeles": 90,
+
+      // careers / jobs
+      "job": 45,
+      "jobs": 55,
+      "career": 45,
+      "careers": 45,
+      "remote": 45,
+
+      // generic positive
+      "prime": 50,
+      "global": 55,
+      "world": 45,
+      "united": 50,
+      "nova": 50,
+      "core": 50,
+      "prime": 50,
+      "future": 50
     };
 
-    // --- Helper functions ---
+    // -----------------------------
+    // Helper functions
+    // -----------------------------
 
-    function getLengthBucket(len) {
-      if (len <= 4) return "1_4";
-      if (len <= 7) return "5_7";
-      if (len <= 12) return "8_12";
-      return "13_plus";
-    }
-
-    function getBaseMedian(tld, len) {
-      const bucket = getLengthBucket(len);
-      const tldData = BASE_MEDIANS[tld] || {};
-      if (tldData[bucket]) return tldData[bucket];
-
-      const comData = BASE_MEDIANS["com"] || {};
-      if (comData[bucket]) return comData[bucket];
-
-      return BASE_MEDIANS["other"][bucket];
-    }
-
-    function getTldMultiplier(tld) {
-      return TLD_MULTIPLIER[tld] || TLD_MULTIPLIER.default;
-    }
-
-    function getLengthMultiplier(len) {
-      if (len <= 4) return 1.6;       // ultra short
-      if (len <= 7) return 1.25;      // short
-      if (len <= 12) return 1.0;      // sweet spot
-      if (len <= 18) return 0.90;     // long but ok
-      return 0.80;                    // very long
-    }
-
-    function getBrandPenalty(label) {
-      let penalty = 1.0;
-      const hyphenCount = (label.match(/-/g) || []).length;
-      const digitCount  = (label.match(/[0-9]/g) || []).length;
-
-      if (hyphenCount === 1) penalty *= 0.90;
-      if (hyphenCount >= 2) penalty *= 0.75;
-
-      if (digitCount === 1) penalty *= 0.92;
-      if (digitCount >= 2) penalty *= 0.85;
-
-      return penalty;
-    }
-
-    function computeTrendMultiplier(core) {
-      const lower = core.toLowerCase();
-      let boost = 0;
-
-      for (const [kw, weight] of Object.entries(KEYWORD_WEIGHTS)) {
-        if (lower.includes(kw)) {
-          boost += weight;
-        }
-      }
-
-      // Cap total boost so it doesn't explode
-      const capped = Math.min(boost, 3.5); // max +3.5 → 4.5x
-      return 1 + capped;
-    }
-
-    function estimateWholesale(domain) {
-      if (!domain) return null;
-
-      const trimmed = domain.trim().toLowerCase();
+    function parseDomain(raw) {
+      if (!raw) return null;
+      const trimmed = raw.trim().toLowerCase();
       const parts = trimmed.split(".");
       if (parts.length < 2) return null;
-
       const tld = parts.pop();
       const sld = parts.join(".");
       const core = sld.replace(/[^a-z0-9]/g, "");
       if (!core) return null;
+      return { tld, sld, core };
+    }
 
+    function getBaseForTld(tld) {
+      if (BASE_TLD[tld]) return BASE_TLD[tld];
+      return BASE_TLD.other;
+    }
+
+    function getTldMultiplier(tld) {
+      return TLD_MULT[tld] || TLD_MULT.default;
+    }
+
+    function lengthMultiplier(len) {
+      if (len <= 4) return 2.5;       // ultra short
+      if (len <= 7) return 1.7;       // short
+      if (len <= 12) return 1.25;     // sweet spot
+      if (len <= 18) return 1.0;      // a bit long
+      if (len <= 25) return 0.85;     // long
+      return 0.7;                     // very long
+    }
+
+    function brandMultiplier(label) {
+      let mult = 1.0;
+      const hyphens = (label.match(/-/g) || []).length;
+      const digits  = (label.match(/[0-9]/g) || []).length;
+
+      if (hyphens === 1) mult *= 0.9;
+      if (hyphens >= 2) mult *= 0.75;
+
+      if (digits === 1) mult *= 0.9;
+      if (digits >= 2) mult *= 0.8;
+
+      if (label.length >= 20 && !label.includes("-")) mult *= 0.9;
+      return mult;
+    }
+
+    function keywordScore(core) {
+      const lower = core.toLowerCase();
+      let score = 0;
+      for (const [kw, w] of Object.entries(KEYWORD_SCORES)) {
+        if (lower.includes(kw)) score += w;
+      }
+      return score;
+    }
+
+    function trendMultiplier(core) {
+      const score = keywordScore(core);
+      if (score <= 0) return 1.0;
+      // cap to avoid silly explosion
+      const capped = Math.min(score, 260); // max
+      return 1 + capped / 80;             // between 1x and ~4.25x
+    }
+
+    function comboMultiplier(core) {
+      const lower = core.toLowerCase();
+      let m = 1.0;
+
+      // strong combo examples (not shown in UI, فقط داخلي)
+      if (lower.includes("neural") && lower.includes("vault")) m *= 1.8;
+      if (lower.includes("ai") && lower.includes("agent")) m *= 1.4;
+      if (lower.includes("ai") && lower.includes("cloud")) m *= 1.4;
+      if ((lower.includes("newyork") || lower.includes("nyc")) && lower.includes("commodities")) m *= 2.5;
+      if (lower.includes("capital") && (lower.includes("fund") || lower.includes("equity"))) m *= 1.7;
+      if (lower.includes("crypto") && (lower.includes("wallet") || lower.includes("pay"))) m *= 1.6;
+
+      return m;
+    }
+
+    function lengthBucket(len) {
+      if (len <= 4) return "ultra-short (1–4 chars)";
+      if (len <= 7) return "short (5–7 chars)";
+      if (len <= 12) return "medium (8–12 chars)";
+      if (len <= 18) return "long (13–18 chars)";
+      return "very long (19+ chars)";
+    }
+
+    function estimateValues(domain) {
+      const parsed = parseDomain(domain);
+      if (!parsed) return null;
+
+      const { tld, sld, core } = parsed;
       const len = core.length;
-      const base = getBaseMedian(tld, len);
+
+      const base = getBaseForTld(tld);
       const tldMult = getTldMultiplier(tld);
-      const lengthMult = getLengthMultiplier(len);
-      const brandMult  = getBrandPenalty(sld);
-      const trendMult  = computeTrendMultiplier(core);
+      const lenMult = lengthMultiplier(len);
+      const brandMult = brandMultiplier(sld);
+      const trendMult = trendMultiplier(core);
+      const comboMult = comboMultiplier(core);
 
-      let wholesale = base * tldMult * lengthMult * brandMult * trendMult;
+      let wholesaleMid = base * tldMult * lenMult * brandMult * trendMult * comboMult;
 
-      // Clamp to a reasonable minimum
-      if (!isFinite(wholesale) || wholesale <= 0) wholesale = 50;
-      wholesale = Math.max(50, wholesale);
+      if (!isFinite(wholesaleMid) || wholesaleMid <= 0) wholesaleMid = 50;
+
+      // clamp to sane wholesale range
+      wholesaleMid = Math.max(60, wholesaleMid);
+      wholesaleMid = Math.min(80000, wholesaleMid);
+
+      const wholesaleLow = wholesaleMid * 0.6;
+      const wholesaleHigh = wholesaleMid * 1.8;
+
+      // retail potential (end user) – عادة 3x إلى 10x نطاق الجملة لأسماء ممتازة
+      let retailLow = wholesaleMid * 2.5;
+      let retailHigh = wholesaleMid * 8;
+
+      // cap retail high a bit
+      retailHigh = Math.min(retailHigh, wholesaleMid * 15);
 
       return {
-        wholesale,
         tld,
         sld,
+        core,
         length: len,
-        bucket: getLengthBucket(len),
-        trendMult,
+        bucketLabel: lengthBucket(len),
+        wholesaleMid,
+        wholesaleLow,
+        wholesaleHigh,
+        retailLow,
+        retailHigh,
         tldMult,
-        lengthMult,
-        brandMult
+        lenMult,
+        brandMult,
+        trendMult,
+        comboMult
       };
     }
 
-    function formatUSD(value) {
-      return "$" + Math.round(value).toLocaleString("en-US");
+    function formatUSD(v) {
+      return "$" + Math.round(v).toLocaleString("en-US");
     }
 
-    function describeBucket(bucket) {
-      if (bucket === "1_4") return "ultra-short (1–4 chars)";
-      if (bucket === "5_7") return "short (5–7 chars)";
-      if (bucket === "8_12") return "medium (8–12 chars)";
-      return "long (13+ chars)";
-    }
+    // -----------------------------
+    // UI wiring
+    // -----------------------------
 
-    // --- UI wiring ---
-
-    const input = document.getElementById("domainInput");
-    const button = document.getElementById("checkBtn");
-    const resultDiv = document.getElementById("result");
+    const inputEl = document.getElementById("domainInput");
+    const btnEl = document.getElementById("checkBtn");
+    const resultEl = document.getElementById("result");
 
     function runValuation() {
-      const domain = input.value;
-      const info = estimateWholesale(domain);
+      const value = inputEl.value;
+      const info = estimateValues(value);
 
       if (!info) {
-        resultDiv.style.display = "block";
-        resultDiv.innerHTML = "<p class='tagline'>Please enter a valid domain like <code>Example.com</code>.</p>";
+        resultEl.style.display = "block";
+        resultEl.innerHTML = `
+          <div class="muted">
+            Please enter a valid domain like <code>example.com</code>.
+          </div>
+        `;
         return;
       }
 
-      const low = info.wholesale * 0.7;
-      const high = info.wholesale * 1.6;
+      resultEl.style.display = "block";
+      resultEl.innerHTML = `
+        <div>
+          <div class="section-title">Wholesale midpoint</div>
+          <div class="number">${formatUSD(info.wholesaleMid)}</div>
+          <div class="muted">
+            Suggested investor-to-investor price point.
+          </div>
+        </div>
 
-      const bucketLabel = describeBucket(info.bucket);
+        <div style="margin-top:14px;">
+          <div class="section-title">Wholesale range</div>
+          <div class="number">${formatUSD(info.wholesaleLow)} – ${formatUSD(info.wholesaleHigh)}</div>
+          <div class="muted">
+            Typical low–high range for domain investors.
+          </div>
+        </div>
 
-      resultDiv.style.display = "block";
-      resultDiv.innerHTML = `
-        <div class="range">
-          Estimated wholesale range: ${formatUSD(low)} – ${formatUSD(high)}
+        <div style="margin-top:16px;">
+          <div class="section-title">Potential retail range</div>
+          <div class="number">${formatUSD(info.retailLow)} – ${formatUSD(info.retailHigh)}</div>
+          <div class="muted">
+            Possible end-user / startup pricing for a motivated buyer.
+          </div>
         </div>
-        <div class="tagline">
-          Based on similar historical sales, TLD, length, keyword strength and basic brandability.
+
+        <div class="grid">
+          <div class="pill">
+            TLD: .${info.tld} &nbsp;·&nbsp; multiplier × ${info.tldMult.toFixed(2)}
+          </div>
+          <div class="pill">
+            Length: ${info.length} chars (${info.bucketLabel}) · × ${info.lenMult.toFixed(2)}
+          </div>
+          <div class="pill">
+            Brand / structure multiplier: × ${info.brandMult.toFixed(2)}
+          </div>
+          <div class="pill">
+            Keyword / trend multiplier: × ${info.trendMult.toFixed(2)}
+          </div>
+          <div class="pill">
+            Combo / niche multiplier: × ${info.comboMult.toFixed(2)}
+          </div>
         </div>
-        <div class="details">
-          <div class="pill">TLD: .${info.tld} × ${info.tldMult.toFixed(2)}</div>
-          <div class="pill">Length: ${info.length} chars (${bucketLabel}) × ${info.lengthMult.toFixed(2)}</div>
-          <div class="pill">Keyword / trend multiplier: × ${info.trendMult.toFixed(2)}</div>
-          <div class="pill">Brand / structure: × ${info.brandMult.toFixed(2)}</div>
-        </div>
+
         <div class="notes">
           <p>
-            <strong>Important:</strong> This is a <strong>wholesale</strong> estimate (investor-to-investor).
-            End-user / startup prices can be significantly higher for strong brands or premium keywords
-            (for example, city + finance + commodities).
+            <strong>Important:</strong> this tool gives an opinionated estimate based on length, TLD,
+            keyword strength, trend categories (AI, finance, crypto, geo, etc.) and basic brandability.
+            It is designed for <strong>wholesale</strong> guidance, not as an exact market price.
           </p>
           <p>
-            The model is calibrated from real sales you provided (NameBio-style comps) and then adjusted
-            for trends like <code>AI</code>, <code>crypto</code>, finance, health, travel and strong geo terms
-            such as <code>NewYork</code>, <code>London</code>, <code>Dubai</code>, etc.
+            Premium, rare or highly strategic names can sell for far above the upper retail range,
+            especially when multiple end-users are interested, or when the domain matches an exact
+            company or product name.
           </p>
         </div>
       `;
     }
 
-    button.addEventListener("click", runValuation);
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        runValuation();
-      }
+    btnEl.addEventListener("click", runValuation);
+    inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") runValuation();
     });
   </script>
 </body>
