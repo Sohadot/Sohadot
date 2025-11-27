@@ -1,401 +1,446 @@
-<style>
-  body {
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#e5e7eb;              /* خلفية فاتحة */
-    color:#0f172a;
-  }
-  .container {
-    max-width:900px;
-    margin:0 auto;
-    padding:20px;
-  }
-  h1 {
-    text-align:center;
-    color:#1d4ed8;
-    margin-top:40px;
-    margin-bottom:10px;
-    font-size:2.2rem;
-  }
-  p.subtitle {
-    text-align:center;
-    color:#4b5563;
-    margin-bottom:30px;
-    font-size:0.98rem;
-    line-height:1.6;
-  }
-  .card {
-    background:#ffffff;
-    border-radius:16px;
-    padding:20px;
-    box-shadow:0 8px 20px rgba(15,23,42,0.15);
-  }
-  label {
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#111827;
-  }
-  input[type="text"] {
-    width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #d1d5db;
-    margin-bottom:12px;
-    font-size:1rem;
-  }
-  small {
-    display:block;
-    margin-bottom:16px;
-    color:#6b7280;
-  }
-  button {
-    background:#2563eb;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    padding:10px 18px;
-    font-size:0.95rem;
-    cursor:pointer;
-  }
-  button:hover { opacity:0.95; }
-  .result {
-    margin-top:20px;
-    padding:15px;
-    border-radius:10px;
-    background:#f3f4f6;              /* صندوق نتيجة رمادي فاتح */
-  }
-  .result h2 {
-    margin-top:0;
-    color:#1d4ed8;
-  }
-  .badge {
-    display:inline-block;
-    padding:3px 10px;
-    border-radius:999px;
-    font-size:0.75rem;
-    background:#e5e7eb;
-    margin-right:6px;
-    color:#111827;
-    margin-top:6px;
-  }
-  .chips { margin-top:8px; margin-bottom:6px; }
-  footer {
-    text-align:center;
-    margin:30px 0 15px;
-    color:#6b7280;
-    font-size:0.85rem;
-  }
-  a.back {
-    display:inline-block;
-    margin-bottom:20px;
-    color:#2563eb;
-    text-decoration:none;
-    font-size:0.9rem;
-  }
-  a.back:hover { text-decoration:underline; }
-</style>      padding:12px;
-      border-radius:8px;
-      border:none;
-      margin-bottom:12px;
-      font-size:1rem;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatic Domain Valuation – Sohadot.com</title>
+  <meta name="description" content="Automatic beta valuation for any domain name based on historical wholesale sales, extension quality, length, and simple keyword & trend signals.">
+
+  <style>
+    :root {
+      --bg-main: #f6f0e8;          /* champagne gray background */
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --accent: #1d4ed8;           /* deep blue for titles */
     }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 44px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin-top: 16px;
+      margin-bottom: 10px;
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 22px 22px 20px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.96rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      background: #f9fafb;
+      color: var(--text-main);
+    }
+
+    input[type="text"]::placeholder {
+      color: #9ca3af;
+    }
+
     small {
-      display:block;
-      margin-bottom:16px;
-      color:#64748b;
+      display: block;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
     }
+
     button {
-      background:#3b82f6;
-      color:#fff;
-      border:none;
-      border-radius:8px;
-      padding:10px 18px;
-      font-size:0.95rem;
-      cursor:pointer;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-weight: 600;
     }
+
     button:hover {
-      opacity:0.92;
+      opacity: 0.96;
     }
+
     .result {
-      margin-top:20px;
-      padding:15px;
-      border-radius:10px;
-      background:#020617;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 16px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
     }
+
     .result h2 {
-      margin-top:0;
-      color:#60a5fa;
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.35rem;
+      font-weight: 700;
     }
-    .badge {
-      display:inline-block;
-      padding:3px 10px;
-      border-radius:999px;
-      font-size:0.75rem;
-      background:#0f172a;
-      margin-right:6px;
-      color:#e5e7eb;
-      margin-top:6px;
-    }
+
     .chips {
-      margin-top:8px;
-      margin-bottom:6px;
+      margin-top: 8px;
+      margin-bottom: 6px;
     }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #e5e7eb;
+      margin-right: 6px;
+      color: var(--text-main);
+      margin-top: 6px;
+      border: 1px solid #d1d5db;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
     footer {
-      text-align:center;
-      margin:30px 0 15px;
-      color:#64748b;
-      font-size:0.85rem;
+      text-align: center;
+      margin: 30px 0 15px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
     }
+
     a.back {
-      display:inline-block;
-      margin-bottom:20px;
-      color:#93c5fd;
-      text-decoration:none;
-      font-size:0.9rem;
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
-    a.back:hover { text-decoration:underline; }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.1rem;
+      }
+      .card {
+        padding: 18px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <a href="/index.html" class="back">← Back to Sohadot.com</a>
+    <a href="/" class="back">← Back to Sohadot.com</a>
 
     <h1>Automatic Domain Valuation (Beta)</h1>
     <p class="subtitle">
-      This tool estimates a value range for your domain using:
-      <br>
-      • Aggregated historical sales data (NameBio-style comps)<br>
-      • Keyword strength (length, clarity, brandability)<br>
-      • Simple market-trend signals (AI, crypto, finance, travel, etc.)
-      <br><br>
-      ⚠️ Estimates are indicative only – not financial advice or a guaranteed sale price.
+      Estimates are based on a sample of historical wholesale sales (similar to NameBio data),
+      combined with extension quality, length and simple keyword & trend signals.
+      This is an experimental tool and not financial advice.
     </p>
 
     <div class="card">
-      <label for="domain-input">Domain name</label>
-      <input type="text" id="domain-input" placeholder="example.com">
-      <small>Tip: use naked domain without protocol (no http/https, just <strong>name.com</strong>).</small>
-      <button onclick="handleValuation()">Appraise Domain</button>
+      <form id="valuation-form" onsubmit="event.preventDefault(); appraiseDomain();">
+        <label for="domain-input">Domain name</label>
+        <input
+          type="text"
+          id="domain-input"
+          placeholder="Example: AirRevolving.com"
+          autocomplete="off"
+        />
+        <small>Use the naked domain, without protocol (no http/https), just name.com.</small>
+        <button type="submit">Appraise Domain →</button>
+      </form>
 
-      <div id="result" class="result" style="display:none;"></div>
+      <div id="result" class="result" style="display:none;">
+        <h2 id="range-text">Estimated Range: $0 – $0</h2>
+        <div class="chips">
+          <span class="badge" id="badge-domain"></span>
+          <span class="badge" id="badge-tld"></span>
+          <span class="badge" id="badge-length"></span>
+          <span class="badge" id="badge-bucket"></span>
+          <span class="badge" id="badge-score"></span>
+        </div>
+        <p id="explanation"></p>
+        <p class="note">
+          This tool uses heuristic rules and aggregated wholesale sales.
+          End-user prices can be much higher, and real outcomes depend on negotiation, brand fit,
+          trademarks and many other factors.
+        </p>
+      </div>
     </div>
 
     <footer>
-      © 2025 Sohadot.com – Automatic valuation based on aggregated past sales, keyword strength, and simple trend signals.
+      © 2025 Sohadot.com – Experimental valuation using historical sales, keywords and simple trend signals.
     </footer>
   </div>
 
-<script>
-  // ========= 1) Bucket statistics from your real sales data =========
-  const bucketStats = {
-    "ai_3_4":  { median: 3008 },
-    "ai_5_8":  { median: 3307 },
-    "ai_9_12": { median: 4500 },
+  <script>
+    // --- 1) Base medians taken from your sales sample ---
 
-    "co_5_8":   { median: 13080 },
-    "co_9_12":  { median: 2600 },
-    "co_13_99": { median: 1330 },
-
-    "com_3_4":  { median: 2700 },
-    "com_5_8":  { median: 1215 },
-    "com_9_12": { median: 1088 },
-    "com_13_99":{ median: 1400 },
-
-    "info_13_99": { median: 6296 },
-
-    "io_3_4":  { median: 649 },
-    "io_9_12": { median: 1732 },
-
-    "jobs_5_8": { median: 65000 },
-
-    "me_9_12":  { median: 916 },
-
-    "net_5_8":  { median: 810 },
-    "net_9_12": { median: 1178 },
-    "net_13_99":{ median: 1581 },
-
-    "org_3_4":  { median: 20201 },
-    "org_5_8":  { median: 740 },
-    "org_9_12": { median: 929 },
-    "org_13_99":{ median: 1563 },
-
-    "university_9_12": { median: 812 }
-  };
-
-  // ========= 2) Helpers: parsing + bucket selection =========
-  function normalizeDomain(input) {
-    return input.trim().toLowerCase().replace(/^https?:\/\//, "").replace(/^www\./, "");
-  }
-
-  function getParts(domain) {
-    const pieces = domain.split(".");
-    if (pieces.length < 2) return null;
-    const tld = pieces[pieces.length - 1];
-    const name = pieces.slice(0, -1).join(".");
-    return { tld, name };
-  }
-
-  function getLengthBucket(len) {
-    if (len <= 4) return "3_4";
-    if (len <= 8) return "5_8";
-    if (len <= 12) return "9_12";
-    return "13_99";
-  }
-
-  function getBucketKey(tld, lenBucket) {
-    return `${tld}_${lenBucket}`;
-  }
-
-  // ========= 3) Simple keyword / trend detection =========
-  const trendKeywords = [
-    "ai", "gpt", "ml", "data", "cloud",
-    "crypto", "chain", "coin", "nft", "defi",
-    "finance", "loan", "pay", "bank",
-    "health", "med", "pharma", "bio",
-    "travel", "tour", "trip",
-    "shop", "store", "market",
-    "video", "stream", "play", "game"
-  ];
-
-  function analyseTrends(name) {
-    const lower = name.toLowerCase();
-    let hits = [];
-    for (const kw of trendKeywords) {
-      if (lower.includes(kw)) hits.push(kw);
-    }
-    return hits;
-  }
-
-  // ========= 4) Core estimation logic =========
-  function estimateValue(domain) {
-    const parts = getParts(domain);
-    if (!parts) return null;
-
-    const tld = parts.tld;
-    const name = parts.name;
-    const len = name.length;
-
-    const lenBucket = getLengthBucket(len);
-    const bucketKey = getBucketKey(tld, lenBucket);
-
-    let median = 120;
-    if (bucketStats[bucketKey]) {
-      median = bucketStats[bucketKey].median;
-    } else if (tld === "com") {
-      median = 250;
-    }
-
-    let multiplier = 1.0;
-    let reasons = [];
-
-    if (len <= 4) {
-      multiplier *= 1.6;
-      reasons.push("Very short name (3–4 chars).");
-    } else if (len <= 8) {
-      multiplier *= 1.25;
-      reasons.push("Short and brandable length (5–8 chars).");
-    } else if (len >= 13) {
-      multiplier *= 0.85;
-      reasons.push("Longer name (13+ chars).");
-    }
-
-    if (/[0-9]/.test(name)) {
-      multiplier *= 0.8;
-      reasons.push("Contains numbers (usually lowers liquidity).");
-    }
-    if (/-/.test(name)) {
-      multiplier *= 0.8;
-      reasons.push("Contains hyphen (usually less desirable).");
-    }
-
-    if (["ai", "io", "co"].includes(tld)) {
-      multiplier *= 1.2;
-      reasons.push(`Modern startup-friendly extension .${tld}.`);
-    }
-    if (["org"].includes(tld)) {
-      reasons.push("Non-profit / org-focused extension.");
-    }
-
-    const trendHits = analyseTrends(name);
-    if (trendHits.length > 0) {
-      multiplier *= 1.15;
-      reasons.push("Matches current market/trend keywords: " + trendHits.join(", ") + ".");
-    }
-
-    if (/^[a-z]+$/.test(name)) {
-      multiplier *= 1.1;
-      reasons.push("Pure letter brand (no numbers or symbols).");
-    }
-
-    const estimated = median * multiplier;
-    let min = Math.round(estimated * 0.5);
-    let max = Math.round(estimated * 1.5);
-
-    if (max < 80) {
-      min = 40;
-      max = 120;
-    }
-
-    const score = Math.round(multiplier * 100);
-
-    return {
-      tld,
-      name,
-      len,
-      bucketKey,
-      median: Math.round(median),
-      min,
-      max,
-      score,
-      reasons
+    const BASE_MEDIANS = {
+      com: {            // from your NameBio-style sample
+        "1_4": 272,
+        "5_7": 343,
+        "8_12": 320,
+        "13_plus": 330
+      },
+      ai: {
+        "1_4": 155,
+        "5_7": 295,
+        "8_12": 300
+      },
+      io: {
+        "1_4": 256,
+        "8_12": 280
+      },
+      net: {
+        "5_7": 265,
+        "8_12": 365,
+        "13_plus": 1174
+      },
+      org: {
+        "5_7": 198,
+        "8_12": 530,
+        "13_plus": 403
+      },
+      co: {
+        "5_7": 394,
+        "8_12": 1452
+      },
+      // fallback medians for other TLDs (approx based on “other” group)
+      other: {
+        "1_4": 150,
+        "5_7": 220,
+        "8_12": 230,
+        "13_plus": 300
+      }
     };
-  }
 
-  // ========= 5) UI handler =========
-  function handleValuation() {
-    const input = document.getElementById("domain-input").value;
-    const resultDiv = document.getElementById("result");
-    const domain = normalizeDomain(input);
-
-    if (!domain || !domain.includes(".")) {
-      resultDiv.style.display = "block";
-      resultDiv.innerHTML = "<p>Please enter a valid domain like <strong>example.com</strong>.</p>";
-      return;
+    function normalizeDomain(input) {
+      input = input.trim().toLowerCase();
+      if (!input) return "";
+      // strip protocol
+      input = input.replace(/^https?:\/\//, "");
+      // strip path
+      const slashIndex = input.indexOf("/");
+      if (slashIndex !== -1) {
+        input = input.slice(0, slashIndex);
+      }
+      return input;
     }
 
-    const estimation = estimateValue(domain);
-    if (!estimation) {
-      resultDiv.style.display = "block";
-      resultDiv.innerHTML = "<p>We could not appraise this domain. Please check the format.</p>";
-      return;
+    function lengthBucket(length) {
+      if (length <= 4) return "1_4";
+      if (length <= 7) return "5_7";
+      if (length <= 12) return "8_12";
+      return "13_plus";
     }
 
-    const { tld, name, len, bucketKey, median, min, max, score, reasons } = estimation;
+    function getBaseMedian(tld, length) {
+      const bucket = lengthBucket(length);
+      const table = BASE_MEDIANS[tld] || BASE_MEDIANS["other"];
+      let base = table[bucket];
 
-    resultDiv.style.display = "block";
-    resultDiv.innerHTML = `
-      <h2>Estimated Range: $${min.toLocaleString()} – $${max.toLocaleString()}</h2>
-      <div class="chips">
-        <span class="badge">${name}.${tld}</span>
-        <span class="badge">.${tld}</span>
-        <span class="badge">${len} chars</span>
-        <span class="badge">Bucket: ${bucketKey}</span>
-        <span class="badge">Score: ${score}/100</span>
-      </div>
-      <p style="color:#94a3b8;font-size:0.9rem;margin-top:10px;">
-        Base median for similar historical sales: <strong>$${median.toLocaleString()}</strong><br>
-        Adjusted for length, extension quality, numbers/dashes, keyword strength, and simple market-trend signals.
-      </p>
-      <p style="font-size:0.85rem;color:#cbd5f5;margin-top:10px;">
-        ${reasons.length ? "Why this estimate: " + reasons.join(" ") : ""}
-      </p>
-      <p style="font-size:0.8rem;color:#64748b;margin-top:10px;">
-        This tool uses a small sample of aggregated historical sales plus heuristic rules.
-        Actual market value can be higher or lower depending on end-user demand, trademarks, and other factors.
-      </p>
-    `;
-  }
-</script>
+      if (base == null) {
+        // if bucket missing for this tld, fallback to 'other' bucket
+        base = BASE_MEDIANS["other"][bucket] || 220;
+      }
+      return base;
+    }
+
+    function appraiseDomain() {
+      const inputEl = document.getElementById("domain-input");
+      const raw = inputEl.value;
+      const domain = normalizeDomain(raw);
+
+      if (!domain || !domain.includes(".")) {
+        alert("Please enter a valid domain like name.com");
+        return;
+      }
+
+      const parts = domain.split(".");
+      const tld = parts.pop().toLowerCase();
+      const sld = parts.join(".").toLowerCase();
+
+      const core = sld.replace(/[^a-z0-9]/g, "");
+      const length = core.length || sld.length;
+
+      const bucket = lengthBucket(length);
+      const base = getBaseMedian(tld, length);
+
+      // --- 2) Keyword & trend boosts (relative to your base medians) ---
+
+      const lower = sld.toLowerCase();
+      const keywordSignals = [];
+      let keywordBoost = 0;
+
+      function has(word, boost, label) {
+        if (lower.includes(word)) {
+          keywordBoost += boost;
+          keywordSignals.push(label);
+        }
+      }
+
+      // tech / AI / data
+      has("ai", 0.22, "AI");
+      has("gpt", 0.18, "GPT / LLM");
+      has("ml", 0.12, "Machine Learning");
+      has("data", 0.12, "Data/Analytics");
+      has("cloud", 0.10, "Cloud");
+
+      // crypto / finance
+      has("crypto", 0.15, "Crypto");
+      has("coin", 0.10, "Coin/Crypto");
+      has("pay", 0.12, "Fintech/Payments");
+      has("cash", 0.10, "Finance/Cash");
+      has("fund", 0.10, "Finance/Fund");
+
+      // commerce / SaaS
+      has("shop", 0.10, "E-commerce");
+      has("store", 0.09, "E-commerce");
+      has("market", 0.08, "Marketplace");
+      has("sale", 0.06, "Sales");
+
+      // health / green
+      has("health", 0.14, "Health");
+      has("med", 0.10, "Medical");
+      has("care", 0.07, "Care");
+      has("green", 0.08, "Green/Sustainability");
+      has("eco", 0.08, "Eco");
+
+      // travel / local / lifestyle
+      has("travel", 0.09, "Travel");
+      has("trip", 0.08, "Travel");
+      has("home", 0.07, "Home/Lifestyle");
+
+      // generic modern
+      has("app", 0.07, "Apps");
+      has("meta", 0.07, "Meta/Next-gen");
+      has("digital", 0.06, "Digital");
+
+      // small penalty if contains hyphen or numbers
+      let structurePenalty = 0;
+      if (/[0-9]/.test(sld)) structurePenalty -= 0.12;
+      if (/-/.test(sld)) structurePenalty -= 0.08;
+
+      // --- 3) Combine into a raw score ---
+
+      let rawScore = base;
+
+      // adjust by keywords & structure
+      rawScore = rawScore * (1 + keywordBoost + structurePenalty);
+
+      // small length bonus for very short brands
+      if (length <= 4) rawScore *= 1.4;
+      else if (length <= 7) rawScore *= 1.15;
+      else if (length >= 13) rawScore *= 0.9;
+
+      // clamp to avoid negative / too small
+      if (rawScore < 50) rawScore = 50;
+
+      const low = Math.round(rawScore * 0.6);
+      const high = Math.round(rawScore * 2.0);
+
+      // --- 4) Score out of 200 for UI only ---
+
+      let score = 90;
+
+      if (length <= 4) score += 50;
+      else if (length <= 7) score += 30;
+      else if (length <= 12) score += 15;
+      else score += 5;
+
+      score += Math.round(keywordBoost * 90);
+      score += structurePenalty < 0 ? Math.round(structurePenalty * 60) : 0;
+
+      // TLD quality bump
+      if (tld === "com") score += 20;
+      else if (tld === "ai" || tld === "io") score += 14;
+      else if (tld === "net" || tld === "org" || tld === "co") score += 8;
+
+      if (score < 0) score = 0;
+      if (score > 200) score = 200;
+
+      // --- 5) Fill UI ---
+
+      document.getElementById("range-text").textContent =
+        "Estimated Range: $" + low.toLocaleString() + " – $" + high.toLocaleString();
+
+      document.getElementById("badge-domain").textContent = domain;
+      document.getElementById("badge-tld").textContent = "." + tld;
+      document.getElementById("badge-length").textContent = length + " chars";
+      document.getElementById("badge-bucket").textContent = "Bucket: " + tld + " / " + bucket;
+      document.getElementById("badge-score").textContent = "Score: " + score + "/200";
+
+      const explanationLines = [];
+
+      explanationLines.push(
+        "Base value is taken from median wholesale sales for ." +
+          tld +
+          " domains in the same length bucket (" +
+          bucket.replace("_", "–") +
+          ")."
+      );
+
+      explanationLines.push(
+        "Then adjusted for length, presence of trend keywords, and whether the name contains numbers or hyphens."
+      );
+
+      if (keywordSignals.length > 0) {
+        explanationLines.push(
+          "Detected strong keywords: " + keywordSignals.join(", ") + "."
+        );
+      } else {
+        explanationLines.push(
+          "No major trend keywords detected; treated as a general brandable."
+        );
+      }
+
+      document.getElementById("explanation").textContent = explanationLines.join(" ");
+
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
 </body>
 </html>
