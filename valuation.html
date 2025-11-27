@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sohadot – Automatic Domain Valuation (Beta)</title>
+  <meta name="description" content="Automatic domain valuation powered by aggregated historical sales data, keyword strength, and simple market-trend signals.">
+  <style>
+    body {
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(135deg,#1e293b,#0f172a);
+      color:#e2e8f0;
+    }
+    .container {
+      max-width:900px;
+      margin:0 auto;
+      padding:20px;
+    }
+    h1 {
+      text-align:center;
+      color:#60a5fa;
+      margin-top:40px;
+      margin-bottom:10px;
+      font-size:2.2rem;
+    }
+    p.subtitle {
+      text-align:center;
+      color:#94a3b8;
+      margin-bottom:30px;
+      font-size:0.98rem;
+      line-height:1.6;
+    }
+    .card {
+      background:#1e293b;
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    }
+    label {
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+    }
+    input[type="text"] {
+      width:100%;
+      padding:12px;
+      border-radius:8px;
+      border:none;
+      margin-bottom:12px;
+      font-size:1rem;
+    }
+    small {
+      display:block;
+      margin-bottom:16px;
+      color:#64748b;
+    }
+    button {
+      background:#3b82f6;
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      padding:10px 18px;
+      font-size:0.95rem;
+      cursor:pointer;
+    }
+    button:hover {
+      opacity:0.92;
+    }
+    .result {
+      margin-top:20px;
+      padding:15px;
+      border-radius:10px;
+      background:#020617;
+    }
+    .result h2 {
+      margin-top:0;
+      color:#60a5fa;
+    }
+    .badge {
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      font-size:0.75rem;
+      background:#0f172a;
+      margin-right:6px;
+      color:#e5e7eb;
+      margin-top:6px;
+    }
+    .chips {
+      margin-top:8px;
+      margin-bottom:6px;
+    }
+    footer {
+      text-align:center;
+      margin:30px 0 15px;
+      color:#64748b;
+      font-size:0.85rem;
+    }
+    a.back {
+      display:inline-block;
+      margin-bottom:20px;
+      color:#93c5fd;
+      text-decoration:none;
+      font-size:0.9rem;
+    }
+    a.back:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/index.html" class="back">← Back to Sohadot.com</a>
+
+    <h1>Automatic Domain Valuation (Beta)</h1>
+    <p class="subtitle">
+      This tool estimates a value range for your domain using:
+      <br>
+      • Aggregated historical sales data (NameBio-style comps)<br>
+      • Keyword strength (length, clarity, brandability)<br>
+      • Simple market-trend signals (AI, crypto, finance, travel, etc.)
+      <br><br>
+      ⚠️ Estimates are indicative only – not financial advice or a guaranteed sale price.
+    </p>
+
+    <div class="card">
+      <label for="domain-input">Domain name</label>
+      <input type="text" id="domain-input" placeholder="example.com">
+      <small>Tip: use naked domain without protocol (no http/https, just <strong>name.com</strong>).</small>
+      <button onclick="handleValuation()">Appraise Domain</button>
+
+      <div id="result" class="result" style="display:none;"></div>
+    </div>
+
+    <footer>
+      © 2025 Sohadot.com – Automatic valuation based on aggregated past sales, keyword strength, and simple trend signals.
+    </footer>
+  </div>
+
+<script>
+  // ========= 1) Bucket statistics from your real sales data =========
+  const bucketStats = {
+    "ai_3_4":  { median: 3008 },
+    "ai_5_8":  { median: 3307 },
+    "ai_9_12": { median: 4500 },
+
+    "co_5_8":   { median: 13080 },
+    "co_9_12":  { median: 2600 },
+    "co_13_99": { median: 1330 },
+
+    "com_3_4":  { median: 2700 },
+    "com_5_8":  { median: 1215 },
+    "com_9_12": { median: 1088 },
+    "com_13_99":{ median: 1400 },
+
+    "info_13_99": { median: 6296 },
+
+    "io_3_4":  { median: 649 },
+    "io_9_12": { median: 1732 },
+
+    "jobs_5_8": { median: 65000 },
+
+    "me_9_12":  { median: 916 },
+
+    "net_5_8":  { median: 810 },
+    "net_9_12": { median: 1178 },
+    "net_13_99":{ median: 1581 },
+
+    "org_3_4":  { median: 20201 },
+    "org_5_8":  { median: 740 },
+    "org_9_12": { median: 929 },
+    "org_13_99":{ median: 1563 },
+
+    "university_9_12": { median: 812 }
+  };
+
+  // ========= 2) Helpers: parsing + bucket selection =========
+  function normalizeDomain(input) {
+    return input.trim().toLowerCase().replace(/^https?:\/\//, "").replace(/^www\./, "");
+  }
+
+  function getParts(domain) {
+    const pieces = domain.split(".");
+    if (pieces.length < 2) return null;
+    const tld = pieces[pieces.length - 1];
+    const name = pieces.slice(0, -1).join(".");
+    return { tld, name };
+  }
+
+  function getLengthBucket(len) {
+    if (len <= 4) return "3_4";
+    if (len <= 8) return "5_8";
+    if (len <= 12) return "9_12";
+    return "13_99";
+  }
+
+  function getBucketKey(tld, lenBucket) {
+    return `${tld}_${lenBucket}`;
+  }
+
+  // ========= 3) Simple keyword / trend detection =========
+  const trendKeywords = [
+    "ai", "gpt", "ml", "data", "cloud",
+    "crypto", "chain", "coin", "nft", "defi",
+    "finance", "loan", "pay", "bank",
+    "health", "med", "pharma", "bio",
+    "travel", "tour", "trip",
+    "shop", "store", "market",
+    "video", "stream", "play", "game"
+  ];
+
+  function analyseTrends(name) {
+    const lower = name.toLowerCase();
+    let hits = [];
+    for (const kw of trendKeywords) {
+      if (lower.includes(kw)) hits.push(kw);
+    }
+    return hits;
+  }
+
+  // ========= 4) Core estimation logic =========
+  function estimateValue(domain) {
+    const parts = getParts(domain);
+    if (!parts) return null;
+
+    const tld = parts.tld;
+    const name = parts.name;
+    const len = name.length;
+
+    const lenBucket = getLengthBucket(len);
+    const bucketKey = getBucketKey(tld, lenBucket);
+
+    let median = 120;
+    if (bucketStats[bucketKey]) {
+      median = bucketStats[bucketKey].median;
+    } else if (tld === "com") {
+      median = 250;
+    }
+
+    let multiplier = 1.0;
+    let reasons = [];
+
+    if (len <= 4) {
+      multiplier *= 1.6;
+      reasons.push("Very short name (3–4 chars).");
+    } else if (len <= 8) {
+      multiplier *= 1.25;
+      reasons.push("Short and brandable length (5–8 chars).");
+    } else if (len >= 13) {
+      multiplier *= 0.85;
+      reasons.push("Longer name (13+ chars).");
+    }
+
+    if (/[0-9]/.test(name)) {
+      multiplier *= 0.8;
+      reasons.push("Contains numbers (usually lowers liquidity).");
+    }
+    if (/-/.test(name)) {
+      multiplier *= 0.8;
+      reasons.push("Contains hyphen (usually less desirable).");
+    }
+
+    if (["ai", "io", "co"].includes(tld)) {
+      multiplier *= 1.2;
+      reasons.push(`Modern startup-friendly extension .${tld}.`);
+    }
+    if (["org"].includes(tld)) {
+      reasons.push("Non-profit / org-focused extension.");
+    }
+
+    const trendHits = analyseTrends(name);
+    if (trendHits.length > 0) {
+      multiplier *= 1.15;
+      reasons.push("Matches current market/trend keywords: " + trendHits.join(", ") + ".");
+    }
+
+    if (/^[a-z]+$/.test(name)) {
+      multiplier *= 1.1;
+      reasons.push("Pure letter brand (no numbers or symbols).");
+    }
+
+    const estimated = median * multiplier;
+    let min = Math.round(estimated * 0.5);
+    let max = Math.round(estimated * 1.5);
+
+    if (max < 80) {
+      min = 40;
+      max = 120;
+    }
+
+    const score = Math.round(multiplier * 100);
+
+    return {
+      tld,
+      name,
+      len,
+      bucketKey,
+      median: Math.round(median),
+      min,
+      max,
+      score,
+      reasons
+    };
+  }
+
+  // ========= 5) UI handler =========
+  function handleValuation() {
+    const input = document.getElementById("domain-input").value;
+    const resultDiv = document.getElementById("result");
+    const domain = normalizeDomain(input);
+
+    if (!domain || !domain.includes(".")) {
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = "<p>Please enter a valid domain like <strong>example.com</strong>.</p>";
+      return;
+    }
+
+    const estimation = estimateValue(domain);
+    if (!estimation) {
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = "<p>We could not appraise this domain. Please check the format.</p>";
+      return;
+    }
+
+    const { tld, name, len, bucketKey, median, min, max, score, reasons } = estimation;
+
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = `
+      <h2>Estimated Range: $${min.toLocaleString()} – $${max.toLocaleString()}</h2>
+      <div class="chips">
+        <span class="badge">${name}.${tld}</span>
+        <span class="badge">.${tld}</span>
+        <span class="badge">${len} chars</span>
+        <span class="badge">Bucket: ${bucketKey}</span>
+        <span class="badge">Score: ${score}/100</span>
+      </div>
+      <p style="color:#94a3b8;font-size:0.9rem;margin-top:10px;">
+        Base median for similar historical sales: <strong>$${median.toLocaleString()}</strong><br>
+        Adjusted for length, extension quality, numbers/dashes, keyword strength, and simple market-trend signals.
+      </p>
+      <p style="font-size:0.85rem;color:#cbd5f5;margin-top:10px;">
+        ${reasons.length ? "Why this estimate: " + reasons.join(" ") : ""}
+      </p>
+      <p style="font-size:0.8rem;color:#64748b;margin-top:10px;">
+        This tool uses a small sample of aggregated historical sales plus heuristic rules.
+        Actual market value can be higher or lower depending on end-user demand, trademarks, and other factors.
+      </p>
+    `;
+  }
+</script>
+</body>
+</html>
