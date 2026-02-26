@@ -4,181 +4,397 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sohadot.com – Domain Tools & Premium Portfolio</title>
-  <meta name="description" content="Automatic domain valuation, monthly top keywords, weekly dropping domains, and a curated premium domain portfolio.">
-
+  <meta name="description" content="Automatic domain valuation based on real sales data, keyword strength, and market-trend signals. Plus: monthly top keywords, weekly dropping domains, and a curated premium domain portfolio.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg-main: #f6f0e8;      /* champagne gray */
-      --card-bg: #ffffff;
-      --text-main: #0f172a;    /* dark blue / navy */
-      --text-muted: #6b7280;
-      --accent: #1d4ed8;       /* primary blue */
+      --bg: #f5f0e8;
+      --card: #ffffff;
+      --border: rgba(15,23,42,0.08);
+      --accent: #1d4ed8;
+      --accent2: #3b82f6;
+      --text: #0f172a;
+      --muted: #64748b;
+      --dim: #94a3b8;
+      --gold: #f59e0b;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin:0;
-      font-family:Arial,Helvetica,sans-serif;
-      background:var(--bg-main);
-      color:var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    .container {
-      max-width:1200px;
-      margin:0 auto;
-      padding:28px 16px 44px;
+    /* subtle grain texture */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
     }
 
-    h1 {
-      text-align:center;
-      color:var(--accent);
-      margin-top:24px;
-      margin-bottom:8px;
-      font-size:3rem;
-      font-weight:800;
-      letter-spacing:0.03em;
+    /* ── NAV ── */
+    nav {
+      position: relative; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(245,240,232,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: .83rem; font-weight: 500;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: .04em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      padding: 8px 20px; border-radius: 8px;
+      background: var(--accent); color: #fff !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: #1e40af !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 80px 20px 64px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent2);
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.2);
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.05;
+      color: var(--text); margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      color: var(--muted); font-size: 1.05rem; font-weight: 300;
+      max-width: 520px; margin: 0 auto 40px; line-height: 1.75;
+    }
+    .hero-btns {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      background: var(--accent); color: #fff;
+      font-weight: 600; font-size: .95rem; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 18px rgba(29,78,216,0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29,78,216,0.35); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      background: var(--card); color: var(--text);
+      font-weight: 600; font-size: .95rem; text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color .2s, transform .2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .btn-secondary:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      position: relative; z-index: 1;
+      display: flex; justify-content: center; gap: 0;
+      max-width: 700px; margin: 0 auto 64px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .stat-item {
+      flex: 1; text-align: center; padding: 20px 16px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 700; color: var(--accent);
+    }
+    .stat-lbl { font-size: .72rem; color: var(--dim); text-transform: uppercase; letter-spacing: .09em; margin-top: 3px; }
+
+    /* ── CARDS GRID ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 1; }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--text);
+      margin-bottom: 28px; text-align: center;
     }
 
-    p.subtitle {
-      text-align:center;
-      color:var(--text-muted);
-      margin-bottom:36px;
-      font-size:1.05rem;
-      line-height:1.7;
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-      gap:22px;
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .card {
-      background:var(--card-bg);
-      padding:22px 22px 20px;
-      border-radius:20px;
-      box-shadow:0 12px 28px rgba(15,23,42,0.08);
-      border:1px solid rgba(148,163,184,0.45);
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px 24px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: relative; overflow: hidden;
     }
-
-    .card:hover {
-      transform:translateY(-4px);
-      box-shadow:0 16px 36px rgba(15,23,42,0.14);
-      border-color:var(--accent);
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0; transition: opacity .2s;
     }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.1); border-color: rgba(59,130,246,0.3); }
+    .card:hover::before { opacity: 1; }
 
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 11px;
+      background: rgba(29,78,216,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
     .card h3 {
-      margin-top:0;
-      margin-bottom:8px;
-      color:var(--accent);
-      font-size:1.3rem;
-      font-weight:700;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--accent);
     }
-
-    .card p {
-      color:var(--text-main);
-      font-size:0.98rem;
-      line-height:1.6;
+    .card-badge {
+      display: inline-block; font-size: .65rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 20px;
+      background: rgba(245,158,11,0.12); color: var(--gold);
+      border: 1px solid rgba(245,158,11,0.25);
+      width: fit-content;
     }
-
-    a.btn {
-      display:inline-block;
-      margin-top:14px;
-      padding:10px 22px;
-      border-radius:999px;
-      background:var(--accent);
-      color:#fff;
-      text-decoration:none;
-      font-size:0.96rem;
-      font-weight:600;
+    .card-badge.live {
+      background: rgba(16,185,129,0.1); color: #10b981;
+      border-color: rgba(16,185,129,0.25);
     }
+    .card p { color: var(--muted); font-size: .93rem; line-height: 1.65; font-weight: 300; }
 
-    a.btn:hover {
-      opacity:0.96;
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: auto;
+      padding: 11px 20px; border-radius: 10px;
+      background: var(--accent); color: #fff;
+      font-weight: 600; font-size: .88rem; text-decoration: none;
+      transition: background .2s; align-self: flex-start;
     }
+    .card-link:hover { background: #1e40af; }
+    .card-link.outline {
+      background: transparent; color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .card-link.outline:hover { border-color: var(--accent2); color: var(--accent); background: transparent; }
 
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 40px 32px; margin-bottom: 64px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; margin-top: 28px; }
+    .step { display: flex; flex-direction: column; gap: 10px; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .85rem;
+    }
+    .step h4 { font-weight: 600; font-size: .95rem; color: var(--text); }
+    .step p { font-size: .83rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+    /* ── FOOTER ── */
     footer {
-      text-align:center;
-      margin:40px 0 10px;
-      color:var(--text-muted);
-      font-size:0.85rem;
+      position: relative; z-index: 1;
+      text-align: center; padding: 28px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--dim); font-size: .8rem; line-height: 1.8;
     }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    .whatsapp {
-      position:fixed;
-      bottom:22px;
-      right:22px;
-      background:#25d366;
-      color:#fff;
-      width:60px;
-      height:60px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:30px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.25);
-      text-decoration:none;
-      z-index:999;
+    /* WhatsApp */
+    .wa-btn {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      text-decoration: none; z-index: 999;
+      transition: transform .2s, box-shadow .2s;
     }
+    .wa-btn:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
 
-    @media (max-width:768px){
-      h1{font-size:2.4rem;}
-      .card{padding:18px;}
+    @media (max-width: 768px) {
+      nav { padding: 14px 18px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 56px 20px 44px; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { min-width: 140px; }
+      .how-section { padding: 28px 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Sohadot.com</h1>
-    <p class="subtitle">
-      Automatic domain valuation based on real sales data, keyword strength, and simple market-trend signals.<br/>
-      Plus: monthly top keywords, weekly dropping domains, and a curated premium domain portfolio.
-    </p>
 
-    <div class="grid">
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Sohadot.com</a>
+    <div class="nav-links">
+      <a href="/valuation.html">Valuation</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="https://wa.me/+212668992259" target="_blank">Contact</a>
+      <a href="/portfolio.html" class="nav-cta">Browse Domains →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Domain Intelligence Platform</div>
+    <h1>Buy. Value.<br/><span>Discover Premium Domains.</span></h1>
+    <p class="hero-sub">
+      AI-powered domain valuation anchored to real market sales, plus a curated portfolio of 445+ premium domains across AI, Finance, Crypto, Geo and more.
+    </p>
+    <div class="hero-btns">
+      <a href="/portfolio.html" class="btn-primary">Browse Portfolio →</a>
+      <a href="/valuation.html" class="btn-secondary">Value a Domain</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar" style="position:relative;z-index:1;margin-left:auto;margin-right:auto;max-width:700px;margin-bottom:64px;">
+    <div class="stat-item">
+      <div class="stat-num">445+</div>
+      <div class="stat-lbl">Domains Listed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20</div>
+      <div class="stat-lbl">Categories</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">300+</div>
+      <div class="stat-lbl">Sales Anchors</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$0</div>
+      <div class="stat-lbl">To Valuate</div>
+    </div>
+  </div>
+
+  <!-- TOOLS CARDS -->
+  <div class="container">
+    <p class="section-title">What You Can Do Here</p>
+    <div class="cards-grid">
+
+      <!-- Valuation -->
       <div class="card">
-        <h3>Automatic Domain Valuation (Beta)</h3>
+        <div class="card-icon">📊</div>
+        <div class="card-badge live">✓ Live</div>
+        <h3>Domain Valuation</h3>
         <p>
-          Enter any domain and get an instant estimated range, powered by a small aggregated sample of historical sales data,
-          keyword strength analysis, and basic market-trend heuristics.
+          Instant wholesale and retail estimates anchored to 300+ real NameBio sales records.
+          Strategic exception logic for ultra-short, generic, and category-defining domains.
         </p>
-        <a href="/valuation.html" class="btn">Try Valuation →</a>
+        <a href="/valuation.html" class="card-link">Try Valuation →</a>
       </div>
 
+      <!-- Portfolio -->
       <div class="card">
+        <div class="card-icon">💎</div>
+        <div class="card-badge live">✓ Live</div>
+        <h3>Premium Domain Portfolio</h3>
+        <p>
+          445+ hand-selected domains across AI, Finance, Crypto, Commodities, Geo/City, Health, Energy and more. Filter, search, and inquire in one click.
+        </p>
+        <a href="/portfolio.html" class="card-link">Browse Portfolio →</a>
+      </div>
+
+      <!-- Monthly Keywords -->
+      <div class="card">
+        <div class="card-icon">🔑</div>
+        <div class="card-badge">Coming Soon</div>
         <h3>Top 10 Monthly Keywords</h3>
         <p>
-          Hand-picked high-value keywords each month, ideal for SEO, PPC and domain ideation. Based on real CPC and demand,
-          grouped by niche. (Coming soon.)
+          Hand-picked high-value keywords each month — ideal for SEO, PPC and domain ideation. Based on real CPC and demand, grouped by niche.
         </p>
-        <a href="#" class="btn">View This Month →</a>
+        <span class="card-link outline" style="cursor:default;">Notify Me</span>
       </div>
 
+      <!-- Dropping Domains -->
       <div class="card">
+        <div class="card-icon">⏬</div>
+        <div class="card-badge">Coming Soon</div>
         <h3>Weekly Dropping Domains</h3>
         <p>
-          A curated list of brandable expiring / dropped domains every week, filtered for length, memorability and extension quality.
-          (Coming soon.)
+          A curated list of brandable expiring domains every week — filtered for length, memorability and extension quality.
         </p>
-        <a href="#" class="btn">See Latest List →</a>
+        <span class="card-link outline" style="cursor:default;">Notify Me</span>
       </div>
 
-      <div class="card">
-        <h3>My Premium Domain Portfolio</h3>
-        <p>
-          300+ hand-selected .com and other premium domains available for acquisition. One click takes you directly
-          to the sale page on your preferred marketplace.
-        </p>
-        <a href="#" class="btn">Browse Portfolio →</a>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="how-section" style="margin-top:56px;">
+      <p class="section-title" style="text-align:left;margin-bottom:0;">How the Valuation Works</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Enter any domain</h4>
+          <p>Type any domain name — .com, .ai, .io, .autos or any TLD.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Matched to real sales</h4>
+          <p>Instantly matched against 300+ verified NameBio public sales records.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Exception logic applied</h4>
+          <p>Ultra-short, generic, and category-defining domains are handled with separate market-tier logic — not just a formula.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Get wholesale + retail range</h4>
+          <p>See investor-to-investor wholesale price and end-user retail range, plus comparable sales.</p>
+        </div>
       </div>
     </div>
 
-    <footer>
-      © 2025 Sohadot.com – Domain Tools & Premium Portfolio
-    </footer>
   </div>
 
-  <a href="https://wa.me/+212668992259" class="whatsapp" target="_blank">💬</a>
+  <!-- FOOTER -->
+  <footer>
+    © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
+    <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
+    <a href="/valuation.html">Valuation</a> &nbsp;·&nbsp;
+    <a href="https://wa.me/+212668992259" target="_blank">WhatsApp</a>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/+212668992259" class="wa-btn" target="_blank">💬</a>
+
 </body>
 </html>

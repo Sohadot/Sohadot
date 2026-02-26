@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sohadot.com/sitemap.xml
+
+# Block sensitive paths
+Disallow: /.github/
+Disallow: /.git/

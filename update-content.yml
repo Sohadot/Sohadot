@@ -1,0 +1,161 @@
+name: 📅 Content Update Reminder
+
+# This workflow runs automatically and creates GitHub Issues
+# as reminders to update weekly/monthly content.
+# No API keys needed — purely GitHub-native automation.
+
+on:
+  schedule:
+    # Every Monday at 08:00 UTC — Weekly Dropping Domains reminder
+    - cron: '0 8 * * 1'
+    # Every 1st of month at 08:00 UTC — Monthly Keywords reminder
+    - cron: '0 8 1 * *'
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      update_type:
+        description: 'What to update?'
+        required: true
+        type: choice
+        options:
+          - dropping-domains
+          - monthly-keywords
+          - both
+
+jobs:
+  # ── WEEKLY DROPPING DOMAINS ──────────────────────────────
+  remind-dropping:
+    name: 🔔 Remind — Update Dropping Domains
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 8 * * 1'
+
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "week=$(date +'Week of %b %d, %Y')" >> $GITHUB_OUTPUT
+
+      - name: Create reminder issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+            const nextMonday = new Date();
+            nextMonday.setDate(nextMonday.getDate() + 7);
+            const nextDate = nextMonday.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📅 [Weekly] Update Dropping Domains — ${today}`,
+              body: `## Weekly Dropping Domains Update Required
+
+**Due:** Today (${today})
+**Next update due:** ${nextDate}
+
+### Steps to complete:
+- [ ] Research 10-15 expiring domains (use [DropCatch](https://www.dropcatch.com), [NameJet](https://www.namejet.com), [GoDaddy Auctions](https://auctions.godaddy.com))
+- [ ] Filter for: short names, no hyphens, quality TLDs (.com/.ai/.io), brandable
+- [ ] Score each domain (length, pronounceability, keyword value)
+- [ ] Update the \`DROPPING\` array in \`/dropping.html\`
+- [ ] Update the week label in the \`<div class="eyebrow">\` header
+- [ ] Commit and push
+
+### Quick criteria checklist for each domain:
+| Criteria | Min Score |
+|----------|-----------|
+| Length (chars) | ≤ 12 preferred |
+| Pure alpha (no hyphens/numbers) | Yes |
+| TLD quality | .com / .ai / .io |
+| Brandability score | ≥ 70/100 |
+| Estimated resale value | ≥ $500 |
+
+### Resources:
+- [ExpiredDomains.net](https://www.expireddomains.net) — Free dropping list
+- [DropCatch](https://www.dropcatch.com) — Premium drops
+- [Sohadot Valuation Tool](https://sohadot.com/valuation.html) — Estimate value
+
+> Close this issue once \`dropping.html\` is updated and pushed.`,
+              labels: ['content-update', 'weekly', 'dropping-domains']
+            });
+
+  # ── MONTHLY KEYWORDS ─────────────────────────────────────
+  remind-keywords:
+    name: 🔔 Remind — Update Monthly Keywords
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 8 1 * *'
+
+    steps:
+      - name: Get current month
+        id: month
+        run: echo "month=$(date +'%B %Y')" >> $GITHUB_OUTPUT
+
+      - name: Create reminder issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const month = new Date().toLocaleDateString('en-US', {month:'long', year:'numeric'});
+            const nextMonth = new Date();
+            nextMonth.setMonth(nextMonth.getMonth() + 1, 1);
+            const nextMonthStr = nextMonth.toLocaleDateString('en-US', {month:'long', year:'numeric'});
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📊 [Monthly] Update Domain Keywords — ${month}`,
+              body: `## Monthly Keywords Update Required
+
+**Month:** ${month}
+**Next update due:** ${nextMonthStr} 1st
+
+### Steps to complete:
+- [ ] Review Google Trends for domain investment keywords
+- [ ] Check NameBio recent sales for trending keywords
+- [ ] Update CPC values from Google Keyword Planner
+- [ ] Revise the \`KEYWORDS\` array in \`/keywords.html\`
+- [ ] Update the eyebrow date label (e.g., "Updated Monthly — ${month}")
+- [ ] Update the "Next update" badge
+- [ ] Write the monthly market insight paragraph
+- [ ] Commit and push
+
+### Research sources:
+- [Google Trends](https://trends.google.com) — Trending search terms
+- [NameBio](https://namebio.com) — Recent domain sales
+- [DN Journal](https://dnjournal.com) — Weekly domain sales chart
+- [Sedo Market](https://sedo.com) — Active domain market
+- [Google Keyword Planner](https://ads.google.com/home/tools/keyword-planner/) — CPC data
+
+### Categories to review each month:
+- AI / AGI / ASI keywords
+- Crypto / Web3 trends
+- Finance / Payments
+- Energy / CleanTech
+- Health / BioTech
+- Geo city keywords
+
+> Close this issue once \`keywords.html\` is updated and pushed.`,
+              labels: ['content-update', 'monthly', 'keywords']
+            });
+
+  # ── SITEMAP AUTO-UPDATE ──────────────────────────────────
+  update-sitemap:
+    name: 🗺️ Auto-Update Sitemap Date
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update lastmod date in sitemap
+        run: |
+          TODAY=$(date +'%Y-%m-%d')
+          sed -i "s/<lastmod>.*<\/lastmod>/<lastmod>$TODAY<\/lastmod>/g" sitemap.xml
+          echo "Updated sitemap dates to $TODAY"
+
+      - name: Commit sitemap update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git diff --staged --quiet || git commit -m "🗺️ Auto-update sitemap dates [$(date +'%Y-%m-%d')]"
+          git push

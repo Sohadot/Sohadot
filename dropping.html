@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Weekly Dropping Domains – Sohadot.com</title>
+<meta name="description" content="Hand-curated list of brandable expiring domains every week. Filtered for length, memorability and extension quality. Updated every Monday."/>
+<link rel="canonical" href="https://sohadot.com/dropping.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f5f0e8;--card:#fff;--border:rgba(15,23,42,0.08);
+  --accent:#1d4ed8;--accent2:#3b82f6;--text:#0f172a;
+  --muted:#64748b;--dim:#94a3b8;--gold:#f59e0b;
+  --green:#10b981;--red:#ef4444;--orange:#f97316;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;
+  border-bottom:1px solid var(--border);background:rgba(245,240,232,0.9);
+  backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--accent);text-decoration:none;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-pill{padding:7px 18px;border-radius:8px;background:var(--accent);color:#fff!important;font-weight:600!important;}
+
+header{text-align:center;padding:56px 20px 36px;max-width:760px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+  background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);
+  padding:5px 14px;border-radius:20px;margin-bottom:20px;}
+.countdown-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);
+  font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.1;}
+h1 span{color:var(--orange);}
+.header-sub{color:var(--muted);font-size:.95rem;line-height:1.75;font-weight:300;}
+
+/* COUNTDOWN */
+.countdown-bar{display:flex;justify-content:center;gap:16px;margin:20px auto 0;max-width:400px;}
+.cd-box{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px 16px;text-align:center;flex:1;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:800;color:var(--orange);}
+.cd-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);}
+
+.wrapper{max-width:960px;margin:0 auto;padding:0 20px 60px;}
+
+/* HOW IT WORKS */
+.how-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:28px;}
+.how-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+.how-icon{font-size:1.4rem;margin-bottom:6px;}
+.how-title{font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:4px;}
+.how-desc{font-size:.76rem;color:var(--muted);line-height:1.5;}
+
+/* CONTROLS */
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.search-wrap{flex:1 1 200px;position:relative;}
+.search-wrap input{width:100%;padding:10px 14px 10px 36px;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);font-family:'Outfit',sans-serif;
+  font-size:.9rem;outline:none;transition:border-color .2s;}
+.search-wrap input:focus{border-color:var(--accent);}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:.85rem;}
+.ctrl-select{padding:10px 12px;border-radius:10px;border:1px solid var(--border);
+  background:var(--card);font-family:'Outfit',sans-serif;font-size:.82rem;color:var(--muted);outline:none;cursor:pointer;}
+
+/* TABLE */
+.domains-table{width:100%;border-collapse:separate;border-spacing:0 8px;}
+.domains-table thead th{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dim);padding:8px 14px;text-align:left;}
+.domains-table tbody tr{background:var(--card);border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:transform .18s,box-shadow .18s;}
+.domains-table tbody tr:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+.domains-table tbody td{padding:14px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.domains-table tbody td:first-child{border-left:1px solid var(--border);border-radius:12px 0 0 12px;padding-left:18px;}
+.domains-table tbody td:last-child{border-right:1px solid var(--border);border-radius:0 12px 12px 0;padding-right:18px;}
+.domains-table tbody tr.featured td{border-color:rgba(245,158,11,0.3);}
+.domains-table tbody tr.featured td:first-child{border-left-color:var(--gold);border-left-width:3px;}
+
+.domain-cell{display:flex;flex-direction:column;gap:3px;}
+.domain-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--text);}
+.domain-tld{color:var(--muted);font-weight:400;}
+.domain-tag{font-size:.67rem;font-weight:500;padding:1px 7px;border-radius:20px;
+  background:rgba(29,78,216,0.07);color:var(--accent);border:1px solid rgba(29,78,216,0.15);width:fit-content;}
+
+.score-bar{display:flex;align-items:center;gap:8px;}
+.score-num{font-weight:700;font-size:.9rem;min-width:28px;}
+.bar-bg{flex:1;height:5px;background:rgba(15,23,42,0.06);border-radius:3px;}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));}
+
+.drop-date{font-size:.82rem;color:var(--muted);}
+.drop-date.soon{color:var(--orange);font-weight:600;}
+.drop-date.today{color:var(--red);font-weight:700;}
+
+.est-value{font-weight:700;color:var(--green);font-size:.9rem;}
+
+.reg-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;
+  background:var(--accent);color:#fff;font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s;}
+.reg-btn:hover{background:#1e40af;}
+
+.star-badge{display:inline-flex;align-items:center;font-size:.65rem;color:var(--gold);
+  background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);
+  padding:1px 7px;border-radius:10px;gap:3px;}
+
+.empty{text-align:center;padding:48px 20px;color:var(--dim);}
+
+.disclaimer{text-align:center;font-size:.76rem;color:var(--dim);
+  padding:20px;border-top:1px solid var(--border);margin-top:20px;line-height:1.7;}
+
+footer{text-align:center;padding:24px 20px;border-top:1px solid var(--border);
+  color:var(--dim);font-size:.8rem;}
+footer a{color:var(--accent2);text-decoration:none;}
+
+@media(max-width:700px){
+  nav{padding:14px 18px;}.nav-links a:not(.nav-pill){display:none;}
+  .domains-table thead{display:none;}
+  .domains-table tbody tr{display:flex;flex-direction:column;border-radius:12px;margin-bottom:12px;}
+  .domains-table tbody td{border:none!important;border-radius:0!important;padding:8px 14px;}
+  .domains-table tbody td:first-child{border-radius:12px 12px 0 0!important;border-top:1px solid var(--border)!important;border-left:1px solid var(--border)!important;border-right:1px solid var(--border)!important;}
+  .domains-table tbody td:last-child{border-radius:0 0 12px 12px!important;border-bottom:1px solid var(--border)!important;border-left:1px solid var(--border)!important;border-right:1px solid var(--border)!important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Sohadot.com</a>
+  <div class="nav-links">
+    <a href="/valuation.html">Valuation</a>
+    <a href="/portfolio.html">Portfolio</a>
+    <a href="/keywords.html">Keywords</a>
+    <a href="/broker.html" class="nav-pill">Sell a Domain</a>
+  </div>
+</nav>
+
+<header>
+  <div class="eyebrow"><span class="countdown-dot"></span>Week of Feb 24 – Mar 2, 2026</div>
+  <h1>Weekly <span>Dropping Domains</span></h1>
+  <p class="header-sub">Hand-curated expiring domains with real brandability — filtered for length, memorability, TLD quality and market value. Refreshed every Monday.</p>
+  <div class="countdown-bar">
+    <div class="cd-box"><div class="cd-num" id="cdDays">--</div><div class="cd-lbl">Days</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdHours">--</div><div class="cd-lbl">Hours</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdMins">--</div><div class="cd-lbl">Minutes</div></div>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <div class="how-row">
+    <div class="how-box"><div class="how-icon">🔍</div><div class="how-title">Curated Weekly</div><div class="how-desc">Every Monday we review 500+ expiring domains and select only the most brandable ones.</div></div>
+    <div class="how-box"><div class="how-icon">⭐</div><div class="how-title">Quality Scored</div><div class="how-desc">Each domain is scored on brandability, length, memorability and TLD quality (1–100).</div></div>
+    <div class="how-box"><div class="how-icon">💰</div><div class="how-title">Value Estimated</div><div class="how-desc">Wholesale resale value estimated using our sales database of 300+ real transactions.</div></div>
+    <div class="how-box"><div class="how-icon">⚡</div><div class="how-title">Act Fast</div><div class="how-desc">Dropping domains can be hand-registered at $10–15. Time is critical — check daily.</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search domains…"/>
+    </div>
+    <select class="ctrl-select" id="catFilter">
+      <option value="all">All Categories</option>
+      <option value="ai">AI / Tech</option>
+      <option value="finance">Finance</option>
+      <option value="brand">Brandable</option>
+      <option value="geo">Geo</option>
+      <option value="health">Health</option>
+    </select>
+    <select class="ctrl-select" id="sortFilter">
+      <option value="score">Best Score First</option>
+      <option value="value">Highest Value</option>
+      <option value="date">Dropping Soonest</option>
+      <option value="length">Shortest First</option>
+    </select>
+  </div>
+
+  <table class="domains-table">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Score</th>
+        <th>Category</th>
+        <th>Drops On</th>
+        <th>Est. Value</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="domainsTbody"></tbody>
+  </table>
+
+  <div class="disclaimer">
+    ⚠️ Domain availability changes rapidly. Always verify availability on GoDaddy or Namecheap before investing time.
+    Estimated resale values are wholesale investor estimates — not guaranteed sale prices.
+    Sohadot.com curates this list manually every Monday. Last updated: Feb 24, 2026.
+  </div>
+</div>
+
+<footer>
+  © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
+  <a href="/keywords.html">Top Keywords</a> &nbsp;·&nbsp;
+  <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
+  <a href="/valuation.html">Valuation Tool</a>
+</footer>
+
+<script>
+// ── DROPPING DOMAINS DATA ───────────────────────────────
+// Updated manually every Monday — replace this array weekly
+const DROPPING = [
+  {name:"vaultai",tld:"com",cat:"ai",catLabel:"AI / Tech",score:91,dropDate:"2026-02-26",estValue:3200,featured:true,
+   why:"Short 6-char, vault + ai = perfect security AI brand. High CPC keywords."},
+  {name:"nexagen",tld:"com",cat:"brand",catLabel:"Brandable",score:88,dropDate:"2026-02-27",estValue:1800,featured:true,
+   why:"Nexa + gen — next generation brand. 7 chars, pronounceable, no hyphens."},
+  {name:"quantaflow",tld:"com",cat:"ai",catLabel:"AI / Tech",score:84,dropDate:"2026-02-28",estValue:2400,featured:false,
+   why:"Quanta + flow — physics meets SaaS. 10 chars, strong tech brand."},
+  {name:"payorbit",tld:"com",cat:"finance",catLabel:"Finance",score:83,dropDate:"2026-03-01",estValue:1500,featured:false,
+   why:"Pay + orbit — fintech space brand. Memorable, 8 chars."},
+  {name:"medsynth",tld:"io",cat:"health",catLabel:"Health",score:81,dropDate:"2026-02-26",estValue:900,featured:false,
+   why:"Medical + synthesis — biotech compound. .io suits SaaS/startup angle."},
+  {name:"aifreight",tld:"com",cat:"ai",catLabel:"AI / Tech",score:80,dropDate:"2026-03-02",estValue:1200,featured:false,
+   why:"AI + freight — logistics tech. Exact match for a growing sector."},
+  {name:"genova",tld:"ai",cat:"brand",catLabel:"Brandable",score:79,dropDate:"2026-02-28",estValue:2100,featured:true,
+   why:"Genova on .ai TLD — elegant, European-sounding AI brand. Short 6 chars."},
+  {name:"cryplink",tld:"com",cat:"finance",catLabel:"Finance",score:77,dropDate:"2026-03-01",estValue:800,featured:false,
+   why:"Crypto + link — web3 connectivity brand. 8 chars, clean compound."},
+  {name:"orbitlabs",tld:"com",cat:"brand",catLabel:"Brandable",score:76,dropDate:"2026-03-02",estValue:650,featured:false,
+   why:"Orbit + labs — R&D brand. Common but still available in this form."},
+  {name:"hydropath",tld:"com",cat:"ai",catLabel:"Energy",score:75,dropDate:"2026-02-27",estValue:950,featured:false,
+   why:"Hydrogen + path — H2 infrastructure brand. Strong keyword combo."},
+  {name:"neuropay",tld:"com",cat:"finance",catLabel:"Finance",score:74,dropDate:"2026-03-01",estValue:1100,featured:false,
+   why:"Neuro + pay — AI payments brand. 8 chars, no hyphens, catchy."},
+  {name:"genomiq",tld:"com",cat:"health",catLabel:"Health",score:73,dropDate:"2026-02-28",estValue:780,featured:false,
+   why:"Genomic with a twist — 8 chars, unique spelling makes it trademarkable."},
+  {name:"clarivex",tld:"com",cat:"brand",catLabel:"Brandable",score:72,dropDate:"2026-03-02",estValue:620,featured:false,
+   why:"Clarify + vex — unique SaaS brand name. 8 chars, professional sound."},
+  {name:"ailedger",tld:"com",cat:"ai",catLabel:"AI / Tech",score:71,dropDate:"2026-02-26",estValue:1400,featured:false,
+   why:"AI + ledger — blockchain + AI accounting brand. Exact match potential."},
+  {name:"fluxcore",tld:"io",cat:"brand",catLabel:"Brandable",score:70,dropDate:"2026-03-01",estValue:480,featured:false,
+   why:"Flux + core — tech brand on .io. Developer-friendly feel."},
+];
+
+function daysUntil(dateStr) {
+  const now = new Date();
+  const target = new Date(dateStr);
+  const diff = Math.ceil((target - now) / (1000*60*60*24));
+  return diff;
+}
+
+function dropLabel(dateStr) {
+  const days = daysUntil(dateStr);
+  if (days <= 0) return {txt:"Today!", cls:"today"};
+  if (days === 1) return {txt:"Tomorrow", cls:"soon"};
+  if (days <= 3) return {txt:`In ${days} days`, cls:"soon"};
+  return {txt:new Date(dateStr).toLocaleDateString('en-US',{month:'short',day:'numeric'}), cls:""};
+}
+
+function fmtVal(v) {
+  return v >= 1000 ? "$" + (v/1000).toFixed(1) + "K" : "$" + v;
+}
+
+let searchQ = '';
+let catFilter = 'all';
+let sortMode = 'score';
+
+function filtered() {
+  let list = [...DROPPING];
+  if (catFilter !== 'all') list = list.filter(d => d.cat === catFilter);
+  if (searchQ) list = list.filter(d => (d.name+'.'+d.tld).includes(searchQ.toLowerCase()));
+  list.sort((a,b) => {
+    if (sortMode === 'score') return b.score - a.score;
+    if (sortMode === 'value') return b.estValue - a.estValue;
+    if (sortMode === 'date') return new Date(a.dropDate) - new Date(b.dropDate);
+    if (sortMode === 'length') return a.name.length - b.name.length;
+    return 0;
+  });
+  return list;
+}
+
+function render() {
+  const list = filtered();
+  const tbody = document.getElementById('domainsTbody');
+  if (!list.length) { tbody.innerHTML = `<tr><td colspan="6" class="empty">No domains match your filters.</td></tr>`; return; }
+  tbody.innerHTML = list.map(d => {
+    const full = `${d.name}.${d.tld}`;
+    const dl = dropLabel(d.dropDate);
+    const godaddyUrl = `https://www.godaddy.com/domainsearch/find?checkAvail=1&tmskey=&domainToCheck=${full}`;
+    return `<tr class="${d.featured ? 'featured' : ''}">
+      <td>
+        <div class="domain-cell">
+          <div class="domain-name">${d.name}<span class="domain-tld">.${d.tld}</span></div>
+          ${d.featured ? '<div class="star-badge">★ Featured Pick</div>' : ''}
+          <div style="font-size:.74rem;color:var(--dim);margin-top:3px;">${d.why}</div>
+        </div>
+      </td>
+      <td>
+        <div class="score-bar">
+          <span class="score-num" style="color:${d.score>=85?'var(--green)':d.score>=70?'var(--accent2)':'var(--dim)'}">${d.score}</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:${d.score}%"></div></div>
+        </div>
+      </td>
+      <td><span class="domain-tag">${d.catLabel}</span></td>
+      <td><span class="drop-date ${dl.cls}">${dl.txt}</span></td>
+      <td><span class="est-value">${fmtVal(d.estValue)}</span></td>
+      <td><a href="${godaddyUrl}" class="reg-btn" target="_blank" rel="noopener">Check →</a></td>
+    </tr>`;
+  }).join('');
+}
+
+document.getElementById('searchInput').addEventListener('input', e => { searchQ = e.target.value; render(); });
+document.getElementById('catFilter').addEventListener('change', e => { catFilter = e.target.value; render(); });
+document.getElementById('sortFilter').addEventListener('change', e => { sortMode = e.target.value; render(); });
+
+// Countdown to next Monday
+function updateCountdown() {
+  const now = new Date();
+  const nextMon = new Date(now);
+  nextMon.setDate(now.getDate() + (8 - now.getDay()) % 7 || 7);
+  nextMon.setHours(0,0,0,0);
+  const diff = nextMon - now;
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  document.getElementById('cdDays').textContent = String(d).padStart(2,'0');
+  document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cdMins').textContent = String(m).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+render();
+</script>
+</body>
+</html>
