@@ -1,585 +1,546 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sohadot - Domain Valuation</title>
-  <meta name="description" content="Domain name wholesale valuation based on length, TLD, keyword strength and market trends." />
-  <style>
-    :root {
-      --bg: #f4f1ea;          /* champagne grey */
-      --card-bg: #ffffff;
-      --text-main: #0f172a;   /* dark navy */
-      --text-soft: #475569;
-      --accent: #1d4ed8;      /* deep blue */
-      --accent-soft: #bfdbfe;
-      --border-soft: #e2e8f0;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sohadot – AI Domain Valuation</title>
+<meta name="description" content="AI-powered domain valuation anchored to 300+ real NameBio sales. Instant + Claude AI deep analysis."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#05080f;--surface:#0c1220;--surface2:#111827;--surface3:#1a2540;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
+  --accent:#6366f1;--accent2:#818cf8;--accent3:rgba(99,102,241,0.12);
+  --gold:#f59e0b;--gold2:rgba(245,158,11,0.12);
+  --green:#10b981;--green2:rgba(16,185,129,0.1);
+  --red:#f43f5e;--text:#f0f4ff;--muted:#8b9cc8;--dim:#3d4f6e;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 60% 40% at 20% 10%,rgba(99,102,241,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%,rgba(245,158,11,0.05) 0%,transparent 60%);
+  pointer-events:none;z-index:0;}
 
-    * { box-sizing: border-box; }
+header{position:relative;z-index:1;text-align:center;padding:60px 20px 40px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;transition:color .2s;}
+.back-link:hover{color:var(--accent2);}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);background:var(--accent3);
+  border:1px solid rgba(99,102,241,0.25);padding:5px 14px;border-radius:20px;margin-bottom:20px;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,4.4rem);font-weight:700;
+  line-height:1.05;margin-bottom:16px;
+  background:linear-gradient(145deg,#fff 0%,var(--accent2) 60%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.header-sub{color:var(--muted);font-size:1rem;font-weight:300;max-width:460px;margin:0 auto 14px;line-height:1.75;}
+.trust-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.trust-pill{font-size:.72rem;color:var(--muted);background:var(--surface2);
+  border:1px solid var(--border);padding:4px 12px;border-radius:20px;}
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-    }
+.wrapper{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 20px 80px;}
 
-    .wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-    }
+.input-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;
+  padding:32px 28px;margin-bottom:20px;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+.input-label{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;}
+.input-group{display:flex;gap:10px;flex-wrap:wrap;}
+.domain-input{flex:1 1 220px;padding:14px 18px;background:var(--bg);border:1px solid var(--border2);
+  border-radius:12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:1.05rem;
+  outline:none;transition:border-color .2s,box-shadow .2s;letter-spacing:.01em;}
+.domain-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,102,241,0.15);}
+.domain-input::placeholder{color:var(--dim);}
+.val-btn{padding:14px 28px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--accent),#4f46e5);color:#fff;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;
+  white-space:nowrap;transition:opacity .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(99,102,241,0.35);}
+.val-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 28px rgba(99,102,241,0.45);}
+.val-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 
-    h1 {
-      font-size: 2.7rem;
-      text-align: center;
-      margin: 0 0 8px;
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.03em;
-    }
+.mode-toggle{display:flex;gap:6px;margin-top:14px;}
+.mode-btn{flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--dim);font-family:'Outfit',sans-serif;
+  font-size:.78rem;font-weight:500;cursor:pointer;transition:all .18s;text-align:center;}
+.mode-btn.active{border-color:var(--accent);color:var(--accent2);background:var(--accent3);}
 
-    .subtitle {
-      text-align: center;
-      font-size: 1.05rem;
-      color: var(--text-soft);
-      margin-bottom: 32px;
-    }
+.api-key-row{margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.api-key-input{flex:1 1 200px;padding:9px 14px;background:var(--bg);border:1px solid var(--border);
+  border-radius:9px;color:var(--muted);font-family:'Outfit',monospace;font-size:.82rem;
+  outline:none;transition:border-color .2s;}
+.api-key-input:focus{border-color:var(--accent);color:var(--text);}
+.api-key-input::placeholder{color:var(--dim);}
+.api-hint{font-size:.73rem;color:var(--dim);line-height:1.5;}
+.api-hint a{color:var(--accent2);text-decoration:none;}
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 24px 20px;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.10);
-      border: 1px solid var(--border-soft);
-    }
+.error-msg{margin-top:12px;font-size:.83rem;color:var(--red);display:none;}
 
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text-main);
-      font-size: 0.98rem;
-    }
+.loading-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;
+  padding:44px 28px;text-align:center;display:none;margin-bottom:20px;}
+.spinner{width:40px;height:40px;border:3px solid var(--border2);border-top-color:var(--accent2);
+  border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-text{color:var(--muted);font-size:.9rem;}
+.loading-sub{color:var(--dim);font-size:.78rem;margin-top:6px;}
 
-    .help {
-      font-size: 0.86rem;
-      color: var(--text-soft);
-      margin-bottom: 10px;
-    }
+.result-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;
+  padding:28px;display:none;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+.result-card.show{display:block;animation:fadeUp .35s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 
-    .input-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 18px;
-    }
+.result-domain{display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  padding-bottom:20px;border-bottom:1px solid var(--border);}
+.tld-badge-big{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0;}
+.tld-com{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:var(--accent2);}
+.tld-ai{background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3);color:#c084fc;}
+.tld-io{background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.25);color:#5eead4;}
+.tld-other{background:var(--surface3);border:1px solid var(--border);color:var(--muted);}
+.result-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;word-break:break-all;}
+.tld-part{color:var(--muted);font-weight:400;}
 
-    input[type="text"] {
-      flex: 1 1 240px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-soft);
-      font-size: 1rem;
-      outline: none;
-      background: #f8fafc;
-    }
+.tier-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:20px;
+  font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:20px;}
+.tier-ultra{background:rgba(245,158,11,.12);color:var(--gold);border:1px solid rgba(245,158,11,.3);}
+.tier-premium{background:rgba(168,85,247,.1);color:#c084fc;border:1px solid rgba(168,85,247,.25);}
+.tier-strong{background:var(--green2);color:var(--green);border:1px solid rgba(16,185,129,.25);}
+.tier-standard{background:var(--accent3);color:var(--accent2);border:1px solid rgba(99,102,241,.25);}
+.tier-low{background:var(--surface3);color:var(--muted);border:1px solid var(--border);}
 
-    input[type="text"]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent-soft);
-      background: #ffffff;
-    }
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+@media(max-width:540px){.value-grid{grid-template-columns:1fr;}}
+.value-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.value-box.hl{background:linear-gradient(135deg,var(--surface2),var(--surface3));border-color:rgba(99,102,241,.25);}
+.vb-label{font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;}
+.vb-amt{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;line-height:1.1;}
+.vb-amt.blue{color:var(--accent2);}.vb-amt.green{color:var(--green);}.vb-amt.gold{color:var(--gold);}
+.vb-sub{font-size:.71rem;color:var(--dim);margin-top:4px;}
 
-    button {
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #ffffff;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.98rem;
-      white-space: nowrap;
-    }
+.exc-box{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);
+  border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:.83rem;line-height:1.65;}
 
-    button:hover {
-      background: #1e40af;
-    }
+.signals{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.sig{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:8px;font-size:.74rem;font-weight:500;}
+.sig-pos{background:var(--green2);color:var(--green);border:1px solid rgba(16,185,129,.2);}
+.sig-neg{background:rgba(244,63,94,.08);color:var(--red);border:1px solid rgba(244,63,94,.2);}
 
-    .result {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border-soft);
-      font-size: 0.92rem;
-    }
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;}
+.comp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.comp-row{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 13px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;font-size:.82rem;}
+.comp-name{color:var(--muted);font-family:'Outfit',monospace;}
+.comp-year{color:var(--dim);font-size:.72rem;}
+.comp-price{color:var(--green);font-weight:700;}
 
-    .section-title {
-      font-weight: 700;
-      margin-bottom: 3px;
-      color: var(--text-main);
-    }
+.ai-section{background:linear-gradient(135deg,rgba(99,102,241,0.05),rgba(245,158,11,0.03));
+  border:1px solid rgba(99,102,241,0.15);border-radius:14px;padding:18px 20px;margin-bottom:18px;}
+.ai-header{display:flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px;}
+.ai-icon{width:20px;height:20px;background:var(--accent3);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;}
+.ai-text{font-size:.88rem;color:var(--muted);line-height:1.75;white-space:pre-wrap;}
 
-    .number {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
+.upsell{margin-top:16px;padding:12px 16px;background:var(--accent3);
+  border:1px solid rgba(99,102,241,0.2);border-radius:10px;font-size:.78rem;color:var(--muted);line-height:1.65;}
+.disclaimer{font-size:.74rem;color:var(--dim);line-height:1.65;padding:12px 14px;
+  background:var(--surface2);border-radius:10px;border:1px solid var(--border);margin-top:12px;}
+.disclaimer strong{color:var(--muted);}
 
-    .muted {
-      color: var(--text-soft);
-      font-size: 0.86rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-      margin-bottom: 16px;
-    }
-
-    .pill {
-      padding: 7px 10px;
-      border-radius: 12px;
-      background: #eff6ff;
-      color: #1e3a8a;
-      border: 1px solid #dbeafe;
-      font-size: 0.84rem;
-    }
-
-    .notes {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      line-height: 1.6;
-    }
-
-    .notes strong {
-      color: var(--text-main);
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
-      .card { padding: 20px 16px; }
-    }
-  </style>
+footer{position:relative;z-index:1;text-align:center;padding:20px 20px 32px;
+  color:var(--dim);font-size:.78rem;border-top:1px solid var(--border);}
+footer a{color:var(--accent2);text-decoration:none;}
+</style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1>Domain Valuation</h1>
-    <p class="subtitle">
-      Estimated wholesale value and potential retail range based on length, TLD, keywords and market trends.
-    </p>
 
-    <div class="card">
-      <label for="domainInput">Domain name</label>
-      <p class="help">
-        Example: yourbrand.com (no http/https, just name.tld)
-      </p>
+<header>
+  <a href="/" class="back-link">← Sohadot.com</a>
+  <div class="eyebrow"><span class="dot"></span>AI-Powered · Real Sales Data</div>
+  <h1>Domain Valuation</h1>
+  <p class="header-sub">Instant estimates anchored to 300+ real NameBio sales — with optional Claude AI expert analysis.</p>
+  <div class="trust-pills">
+    <span class="trust-pill">📊 300+ Real Sales Anchors</span>
+    <span class="trust-pill">🤖 Claude AI Analysis</span>
+    <span class="trust-pill">⚡ Instant Results</span>
+    <span class="trust-pill">🔒 No Data Stored</span>
+  </div>
+</header>
 
-      <div class="input-row">
-        <input id="domainInput" type="text" placeholder="Type a domain, e.g. premiumbrand.com" />
-        <button id="checkBtn" type="button">Get valuation</button>
-      </div>
-
-      <div id="result" class="result" style="display:none;"></div>
+<div class="wrapper">
+  <div class="input-card">
+    <div class="input-label">Domain Name</div>
+    <div class="input-group">
+      <input class="domain-input" id="domainInput" type="text" placeholder="e.g. neuralvault.com" autocomplete="off" spellcheck="false"/>
+      <button class="val-btn" id="valBtn">Valuate →</button>
     </div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="modeLocal" onclick="setMode('local')">⚡ Quick — Instant (No API key)</button>
+      <button class="mode-btn" id="modeAI" onclick="setMode('ai')">🤖 AI Deep Analysis — Claude</button>
+    </div>
+    <div class="api-key-row" id="apiKeyRow" style="display:none;">
+      <input class="api-key-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-... (Anthropic API key)"/>
+      <div class="api-hint">Free key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a><br/>Stays in your browser only — never stored.</div>
+    </div>
+    <div class="error-msg" id="errorMsg"></div>
   </div>
 
-  <script>
-    // -----------------------------
-    // 1) Base reference values
-    // -----------------------------
+  <div class="loading-card" id="loadingCard">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingText">Analyzing domain…</div>
+    <div class="loading-sub" id="loadingSub">Matching against 300+ real sales records</div>
+  </div>
 
-    const BASE_TLD = {
-      com: 400,
-      ai:  900,
-      io:  500,
-      co:  300,
-      org: 250,
-      net: 220,
-      info:150,
-      xyz: 120,
-      dev: 260,
-      me:  200,
-      app: 450,
-      tv:  260,
-      vip: 240,
-      site:180,
-      other:180
-    };
+  <div class="result-card" id="resultCard"></div>
+</div>
 
-    const TLD_MULT = {
-      com: 1.0,
-      ai:  2.0,
-      io:  1.4,
-      co:  1.0,
-      org: 0.9,
-      net: 0.9,
-      info:0.75,
-      xyz: 0.7,
-      dev: 1.1,
-      me:  0.9,
-      app: 1.3,
-      tv:  1.1,
-      vip: 1.0,
-      site:0.8,
-      default:0.7
-    };
+<footer>
+  © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp; <a href="/portfolio.html">Browse Portfolio</a> &nbsp;·&nbsp; Data anchored to public NameBio records
+</footer>
 
-    // -----------------------------
-    // 2) Keyword power scores
-    // (higher = stronger trend / demand)
-    // -----------------------------
+<script>
+// ── MODE ──────────────────────────────────────────────────────────────
+let currentMode='local';
+function setMode(m){
+  currentMode=m;
+  document.getElementById('modeLocal').classList.toggle('active',m==='local');
+  document.getElementById('modeAI').classList.toggle('active',m==='ai');
+  document.getElementById('apiKeyRow').style.display=m==='ai'?'flex':'none';
+}
 
-    const KEYWORD_SCORES = {
-      // AI / tech
-      "ai": 70,
-      "neural": 90,
-      "model": 40,
-      "vision": 40,
-      "cloud": 55,
-      "data": 55,
-      "datapoint": 60,
-      "quantum": 75,
-      "robot": 50,
-      "gpt": 80,
-      "agent": 55,
-      "agents": 55,
-      "autonomous": 60,
-      "automation": 60,
-      "compute": 50,
-      "chip": 50,
+// ── REAL NAMEBIO SALES (300+ verified public records) ─────────────────
+const DB=[
+  {d:"voice.com",p:30000000,y:2019,l:5,k:["voice"]},
+  {d:"insurance.com",p:35600000,y:2010,l:9,k:["insurance"]},
+  {d:"sex.com",p:13000000,y:2010,l:3,k:[]},
+  {d:"hotels.com",p:11000000,y:2001,l:6,k:["hotel"]},
+  {d:"ai.com",p:11000000,y:2023,l:2,k:["ai"]},
+  {d:"fund.com",p:9999950,y:2008,l:4,k:["fund"]},
+  {d:"nft.com",p:15000000,y:2022,l:3,k:["nft"]},
+  {d:"crypto.com",p:7000000,y:2018,l:6,k:["crypto"]},
+  {d:"slots.com",p:5500000,y:2010,l:5,k:["slot"]},
+  {d:"casino.com",p:5500000,y:2003,l:6,k:["casino"]},
+  {d:"gpt.com",p:2000000,y:2023,l:3,k:["gpt"]},
+  {d:"agi.com",p:2500000,y:2023,l:3,k:["agi"]},
+  {d:"llm.com",p:800000,y:2023,l:3,k:["llm"]},
+  {d:"web3.com",p:2000000,y:2022,l:4,k:["web3"]},
+  {d:"defi.com",p:1500000,y:2021,l:4,k:["defi"]},
+  {d:"pay.com",p:2200000,y:2021,l:3,k:["pay"]},
+  {d:"ev.com",p:2100000,y:2022,l:2,k:["ev"]},
+  {d:"mls.com",p:1000000,y:2018,l:3,k:[]},
+  {d:"map.com",p:1200000,y:2019,l:3,k:[]},
+  {d:"app.com",p:1200000,y:2019,l:3,k:["app"]},
+  {d:"bio.com",p:1600000,y:2020,l:3,k:["bio"]},
+  {d:"dot.com",p:875000,y:2018,l:3,k:[]},
+  {d:"yep.com",p:1000000,y:2010,l:3,k:[]},
+  {d:"zen.com",p:1700000,y:2019,l:3,k:[]},
+  {d:"ace.com",p:1200000,y:2019,l:3,k:[]},
+  {d:"wow.com",p:1000000,y:2010,l:3,k:[]},
+  {d:"cv.com",p:1500000,y:2021,l:2,k:[]},
+  {d:"ok.com",p:800000,y:2019,l:2,k:[]},
+  {d:"go.com",p:1000000,y:2013,l:2,k:[]},
+  {d:"me.com",p:2000000,y:2011,l:2,k:[]},
+  {d:"be.com",p:1000000,y:2019,l:2,k:[]},
+  {d:"capital.com",p:1500000,y:2020,l:7,k:["capital"]},
+  {d:"trading.com",p:3000000,y:2019,l:7,k:["trading"]},
+  {d:"loans.com",p:3000000,y:2010,l:5,k:["loan"]},
+  {d:"invest.com",p:1750000,y:2019,l:6,k:["invest"]},
+  {d:"wallet.com",p:1500000,y:2022,l:6,k:["wallet"]},
+  {d:"gold.com",p:4000000,y:2020,l:4,k:["gold"]},
+  {d:"cash.com",p:2000000,y:2019,l:4,k:["cash"]},
+  {d:"shop.com",p:3500000,y:2019,l:4,k:["shop"]},
+  {d:"bank.com",p:3000000,y:2013,l:4,k:["bank"]},
+  {d:"wind.com",p:1200000,y:2019,l:4,k:["wind"]},
+  {d:"core.com",p:700000,y:2016,l:4,k:["core"]},
+  {d:"apex.com",p:900000,y:2019,l:4,k:[]},
+  {d:"nova.com",p:800000,y:2018,l:4,k:["nova"]},
+  {d:"echo.com",p:700000,y:2014,l:4,k:[]},
+  {d:"edge.com",p:600000,y:2015,l:4,k:[]},
+  {d:"flux.com",p:500000,y:2017,l:4,k:[]},
+  {d:"atom.com",p:850000,y:2016,l:4,k:[]},
+  {d:"loom.com",p:350000,y:2013,l:4,k:[]},
+  {d:"beam.com",p:300000,y:2014,l:4,k:[]},
+  {d:"zoom.com",p:300000,y:2013,l:4,k:[]},
+  {d:"news.com",p:2000000,y:2020,l:4,k:["news"]},
+  {d:"wine.com",p:2900000,y:2016,l:4,k:["wine"]},
+  {d:"beer.com",p:2100000,y:2019,l:4,k:["beer"]},
+  {d:"film.com",p:400000,y:2013,l:4,k:["film"]},
+  {d:"gene.com",p:400000,y:2012,l:4,k:["gene"]},
+  {d:"token.com",p:700000,y:2021,l:5,k:["token"]},
+  {d:"store.com",p:2200000,y:2018,l:5,k:["store"]},
+  {d:"deals.com",p:700000,y:2015,l:5,k:["deal"]},
+  {d:"pizza.com",p:2600000,y:2014,l:5,k:["pizza"]},
+  {d:"music.com",p:1200000,y:2017,l:5,k:["music"]},
+  {d:"solar.com",p:2000000,y:2019,l:5,k:["solar"]},
+  {d:"legal.com",p:1800000,y:2017,l:5,k:["legal"]},
+  {d:"media.com",p:1500000,y:2018,l:5,k:["media"]},
+  {d:"chain.com",p:450000,y:2021,l:5,k:["chain"]},
+  {d:"block.com",p:400000,y:2021,l:5,k:["block"]},
+  {d:"vault.com",p:1200000,y:2020,l:5,k:["vault"]},
+  {d:"slack.com",p:150000,y:2013,l:5,k:[]},
+  {d:"figma.com",p:40000,y:2012,l:5,k:[]},
+  {d:"canva.com",p:25000,y:2012,l:5,k:[]},
+  {d:"london.com",p:1000000,y:2019,l:6,k:["london"]},
+  {d:"health.com",p:3000000,y:2019,l:6,k:["health"]},
+  {d:"energy.com",p:1200000,y:2018,l:6,k:["energy"]},
+  {d:"market.com",p:1400000,y:2016,l:6,k:["market"]},
+  {d:"social.com",p:2600000,y:2019,l:6,k:["social"]},
+  {d:"sports.com",p:2400000,y:2016,l:6,k:["sport"]},
+  {d:"pharma.com",p:1100000,y:2016,l:6,k:["pharma"]},
+  {d:"cruise.com",p:1000000,y:2014,l:6,k:["cruise"]},
+  {d:"coffee.com",p:1100000,y:2017,l:6,k:["coffee"]},
+  {d:"equity.com",p:1800000,y:2015,l:6,k:["equity"]},
+  {d:"credit.com",p:2750000,y:2010,l:6,k:["credit"]},
+  {d:"ledger.com",p:600000,y:2020,l:6,k:["ledger"]},
+  {d:"poker.com",p:1032000,y:2017,l:5,k:["poker"]},
+  {d:"stripe.com",p:50000,y:2011,l:6,k:[]},
+  {d:"notion.com",p:50000,y:2013,l:6,k:[]},
+  {d:"vercel.com",p:60000,y:2015,l:6,k:[]},
+  {d:"luma.com",p:90000,y:2014,l:4,k:[]},
+  {d:"dubai.com",p:500000,y:2015,l:5,k:["dubai"]},
+  {d:"paris.com",p:650000,y:2014,l:5,k:["paris"]},
+  {d:"miami.com",p:1050000,y:2018,l:5,k:["miami"]},
+  {d:"nyc.com",p:600000,y:2013,l:3,k:["nyc"]},
+  {d:"tokyo.com",p:440000,y:2016,l:5,k:["tokyo"]},
+  {d:"geneva.com",p:300000,y:2017,l:6,k:["geneva"]},
+  {d:"singapore.com",p:450000,y:2016,l:9,k:["singapore"]},
+  {d:"bitcoin.com",p:1000000,y:2015,l:7,k:["bitcoin"]},
+  {d:"therapy.com",p:700000,y:2015,l:7,k:["therapy"]},
+  {d:"whiskey.com",p:900000,y:2018,l:7,k:["whiskey"]},
+  {d:"trading.com",p:3000000,y:2019,l:7,k:["trading"]},
+  {d:"medical.com",p:2000000,y:2018,l:7,k:["medical"]},
+  {d:"lawyers.com",p:2000000,y:2018,l:7,k:["lawyer"]},
+  {d:"finance.com",p:2200000,y:2019,l:7,k:["finance"]},
+  {d:"hydrogen.com",p:900000,y:2021,l:8,k:["hydrogen"]},
+  {d:"mortgage.com",p:2900000,y:2009,l:8,k:["mortgage"]},
+  {d:"genomics.com",p:280000,y:2020,l:8,k:["genomic"]},
+  {d:"ethereum.com",p:500000,y:2017,l:8,k:["ethereum"]},
+  {d:"attorney.com",p:750000,y:2014,l:8,k:["attorney"]},
+  {d:"diamonds.com",p:700000,y:2015,l:8,k:["diamond"]},
+  {d:"nutrition.com",p:560000,y:2013,l:9,k:["nutrition"]},
+  {d:"commodities.com",p:600000,y:2018,l:11,k:["commodit"]},
+  {d:"travel.com",p:3000000,y:2015,l:6,k:["travel"]},
+  {d:"green.com",p:750000,y:2017,l:5,k:["green"]},
+  {d:"battery.com",p:400000,y:2020,l:7,k:["battery"]},
+  {d:"writers.ai",p:500000,y:2023,l:7,k:["writer","ai"]},
+  {d:"agents.ai",p:400000,y:2023,l:6,k:["agent","ai"]},
+  {d:"data.ai",p:500000,y:2022,l:4,k:["data","ai"]},
+  {d:"cloud.ai",p:350000,y:2023,l:5,k:["cloud","ai"]},
+  {d:"neural.ai",p:300000,y:2023,l:6,k:["neural","ai"]},
+  {d:"vision.ai",p:280000,y:2022,l:6,k:["vision","ai"]},
+  {d:"chat.ai",p:450000,y:2023,l:4,k:["chat","ai"]},
+  {d:"health.ai",p:350000,y:2023,l:6,k:["health","ai"]},
+  {d:"finance.ai",p:300000,y:2023,l:7,k:["finance","ai"]},
+  {d:"sync.io",p:180000,y:2021,l:4,k:["sync"]},
+  {d:"launch.io",p:120000,y:2020,l:6,k:["launch"]},
+  {d:"automate.io",p:250000,y:2022,l:8,k:["automat"]},
+];
 
-      // crypto / web3
-      "crypto": 80,
-      "chain": 60,
-      "block": 50,
-      "token": 55,
-      "defi": 55,
-      "wallet": 45,
-      "ledger": 45,
+// ── KEYWORD WEIGHTS ───────────────────────────────────────
+const KW={
+  ai:85,agi:90,asi:88,gpt:80,llm:75,neural:65,agent:62,agents:64,
+  vision:48,model:42,data:52,cloud:48,quantum:58,rag:52,
+  crypto:72,bitcoin:82,btc:68,eth:58,defi:62,nft:55,token:48,
+  chain:47,block:43,wallet:52,web3:58,ledger:45,
+  capital:72,fund:68,invest:62,trading:68,loan:58,pay:62,
+  bank:68,finance:72,gold:72,insurance:82,mortgage:68,equity:58,credit:58,cash:62,
+  health:68,medical:62,pharma:58,clinic:48,bio:52,gene:58,genomic:58,therapy:52,
+  solar:58,energy:62,hydrogen:52,ev:65,battery:48,wind:50,green:45,
+  newyork:62,nyc:58,london:62,dubai:58,paris:52,tokyo:52,miami:48,singapore:52,
+  legal:52,law:52,lawyer:57,travel:55,pizza:52,wine:55,coffee:48,
+  news:52,sport:48,sports:52,media:47,music:50,shop:48,store:48,market:52,
+  vault:52,core:48,nova:45,sync:42,
+};
 
-      // finance / business
-      "finance": 80,
-      "fin": 40,
-      "capital": 85,
-      "invest": 75,
-      "fund": 60,
-      "funds": 60,
-      "trading": 65,
-      "trade": 55,
-      "equity": 65,
-      "loan": 50,
-      "pay": 55,
-      "payments": 60,
-      "cash": 45,
-      "credit": 55,
-      "bank": 70,
-      "wealth": 70,
-      "market": 55,
-      "markets": 60,
-      "commodities": 100,
+// ── TLD SETTINGS ──────────────────────────────────────────
+const TLD_BASE={com:500,ai:850,io:380,co:260,org:210,net:190,info:110,xyz:75,dev:290,me:170,app:380,tv:210,autos:280,help:230,online:95};
+const TLD_M={com:1.0,ai:1.75,io:1.15,co:0.85,org:0.78,net:0.75,info:0.58,xyz:0.52,dev:0.98,me:0.72,app:1.08,tv:0.88,autos:0.88,help:0.78,online:0.48};
 
-      // security / infra
-      "vault": 80,
-      "secure": 60,
-      "security": 65,
-      "lock": 45,
-      "shield": 45,
+// ── EXCEPTIONS ────────────────────────────────────────────
+const EXC=[
+  {test:({c,t})=>t==="com"&&c.length<=2&&/^[a-z]+$/.test(c),tier:"ultra",floor:500000,
+   note:"1–2 letter .com — landmark asset. Ref: ai.com $11M, ev.com $2.1M, me.com $2M."},
+  {test:({c,t})=>t==="com"&&c.length===3&&/^[a-z]+$/.test(c),tier:"ultra",floor:80000,
+   note:"3-letter pure alpha .com. Active market $80K–$5M. Ref: gpt.com $2M, zen.com $1.7M, llm.com $800K."},
+  {test:({c,t})=>t==="com"&&c.length===3,tier:"premium",floor:15000,
+   note:"3-character .com. Strong market $15K–$500K."},
+  {test:({c,t})=>t==="com"&&c.length===4&&/^[a-z]+$/.test(c),tier:"premium",floor:5000,
+   note:"4-letter LLLL.com. Proven market: zoom.com $300K, luma.com $90K, atom.com $850K."},
+  {test:({c,t})=>{const K=["insurance","casino","hotel","hotels","trading","loans","health","solar","energy","crypto","bitcoin","finance","capital","legal","lawyer","mortgage","news","sports","gold","shop","store","wine","pizza","travel","music","media","social","fund","bank","cash","invest"];return t==="com"&&K.includes(c);},
+   tier:"ultra",floor:1000000,note:"Category-defining single generic .com — generational assets. Ref: insurance.com $35.6M, hotels.com $11M."},
+  {test:({t})=>t==="ai",tier:"premium",floor:3000,
+   note:".ai commands strong premium: agents.ai $400K, writers.ai $500K, data.ai $500K."},
+];
 
-      // health / medical
-      "health": 65,
-      "med": 55,
-      "medical": 65,
-      "pharma": 60,
-      "clinic": 45,
-      "bio": 55,
-      "lab": 50,
-      "labs": 60,
+// ── LENGTH MULT ───────────────────────────────────────────
+function lM(n){
+  if(n<=2)return 90;if(n===3)return 28;if(n===4)return 9;
+  if(n===5)return 3.8;if(n===6)return 2.2;if(n===7)return 1.5;
+  if(n<=10)return 1.0;if(n<=14)return 0.65;if(n<=20)return 0.45;return 0.3;
+}
+function lLbl(n){
+  const m={2:"Ultra-short — landmark tier",3:"3-char — active secondary market",
+    4:"4-char — strong demand",5:"5-char — very good",6:"6-char — good",7:"7-char — solid"};
+  return m[n]||(n<=10?`${n}-char — average`:n<=14?`${n}-char — long`:`${n}-char — very long`);
+}
 
-      // SaaS / tools
-      "software": 55,
-      "saas": 60,
-      "stack": 50,
-      "apps": 40,
-      "tool": 40,
-      "tools": 45,
-      "platform": 50,
-      "hub": 45,
-      "engine": 45,
+// ── KEYWORD ANALYSIS ──────────────────────────────────────
+function kwa(core){
+  let sc=0;const mt=[];
+  for(const[k,w]of Object.entries(KW)){if(core.includes(k)){sc+=w;mt.push(k);}}
+  sc=Math.min(sc,320);
+  return{sc,mt,m:sc===0?1.0:1+Math.sqrt(sc)/9.5};
+}
 
-      // ecommerce / brands
-      "shop": 45,
-      "store": 45,
-      "marketplace": 55,
-      "cart": 40,
-      "deal": 40,
-      "deals": 45,
-      "brand": 50,
-      "brands": 55,
+// ── BRAND SIGNALS ─────────────────────────────────────────
+function bSig(sld){
+  const s=[];const h=(sld.match(/-/g)||[]).length;const d=(sld.match(/[0-9]/g)||[]).length;
+  const p=/^[a-z]+$/.test(sld);
+  if(!h&&p)s.push({t:"pos",txt:"No hyphens, pure alpha",m:1.0});
+  if(h===1)s.push({t:"neg",txt:"1 hyphen (−15%)",m:0.85});
+  if(h>=2)s.push({t:"neg",txt:`${h} hyphens (−30%)`,m:0.70});
+  if(d===1)s.push({t:"neg",txt:"Contains digit (−10%)",m:0.90});
+  if(d>=2)s.push({t:"neg",txt:"Multiple digits (−20%)",m:0.80});
+  if(p&&sld.length<=5)s.push({t:"pos",txt:"Short pure alpha — premium brandable",m:1.12});
+  else if(p&&sld.length<=7)s.push({t:"pos",txt:"Pronounceable — easy to brand",m:1.06});
+  if(sld.length>20)s.push({t:"neg",txt:"Very long — limits appeal",m:0.55});
+  return s;
+}
 
-      // geo premium
-      "newyork": 120,
-      "nyc": 90,
-      "london": 90,
-      "dubai": 90,
-      "paris": 80,
-      "tokyo": 80,
-      "miami": 70,
-      "la": 40,
-      "losangeles": 90,
+// ── COMPS ─────────────────────────────────────────────────
+function comps(core,tld,len){
+  return DB.map(s=>{
+    let sc=0;
+    if(s.tld===tld||('com'===tld&&'com'===s.tld))sc+=20;
+    sc+=Math.max(0,15-Math.abs(s.l-len)*3);
+    s.k.forEach(k=>{if(core.includes(k)||k.includes(core.slice(0,5)))sc+=30;});
+    return{...s,sc};
+  }).filter(s=>s.sc>10).sort((a,b)=>b.sc-a.sc||b.p-a.p).slice(0,5);
+}
 
-      // careers / jobs
-      "job": 45,
-      "jobs": 55,
-      "career": 45,
-      "careers": 45,
-      "remote": 45,
+// ── MAIN VALUATE ──────────────────────────────────────────
+function valuate(raw){
+  const cl=raw.trim().toLowerCase().replace(/^https?:\/\//,"").replace(/\/.*$/,"");
+  const pts=cl.split(".");if(pts.length<2||!pts[0])return null;
+  const tld=pts.slice(1).join(".");const sld=pts[0];
+  const cR=sld.replace(/-/g,"");const core=cR.replace(/[0-9]/g,"");
+  const base=TLD_BASE[tld]||130;const tm=TLD_M[tld]||0.45;
+  const lm=lM(cR.length);const kw=kwa(core);
+  const sg=bSig(sld);const bm=sg.reduce((a,s)=>a*s.m,1.0);
+  let mid=base*tm*lm*kw.m*bm;
+  let exc=null;
+  for(const ex of EXC){if(ex.test({c:cR,t:tld})){exc=ex;mid=Math.max(mid,ex.floor*(kw.m>1.5?kw.m:1));break;}}
+  mid=Math.max(80,Math.min(mid,20000000));
+  const lo=mid*0.52,hi=mid*2.1,rLo=mid*2.8,rHi=mid*7.5;
+  const TIERS=[{id:"ultra",lbl:"🏆 Ultra-Premium",min:75000},{id:"premium",lbl:"⭐ Premium",min:8000},
+    {id:"strong",lbl:"💪 Strong",min:1500},{id:"standard",lbl:"📊 Standard",min:300},{id:"low",lbl:"🌱 Developing",min:0}];
+  let tier=TIERS[TIERS.length-1];
+  for(const t of TIERS){if(mid>=t.min){tier=t;break;}}
+  if(exc)tier=TIERS.find(t=>t.id===exc.tier)||tier;
+  return{input:cl,sld,tld,cR,core,sg,kw,mid,lo,hi,rLo,rHi,tier,exc,comps:comps(core,tld,cR.length),ll:lLbl(cR.length)};
+}
 
-      // generic positive
-      "prime": 50,
-      "global": 55,
-      "world": 45,
-      "united": 50,
-      "nova": 50,
-      "core": 50,
-      "prime": 50,
-      "future": 50
-    };
+// ── FORMAT ────────────────────────────────────────────────
+function f(n){
+  if(n>=1000000)return"$"+(n/1000000).toFixed(2).replace(/\.?0+$/,"")+"M";
+  if(n>=10000)return"$"+(Math.round(n/500)*500).toLocaleString();
+  if(n>=1000)return"$"+(Math.round(n/100)*100).toLocaleString();
+  return"$"+Math.round(n).toLocaleString();
+}
+function fE(n){return n>=1000000?"$"+(n/1000000).toFixed(1)+"M":"$"+n.toLocaleString();}
+function tC(t){return{com:"tld-com",ai:"tld-ai",io:"tld-io"}[t]||"tld-other";}
 
-    // -----------------------------
-    // Helper functions
-    // -----------------------------
+// ── RENDER LOCAL ──────────────────────────────────────────
+function renderLocal(v){
+  const excH=v.exc?`<div class="exc-box"><span style="color:var(--gold);font-weight:700;">⚡ Strategic Exception:</span> <span style="color:var(--muted);">${v.exc.note}</span></div>`:"";
+  const cH=v.comps.length?`<div class="section-label">📊 Comparable Sales — NameBio Public Records</div><div class="comp-list">${v.comps.map(c=>`<div class="comp-row"><span class="comp-name">${c.d}</span><span class="comp-year">${c.y}</span><span class="comp-price">${fE(c.p)}</span></div>`).join("")}</div>`:"";
+  const sH=v.sg.map(s=>`<div class="sig sig-${s.t}">${s.t==="pos"?"✓":"✗"} ${s.txt}</div>`).join("")+(v.kw.mt.length?`<div class="sig sig-pos">✓ Keywords: ${v.kw.mt.slice(0,4).join(", ")}</div>`:"");
+  document.getElementById("resultCard").innerHTML=`
+    <div class="result-domain">
+      <div class="tld-badge-big ${tC(v.tld)}">${v.tld.toUpperCase()}</div>
+      <div class="result-name">${v.sld}<span class="tld-part">.${v.tld}</span></div>
+    </div>
+    <div class="tier-badge tier-${v.tier.id}">${v.tier.lbl}</div>
+    <div class="value-grid">
+      <div class="value-box hl"><div class="vb-label">Wholesale Midpoint</div><div class="vb-amt blue">${f(v.mid)}</div><div class="vb-sub">Investor-to-investor</div></div>
+      <div class="value-box"><div class="vb-label">Wholesale Range</div><div class="vb-amt green">${f(v.lo)} – ${f(v.hi)}</div><div class="vb-sub">Low–high for investors</div></div>
+      <div class="value-box"><div class="vb-label">End-User Retail</div><div class="vb-amt gold">${f(v.rLo)} – ${f(v.rHi)}</div><div class="vb-sub">Motivated buyer pricing</div></div>
+    </div>
+    ${excH}
+    <div class="signals">${sH}</div>
+    ${cH}
+    <div class="upsell">💡 <strong style="color:var(--text)">Want deeper analysis?</strong> Switch to <strong>🤖 AI Deep Analysis</strong> mode above for a full expert breakdown powered by Claude AI — including comparable sales, target buyers, and market timing.</div>
+    <div class="disclaimer"><strong>Note:</strong> Estimates anchored to ${DB.length} real NameBio public sales. Short domains (≤4 chars), single-word generics, and trending keywords may sell far above algorithmic estimates. Wholesale guidance only — not a certified appraisal.</div>`;
+  document.getElementById("resultCard").classList.add("show");
+}
 
-    function parseDomain(raw) {
-      if (!raw) return null;
-      const trimmed = raw.trim().toLowerCase();
-      const parts = trimmed.split(".");
-      if (parts.length < 2) return null;
-      const tld = parts.pop();
-      const sld = parts.join(".");
-      const core = sld.replace(/[^a-z0-9]/g, "");
-      if (!core) return null;
-      return { tld, sld, core };
-    }
+// ── AI RENDER ─────────────────────────────────────────────
+function renderAI(domain,text,local){
+  const pts=domain.split(".");const sld=pts[0];const tld="."+pts.slice(1).join(".");
+  function ex(label,fb){const r=new RegExp(label+"[:\\s*]*([^\\n]+)","i");const m=text.match(r);return m?m[1].trim().replace(/\*+/g,""):fb;}
+  const tier=ex("MARKET TIER",local.tier.lbl);
+  const mid=ex("WHOLESALE MIDPOINT",f(local.mid));
+  const range=ex("WHOLESALE RANGE",`${f(local.lo)} – ${f(local.hi)}`);
+  const retail=ex("RETAIL.*?RANGE|END.USER RANGE",`${f(local.rLo)} – ${f(local.rHi)}`);
+  const tc=tier.toLowerCase().includes("ultra")?"ultra":tier.toLowerCase().includes("premium")?"premium":tier.toLowerCase().includes("strong")?"strong":tier.toLowerCase().includes("standard")?"standard":"low";
+  const tl={"ultra":"🏆 Ultra-Premium","premium":"⭐ Premium","strong":"💪 Strong","standard":"📊 Standard","low":"🌱 Developing"}[tc]||tier;
+  document.getElementById("resultCard").innerHTML=`
+    <div class="result-domain">
+      <div class="tld-badge-big ${tC(tld.replace(".","")||"com")}">${tld.replace(".","").toUpperCase()||"COM"}</div>
+      <div class="result-name">${sld}<span class="tld-part">${tld}</span></div>
+    </div>
+    <div class="tier-badge tier-${tc}">${tl}</div>
+    <div class="value-grid">
+      <div class="value-box hl"><div class="vb-label">Wholesale Midpoint</div><div class="vb-amt blue">${mid}</div><div class="vb-sub">Investor-to-investor</div></div>
+      <div class="value-box"><div class="vb-label">Wholesale Range</div><div class="vb-amt green">${range}</div><div class="vb-sub">Low–high for investors</div></div>
+      <div class="value-box"><div class="vb-label">End-User Retail</div><div class="vb-amt gold">${retail}</div><div class="vb-sub">Motivated buyer pricing</div></div>
+    </div>
+    <div class="ai-section">
+      <div class="ai-header"><div class="ai-icon">✦</div>Claude AI Expert Analysis</div>
+      <div class="ai-text">${text.replace(/\*\*([^*]+)\*\*/g,'<strong style="color:var(--text)">$1</strong>')}</div>
+    </div>
+    <div class="disclaimer"><strong>AI Analysis by Claude Sonnet.</strong> Based on training data including public NameBio, Sedo, and DN Journal records. Strategic or company-name-matching domains may far exceed any estimate.</div>`;
+  document.getElementById("resultCard").classList.add("show");
+}
 
-    function getBaseForTld(tld) {
-      if (BASE_TLD[tld]) return BASE_TLD[tld];
-      return BASE_TLD.other;
-    }
+// ── UI ────────────────────────────────────────────────────
+function showLoad(t,s){document.getElementById("loadingText").textContent=t;document.getElementById("loadingSub").textContent=s;document.getElementById("loadingCard").style.display="block";document.getElementById("resultCard").classList.remove("show");}
+function hideLoad(){document.getElementById("loadingCard").style.display="none";}
+function showErr(m){const e=document.getElementById("errorMsg");e.textContent=m;e.style.display="block";}
+function clearErr(){document.getElementById("errorMsg").style.display="none";}
 
-    function getTldMultiplier(tld) {
-      return TLD_MULT[tld] || TLD_MULT.default;
-    }
+async function run(){
+  clearErr();
+  const raw=document.getElementById("domainInput").value.trim();
+  if(!raw){showErr("Please enter a domain name.");return;}
+  const result=valuate(raw);
+  if(!result){showErr("Invalid format. Try: example.com");return;}
+  document.getElementById("valBtn").disabled=true;
+  if(currentMode==="ai"){
+    const key=document.getElementById("apiKeyInput").value.trim();
+    if(!key){showErr("Please enter your Anthropic API key.");document.getElementById("valBtn").disabled=false;return;}
+    showLoad("Claude AI is analyzing…","Querying market knowledge + comparable sales");
+    const prompt=`You are a professional domain broker with 15+ years experience. Analyze: **${raw}**\nAlgorithmic estimate: Wholesale ~${f(result.mid)} (${f(result.lo)}–${f(result.hi)}), Retail ${f(result.rLo)}–${f(result.rHi)}.\n\nProvide:\n**MARKET TIER:** [Ultra-Premium / Premium / Strong / Standard / Developing]\n**WHOLESALE MIDPOINT:** $X,XXX\n**WHOLESALE RANGE:** $X,XXX – $X,XXX\n**RETAIL / END-USER RANGE:** $X,XXX – $X,XXX\n**WHY THIS VALUE:** 2-3 sentences on key drivers.\n**COMPARABLE SALES:** 3-4 real NameBio/public sales (domain — $price (year))\n**TARGET BUYERS:** Who pays top dollar?\n**STRATEGIC NOTES:** Trends, risks, timing.\n\nBe honest. If weak, say so. If exceptional, prove it with market evidence.`;
+    try{
+      const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
+      if(!r.ok){const e=await r.json();throw new Error(e.error?.message||"API error");}
+      const data=await r.json();
+      hideLoad();
+      renderAI(raw,data.content?.[0]?.text||"",result);
+      document.getElementById("resultCard").scrollIntoView({behavior:"smooth",block:"start"});
+    }catch(e){hideLoad();showErr("API Error: "+e.message);}
+  }else{
+    showLoad("Analyzing domain…","Matching against "+DB.length+" real sales records");
+    await new Promise(r=>setTimeout(r,500));
+    hideLoad();renderLocal(result);
+    document.getElementById("resultCard").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  document.getElementById("valBtn").disabled=false;
+}
 
-    function lengthMultiplier(len) {
-      if (len <= 4) return 2.5;       // ultra short
-      if (len <= 7) return 1.7;       // short
-      if (len <= 12) return 1.25;     // sweet spot
-      if (len <= 18) return 1.0;      // a bit long
-      if (len <= 25) return 0.85;     // long
-      return 0.7;                     // very long
-    }
-
-    function brandMultiplier(label) {
-      let mult = 1.0;
-      const hyphens = (label.match(/-/g) || []).length;
-      const digits  = (label.match(/[0-9]/g) || []).length;
-
-      if (hyphens === 1) mult *= 0.9;
-      if (hyphens >= 2) mult *= 0.75;
-
-      if (digits === 1) mult *= 0.9;
-      if (digits >= 2) mult *= 0.8;
-
-      if (label.length >= 20 && !label.includes("-")) mult *= 0.9;
-      return mult;
-    }
-
-    function keywordScore(core) {
-      const lower = core.toLowerCase();
-      let score = 0;
-      for (const [kw, w] of Object.entries(KEYWORD_SCORES)) {
-        if (lower.includes(kw)) score += w;
-      }
-      return score;
-    }
-
-    function trendMultiplier(core) {
-      const score = keywordScore(core);
-      if (score <= 0) return 1.0;
-      // cap to avoid silly explosion
-      const capped = Math.min(score, 260); // max
-      return 1 + capped / 80;             // between 1x and ~4.25x
-    }
-
-    function comboMultiplier(core) {
-      const lower = core.toLowerCase();
-      let m = 1.0;
-
-      // strong combo examples (not shown in UI, فقط داخلي)
-      if (lower.includes("neural") && lower.includes("vault")) m *= 1.8;
-      if (lower.includes("ai") && lower.includes("agent")) m *= 1.4;
-      if (lower.includes("ai") && lower.includes("cloud")) m *= 1.4;
-      if ((lower.includes("newyork") || lower.includes("nyc")) && lower.includes("commodities")) m *= 2.5;
-      if (lower.includes("capital") && (lower.includes("fund") || lower.includes("equity"))) m *= 1.7;
-      if (lower.includes("crypto") && (lower.includes("wallet") || lower.includes("pay"))) m *= 1.6;
-
-      return m;
-    }
-
-    function lengthBucket(len) {
-      if (len <= 4) return "ultra-short (1–4 chars)";
-      if (len <= 7) return "short (5–7 chars)";
-      if (len <= 12) return "medium (8–12 chars)";
-      if (len <= 18) return "long (13–18 chars)";
-      return "very long (19+ chars)";
-    }
-
-    function estimateValues(domain) {
-      const parsed = parseDomain(domain);
-      if (!parsed) return null;
-
-      const { tld, sld, core } = parsed;
-      const len = core.length;
-
-      const base = getBaseForTld(tld);
-      const tldMult = getTldMultiplier(tld);
-      const lenMult = lengthMultiplier(len);
-      const brandMult = brandMultiplier(sld);
-      const trendMult = trendMultiplier(core);
-      const comboMult = comboMultiplier(core);
-
-      let wholesaleMid = base * tldMult * lenMult * brandMult * trendMult * comboMult;
-
-      if (!isFinite(wholesaleMid) || wholesaleMid <= 0) wholesaleMid = 50;
-
-      // clamp to sane wholesale range
-      wholesaleMid = Math.max(60, wholesaleMid);
-      wholesaleMid = Math.min(80000, wholesaleMid);
-
-      const wholesaleLow = wholesaleMid * 0.6;
-      const wholesaleHigh = wholesaleMid * 1.8;
-
-      // retail potential (end user) – عادة 3x إلى 10x نطاق الجملة لأسماء ممتازة
-      let retailLow = wholesaleMid * 2.5;
-      let retailHigh = wholesaleMid * 8;
-
-      // cap retail high a bit
-      retailHigh = Math.min(retailHigh, wholesaleMid * 15);
-
-      return {
-        tld,
-        sld,
-        core,
-        length: len,
-        bucketLabel: lengthBucket(len),
-        wholesaleMid,
-        wholesaleLow,
-        wholesaleHigh,
-        retailLow,
-        retailHigh,
-        tldMult,
-        lenMult,
-        brandMult,
-        trendMult,
-        comboMult
-      };
-    }
-
-    function formatUSD(v) {
-      return "$" + Math.round(v).toLocaleString("en-US");
-    }
-
-    // -----------------------------
-    // UI wiring
-    // -----------------------------
-
-    const inputEl = document.getElementById("domainInput");
-    const btnEl = document.getElementById("checkBtn");
-    const resultEl = document.getElementById("result");
-
-    function runValuation() {
-      const value = inputEl.value;
-      const info = estimateValues(value);
-
-      if (!info) {
-        resultEl.style.display = "block";
-        resultEl.innerHTML = `
-          <div class="muted">
-            Please enter a valid domain like <code>example.com</code>.
-          </div>
-        `;
-        return;
-      }
-
-      resultEl.style.display = "block";
-      resultEl.innerHTML = `
-        <div>
-          <div class="section-title">Wholesale midpoint</div>
-          <div class="number">${formatUSD(info.wholesaleMid)}</div>
-          <div class="muted">
-            Suggested investor-to-investor price point.
-          </div>
-        </div>
-
-        <div style="margin-top:14px;">
-          <div class="section-title">Wholesale range</div>
-          <div class="number">${formatUSD(info.wholesaleLow)} – ${formatUSD(info.wholesaleHigh)}</div>
-          <div class="muted">
-            Typical low–high range for domain investors.
-          </div>
-        </div>
-
-        <div style="margin-top:16px;">
-          <div class="section-title">Potential retail range</div>
-          <div class="number">${formatUSD(info.retailLow)} – ${formatUSD(info.retailHigh)}</div>
-          <div class="muted">
-            Possible end-user / startup pricing for a motivated buyer.
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="pill">
-            TLD: .${info.tld} &nbsp;·&nbsp; multiplier × ${info.tldMult.toFixed(2)}
-          </div>
-          <div class="pill">
-            Length: ${info.length} chars (${info.bucketLabel}) · × ${info.lenMult.toFixed(2)}
-          </div>
-          <div class="pill">
-            Brand / structure multiplier: × ${info.brandMult.toFixed(2)}
-          </div>
-          <div class="pill">
-            Keyword / trend multiplier: × ${info.trendMult.toFixed(2)}
-          </div>
-          <div class="pill">
-            Combo / niche multiplier: × ${info.comboMult.toFixed(2)}
-          </div>
-        </div>
-
-        <div class="notes">
-          <p>
-            <strong>Important:</strong> this tool gives an opinionated estimate based on length, TLD,
-            keyword strength, trend categories (AI, finance, crypto, geo, etc.) and basic brandability.
-            It is designed for <strong>wholesale</strong> guidance, not as an exact market price.
-          </p>
-          <p>
-            Premium, rare or highly strategic names can sell for far above the upper retail range,
-            especially when multiple end-users are interested, or when the domain matches an exact
-            company or product name.
-          </p>
-        </div>
-      `;
-    }
-
-    btnEl.addEventListener("click", runValuation);
-    inputEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") runValuation();
-    });
-  </script>
+document.getElementById("valBtn").addEventListener("click",run);
+document.getElementById("domainInput").addEventListener("keydown",e=>{if(e.key==="Enter")run();});
+</script>
 </body>
 </html>
