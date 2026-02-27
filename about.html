@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About Sohadot.com — Domain Marketplace & Intelligence Platform</title>
+<meta name="description" content="Sohadot.com is an independent domain marketplace and intelligence platform offering professional domain valuation, curated premium portfolios, and domain brokerage services worldwide."/>
+<link rel="canonical" href="https://sohadot.com/about.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f5f0e8;--card:#fff;--border:rgba(15,23,42,0.08);
+  --accent:#1d4ed8;--accent2:#3b82f6;--text:#0f172a;
+  --muted:#64748b;--dim:#94a3b8;--gold:#f59e0b;--green:#10b981;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;
+  border-bottom:1px solid var(--border);background:rgba(245,240,232,0.95);
+  backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--accent);text-decoration:none;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;
+  letter-spacing:.04em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-cta{padding:7px 18px;border-radius:8px;background:var(--accent);color:#fff!important;font-weight:600!important;}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#1d4ed8 100%);
+  padding:72px 20px 56px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(29,78,216,0.3) 0%,transparent 60%),
+             radial-gradient(ellipse at 20% 80%,rgba(245,158,11,0.1) 0%,transparent 50%);
+}
+.hero-inner{max-width:720px;margin:0 auto;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);
+  border:1px solid rgba(255,255,255,0.2);padding:5px 14px;border-radius:20px;margin-bottom:22px;
+  background:rgba(255,255,255,0.05);}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,3.6rem);
+  font-weight:800;color:#fff;line-height:1.05;margin-bottom:18px;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.8;font-weight:300;max-width:540px;margin:0 auto;}
+
+/* TRUST NUMBERS */
+.trust-band{background:var(--card);border-bottom:1px solid var(--border);}
+.trust-band-inner{max-width:900px;margin:0 auto;display:flex;justify-content:center;}
+.trust-stat{flex:1;text-align:center;padding:24px 16px;border-right:1px solid var(--border);}
+.trust-stat:last-child{border-right:none;}
+.trust-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:800;color:var(--accent);}
+.trust-lbl{font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;}
+
+.wrapper{max-width:960px;margin:0 auto;padding:52px 20px 80px;}
+
+/* MISSION */
+.mission-block{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:52px;}
+.mission-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);}
+.mission-card.featured{
+  background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;
+  border-color:transparent;}
+.mission-card.featured h2{color:#fff;}
+.mission-card.featured p{color:rgba(255,255,255,0.7);}
+.section-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px;}
+.mission-card.featured .section-eyebrow{color:var(--gold);}
+h2.block-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;
+  color:var(--text);margin-bottom:14px;line-height:1.2;}
+.mission-card p{color:var(--muted);font-size:.92rem;line-height:1.8;font-weight:300;}
+
+/* VALUES */
+.values-section{margin-bottom:52px;}
+.values-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;
+  text-align:center;color:var(--text);margin-bottom:28px;}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.value-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:24px 20px;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.value-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s;}
+.value-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.08);}
+.value-card:hover::after{opacity:1;}
+.value-icon{font-size:1.6rem;margin-bottom:12px;}
+.value-title{font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:6px;}
+.value-desc{font-size:.83rem;color:var(--muted);line-height:1.65;font-weight:300;}
+
+/* WHAT WE OFFER */
+.services-section{margin-bottom:52px;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:24px;display:flex;flex-direction:column;gap:10px;
+  transition:border-color .2s,transform .2s;}
+.service-card:hover{border-color:rgba(29,78,216,0.3);transform:translateY(-2px);}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:800;
+  color:rgba(29,78,216,0.12);line-height:1;}
+.service-title{font-weight:700;font-size:1rem;color:var(--text);}
+.service-desc{font-size:.85rem;color:var(--muted);line-height:1.65;font-weight:300;flex:1;}
+.service-link{font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;
+  display:inline-flex;align-items:center;gap:4px;transition:gap .2s;}
+.service-link:hover{gap:8px;}
+
+/* APPROACH */
+.approach-section{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px 32px;margin-bottom:52px;}
+.approach-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;margin-bottom:20px;}
+.approach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.ap-item{display:flex;flex-direction:column;gap:8px;}
+.ap-step{width:32px;height:32px;border-radius:8px;background:var(--accent);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;}
+.ap-title{font-weight:600;font-size:.9rem;color:var(--text);}
+.ap-desc{font-size:.81rem;color:var(--muted);line-height:1.6;font-weight:300;}
+
+/* CONTACT SECTION */
+.contact-section{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:52px;}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
+.contact-card.wa{background:linear-gradient(135deg,#25d366,#128c7e);border-color:transparent;}
+.contact-card.wa *{color:#fff!important;}
+.contact-card.wa .contact-label{opacity:.8;}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;
+  color:var(--text);margin-bottom:14px;}
+.contact-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.contact-icon{font-size:1rem;flex-shrink:0;}
+.contact-label{font-size:.78rem;color:var(--dim);display:block;margin-bottom:1px;}
+.contact-val{font-size:.88rem;font-weight:500;color:var(--text);}
+.contact-val a{color:var(--accent);text-decoration:none;}
+.contact-val a:hover{text-decoration:underline;}
+.contact-cta{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  padding:10px 20px;border-radius:9px;background:rgba(255,255,255,0.2);
+  color:#fff;text-decoration:none;font-weight:600;font-size:.85rem;
+  border:1px solid rgba(255,255,255,0.3);transition:background .2s;}
+.contact-cta:hover{background:rgba(255,255,255,0.3);}
+
+/* DISCLAIMER */
+.disclaimer-box{background:rgba(29,78,216,0.04);border:1px solid rgba(29,78,216,0.12);
+  border-radius:14px;padding:20px 24px;font-size:.82rem;color:var(--muted);line-height:1.7;}
+.disclaimer-box strong{color:var(--text);}
+
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);
+  color:var(--dim);font-size:.78rem;line-height:1.8;}
+footer a{color:var(--accent2);text-decoration:none;}
+
+@media(max-width:768px){
+  nav{padding:14px 18px;}.nav-links a:not(.nav-cta){display:none;}
+  .mission-block,.contact-section{grid-template-columns:1fr;}
+  .hero{padding:52px 20px 40px;}
+  .trust-band-inner{flex-wrap:wrap;}
+  .trust-stat{min-width:140px;border-right:none;border-bottom:1px solid var(--border);}
+  .approach-section{padding:24px 18px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Sohadot.com</a>
+  <div class="nav-links">
+    <a href="/valuation.html">Valuation</a>
+    <a href="/portfolio.html">Portfolio</a>
+    <a href="/keywords.html">Keywords</a>
+    <a href="/dropping.html">Drops</a>
+    <a href="/en/blog/">Blog</a>
+    <a href="/about.html" class="active">About</a>
+    <a href="/how-to-buy.html" class="nav-cta">Buy a Domain</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🌐 Domain Intelligence Platform</div>
+    <h1>We Help the World<br/>Navigate <em>Domain Value</em></h1>
+    <p class="hero-sub">Sohadot.com is an independent domain marketplace and intelligence platform — providing real-data valuations, curated premium portfolios, and professional brokerage services to buyers and sellers worldwide.</p>
+  </div>
+</div>
+
+<!-- TRUST NUMBERS -->
+<div class="trust-band">
+  <div class="trust-band-inner">
+    <div class="trust-stat"><div class="trust-num">445+</div><div class="trust-lbl">Domains in Portfolio</div></div>
+    <div class="trust-stat"><div class="trust-num">300+</div><div class="trust-lbl">Real Sales Anchors</div></div>
+    <div class="trust-stat"><div class="trust-num">20</div><div class="trust-lbl">Domain Categories</div></div>
+    <div class="trust-stat"><div class="trust-num">24h</div><div class="trust-lbl">Response Time</div></div>
+    <div class="trust-stat"><div class="trust-num">$0</div><div class="trust-lbl">Valuation Fee</div></div>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- MISSION -->
+  <div class="mission-block">
+    <div class="mission-card featured">
+      <div class="section-eyebrow">Our Mission</div>
+      <h2 class="block-title">Transparency in a Market That Lacks It</h2>
+      <p>Domain pricing has always been opaque — dealers quote arbitrary numbers and automated tools get premium domains badly wrong. We built Sohadot.com to change that: a platform anchored to real sales data, honest valuations, and direct communication with no intermediary fees.</p>
+    </div>
+    <div class="mission-card">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="block-title">Built by a Domain Investor, for Domain Investors</h2>
+      <p>Sohadot.com was founded by an independent domain investor with years of experience across the secondary market — buying, selling and analyzing hundreds of domain transactions. Every tool on this platform reflects lessons learned from real market activity, not theory.</p>
+      <p style="margin-top:12px;">Our valuation database is manually curated from NameBio, Sedo and DN Journal public records. Our portfolio is hand-selected based on keyword strength, length, TLD quality and market timing.</p>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="values-section">
+    <p class="values-title">What We Stand For</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">📊</div>
+        <div class="value-title">Data-First Valuations</div>
+        <div class="value-desc">Every valuation is anchored to verified public sales records — not guesses, not algorithms that ignore what makes a domain strategically valuable.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Direct & Honest</div>
+        <div class="value-desc">We communicate directly via WhatsApp and email. No automated responses, no scripts — a real person who knows domains answers your inquiry.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <div class="value-title">Safe Transactions</div>
+        <div class="value-desc">Every sale is protected through Escrow.com or trusted marketplace escrow. Buyer pays, domain transfers, funds release. No exceptions.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <div class="value-title">Global Reach</div>
+        <div class="value-desc">We work with buyers and sellers across North America, Europe, the Middle East and Asia — with listings on Sedo, Afternic, Dan.com and direct inquiry.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="services-section">
+    <p class="values-title">What We Offer</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Free Domain Valuation</div>
+        <div class="service-desc">Instant wholesale and retail estimates anchored to 300+ real NameBio sales. Strategic exception logic handles ultra-short, generic and AI-related domains correctly — unlike automated tools.</div>
+        <a href="/valuation.html" class="service-link">Try Valuation →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Premium Domain Portfolio</div>
+        <div class="service-desc">445+ hand-selected domains across AI, Finance, Crypto, Commodities, Geo/City, Health, Energy and more. Filter, search and send a direct inquiry in one click.</div>
+        <a href="/portfolio.html" class="service-link">Browse Portfolio →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Domain Brokerage</div>
+        <div class="service-desc">Submit your domain for a free valuation and professional listing. We reach buyers across major marketplaces and our own network, handling inquiries and negotiation on your behalf.</div>
+        <a href="/broker.html" class="service-link">Submit a Domain →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">Market Intelligence</div>
+        <div class="service-desc">Monthly top domain keywords, weekly curated dropping domains, and in-depth guides — all designed to give domain investors and buyers an informational edge.</div>
+        <a href="/keywords.html" class="service-link">View Keywords →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW WE WORK -->
+  <div class="approach-section">
+    <p class="approach-title">How a Domain Sale Works With Us</p>
+    <div class="approach-grid">
+      <div class="ap-item">
+        <div class="ap-step">1</div>
+        <div class="ap-title">Inquiry</div>
+        <div class="ap-desc">Contact us via WhatsApp, email or the broker form. We respond within 24 hours with a price and availability confirmation.</div>
+      </div>
+      <div class="ap-item">
+        <div class="ap-step">2</div>
+        <div class="ap-title">Agreement</div>
+        <div class="ap-desc">We agree on price, payment method and transfer timeline. All terms confirmed in writing before any money moves.</div>
+      </div>
+      <div class="ap-item">
+        <div class="ap-step">3</div>
+        <div class="ap-title">Escrow</div>
+        <div class="ap-desc">Buyer deposits funds to Escrow.com or marketplace escrow. Neither party can access funds until the transfer is confirmed complete.</div>
+      </div>
+      <div class="ap-item">
+        <div class="ap-step">4</div>
+        <div class="ap-title">Transfer</div>
+        <div class="ap-desc">Domain is pushed to your registrar account. Transfer confirmed. Escrow releases funds. Full process typically takes 3–7 business days.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section">
+    <div class="contact-card">
+      <div class="contact-title">Get in Touch</div>
+      <div class="contact-row">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <span class="contact-label">Email</span>
+          <span class="contact-val"><a href="/cdn-cgi/l/email-protection#c9a8aeaca7bd89baa6a1a8ada6bde7aaa6a4"><span class="__cf_email__" data-cfemail="f69791939882b685999e97929982d895999b">[email&#160;protected]</span></a></span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">💬</span>
+        <div>
+          <span class="contact-label">WhatsApp</span>
+          <span class="contact-val"><a href="https://wa.me/+212668992259">+212 668 992 259</a></span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">🌐</span>
+        <div>
+          <span class="contact-label">Marketplace Listings</span>
+          <span class="contact-val">Sedo · Afternic · Dan.com</span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">⏱</span>
+        <div>
+          <span class="contact-label">Response Time</span>
+          <span class="contact-val">Within 24 hours</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-card wa">
+      <div class="contact-title">Prefer WhatsApp?</div>
+      <p style="font-size:.85rem;line-height:1.65;margin-bottom:4px;">Send us a message directly for the fastest response — domain inquiries, valuations, or general questions.</p>
+      <a href="https://wa.me/+212668992259?text=Hi%20Sohadot%2C%20I%20have%20a%20domain%20inquiry" class="contact-cta" target="_blank">📱 Open WhatsApp Chat</a>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer-box">
+    <strong>Independent Platform.</strong> Sohadot.com is an independent domain marketplace and brokerage. We are not affiliated with GoDaddy, Sedo, Namecheap, Afternic, Dan.com or any domain registrar. Domain valuations are estimates based on comparable public sales data and are not guaranteed sale prices. All transactions are subject to mutual agreement and conducted through verified escrow services.
+  </div>
+
+</div>
+
+<footer>
+  © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
+  <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
+  <a href="/valuation.html">Valuation</a> &nbsp;·&nbsp;
+  <a href="/keywords.html">Keywords</a> &nbsp;·&nbsp;
+  <a href="/dropping.html">Weekly Drops</a> &nbsp;·&nbsp;
+  <a href="/how-to-buy.html">How to Buy</a> &nbsp;·&nbsp;
+  <a href="/about.html">About</a> &nbsp;·&nbsp;
+  <a href="/en/blog/">Blog</a> &nbsp;·&nbsp;
+  <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="/terms.html">Terms</a>
+</footer>
+
+<a href="https://wa.me/+212668992259" style="position:fixed;bottom:24px;rig
