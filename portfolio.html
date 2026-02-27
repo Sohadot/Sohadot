@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sohadot – Premium Domain Portfolio</title>
+<meta name="description" content="445+ premium domains for acquisition — AI, Finance, Crypto, Commodities, Geo, Health & more."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080d1a;--surface:#101827;--surface2:#17223a;
+  --border:rgba(255,255,255,0.07);--accent:#3b82f6;--accent2:#60a5fa;
+  --gold:#f59e0b;--gold-bg:rgba(245,158,11,0.1);
+  --text:#f1f5f9;--muted:#94a3b8;--dim:#475569;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+header{text-align:center;padding:56px 20px 36px;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 55% at 50% -5%,rgba(59,130,246,0.2) 0%,transparent 70%);
+  pointer-events:none;}
+.back-link{display:inline-block;color:var(--accent2);text-decoration:none;font-size:.82rem;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px;opacity:.7;transition:opacity .2s;}
+.back-link:hover{opacity:1;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;
+  background:linear-gradient(135deg,#fff 30%,var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:14px;line-height:1.1;}
+.header-sub{color:var(--muted);font-size:1rem;max-width:500px;margin:0 auto 32px;line-height:1.7;}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:42px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--accent2);}
+.stat-lbl{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
+
+/* CONTROLS */
+.controls{max-width:1320px;margin:0 auto 22px;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.search-wrap{flex:1 1 240px;position:relative;}
+.search-wrap input{width:100%;padding:11px 14px 11px 40px;background:var(--surface);
+  border:1px solid var(--border);border-radius:10px;color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:.92rem;outline:none;transition:border-color .2s;}
+.search-wrap input:focus{border-color:var(--accent);}
+.search-wrap input::placeholder{color:var(--dim);}
+.search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--dim);pointer-events:none;}
+
+/* FILTER BAR */
+.filter-bar{max-width:1320px;margin:0 auto 22px;padding:0 20px;
+  display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+.filter-btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);
+  background:var(--surface);color:var(--muted);font-family:'DM Sans',sans-serif;
+  font-size:.78rem;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent2);background:rgba(59,130,246,0.09);}
+
+.selects{display:flex;gap:8px;flex-wrap:wrap;}
+.ctrl-select{padding:9px 12px;background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;outline:none;}
+
+/* RESULT COUNT */
+.result-bar{max-width:1320px;margin:0 auto 14px;padding:0 20px;
+  font-size:.8rem;color:var(--dim);}
+.result-bar span{color:var(--accent2);font-weight:600;}
+
+/* GRID */
+.grid{max-width:1320px;margin:0 auto;padding:0 20px 40px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:14px;}
+
+/* CARD */
+.domain-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:18px;display:flex;flex-direction:column;gap:10px;
+  transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;}
+.domain-card:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(0,0,0,.45);border-color:rgba(59,130,246,.3);}
+.domain-card.premium{border-color:rgba(245,158,11,.28);
+  background:linear-gradient(145deg,var(--surface) 0%,rgba(245,158,11,.04) 100%);}
+.prem-badge{position:absolute;top:12px;right:12px;font-size:.63rem;font-weight:700;
+  color:var(--gold);background:var(--gold-bg);padding:3px 9px;border-radius:20px;letter-spacing:.05em;}
+
+/* TLD badge */
+.tld-badge{display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:9px;font-size:.63rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;flex-shrink:0;}
+.tld-com{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--accent2);}
+.tld-ai{background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.3);color:#c084fc;}
+.tld-io{background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.25);color:#5eead4;}
+.tld-co{background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.25);color:#fb923c;}
+.tld-autos{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);color:#f87171;}
+.tld-help{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;}
+.tld-online{background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.2);color:#facc15;}
+.tld-other{background:rgba(148,163,184,.08);border:1px solid rgba(148,163,184,.2);color:var(--muted);}
+
+.card-top{display:flex;align-items:center;gap:10px;}
+.domain-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:700;
+  color:var(--text);word-break:break-all;line-height:1.2;flex:1;}
+.domain-tld{color:var(--dim);}
+
+/* category tags */
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-size:.67rem;font-weight:500;padding:2px 8px;border-radius:20px;border:1px solid transparent;}
+.tag-ai{background:rgba(168,85,247,.1);color:#c084fc;border-color:rgba(168,85,247,.2);}
+.tag-crypto{background:rgba(251,191,36,.1);color:#fbbf24;border-color:rgba(251,191,36,.2);}
+.tag-finance{background:rgba(52,211,153,.1);color:#34d399;border-color:rgba(52,211,153,.2);}
+.tag-energy{background:rgba(250,204,21,.1);color:#facc15;border-color:rgba(250,204,21,.2);}
+.tag-realestate{background:rgba(251,146,60,.1);color:#fb923c;border-color:rgba(251,146,60,.2);}
+.tag-commodity{background:rgba(216,180,254,.1);color:#d8b4fe;border-color:rgba(216,180,254,.2);}
+.tag-health{background:rgba(248,113,113,.1);color:#f87171;border-color:rgba(248,113,113,.2);}
+.tag-security{background:rgba(239,68,68,.1);color:#ef4444;border-color:rgba(239,68,68,.2);}
+.tag-automation{background:rgba(96,165,250,.1);color:#60a5fa;border-color:rgba(96,165,250,.2);}
+.tag-geo{background:rgba(163,230,53,.1);color:#a3e635;border-color:rgba(163,230,53,.2);}
+.tag-saas{background:rgba(34,211,238,.1);color:#22d3ee;border-color:rgba(34,211,238,.2);}
+.tag-sports{background:rgba(251,146,60,.1);color:#fb923c;border-color:rgba(251,146,60,.2);}
+.tag-food{background:rgba(134,239,172,.1);color:#86efac;border-color:rgba(134,239,172,.2);}
+.tag-agents{background:rgba(192,132,252,.1);color:#c084fc;border-color:rgba(192,132,252,.2);}
+.tag-arabic{background:rgba(239,68,68,.1);color:#fca5a5;border-color:rgba(239,68,68,.15);}
+.tag-space{background:rgba(147,197,253,.1);color:#93c5fd;border-color:rgba(147,197,253,.2);}
+.tag-rare{background:rgba(167,243,208,.1);color:#6ee7b7;border-color:rgba(167,243,208,.2);}
+.tag-logistics{background:rgba(148,163,184,.1);color:var(--muted);border-color:var(--border);}
+.tag-marketing{background:rgba(253,186,116,.1);color:#fdba74;border-color:rgba(253,186,116,.2);}
+.tag-default{background:var(--surface2);color:var(--dim);border-color:var(--border);}
+
+.type-pill{font-size:.64rem;color:var(--dim);background:var(--surface2);
+  border:1px solid var(--border);padding:2px 8px;border-radius:20px;align-self:flex-start;width:fit-content;}
+
+.note-box{font-size:.75rem;color:var(--muted);line-height:1.55;
+  padding:8px 10px;background:rgba(59,130,246,.05);
+  border-left:2px solid var(--accent);border-radius:0 7px 7px 0;}
+
+.inquire-btn{display:block;text-align:center;padding:9px;border-radius:9px;
+  background:var(--accent);color:#fff;text-decoration:none;font-weight:600;
+  font-size:.82rem;transition:background .2s;margin-top:auto;letter-spacing:.02em;}
+.inquire-btn:hover{background:#2563eb;}
+
+/* PAGINATION */
+.pagination{display:flex;justify-content:center;gap:7px;padding:0 20px 52px;flex-wrap:wrap;align-items:center;}
+.page-btn{padding:7px 13px;border-radius:8px;border:1px solid var(--border);
+  background:var(--surface);color:var(--muted);cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.83rem;transition:all .18s;}
+.page-btn:hover,.page-btn.active{border-color:var(--accent);color:var(--accent2);background:rgba(59,130,246,.08);}
+.page-info{color:var(--dim);font-size:.8rem;}
+
+.empty-state{text-align:center;padding:70px 20px;color:var(--dim);
+  grid-column:1/-1;font-size:.95rem;line-height:1.7;}
+.empty-state strong{color:var(--muted);}
+
+footer{text-align:center;padding:26px 20px;border-top:1px solid var(--border);
+  color:var(--dim);font-size:.8rem;line-height:1.8;}
+footer a{color:var(--accent2);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+@media(max-width:640px){
+  .stats{gap:22px;}
+  .ctrl-select{width:100%;}
+  .selects{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="back-link">← Sohadot.com</a>
+  <h1>Premium Domain Portfolio</h1>
+  <p class="header-sub">445+ hand-selected domains available for acquisition across AI, Finance, Crypto, Commodities, Geo, Health, Energy and more.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">445</div><div class="stat-lbl">Total Domains</div></div>
+    <div class="stat"><div class="stat-num">62</div><div class="stat-lbl">Premium Picks</div></div>
+    <div class="stat"><div class="stat-num">20</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat"><div class="stat-num" id="shownStat">—</div><div class="stat-lbl">Showing</div></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Search any domain…"/>
+  </div>
+  <div class="selects">
+    <select class="ctrl-select" id="sortSelect">
+      <option value="premium">⭐ Premium First</option>
+      <option value="alpha">A → Z</option>
+      <option value="length">Shortest First</option>
+      <option value="tld">By TLD</option>
+    </select>
+    <select class="ctrl-select" id="typeSelect">
+      <option value="all">All Types</option>
+      <option value="Brandable (Tech/AI)">Brandable Tech/AI</option>
+      <option value="Brandable">Brandable</option>
+      <option value="Geo Exact Match">Geo Exact Match</option>
+      <option value="Dictionary / Real Word">Dictionary Word</option>
+      <option value="Tech Acronym Compound">Acronym Compound</option>
+      <option value="Acronym + Word">Acronym + Word</option>
+    </select>
+    <select class="ctrl-select" id="premiumSelect">
+      <option value="all">All Domains</option>
+      <option value="premium">Premium Only</option>
+      <option value="regular">Regular Only</option>
+    </select>
+  </div>
+</div>
+
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-cat="All">All</button>
+  <button class="filter-btn" data-cat="AI / AGI / ASI">AI / AGI</button>
+  <button class="filter-btn" data-cat="AI Agents">AI Agents</button>
+  <button class="filter-btn" data-cat="Crypto / Web3">Crypto</button>
+  <button class="filter-btn" data-cat="Finance &amp; Payments">Finance</button>
+  <button class="filter-btn" data-cat="Commodities">Commodities</button>
+  <button class="filter-btn" data-cat="Energy / H₂ / CleanTech">Energy / H₂</button>
+  <button class="filter-btn" data-cat="Real Estate">Real Estate</button>
+  <button class="filter-btn" data-cat="Health / BioTech">Health / Bio</button>
+  <button class="filter-btn" data-cat="Geo / City">Geo / City</button>
+  <button class="filter-btn" data-cat="Automation / RPA">Automation</button>
+  <button class="filter-btn" data-cat="SaaS / Tech">SaaS / Tech</button>
+  <button class="filter-btn" data-cat="Space / Quantum">Space / Quantum</button>
+  <button class="filter-btn" data-cat="Rare Words">Rare Words</button>
+  <button class="filter-btn" data-cat="Food / Travel">Food / Travel</button>
+  <button class="filter-btn" data-cat="Sports / Gaming">Sports / Gaming</button>
+  <button class="filter-btn" data-cat="Arabic / Cultural">Arabic / Cultural</button>
+  <button class="filter-btn" data-cat="Marketing / CTA">Marketing / CTA</button>
+  <button class="filter-btn" data-cat="Logistics">Logistics</button>
+  <button class="filter-btn" data-cat="Cybersecurity">Security</button>
+</div>
+
+<div class="result-bar"><span id="resultCount">—</span> domains found</div>
+
+<div class="grid" id="domainGrid"></div>
+<div class="pagination" id="pagination"></div>
+
+<footer>
+  © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp; All domains are available for acquisition &nbsp;·&nbsp;
+  Questions? <a href="https://wa.me/+212668992259" target="_blank">📱 WhatsApp</a> &nbsp;·&nbsp;
+  <a href="/valuation.html">Domain Valuation Tool</a>
+</footer>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+const DOMAINS = [
+  {domain:"accountccy.com",cats:["Finance & Payments"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"accountoutreach.com",cats:["Finance & Payments", "Marketing / CTA"],type:"Brandable",premium:false,note:""},
+  {domain:"accustoming.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"aconnectivity.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"adasasi.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:"ADAS + ASI — Advanced Driver Assistance + Artificial Super Intelligence. Ideal for autonomous vehicle companies."},
+  {domain:"adasbox.com",cats:["Brandable"],type:"Brandable",premium:false,note:"ADAS + Box — A platform/device for advanced driver assistance systems."},
+  {domain:"adhesivecompounds.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"advertisingboxes.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"agibeget.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:"AGI + Beget — AI that creates from scratch. Rare philosophical depth, like giving technology a soul."},
+  {domain:"agiconstructor.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"agioutsourcing.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"agipurify.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"agishoring.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aicosmical.com",cats:["AI / AGI / ASI", "Space / Quantum"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"aieditit.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aigoodsight.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"airevolving.com",cats:["AI / AGI / ASI", "Energy / H₂ / CleanTech"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"airfaresabroad.com",cats:["AI / AGI / ASI", "Food / Travel"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"airyagi.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aisewup.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"aisightux.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aitopsight.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aitrustpath.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:true,note:""},
+  {domain:"aitrustway.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"aivisionux.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aliaise.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:"Advanced Liaison — A smart intermediary. Elegant, premium brandable."},
+  {domain:"allenarly.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Rare authentic English word meaning exclusively/firstborn. Highly elite and niche."},
+  {domain:"allhintai.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"altissports.com",cats:["Sports / Gaming"],type:"Acronym + Word",premium:true,note:"Altis (sacred Olympic ground in ancient Greece) + Sports. Premium sports brand with deep heritage."},
+  {domain:"alwakile.com",cats:["Arabic / Cultural"],type:"Brandable",premium:false,note:"Arabic word for Agent/Representative — Ideal for AI agents and business agencies."},
+  {domain:"annrpa.com",cats:["AI / AGI / ASI", "Automation / RPA"],type:"Tech Acronym Compound",premium:true,note:"ANN (Artificial Neural Networks) + RPA — Neural networks + robotic automation. Enterprise automation powerhouse."},
+  {domain:"antithermic.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Heat-resistant / anti-thermal — Multi-use: agriculture, construction, medical, advanced tech cooling."},
+  {domain:"applaudably.com",cats:["SaaS / Tech", "Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"aptybets.com",cats:["Sports / Gaming", "AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"aptyhome.com",cats:["Real Estate", "AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"aquestapp.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"architectdesignnewyork.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"areditit.com",cats:["Brandable"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"argoodsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"armyoptics.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"artaerial.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"artiststand.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"artopsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asavor.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"asibeget.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asicta.com",cats:["AI / AGI / ASI", "Marketing / CTA"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asidocks.com",cats:["AI / AGI / ASI", "Logistics"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asiliaison.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asimerch.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asineura.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"asparkly.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"astorialimo.com",cats:["Real Estate", "Geo / City"],type:"Geo Exact Match",premium:true,note:"Geo Exact Match — Astoria (NYC neighborhood) + Limousine. Premium NYC transport services."},
+  {domain:"atechdragon.com",cats:["AI / AGI / ASI", "SaaS / Tech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"atelieronchain.com",cats:["AI / AGI / ASI", "Crypto / Web3"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"auraltune.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"austropauli.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"automationcharlotte.com",cats:["Automation / RPA"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"automotiveshelves.com",cats:["Automation / RPA", "Logistics"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"autorecoveryspecialists.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"autorelamp.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"aviatorsi.com",cats:["Sports / Gaming"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"avolth2.com",cats:["Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"badgesclub.com",cats:["Sports / Gaming"],type:"Brandable",premium:false,note:""},
+  {domain:"batonsecurity.com",cats:["Cybersecurity", "Geo / City"],type:"Brandable",premium:false,note:""},
+  {domain:"batteryh2.com",cats:["Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"betscta.com",cats:["Sports / Gaming", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"bispath.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"bisulfid.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"blockchainh2.com",cats:["AI / AGI / ASI", "Crypto / Web3", "Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:true,note:""},
+  {domain:"blocksestate.com",cats:["Crypto / Web3", "Real Estate", "Cybersecurity"],type:"Brandable",premium:false,note:""},
+  {domain:"bluealuminum.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"bostoncommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"brainsoptional.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"brilliancechain.com",cats:["AI / AGI / ASI", "Crypto / Web3"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"buildersanjose.com",cats:["Real Estate", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"buycta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"bytelco.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"cablingunit.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"canalling.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"casablancacommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"cashaitech.com",cats:["AI / AGI / ASI", "SaaS / Tech"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"cashetech.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"catechizeai.com",cats:["AI / AGI / ASI", "SaaS / Tech"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"cateredcottage.com",cats:["Real Estate", "Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ccapay.com",cats:["Finance & Payments"],type:"Brandable",premium:false,note:""},
+  {domain:"ccycta.com",cats:["Finance & Payments", "Marketing / CTA"],type:"Tech Acronym Compound",premium:false,note:"Currency + CTA (Call to Action) — Fintech call-to-action brand."},
+  {domain:"ccysi.com",cats:["Finance & Payments"],type:"Tech Acronym Compound",premium:false,note:"Currency + Super Intelligence — Super intelligence in currency/finance."},
+  {domain:"cellsstore.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"centralities.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"chainstool.com",cats:["AI / AGI / ASI", "Crypto / Web3", "SaaS / Tech"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"chaintracky.com",cats:["AI / AGI / ASI", "Crypto / Web3"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"championsawards.com",cats:["Sports / Gaming"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"chicagocommodity.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"chicagorelocate.com",cats:["Real Estate", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"citywideanimal.com",cats:["Health / BioTech"],type:"Brandable",premium:false,note:""},
+  {domain:"cleaningoasis.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"cleanlybox.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"clevelandunderground.com",cats:["Energy / H₂ / CleanTech", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"clinicsanjose.com",cats:["Health / BioTech", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"codokey.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"coffeepy.com",cats:["SaaS / Tech", "Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"cognbot.com",cats:["Automation / RPA", "AI Agents"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"coincta.com",cats:["Crypto / Web3", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"coloradoshoring.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"concepbuild.com",cats:["Real Estate"],type:"Brandable",premium:false,note:""},
+  {domain:"cosmiccoupons.com",cats:["Space / Quantum"],type:"Brandable",premium:false,note:""},
+  {domain:"crisprgenomic.com",cats:["Health / BioTech"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"cruiseahoi.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"cryptobeget.com",cats:["Crypto / Web3"],type:"Brandable",premium:false,note:""},
+  {domain:"cryptodroppy.com",cats:["Crypto / Web3"],type:"Brandable",premium:false,note:""},
+  {domain:"cryptographik.com",cats:["Crypto / Web3"],type:"Brandable",premium:false,note:""},
+  {domain:"ctabtc.com",cats:["Crypto / Web3", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ctacrypto.com",cats:["Crypto / Web3", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ctag6.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ctaicon.com",cats:["AI / AGI / ASI", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ctaon.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ctapays.com",cats:["Finance & Payments", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ctatop.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"cyclonestrategy.com",cats:["Brandable"],type:"Brandable",premium:false,note:"Cyclone + Strategy — Powerful for business strategy, sports analytics, and consulting."},
+  {domain:"cyclopy.com",cats:["Sports / Gaming"],type:"Brandable",premium:true,note:"Cyclops + Y — The mythical one-eyed giant. Powerful for data surveillance, AI agents, and security."},
+  {domain:"dactylograph.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Fingerprint/typewriting — Rare and authentic for biometric security companies."},
+  {domain:"dairybenchmarks.com",cats:["AI / AGI / ASI", "Commodities"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"dakhlacommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"dbbpm.com",cats:["Automation / RPA"],type:"Acronym + Word",premium:true,note:"Database + BPM (Business Process Management) — Strong B2B enterprise brand."},
+  {domain:"dbsasi.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"decantertracker.com",cats:["Commodities"],type:"Brandable",premium:false,note:""},
+  {domain:"definingforces.com",cats:["Crypto / Web3", "Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"dentalsurgerynewyork.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"dentalsurgerysanjose.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"depsync.com",cats:["Automation / RPA", "SaaS / Tech"],type:"Brandable (Tech/AI)",premium:true,note:"Dependable Synchronization — Deep tech name for system synchronization and reliability engineering."},
+  {domain:"diamondcta.com",cats:["Commodities", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"digicta.com",cats:["SaaS / Tech", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"digiglob.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"dncta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"dnspw.com",cats:["Cybersecurity"],type:"Brandable",premium:false,note:""},
+  {domain:"driftairy.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"droppydn.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"droppytoken.com",cats:["Crypto / Web3"],type:"Brandable",premium:false,note:""},
+  {domain:"dubaicommodity.com",cats:["AI / AGI / ASI", "Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"easecruise.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"easetourism.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"easeworkout.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"ecoeffectiveness.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"editpatmos.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"elpasoautomation.com",cats:["Automation / RPA", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"emberquantum.com",cats:["Space / Quantum"],type:"Brandable",premium:true,note:""},
+  {domain:"energdot.com",cats:["Energy / H₂ / CleanTech", "Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"energydocks.com",cats:["Energy / H₂ / CleanTech", "Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"energylea.com",cats:["Energy / H₂ / CleanTech"],type:"Brandable",premium:false,note:""},
+  {domain:"environmentalchain.com",cats:["AI / AGI / ASI", "Crypto / Web3"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"epichawks.com",cats:["Sports / Gaming"],type:"Brandable",premium:false,note:""},
+  {domain:"equipmentnewyork.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"etfcta.com",cats:["Finance & Payments", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ethlea.com",cats:["Crypto / Web3"],type:"Brandable",premium:false,note:""},
+  {domain:"euraplan.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"evloading.com",cats:["Energy / H₂ / CleanTech", "Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"evoutrush.com",cats:["Energy / H₂ / CleanTech", "SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"evsasi.com",cats:["AI / AGI / ASI", "Energy / H₂ / CleanTech"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"extraasi.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"eyebrowrings.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"eyeglassrep.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"fashioncta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"fastagenty.com",cats:["AI / AGI / ASI", "Automation / RPA", "Geo / City"],type:"Brandable",premium:false,note:""},
+  {domain:"fastestpros.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"fastestpush.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"favorsai.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"filterratings.com",cats:["Marketing / CTA"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"financialcharge.com",cats:["Finance & Payments"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"firesideful.com",cats:["Real Estate", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"firmrates.com",cats:["Finance & Payments"],type:"Brandable",premium:false,note:""},
+  {domain:"fitnessmetagame.com",cats:["Geo / City", "Sports / Gaming"],type:"Brandable",premium:false,note:""},
+  {domain:"fitnesssanjose.com",cats:["Geo / City", "Sports / Gaming"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"footaerial.com",cats:["Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"fromaihub.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"funheal.com",cats:["Health / BioTech"],type:"Brandable",premium:false,note:""},
+  {domain:"futureann.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"g6cta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"galaxnet.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"genevacommodities.com",cats:["Energy / H₂ / CleanTech", "Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"genevacommodity.com",cats:["Energy / H₂ / CleanTech", "Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"genomicediting.com",cats:["Health / BioTech"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"gigasaudi.com",cats:["Arabic / Cultural"],type:"Brandable",premium:false,note:""},
+  {domain:"goddessdo.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"goldscta.com",cats:["Commodities", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"gravimeters.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Gravity measurement instruments — Strategic for mining, space exploration, and geophysics."},
+  {domain:"gweduc.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Geoduck — The world's largest burrowing clam, Pacific Northwest native. Unique for aquaculture and food tech."},
+  {domain:"gymsnewyork.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"harrisonregent.com",cats:["Real Estate"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"haulml.com",cats:["AI / AGI / ASI", "Logistics"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"haulsai.com",cats:["AI / AGI / ASI", "Logistics"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"haulsi.com",cats:["AI / AGI / ASI", "Logistics"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"haulunits.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"herorag.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:true,note:"Hero + RAG (Retrieval-Augmented Generation) — A heroic AI agent brand."},
+  {domain:"histogenous.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"hoistdoctor.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"homebuyerstrust.com",cats:["Real Estate"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"hongkongdocks.com",cats:["Geo / City", "Logistics"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"hydraulicgaskets.com",cats:["Logistics"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"hygieneroll.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"iagentsi.com",cats:["AI / AGI / ASI", "AI Agents"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ichainhub.com",cats:["AI / AGI / ASI", "Crypto / Web3"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"icogniflow.com",cats:["Brandable"],type:"Brandable (Tech/AI)",premium:true,note:""},
+  {domain:"industrialcloseouts.com",cats:["Logistics"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"ineuralvault.com",cats:["AI / AGI / ASI", "Cybersecurity"],type:"Brandable (Tech/AI)",premium:true,note:"i + Neural Vault — Distinctive brand for AI and data security companies."},
+  {domain:"insurecta.com",cats:["Cybersecurity", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"insuretrusts.com",cats:["Cybersecurity"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"iocyclops.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"ioedi.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"iohaul.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"iopace.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"iscta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"isotely.com",cats:["Automation / RPA", "Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"ithired.com",cats:["Automation / RPA"],type:"Brandable",premium:false,note:""},
+  {domain:"jetbusk.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"jewishdiamonds.com",cats:["Commodities"],type:"Brandable",premium:false,note:""},
+  {domain:"jobshunts.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"ketonemia.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Medical term for ketones in blood — Targets the massive keto health and nutrition market."},
+  {domain:"keytaur.com",cats:["Sports / Gaming", "Rare Words"],type:"Brandable",premium:false,note:""},
+  {domain:"labelleusa.com",cats:["Health / BioTech"],type:"Brandable",premium:false,note:""},
+  {domain:"ladybugbets.com",cats:["Sports / Gaming"],type:"Brandable",premium:false,note:""},
+  {domain:"lawfulbytes.com",cats:["Cybersecurity", "SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"leawatt.com",cats:["Energy / H₂ / CleanTech"],type:"Brandable",premium:false,note:""},
+  {domain:"londoncommodity.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"luxseaweed.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"mactuner.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"majoraurum.com",cats:["Commodities"],type:"Brandable",premium:false,note:""},
+  {domain:"maskabl.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"materialscleaner.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"medicisense.com",cats:["Health / BioTech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"merchandisetoken.com",cats:["Crypto / Web3"],type:"Brandable",premium:false,note:""},
+  {domain:"merchcta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"mesomere.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Genuine medical/embryology term — Suits BioTech and Genomics companies."},
+  {domain:"middletownhouse.com",cats:["Real Estate"],type:"Brandable",premium:false,note:""},
+  {domain:"mltrail.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"mobileartifacts.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"moleware.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"monopolises.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"moroccoml.com",cats:["AI / AGI / ASI", "Geo / City", "Arabic / Cultural"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"mostlyoak.com",cats:["Real Estate"],type:"Brandable",premium:false,note:""},
+  {domain:"movetospatial.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"myeaserecipe.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"nadorcommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"navyoptics.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"newsletterindustry.com",cats:["Marketing / CTA"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"newyorkcommodity.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"nyccta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"nyrelocations.com",cats:["Real Estate"],type:"Brandable",premium:false,note:""},
+  {domain:"omnisagi.com",cats:["AI / AGI / ASI", "AI Agents"],type:"Acronym + Word",premium:true,note:"Omni + ASI/AGI — All-encompassing artificial general intelligence. Strong tech brandable."},
+  {domain:"ondagen.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"orbitssp.com",cats:["Energy / H₂ / CleanTech", "Space / Quantum"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ornamentstand.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"orthobones.com",cats:["Health / BioTech"],type:"Brandable",premium:false,note:""},
+  {domain:"orthoepical.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Relating to correct pronunciation — Ideal for AI Speech Recognition and EdTech companies."},
+  {domain:"orvoltage.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"orvoltages.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"otadapt.com",cats:["Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"otevolve.com",cats:["Energy / H₂ / CleanTech", "Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"otinside.com",cats:["Automation / RPA"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"outbakes.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"outmerchant.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"outrushcloud.com",cats:["SaaS / Tech", "Space / Quantum"],type:"Brandable",premium:false,note:""},
+  {domain:"outrushneural.com",cats:["AI / AGI / ASI", "SaaS / Tech"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"overlyingseas.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"palmettoappraisal.com",cats:["AI / AGI / ASI", "Real Estate", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"palpating.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"paltopai.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"parrybot.com",cats:["Cybersecurity", "Automation / RPA", "AI Agents"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"parryshield.com",cats:["Cybersecurity"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"pastrychicago.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"pastrylasvegas.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"pastrymanhattan.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"pastrynewyork.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"pastryphiladelphia.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"payotis.com",cats:["Finance & Payments", "Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"payoutsi.com",cats:["Finance & Payments"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"philadelphiacommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"photonicicon.com",cats:["Automation / RPA", "Space / Quantum"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"photoperceptive.com",cats:["Health / BioTech", "Automation / RPA", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"pieceworkers.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"plannedpathways.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"polishmarbletoken.com",cats:["Crypto / Web3"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"preimmunize.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"pulsaero.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"purifybox.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"purifytools.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"pushcta.com",cats:["Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"pvexp.com",cats:["Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"pvgalaxy.com",cats:["Energy / H₂ / CleanTech", "Space / Quantum"],type:"Acronym + Word",premium:true,note:"PhotoVoltaic + Galaxy — Galaxy of solar power. Creative energy brandable."},
+  {domain:"qatarcommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"qatarcommodity.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"quantumann.com",cats:["AI / AGI / ASI", "Space / Quantum"],type:"Acronym + Word",premium:true,note:""},
+  {domain:"ragfull.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"raglarge.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"rainforestpreserve.com",cats:["AI / AGI / ASI"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"realtycta.com",cats:["Real Estate", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"reefier.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"relocatearizona.com",cats:["Real Estate", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"rotterdamcommodities.com",cats:["Commodities", "Automation / RPA", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"rpaagi.com",cats:["AI / AGI / ASI", "Automation / RPA"],type:"Tech Acronym Compound",premium:true,note:""},
+  {domain:"rpasi.com",cats:["AI / AGI / ASI", "Automation / RPA"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"rpeit.com",cats:["Automation / RPA"],type:"Brandable",premium:false,note:""},
+  {domain:"sanfranciscopizzeria.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"sapidpizza.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"sciographic.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Authentic rare scientific term — shadow mapping/charting. Genuine and original."},
+  {domain:"securitysanjose.com",cats:["Cybersecurity", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"selectglobe.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"shanghaicommodity.com",cats:["AI / AGI / ASI", "Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"shovelssale.com",cats:["Logistics"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"sibuid.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"siburst.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"siinsurances.com",cats:["Cybersecurity"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"singaporecommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"sipays.com",cats:["Finance & Payments"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"siquantumcore.com",cats:["Space / Quantum"],type:"Acronym + Word",premium:true,note:""},
+  {domain:"siweavecore.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"siweaving.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"smartpitot.com",cats:["Automation / RPA"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"space-based-solar-power.com",cats:["Energy / H₂ / CleanTech", "Space / Quantum"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"spamcrackers.com",cats:["Cybersecurity"],type:"Brandable",premium:false,note:""},
+  {domain:"specialrivets.com",cats:["Logistics"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"spfexp.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"spirittrainers.com",cats:["AI / AGI / ASI", "Sports / Gaming"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"sportsoverseas.com",cats:["Sports / Gaming"],type:"Brandable",premium:false,note:""},
+  {domain:"sspbox.com",cats:["Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"sspjapon.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"stagehouston.com",cats:["Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"staramateurs.com",cats:["Sports / Gaming"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"stokerev.com",cats:["Energy / H₂ / CleanTech"],type:"Brandable",premium:false,note:""},
+  {domain:"strangetexas.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"streamcollider.com",cats:["SaaS / Tech", "Space / Quantum"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"stroynews.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"superesthetic.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"supersxo.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"sxosolution.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"synaptivault.com",cats:["Health / BioTech", "Cybersecurity"],type:"Brandable (Tech/AI)",premium:true,note:"Synaptic + Vault — Neural vault concept. Perfect for AI security and data protection."},
+  {domain:"syntheticgeno.com",cats:["Health / BioTech"],type:"Brandable",premium:false,note:""},
+  {domain:"synthibio.com",cats:["Health / BioTech"],type:"Brandable",premium:false,note:""},
+  {domain:"tangiercommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"taxextra.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"techtophub.com",cats:["AI / AGI / ASI", "SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"telecomphone.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"televerdant.com",cats:["Energy / H₂ / CleanTech"],type:"Brandable",premium:false,note:""},
+  {domain:"themoroccoai.com",cats:["AI / AGI / ASI", "Geo / City", "Arabic / Cultural"],type:"Brandable (Tech/AI)",premium:true,note:""},
+  {domain:"toavr.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"tokencta.com",cats:["Crypto / Web3", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"tokyocta.com",cats:["Geo / City", "Marketing / CTA"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"toolscleaner.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"topdotai.com",cats:["AI / AGI / ASI", "Automation / RPA"],type:"Acronym + Word",premium:true,note:""},
+  {domain:"tropicmetals.com",cats:["Commodities"],type:"Brandable",premium:false,note:""},
+  {domain:"tucsonautomation.com",cats:["Automation / RPA", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"tvrpa.com",cats:["Automation / RPA"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"txitem.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"txsasi.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"typifying.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:""},
+  {domain:"uaecommodities.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:true,note:""},
+  {domain:"uaecommodity.com",cats:["Commodities", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"uaecta.com",cats:["Geo / City", "Marketing / CTA"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"ubiqueenergy.com",cats:["Energy / H₂ / CleanTech"],type:"Brandable",premium:false,note:""},
+  {domain:"ultrapaysi.com",cats:["Finance & Payments"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ultrateleco.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"unitfindings.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"unitsasi.com",cats:["AI / AGI / ASI", "Logistics"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"unitschips.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"unitscooler.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"unitsrefrigeration.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"urbanglides.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"usdocks.com",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"usedtelco.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"usorthoclinic.com",cats:["Health / BioTech", "Geo / City"],type:"Brandable",premium:false,note:""},
+  {domain:"utmostoceans.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"utteragi.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"utterart.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"uttermarble.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"uttervr.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"vccapay.com",cats:["Finance & Payments"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"verdanth2.com",cats:["Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:true,note:""},
+  {domain:"vinocta.com",cats:["Food / Travel", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"vreditit.com",cats:["Brandable"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"vrgoodsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"vrtopsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"wedgemounts.com",cats:["Logistics"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"westvancouverlandscaping.com",cats:["Real Estate", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"wetrpa.com",cats:["Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"whiskeydot.com",cats:["Automation / RPA", "Food / Travel"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"witarbitrage.com",cats:["AI / AGI / ASI", "Finance & Payments", "AI Agents"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"witarm.com",cats:["AI Agents"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"witaudit.com",cats:["Finance & Payments", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"witautomaton.com",cats:["Automation / RPA", "AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"witbets.com",cats:["Sports / Gaming", "AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"witclinic.com",cats:["Health / BioTech", "Geo / City", "AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"wittaxi.com",cats:["AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"wittyaudit.com",cats:["Finance & Payments", "AI Agents"],type:"Brandable",premium:false,note:""},
+  {domain:"wokalae.com",cats:["Arabic / Cultural", "Rare Words"],type:"Brandable",premium:false,note:""},
+  {domain:"yetfut.com",cats:["Finance & Payments", "Food / Travel", "Arabic / Cultural"],type:"Dictionary / Real Word",premium:false,note:"Amazigh (Berber) word meaning delicious/sweet taste. Globally unique for food & beverage brands."},
+  {domain:"zestpy.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"zonules.com",cats:["Health / BioTech", "Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Rare medical term — the tiny fibers holding the eye lens. Ideal for ophthalmology companies."},
+  {domain:"paymentsoutlet.com",cats:["Finance & Payments", "Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"budgetoutreach.com",cats:["Finance & Payments", "Marketing / CTA"],type:"Brandable",premium:false,note:""},
+  {domain:"funnelplugs.com",cats:["Marketing / CTA"],type:"Brandable",premium:false,note:""},
+  {domain:"proprofessions.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"residentialrooms.com",cats:["Real Estate"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"accountexplore.com",cats:["Finance & Payments"],type:"Brandable",premium:false,note:""},
+  {domain:"budgetcub.com",cats:["Finance & Payments"],type:"Brandable",premium:false,note:""},
+  {domain:"hydrogenstandard.com",cats:["Energy / H₂ / CleanTech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"evergreenprotocol.com",cats:["Energy / H₂ / CleanTech", "Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"strongavatar.com",cats:["SaaS / Tech"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"excellentangle.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"overux.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"charlestontraveler.com",cats:["Geo / City", "Food / Travel"],type:"Geo Exact Match",premium:false,note:""},
+  {domain:"arganhub.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"openrevolve.com",cats:["Energy / H₂ / CleanTech"],type:"Brandable",premium:false,note:""},
+  {domain:"workoutsale.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
+  {domain:"headmostbroker.com",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"ailife.help",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"touralways.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"tourvstravel.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"depsinc.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"momtaze.com",cats:["Arabic / Cultural"],type:"Brandable",premium:true,note:"Arabic word for Excellent/Distinguished — Golden brand name for the Arab market."},
+  {domain:"momtaze.online",cats:["Arabic / Cultural"],type:"Brandable",premium:true,note:"Arabic word for Excellent/Distinguished — Golden brand name for the Arab market."},
+  {domain:"wittyagent.com",cats:["AI / AGI / ASI", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"aptyagent.com",cats:["AI / AGI / ASI", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"agentwitstudio.com",cats:["AI / AGI / ASI", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"nobogh.com",cats:["Arabic / Cultural"],type:"Brandable",premium:true,note:"Arabic word for Genius/Brilliance — Strong brandable for education and AI."},
+  {domain:"zakae.com",cats:["Arabic / Cultural"],type:"Brandable",premium:true,note:"Arabic word for Intelligence — High value for AI and Arab market startups."},
+  {domain:"agentwitstudio.online",cats:["AI / AGI / ASI", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"wittyagent.online",cats:["AI / AGI / ASI", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"aptyagent.online",cats:["AI / AGI / ASI", "AI Agents"],type:"Brandable",premium:true,note:""},
+  {domain:"aidatanaly.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
+  {domain:"explorfood.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"venturaltd.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"backhomerealty.com",cats:["Real Estate"],type:"Brandable",premium:false,note:""},
+  {domain:"themoneyseed.com",cats:["Finance & Payments"],type:"Brandable",premium:false,note:""},
+  {domain:"helpfulads.com",cats:["SaaS / Tech", "Marketing / CTA"],type:"Brandable",premium:false,note:""},
+  {domain:"jexec.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"planetchefs.com",cats:["Food / Travel"],type:"Brandable",premium:false,note:""},
+  {domain:"websitecars.com",cats:["Brandable"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"interillusion.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"ixname.com",cats:["SaaS / Tech"],type:"Brandable",premium:false,note:""},
+  {domain:"polaritonmatter.com",cats:["Space / Quantum"],type:"Acronym + Word",premium:true,note:"Polariton Matter — Advanced quantum physics. Extremely rare for DeepTech companies."},
+  {domain:"deposit.autos",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"fasty.autos",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"goinsurance.autos",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"loader.autos",cats:["Logistics"],type:"Brandable",premium:false,note:""},
+  {domain:"sku.autos",cats:["Brandable"],type:"Brandable",premium:false,note:""},
+  {domain:"wit.autos",cats:["AI Agents"],type:"Brandable",premium:false,note:""}
+];
+
+
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+const PAGE_SIZE = 48;
+let currentPage = 1;
+let activeCat = "All";
+let activeType = "all";
+let activePrem = "all";
+let searchQ = "";
+let sortMode = "premium";
+
+// ── CATEGORY → TAG CLASS ────────────────────────────────────────────────────
+const TAG_CLASS = {
+  "AI / AGI / ASI":          "ai",
+  "AI Agents":               "agents",
+  "Crypto / Web3":           "crypto",
+  "Finance & Payments":      "finance",
+  "Commodities":             "commodity",
+  "Energy / H₂ / CleanTech":"energy",
+  "Real Estate":             "realestate",
+  "Health / BioTech":        "health",
+  "Cybersecurity":           "security",
+  "Automation / RPA":        "automation",
+  "Geo / City":              "geo",
+  "SaaS / Tech":             "saas",
+  "Sports / Gaming":         "sports",
+  "Food / Travel":           "food",
+  "Arabic / Cultural":       "arabic",
+  "Space / Quantum":         "space",
+  "Rare Words":              "rare",
+  "Logistics":               "logistics",
+  "Marketing / CTA":         "marketing",
+  "Brandable":               "default",
+};
+
+// ── HELPERS ─────────────────────────────────────────────────────────────────
+const getSLD = d => d.split(".")[0];
+const getTLD = d => { const p = d.split("."); return p.length > 1 ? "." + p.slice(1).join(".") : ""; };
+
+function tldClass(tld) {
+  const m = { ".com":"tld-com",".ai":"tld-ai",".io":"tld-io",".co":"tld-co",
+               ".autos":"tld-autos",".help":"tld-help",".online":"tld-online" };
+  return m[tld] || "tld-other";
+}
+
+// ── FILTER & SORT ────────────────────────────────────────────────────────────
+function filtered() {
+  let list = [...DOMAINS];
+  if (activeCat !== "All")    list = list.filter(d => d.cats.includes(activeCat));
+  if (activeType !== "all")   list = list.filter(d => d.type === activeType);
+  if (activePrem === "premium") list = list.filter(d => d.premium);
+  if (activePrem === "regular") list = list.filter(d => !d.premium);
+  if (searchQ) list = list.filter(d => d.domain.toLowerCase().includes(searchQ));
+  list.sort((a, b) => {
+    if (sortMode === "premium") return (b.premium ? 1 : 0) - (a.premium ? 1 : 0) || a.domain.localeCompare(b.domain);
+    if (sortMode === "alpha")   return a.domain.localeCompare(b.domain);
+    if (sortMode === "length")  return getSLD(a.domain).length - getSLD(b.domain).length;
+    if (sortMode === "tld")     return getTLD(a.domain).localeCompare(getTLD(b.domain));
+    return 0;
+  });
+  return list;
+}
+
+// ── RENDER CARD ──────────────────────────────────────────────────────────────
+function renderCard(d) {
+  const sld = getSLD(d.domain);
+  const tld = getTLD(d.domain);
+  const tldDisplay = tld.replace(".", "").toUpperCase() || "COM";
+  const waMsg = `https://wa.me/+212668992259?text=Hello%2C+I'm+interested+in+acquiring+${encodeURIComponent(d.domain)}`;
+  const tags = d.cats.slice(0, 2).map(c =>
+    `<span class="tag tag-${TAG_CLASS[c] || 'default'}">${c.split(" /")[0]}</span>`
+  ).join("");
+  const noteHTML = d.note ? `<div class="note-box">${d.note}</div>` : "";
+  const premBadge = d.premium ? `<div class="prem-badge">★ Premium</div>` : "";
+
+  return `<div class="domain-card${d.premium ? " premium" : ""}">
+    ${premBadge}
+    <div class="card-top">
+      <div class="tld-badge ${tldClass(tld)}">${tldDisplay}</div>
+      <div class="domain-name">${sld}<span class="domain-tld">${tld}</span></div>
+    </div>
+    <div class="tag-row">${tags}</div>
+    <div class="type-pill">${d.type}</div>
+    ${noteHTML}
+    <a href="${waMsg}" class="inquire-btn" target="_blank">Inquire →</a>
+  </div>`;
+}
+
+// ── RENDER PAGE ──────────────────────────────────────────────────────────────
+function render() {
+  const list = filtered();
+  const total = list.length;
+  const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if (currentPage > pages) currentPage = 1;
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const slice = list.slice(start, start + PAGE_SIZE);
+
+  document.getElementById("shownStat").textContent = total;
+  document.getElementById("resultCount").textContent = total.toLocaleString();
+  document.getElementById("domainGrid").innerHTML = slice.length
+    ? slice.map(renderCard).join("")
+    : `<div class="empty-state"><strong>No domains found.</strong><br>Try a different search or filter.</div>`;
+
+  // pagination
+  const pag = document.getElementById("pagination");
+  if (pages <= 1) { pag.innerHTML = ""; return; }
+  let html = `<span class="page-info">${start + 1}–${Math.min(start + PAGE_SIZE, total)} of ${total}</span>`;
+  if (currentPage > 1) html += `<button class="page-btn" onclick="goPage(${currentPage - 1})">‹ Prev</button>`;
+  const s = Math.max(1, currentPage - 2), e = Math.min(pages, currentPage + 2);
+  for (let i = s; i <= e; i++) {
+    html += `<button class="page-btn${i === currentPage ? " active" : ""}" onclick="goPage(${i})">${i}</button>`;
+  }
+  if (currentPage < pages) html += `<button class="page-btn" onclick="goPage(${currentPage + 1})">Next ›</button>`;
+  pag.innerHTML = html;
+}
+
+function goPage(p) { currentPage = p; render(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+
+// ── EVENTS ───────────────────────────────────────────────────────────────────
+document.getElementById("searchInput").addEventListener("input", e => {
+  searchQ = e.target.value.toLowerCase().trim(); currentPage = 1; render();
+});
+document.getElementById("sortSelect").addEventListener("change", e => { sortMode = e.target.value; render(); });
+document.getElementById("typeSelect").addEventListener("change", e => { activeType = e.target.value; currentPage = 1; render(); });
+document.getElementById("premiumSelect").addEventListener("change", e => { activePrem = e.target.value; currentPage = 1; render(); });
+document.getElementById("filterBar").addEventListener("click", e => {
+  if (!e.target.matches(".filter-btn")) return;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  e.target.classList.add("active");
+  activeCat = e.target.dataset.cat;
+  currentPage = 1; render();
+});
+
+render();
+</script>
+</body>
+</html>
