@@ -1,341 +1,1085 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Top Domain Keywords This Month – Sohadot.com</title>
-<meta name="description" content="The 10 highest-value domain keywords this month, ranked by CPC, search volume and domain sales activity. Updated monthly."/>
-<meta property="og:title" content="Top Domain Keywords – Sohadot.com"/>
-<meta property="og:description" content="Monthly ranking of the most valuable keywords for domain investors and buyers."/>
-<meta property="og:type" content="website"/>
-<link rel="canonical" href="https://sohadot.com/keywords.html"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --bg:#f5f0e8;--card:#fff;--border:rgba(15,23,42,0.08);
-  --accent:#1d4ed8;--accent2:#3b82f6;--text:#0f172a;
-  --muted:#64748b;--dim:#94a3b8;--gold:#f59e0b;
-  --green:#10b981;--red:#ef4444;--purple:#8b5cf6;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;
-  border-bottom:1px solid var(--border);background:rgba(245,240,232,0.9);
-  backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;
-  color:var(--accent);text-decoration:none;}
-.nav-links{display:flex;gap:24px;align-items:center;}
-.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;
-  letter-spacing:.04em;text-transform:uppercase;transition:color .2s;}
-.nav-links a:hover{color:var(--accent);}
-.nav-pill{padding:7px 18px;border-radius:8px;background:var(--accent);color:#fff!important;font-weight:600!important;}
+  <title>Monthly Domain Intelligence Report | Sohadot.com</title>
+  <meta name="description" content="A monthly domain intelligence report covering top domain keywords, market signals, and notable reported domain sales. Built for investors, brokers, founders, and domain professionals."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://sohadot.com/keywords.html"/>
 
-header{text-align:center;padding:56px 20px 36px;max-width:760px;margin:0 auto;}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);
-  background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);
-  padding:5px 14px;border-radius:20px;margin-bottom:20px;}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#10b981;
-  box-shadow:0 0 0 2px rgba(16,185,129,0.2);animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.4;}}
-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);
-  font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.1;}
-h1 span{color:var(--accent);}
-.header-sub{color:var(--muted);font-size:.95rem;line-height:1.75;font-weight:300;margin-bottom:8px;}
-.update-badge{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;
-  color:var(--muted);background:var(--card);border:1px solid var(--border);
-  padding:5px 12px;border-radius:20px;margin-top:12px;}
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Monthly Domain Intelligence Report | Sohadot.com"/>
+  <meta property="og:description" content="Top monthly domain keywords, market insight, and notable domain sales in one structured intelligence report."/>
+  <meta property="og:url" content="https://sohadot.com/keywords.html"/>
+  <meta property="og:site_name" content="Sohadot.com"/>
 
-.wrapper{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Monthly Domain Intelligence Report | Sohadot.com"/>
+  <meta name="twitter:description" content="Top monthly domain keywords, market insight, and notable domain sales in one structured intelligence report."/>
 
-/* FILTERS */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;}
-.flt{padding:7px 16px;border-radius:8px;border:1px solid var(--border);
-  background:var(--card);color:var(--muted);font-family:'Outfit',sans-serif;
-  font-size:.8rem;cursor:pointer;transition:all .18s;}
-.flt.active,.flt:hover{border-color:var(--accent);color:var(--accent);background:rgba(29,78,216,0.05);}
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-/* KEYWORD CARDS */
-.keywords-list{display:flex;flex-direction:column;gap:14px;}
-
-.kw-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:20px 22px;display:grid;
-  grid-template-columns:44px 1fr auto;
-  gap:0 16px;align-items:center;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
-  box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.kw-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.08);border-color:rgba(29,78,216,0.25);}
-.kw-card.featured{border-color:rgba(245,158,11,0.35);
-  background:linear-gradient(135deg,#fff 0%,rgba(245,158,11,0.03) 100%);}
-
-.kw-rank{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:800;
-  color:var(--dim);text-align:center;line-height:1;}
-.kw-rank.top3{color:var(--gold);}
-
-.kw-body{display:flex;flex-direction:column;gap:6px;}
-.kw-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.kw-word{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--text);}
-.kw-category{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  padding:2px 9px;border-radius:20px;border:1px solid transparent;}
-.cat-ai{background:rgba(139,92,246,0.1);color:var(--purple);border-color:rgba(139,92,246,0.2);}
-.cat-finance{background:rgba(16,185,129,0.1);color:var(--green);border-color:rgba(16,185,129,0.2);}
-.cat-crypto{background:rgba(245,158,11,0.1);color:var(--gold);border-color:rgba(245,158,11,0.2);}
-.cat-energy{background:rgba(59,130,246,0.1);color:var(--accent2);border-color:rgba(59,130,246,0.2);}
-.cat-health{background:rgba(239,68,68,0.1);color:var(--red);border-color:rgba(239,68,68,0.2);}
-.cat-geo{background:rgba(16,185,129,0.1);color:var(--green);border-color:rgba(16,185,129,0.2);}
-.cat-tech{background:rgba(29,78,216,0.1);color:var(--accent);border-color:rgba(29,78,216,0.2);}
-
-.kw-desc{font-size:.84rem;color:var(--muted);line-height:1.55;font-weight:300;}
-
-.kw-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
-.meta-pill{font-size:.7rem;font-weight:500;padding:2px 8px;border-radius:6px;
-  background:rgba(15,23,42,0.04);color:var(--muted);}
-.meta-pill.good{background:rgba(16,185,129,0.08);color:var(--green);}
-.meta-pill.hot{background:rgba(239,68,68,0.08);color:var(--red);}
-
-.kw-stats{display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:120px;}
-.stat-block{text-align:right;}
-.stat-val{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--text);}
-.stat-val.green{color:var(--green);}
-.stat-lbl{font-size:.66rem;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;}
-
-.trend-bar{width:80px;height:4px;background:rgba(15,23,42,0.06);border-radius:4px;overflow:hidden;}
-.trend-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent2),var(--accent));}
-
-/* INSIGHT BOX */
-.insight{background:rgba(29,78,216,0.04);border:1px solid rgba(29,78,216,0.12);
-  border-radius:14px;padding:20px 22px;margin-bottom:28px;}
-.insight-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px;}
-.insight p{font-size:.88rem;color:var(--muted);line-height:1.65;font-weight:300;}
-
-/* DISCLAIMER */
-.disclaimer{text-align:center;font-size:.76rem;color:var(--dim);
-  padding:20px;border-top:1px solid var(--border);margin-top:32px;line-height:1.7;}
-
-footer{text-align:center;padding:24px 20px;border-top:1px solid var(--border);
-  color:var(--dim);font-size:.8rem;}
-footer a{color:var(--accent2);text-decoration:none;}
-
-@media(max-width:640px){
-  .kw-card{grid-template-columns:36px 1fr;}.kw-stats{display:none;}
-  nav{padding:14px 18px;}.nav-links a:not(.nav-pill){display:none;}
-}
-</style>
-
-</head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TCM7HJQS');</script>
-<!-- End Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TCM7HJQS');
+  </script>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J98F8F3ZS4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J98F8F3ZS4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J98F8F3ZS4');
+  </script>
 
-  gtag('config', 'G-J98F8F3ZS4');
-</script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3711640853752026"
-     crossorigin="anonymous"></script>
-  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3711640853752026" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --bg:#f5f0e8;
+      --card:#ffffff;
+      --surface:#fbfaf7;
+      --border:rgba(15,23,42,0.08);
+      --accent:#1d4ed8;
+      --accent2:#3b82f6;
+      --text:#0f172a;
+      --muted:#64748b;
+      --dim:#94a3b8;
+      --gold:#f59e0b;
+      --green:#10b981;
+      --red:#ef4444;
+      --orange:#f97316;
+      --violet:#7c3aed;
+      --blueSoft:rgba(29,78,216,0.06);
+      --goldSoft:rgba(245,158,11,0.12);
+      --greenSoft:rgba(16,185,129,0.09);
+      --violetSoft:rgba(124,58,237,0.10);
+      --shadow:0 8px 28px rgba(15,23,42,0.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:'Outfit',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      z-index:0;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 32px;
+      border-bottom:1px solid var(--border);
+      background:rgba(245,240,232,0.94);
+      backdrop-filter:blur(12px);
+    }
+
+    .nav-logo{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.34rem;
+      font-weight:700;
+      color:var(--accent);
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      font-size:.78rem;
+      font-weight:500;
+      color:var(--muted);
+      text-decoration:none;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      transition:color .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{color:var(--accent)}
+
+    .nav-cta{
+      padding:8px 16px;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff !important;
+      font-weight:600 !important;
+      box-shadow:0 6px 18px rgba(29,78,216,0.18);
+    }
+
+    .hero{
+      position:relative;
+      z-index:1;
+      background:
+        radial-gradient(circle at 82% 45%, rgba(59,130,246,.42), transparent 34%),
+        radial-gradient(circle at 20% 20%, rgba(245,158,11,.10), transparent 24%),
+        radial-gradient(circle at 12% 85%, rgba(124,58,237,.12), transparent 22%),
+        linear-gradient(135deg,#0f172a 0%,#1a2f5a 55%,#1d4ed8 100%);
+      padding:60px 20px 44px;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    .hero-inner{
+      max-width:860px;
+      margin:0 auto;
+    }
+
+    .month-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:var(--goldSoft);
+      border:1px solid rgba(245,158,11,0.35);
+      color:#fcd34d;
+      padding:6px 16px;
+      border-radius:999px;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.15rem,4.8vw,3.45rem);
+      font-weight:800;
+      color:#fff;
+      line-height:1.06;
+      margin-bottom:14px;
+      letter-spacing:-0.01em;
+    }
+
+    .hero-sub{
+      color:rgba(255,255,255,0.74);
+      font-size:.99rem;
+      line-height:1.9;
+      font-weight:300;
+      max-width:790px;
+      margin:0 auto;
+    }
+
+    .status-band{
+      position:relative;
+      z-index:1;
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      padding:16px 20px;
+    }
+
+    .status-inner{
+      max-width:1140px;
+      margin:0 auto;
+      display:flex;
+      gap:18px;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      font-size:.84rem;
+      color:var(--muted);
+    }
+
+    .status-main{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    #countdown{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size:.92rem;
+      font-weight:700;
+      color:var(--red);
+    }
+
+    .status-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .meta-chip{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:7px 12px;
+      font-size:.74rem;
+      color:var(--muted);
+    }
+
+    .wrapper{
+      position:relative;
+      z-index:1;
+      max-width:1140px;
+      margin:0 auto;
+      padding:32px 20px 76px;
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      margin-bottom:24px;
+    }
+
+    .intro-card,
+    .method-card,
+    .insight-card,
+    .methodology-card,
+    .disclaimer-box,
+    .archive-note{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .intro-title,
+    .method-title,
+    .insight-title,
+    .section-title,
+    .methodology-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.45rem;
+      font-weight:700;
+      line-height:1.2;
+      color:var(--text);
+      margin-bottom:12px;
+    }
+
+    .intro-card p,
+    .method-card p,
+    .insight-body,
+    .disc-text{
+      font-size:.87rem;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .method-list{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px 16px;
+    }
+
+    .method-item{
+      font-size:.82rem;
+      color:var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+      line-height:1.65;
+    }
+
+    .method-item::before{
+      content:'•';
+      color:var(--accent);
+      font-weight:700;
+      line-height:1;
+      margin-top:2px;
+    }
+
+    .insight-card{
+      margin-bottom:26px;
+      background:linear-gradient(180deg,#fff,#fcfbf8);
+    }
+
+    .insight-kicker,
+    .disc-title,
+    .section-kicker{
+      font-size:.73rem;
+      font-weight:700;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .insight-kicker{color:var(--violet)}
+    .disc-title{color:var(--accent)}
+    .section-kicker{color:var(--green)}
+
+    .insight-list{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:10px;
+    }
+
+    .insight-item{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 13px;
+      font-size:.82rem;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+
+    .search-box{
+      flex:1;
+      min-width:220px;
+      padding:11px 16px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      font-size:.9rem;
+      font-family:'Outfit',sans-serif;
+      outline:none;
+      transition:border-color .2s ease, box-shadow .2s ease;
+      box-shadow:var(--shadow);
+    }
+
+    .search-box:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(29,78,216,0.08);
+    }
+
+    .filter-btn{
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.74rem;
+      font-weight:600;
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--muted);
+      cursor:pointer;
+      transition:all .2s ease;
+      white-space:nowrap;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:var(--accent);
+      color:#fff;
+      border-color:var(--accent);
+    }
+
+    .keywords-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .keyword-card{
+      background:linear-gradient(180deg,#fff,#fcfbf8);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .keyword-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 30px rgba(15,23,42,0.08);
+    }
+
+    .kw-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:14px;
+    }
+
+    .kw-rank{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      font-weight:800;
+      font-size:.84rem;
+      flex-shrink:0;
+    }
+
+    .kw-head{
+      flex:1;
+      min-width:0;
+    }
+
+    .kw-keyword{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.5rem;
+      font-weight:700;
+      color:var(--text);
+      line-height:1.1;
+      margin-bottom:6px;
+      word-break:break-word;
+    }
+
+    .kw-score{
+      font-weight:800;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+
+    .kw-meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      font-size:.67rem;
+      font-weight:700;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:var(--surface);
+      line-height:1.35;
+    }
+
+    .tag-trend-up{
+      color:var(--green);
+      border-color:rgba(16,185,129,0.20);
+      background:var(--greenSoft);
+    }
+
+    .tag-trend-flat{
+      color:var(--orange);
+      border-color:rgba(249,115,22,0.18);
+      background:rgba(249,115,22,0.09);
+    }
+
+    .tag-sales{
+      color:var(--violet);
+      border-color:rgba(124,58,237,0.18);
+      background:var(--violetSoft);
+    }
+
+    .kw-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px 12px;
+      margin-bottom:14px;
+    }
+
+    .kw-item{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 11px;
+    }
+
+    .kw-label{
+      display:block;
+      font-size:.66rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--dim);
+      margin-bottom:5px;
+      font-weight:700;
+    }
+
+    .kw-value{
+      font-size:.84rem;
+      color:var(--text);
+      font-weight:600;
+      line-height:1.45;
+    }
+
+    .kw-logic,
+    .kw-note{
+      font-size:.83rem;
+      color:var(--muted);
+      line-height:1.72;
+    }
+
+    .kw-logic{margin-bottom:10px}
+
+    .kw-note strong{
+      color:var(--text);
+      font-weight:700;
+    }
+
+    .kw-footer{
+      margin-top:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .kw-tlds{
+      font-size:.78rem;
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    .sales-section{
+      margin-top:8px;
+      margin-bottom:28px;
+    }
+
+    .sales-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:16px;
+    }
+
+    .sale-card{
+      background:linear-gradient(180deg,#fff,#fdfbf7);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .sale-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 30px rgba(15,23,42,0.08);
+    }
+
+    .sale-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:12px;
+    }
+
+    .sale-domain{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size:1.02rem;
+      font-weight:700;
+      color:var(--text);
+      word-break:break-word;
+      line-height:1.35;
+    }
+
+    .sale-price{
+      color:var(--green);
+      font-weight:800;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+
+    .sale-body{
+      font-size:.83rem;
+      color:var(--muted);
+      line-height:1.72;
+    }
+
+    .sale-body p + p{margin-top:8px}
+
+    .methodology-card{
+      margin-bottom:24px;
+    }
+
+    .methodology-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .methodology-item{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 13px;
+    }
+
+    .methodology-item strong{
+      display:block;
+      color:var(--text);
+      font-size:.83rem;
+      margin-bottom:5px;
+    }
+
+    .methodology-item span{
+      font-size:.81rem;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .archive-note{
+      margin-top:24px;
+    }
+
+    .disc-text,
+    .archive-note p{
+      font-size:.85rem;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .score-hi{color:var(--green)}
+    .score-mid{color:var(--gold)}
+    .score-lo{color:var(--orange)}
+
+    footer{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding:30px 20px;
+      border-top:1px solid var(--border);
+      color:var(--dim);
+      font-size:.76rem;
+      line-height:2;
+      background:rgba(255,255,255,0.18);
+    }
+
+    footer a{
+      color:var(--accent2);
+      text-decoration:none;
+    }
+
+    footer a:hover{text-decoration:underline}
+
+    @media(max-width:920px){
+      .intro-grid{grid-template-columns:1fr}
+      .method-list{grid-template-columns:1fr}
+    }
+
+    @media(max-width:768px){
+      nav{padding:12px 16px}
+      .nav-links a:not(.nav-cta){display:none}
+      .hero{padding:48px 18px 34px}
+      .wrapper{padding:26px 16px 64px}
+      .status-inner{align-items:flex-start}
+      .keywords-grid,
+      .sales-grid{grid-template-columns:1fr}
+      .kw-grid{grid-template-columns:1fr}
+      .section-title{font-size:1.42rem}
+    }
+  </style>
+</head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCM7HJQS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCM7HJQS" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 
-<nav>
-  <a href="/" class="nav-logo">Sohadot.com</a>
-  <div class="nav-links">
-    <a href="/valuation.html">Valuation</a>
-    <a href="/portfolio.html">Portfolio</a>
-    <a href="/dropping.html">Dropping</a>
-    <a href="/broker.html" class="nav-pill">Sell a Domain</a>
-  </div>
-</nav>
+  <nav>
+    <a href="/" class="nav-logo">Sohadot.com</a>
+    <div class="nav-links">
+      <a href="/valuation.html">Valuation</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/keywords.html" class="active">Keywords</a>
+      <a href="/dropping.html">Drops</a>
+      <a href="/en/blog/">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/knowledge-base.html" class="nav-cta">Knowledge Base</a>
+    </div>
+  </nav>
 
-<header>
-  <div class="eyebrow"><span class="live-dot"></span>Updated Monthly — February 2026</div>
-  <h1>Top 10 <span>Domain Keywords</span><br/>This Month</h1>
-  <p class="header-sub">The most valuable keywords driving domain sales right now — ranked by CPC, search volume, investor demand and secondary market activity.</p>
-  <div class="update-badge">🗓 Next update: March 1, 2026</div>
-</header>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="month-badge" id="monthBadge">Monthly Domain Intelligence</div>
+      <h1>Monthly Domain Intelligence Report</h1>
+      <p class="hero-sub">
+        A monthly intelligence layer for domain investors, brokers, developers, and founders — combining market insight, top keyword signals, and notable domain sales into one structured reference page.
+      </p>
+    </div>
+  </section>
 
-<div class="wrapper">
-
-  <div class="insight">
-    <div class="insight-title">📈 February 2026 Market Insight</div>
-    <p><strong>AI Agent</strong> keywords are dominating — domains containing "agent", "agi", "rag" and "neural" saw 3× more inquiries vs last month. The <strong>hydrogen energy</strong> space continues its uptrend with H2 and EV-adjacent domains attracting enterprise buyers. <strong>Commodities</strong> geographic domains (Geneva, Singapore, Dubai + commodity) remain consistently strong with end-users paying $20K–$80K.</p>
-  </div>
-
-  <div class="filters">
-    <button class="flt active" onclick="filterKW('all',this)">All Categories</button>
-    <button class="flt" onclick="filterKW('ai',this)">AI / Tech</button>
-    <button class="flt" onclick="filterKW('finance',this)">Finance</button>
-    <button class="flt" onclick="filterKW('energy',this)">Energy</button>
-    <button class="flt" onclick="filterKW('crypto',this)">Crypto</button>
-    <button class="flt" onclick="filterKW('health',this)">Health</button>
-    <button class="flt" onclick="filterKW('geo',this)">Geo</button>
-  </div>
-
-  <div class="keywords-list" id="kwList"></div>
-
-  <div class="disclaimer">
-    Data compiled from public sources: Google Keyword Planner averages, NameBio sales records, Sedo marketplace activity, and DN Journal reports.
-    CPC values are indicative averages for domain-relevant search intent. Updated manually every 1st of the month.
-  </div>
-</div>
-
-<footer>
-  © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
-  <a href="/dropping.html">Dropping Domains</a> &nbsp;·&nbsp;
-  <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
-  <a href="/valuation.html">Valuation Tool</a>
-</footer>
-
-<script>
-const KEYWORDS = [
-  {
-    rank:1, word:"Agent / Agents", cat:"ai", catLabel:"AI",
-    cpc:"$18–42", volume:"890K/mo", trend:95, salesActivity:"Very High",
-    desc:"The hottest domain keyword of early 2026. AI agent frameworks (LangChain, AutoGPT, CrewAI) are driving massive end-user demand. Domains like agents.ai ($400K), agent.com are benchmark sales.",
-    whyNow:"Every enterprise is building AI agents. The word 'agent' is now as valuable as 'cloud' was in 2012.",
-    examples:["agents.ai","fastagenty.com","wittyagent.com","aptyagent.com"],
-    tips:"Combine with .ai TLD or pair with industry (legalagent, financeagent). Short compounds under 12 chars ideal."
-  },
-  {
-    rank:2, word:"AGI / ASI", cat:"ai", catLabel:"AI",
-    cpc:"$22–55", volume:"540K/mo", trend:90, salesActivity:"Very High",
-    desc:"Artificial General Intelligence keywords command ultra-premium prices. agi.com sold for $2.5M in 2023. The race to AGI by OpenAI, Google and Anthropic keeps this in top news weekly.",
-    whyNow:"AGI milestone predictions are accelerating. Domains with 'agi' or 'asi' will be core brand assets for AI companies.",
-    examples:["agibeget.com","agiconstructor.com","omnisagi.com","utteragi.com"],
-    tips:"3–4 letter combos with AGI prefix have highest value. Avoid long compounds over 15 chars."
-  },
-  {
-    rank:3, word:"Hydrogen / H2", cat:"energy", catLabel:"Energy",
-    cpc:"$14–38", volume:"720K/mo", trend:85, salesActivity:"High",
-    desc:"Green hydrogen is now a policy priority in EU, US and GCC. hydrogen.com sold for $900K in 2021. The H2 economy is creating real corporate buyers for domain names.",
-    whyNow:"IEA projects $130B+ hydrogen investment by 2030. Companies need matching domain names.",
-    examples:["verdanth2.com","batteryh2.com","blockchainh2.com","avolth2.com"],
-    tips:"H2 suffix/prefix with energy-adjacent words. Geographic + H2 combinations particularly strong."
-  },
-  {
-    rank:4, word:"RAG / Neural", cat:"ai", catLabel:"AI",
-    cpc:"$16–35", volume:"310K/mo", trend:88, salesActivity:"High",
-    desc:"Retrieval-Augmented Generation (RAG) is now the dominant AI architecture. 'Neural' remains a power word for AI branding. herorag.com, neuralvault.com are examples from our portfolio.",
-    whyNow:"RAG is now the standard pattern for enterprise AI. Companies building RAG systems need brand-matching domains.",
-    examples:["herorag.com","ragfull.com","outrushneural.com","ineuralvault.com"],
-    tips:"RAG + industry vertical (legalrag, finrag) or RAG + action word. Neural + concept creates strong brandables."
-  },
-  {
-    rank:5, word:"Commodities + City", cat:"geo", catLabel:"Geo",
-    cpc:"$8–28", volume:"1.2M/mo", trend:78, salesActivity:"High",
-    desc:"Geographic commodity domains (genevacommodities.com, singaporecommodities.com) consistently attract trading firms and commodity brokers paying $15K–$80K. Exact Match value is very high.",
-    whyNow:"Post-2024 commodity super-cycle is bringing new entrants who need credible, Exact Match domain names.",
-    examples:["genevacommodities.com","dubaicommodity.com","qatarcommodities.com","londoncommodity.com"],
-    tips:"[City] + commodit(y/ies) is a proven Exact Match formula. Tier-1 financial cities command highest prices."
-  },
-  {
-    rank:6, word:"Quantum", cat:"tech", catLabel:"Tech",
-    cpc:"$19–44", volume:"420K/mo", trend:82, salesActivity:"High",
-    desc:"Quantum computing is moving from research to commercial. IBM, Google and startups need domains. 'Quantum' commands premium CPC and growing domain sale prices.",
-    whyNow:"2025–2026 is the commercialization inflection point for quantum computing. Brand acquisition is accelerating.",
-    examples:["emberquantum.com","siquantumcore.com","quantumann.com"],
-    tips:"Quantum + tech action word or Quantum + industry sector. .com preferred but .ai also works well."
-  },
-  {
-    rank:7, word:"CRISPR / Genomic", cat:"health", catLabel:"Health",
-    cpc:"$24–62", volume:"280K/mo", trend:76, salesActivity:"Medium-High",
-    desc:"Gene editing is entering clinical trials at scale. Biotech companies regularly pay $20K–$150K for relevant domains. crisprgenomic.com and genomicediting.com are strong Exact Match plays.",
-    whyNow:"FDA approvals for CRISPR therapies are creating a new wave of biotech brand formation.",
-    examples:["crisprgenomic.com","genomicediting.com","syntheticgeno.com","synthibio.com"],
-    tips:"Scientific Exact Match domains have a smaller buyer pool but much higher per-sale value."
-  },
-  {
-    rank:8, word:"RPA / Automation", cat:"tech", catLabel:"Tech",
-    cpc:"$12–32", volume:"680K/mo", trend:73, salesActivity:"Medium-High",
-    desc:"Robotic Process Automation is a $15B+ market. Enterprise software companies and consultancies need matching domains. RPA combined with AGI/AI signals next-gen automation.",
-    whyNow:"AI-native automation (combining RPA + LLM) is the hottest enterprise software category of 2026.",
-    examples:["annrpa.com","rpaagi.com","rpasi.com","wetrpa.com","tvrpa.com"],
-    tips:"RPA + AI acronym combos (rpaagi, rpaann) signal next-gen positioning. Geographic + automation also strong."
-  },
-  {
-    rank:9, word:"Pay / Payments", cat:"finance", catLabel:"Finance",
-    cpc:"$15–40", volume:"2.1M/mo", trend:70, salesActivity:"Medium",
-    desc:"Payment infrastructure remains one of the most competitive domain categories. pay.com sold for $2.2M. Short payment domains consistently attract fintech buyers.",
-    whyNow:"Embedded payments and B2B payment infrastructure startups are fundraising heavily and need domain names.",
-    examples:["ccapay.com","vccapay.com","sipays.com","ultrapaysi.com","payotis.com"],
-    tips:"Pay + currency code or SI/ASI creates a fintech AI angle. Short (under 8 chars) most valuable."
-  },
-  {
-    rank:10, word:"Solar / PV", cat:"energy", catLabel:"Energy",
-    cpc:"$11–29", volume:"950K/mo", trend:68, salesActivity:"Medium",
-    desc:"Solar energy domains have a proven buyer base. solar.com sold for $2M. Photovoltaic (PV) + brand combinations attract solar developers and energy investors.",
-    whyNow:"Solar capacity additions hit record levels in 2025. New project developers need professional domain names.",
-    examples:["pvexp.com","pvgalaxy.com","space-based-solar-power.com"],
-    tips:"PV prefix with action/scale words. Geographic + solar for local installer markets. .com strongly preferred."
-  }
-];
-
-let activeFilter = 'all';
-
-function filterKW(cat, btn) {
-  activeFilter = cat;
-  document.querySelectorAll('.flt').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
-
-function render() {
-  const list = activeFilter === 'all' ? KEYWORDS : KEYWORDS.filter(k => k.cat === activeFilter);
-  const el = document.getElementById('kwList');
-  if (!list.length) { el.innerHTML = '<p style="text-align:center;color:var(--dim);padding:40px;">No keywords in this category this month.</p>'; return; }
-
-  el.innerHTML = list.map(k => `
-    <div class="kw-card ${k.rank <= 3 ? 'featured' : ''}" data-cat="${k.cat}">
-      <div class="kw-rank ${k.rank <= 3 ? 'top3' : ''}">#${k.rank}</div>
-      <div class="kw-body">
-        <div class="kw-top">
-          <span class="kw-word">${k.word}</span>
-          <span class="kw-category cat-${k.cat}">${k.catLabel}</span>
-          ${k.rank <= 3 ? '<span style="font-size:.68rem;color:var(--gold);">★ Hot Pick</span>' : ''}
-        </div>
-        <p class="kw-desc">${k.desc}</p>
-        <div class="kw-meta">
-          <span class="meta-pill good">📈 ${k.salesActivity} Activity</span>
-          <span class="meta-pill">🔍 ${k.volume} searches</span>
-          <span class="meta-pill hot">CPC ${k.cpc}</span>
-          ${k.examples.slice(0,2).map(e=>`<span class="meta-pill">🌐 ${e}</span>`).join('')}
-        </div>
-        <p style="font-size:.79rem;color:var(--dim);margin-top:6px;line-height:1.5;">
-          💡 <em>${k.tips}</em>
-        </p>
+  <section class="status-band">
+    <div class="status-inner">
+      <div class="status-main">
+        ⏱ <span id="nextUpdateLabel">Next refresh</span>:
+        <span id="countdown">loading...</span>
       </div>
-      <div class="kw-stats">
-        <div class="stat-block">
-          <div class="stat-val green">${k.cpc}</div>
-          <div class="stat-lbl">Avg CPC</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-val">${k.trend}%</div>
-          <div class="stat-lbl">Demand Score</div>
-        </div>
-        <div>
-          <div class="trend-bar"><div class="trend-fill" style="width:${k.trend}%"></div></div>
-        </div>
+      <div class="status-meta">
+        <span class="meta-chip" id="lastUpdatedChip">Last updated: —</span>
+        <span class="meta-chip" id="keywordCountChip">—</span>
+        <span class="meta-chip" id="sourceChip">Sources: —</span>
       </div>
     </div>
-  `).join('');
-}
+  </section>
 
-render();
-</script>
+  <main class="wrapper">
+    <section class="intro-grid">
+      <div class="intro-card">
+        <div class="intro-title">What This Report Is</div>
+        <p>
+          This page is designed as a monthly domain intelligence report rather than a generic keyword list. Its purpose is to identify commercially meaningful keyword themes, translate them into domain logic, and connect those signals to reported market behavior.
+        </p>
+      </div>
+
+      <div class="method-card">
+        <div class="method-title">Who This Report Serves</div>
+        <div class="method-list">
+          <div class="method-item">Domain investors looking for directionally strong naming themes</div>
+          <div class="method-item">Brokers needing market-aware talking points and trend context</div>
+          <div class="method-item">Developers searching for keyword families with product logic</div>
+          <div class="method-item">Founders evaluating naming terrain around current categories</div>
+          <div class="method-item">Market observers who want signals plus proof, not noise</div>
+          <div class="method-item">Serious buyers comparing trend, utility, and resale plausibility</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="insight-card">
+      <div class="insight-kicker">Market Insight</div>
+      <div class="insight-title" id="insightTitle">What the Market Is Signaling This Month</div>
+      <div class="insight-body" id="marketInsightBody">
+        Loading monthly market insight...
+      </div>
+      <div class="insight-list" id="insightBullets"></div>
+    </section>
+
+    <section>
+      <div class="section-kicker">Top 10 Keywords</div>
+      <div class="section-title">Monthly Keyword Signals</div>
+      <p class="section-sub">
+        These are not merely high-volume search terms. They are keywords with stronger domain relevance based on commercial intent, naming usability, investor interest, and practical fit across meaningful TLDs.
+      </p>
+
+      <div class="controls">
+        <input type="text" class="search-box" id="searchBox" placeholder="Search keyword, category, or example..." oninput="filterKeywords()"/>
+        <button class="filter-btn active" onclick="filterKeywordCat('all',this)">All</button>
+        <button class="filter-btn" onclick="filterKeywordCat('ai',this)">AI</button>
+        <button class="filter-btn" onclick="filterKeywordCat('finance',this)">Finance</button>
+        <button class="filter-btn" onclick="filterKeywordCat('tech',this)">Tech</button>
+        <button class="filter-btn" onclick="filterKeywordCat('health',this)">Health</button>
+        <button class="filter-btn" onclick="filterKeywordCat('geo',this)">Geo</button>
+        <button class="filter-btn" onclick="filterKeywordCat('brand',this)">Brand</button>
+      </div>
+
+      <div class="keywords-grid" id="keywordsGrid"></div>
+    </section>
+
+    <section class="sales-section">
+      <div class="section-kicker">Top Domain Sales</div>
+      <div class="section-title">Market-Proven Sales</div>
+      <p class="section-sub">
+        Reported sales matter because they show where pricing was actually validated by a buyer. This section is used as directional proof, not as a claim that every adjacent domain should command similar pricing.
+      </p>
+      <div class="sales-grid" id="salesGrid"></div>
+    </section>
+
+    <section class="methodology-card">
+      <div class="section-kicker">Methodology</div>
+      <div class="methodology-title">How Sohadot Frames Monthly Keyword Intelligence</div>
+      <div class="methodology-grid" id="methodologyGrid"></div>
+    </section>
+
+    <section class="archive-note">
+      <div class="disc-title">Strategic Note</div>
+      <p>
+        This report should be read as directional domain market intelligence, not as guaranteed investment advice. High search volume alone does not create domain liquidity. Commercial intent, buyer type, naming usability, extension fit, and end-user relevance matter far more than raw volume by itself.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
+    <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
+    <a href="/valuation.html">Valuation</a> &nbsp;·&nbsp;
+    <a href="/keywords.html">Keywords</a> &nbsp;·&nbsp;
+    <a href="/dropping.html">Weekly Drops</a> &nbsp;·&nbsp;
+    <a href="/knowledge-base.html">Knowledge Base</a> &nbsp;·&nbsp;
+    <a href="/about.html">About</a> &nbsp;·&nbsp;
+    <a href="/en/blog/">Blog</a> &nbsp;·&nbsp;
+    <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+    <a href="/terms.html">Terms</a>
+  </footer>
+
+  <script>
+    let KEYWORD_DATA = null;
+    let activeKeywordCat = 'all';
+
+    function safeText(value, fallback = '—') {
+      if (value === null || value === undefined || value === '') return fallback;
+      return value;
+    }
+
+    function scoreClass(score) {
+      const n = Number(score || 0);
+      if (n >= 85) return 'score-hi';
+      if (n >= 70) return 'score-mid';
+      return 'score-lo';
+    }
+
+    function trendTagClass(trend) {
+      const t = String(trend || '').toLowerCase();
+      if (t.includes('up') || t.includes('rising') || t.includes('hot')) return 'tag-trend-up';
+      return 'tag-trend-flat';
+    }
+
+    function renderMeta() {
+      document.getElementById('monthBadge').textContent =
+        safeText(KEYWORD_DATA.month_label, 'Monthly Domain Intelligence');
+
+      document.getElementById('lastUpdatedChip').textContent =
+        `Last updated: ${safeText(KEYWORD_DATA.last_updated_human || KEYWORD_DATA.last_updated)}`;
+
+      document.getElementById('keywordCountChip').textContent =
+        `${safeText((KEYWORD_DATA.keywords || []).length, 0)} keywords tracked`;
+
+      document.getElementById('sourceChip').textContent =
+        `Sources: ${(KEYWORD_DATA.sources || []).join(' + ') || '—'}`;
+
+      document.getElementById('nextUpdateLabel').textContent =
+        safeText(KEYWORD_DATA.next_update_label, 'Next monthly refresh');
+    }
+
+    function renderInsight() {
+      document.getElementById('insightTitle').textContent =
+        safeText(KEYWORD_DATA.market_insight_title, 'What the Market Is Signaling This Month');
+
+      document.getElementById('marketInsightBody').textContent =
+        safeText(KEYWORD_DATA.market_insight, 'No market insight is available for this edition.');
+
+      const bullets = KEYWORD_DATA.insight_bullets || [];
+      document.getElementById('insightBullets').innerHTML = bullets
+        .map(item => `<div class="insight-item">${item}</div>`)
+        .join('');
+    }
+
+    function renderKeywords() {
+      const grid = document.getElementById('keywordsGrid');
+      const keywords = KEYWORD_DATA.keywords || [];
+
+      if (!keywords.length) {
+        grid.innerHTML = `<div class="intro-card"><p>No keywords are available for this edition.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = keywords.map(item => {
+        const cat = String(item.category || '').toLowerCase();
+        const searchIndex = [
+          safeText(item.keyword, ''),
+          safeText(item.category, ''),
+          ...(item.example_domains || []),
+          safeText(item.domain_logic, ''),
+          safeText(item.investor_note, ''),
+          safeText(item.developer_note, '')
+        ].join(' ').toLowerCase();
+
+        return `
+          <article class="keyword-card" data-cat="${cat}" data-search="${searchIndex}">
+            <div class="kw-top">
+              <div class="kw-rank">#${safeText(item.rank, '?')}</div>
+              <div class="kw-head">
+                <div class="kw-keyword">${safeText(item.keyword)}</div>
+              </div>
+              <div class="kw-score ${scoreClass(item.score)}">${safeText(item.score, 0)}</div>
+            </div>
+
+            <div class="kw-meta">
+              <span class="tag">${safeText(item.category)}</span>
+              <span class="tag ${trendTagClass(item.trend)}">${safeText(item.trend, 'Stable')}</span>
+              <span class="tag">${safeText(item.activity_level, 'Moderate')}</span>
+            </div>
+
+            <div class="kw-grid">
+              <div class="kw-item">
+                <span class="kw-label">Search Volume</span>
+                <div class="kw-value">${safeText(item.search_volume)}</div>
+              </div>
+              <div class="kw-item">
+                <span class="kw-label">CPC Range</span>
+                <div class="kw-value">${safeText(item.cpc_range)}</div>
+              </div>
+            </div>
+
+            <div class="kw-logic">${safeText(item.domain_logic)}</div>
+
+            ${item.example_domains && item.example_domains.length ? `
+              <div class="kw-note"><strong>Example naming directions:</strong> ${item.example_domains.join(' · ')}</div>
+            ` : ''}
+
+            ${item.investor_note ? `
+              <div class="kw-note" style="margin-top:8px;"><strong>Investor note:</strong> ${item.investor_note}</div>
+            ` : ''}
+
+            ${item.developer_note ? `
+              <div class="kw-note" style="margin-top:8px;"><strong>Developer note:</strong> ${item.developer_note}</div>
+            ` : ''}
+
+            <div class="kw-footer">
+              <div class="kw-tlds">Priority TLDs: ${(item.priority_tlds || []).join(' · ') || '—'}</div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderSales() {
+      const grid = document.getElementById('salesGrid');
+      const sales = KEYWORD_DATA.top_sales || [];
+
+      if (!sales.length) {
+        grid.innerHTML = `<div class="intro-card"><p>No reported sales are available for this edition.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = sales.map(item => `
+        <article class="sale-card">
+          <div class="sale-top">
+            <div class="sale-domain">${safeText(item.domain)}</div>
+            <div class="sale-price">${safeText(item.price)}</div>
+          </div>
+
+          <div class="kw-meta" style="margin-bottom:12px;">
+            <span class="tag">${safeText(item.category)}</span>
+            <span class="tag tag-sales">${safeText(item.sale_month)}</span>
+            ${item.source ? `<span class="tag">${item.source}</span>` : ''}
+          </div>
+
+          <div class="sale-body">
+            ${item.why_it_sold ? `<p><strong style="color:var(--text)">Why it mattered:</strong> ${item.why_it_sold}</p>` : ''}
+            ${item.market_signal ? `<p><strong style="color:var(--text)">Market signal:</strong> ${item.market_signal}</p>` : ''}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderMethodology() {
+      const grid = document.getElementById('methodologyGrid');
+      const items = KEYWORD_DATA.methodology || [];
+
+      if (!items.length) {
+        grid.innerHTML = `<div class="methodology-item"><strong>Methodology unavailable</strong><span>No methodology items were supplied for this edition.</span></div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map(item => `
+        <div class="methodology-item">
+          <strong>${safeText(item.title)}</strong>
+          <span>${safeText(item.text)}</span>
+        </div>
+      `).join('');
+    }
+
+    function updateCountdown() {
+      if (!KEYWORD_DATA || !KEYWORD_DATA.next_update_iso) {
+        document.getElementById('countdown').textContent = '—';
+        return;
+      }
+
+      const now = new Date();
+      const target = new Date(KEYWORD_DATA.next_update_iso);
+
+      if (isNaN(target.getTime())) {
+        document.getElementById('countdown').textContent = '—';
+        return;
+      }
+
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = 'refresh due';
+        return;
+      }
+
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('countdown').textContent =
+        `${d}d ${h.toString().padStart(2,'0')}h ${m.toString().padStart(2,'0')}m ${s.toString().padStart(2,'0')}s`;
+    }
+
+    function filterKeywords() {
+      const q = document.getElementById('searchBox').value.toLowerCase().trim();
+
+      document.querySelectorAll('#keywordsGrid .keyword-card').forEach(card => {
+        const search = card.dataset.search || '';
+        const cat = card.dataset.cat || '';
+        const matchSearch = search.includes(q);
+        const matchCat = activeKeywordCat === 'all' || cat === activeKeywordCat;
+        card.style.display = matchSearch && matchCat ? '' : 'none';
+      });
+    }
+
+    function filterKeywordCat(cat, btn) {
+      activeKeywordCat = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterKeywords();
+    }
+
+    function initPage() {
+      renderMeta();
+      renderInsight();
+      renderKeywords();
+      renderSales();
+      renderMethodology();
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    fetch('data/keywords.json')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        KEYWORD_DATA = data;
+        initPage();
+      })
+      .catch(err => {
+        console.error('Failed to load keywords.json', err);
+        document.getElementById('monthBadge').textContent = 'Data load failed';
+        document.getElementById('countdown').textContent = 'unavailable';
+        document.getElementById('lastUpdatedChip').textContent = 'Last updated: unavailable';
+        document.getElementById('keywordCountChip').textContent = '0 keywords tracked';
+        document.getElementById('sourceChip').textContent = 'Sources: unavailable';
+        document.getElementById('marketInsightBody').textContent = 'The monthly intelligence data feed could not be loaded for this edition.';
+        document.getElementById('keywordsGrid').innerHTML =
+          `<div class="intro-card"><p>Unable to load monthly keyword data.</p></div>`;
+        document.getElementById('salesGrid').innerHTML =
+          `<div class="intro-card"><p>Unable to load monthly sales data.</p></div>`;
+        document.getElementById('methodologyGrid').innerHTML =
+          `<div class="methodology-item"><strong>Data unavailable</strong><span>Please check again shortly.</span></div>`;
+      });
+  </script>
 </body>
 </html>
