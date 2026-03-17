@@ -805,16 +805,31 @@
       filterTable();
     }
 
-    function initPage() {
-      renderMeta();
-      renderCriteria();
-      renderFeatured();
-      renderTable();
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    }
+    <script>
+function initPage() {
+  renderMeta();
+  renderCriteria();
+  renderFeatured();
+  renderTable();
+  updateCountdown();
+  setInterval(updateCountdown, 1000)
+}
+</script>
 
-    initPage();
-  </script>
+<!-- 👇 أضف هذا هنا -->
+<script>
+  let DROP_DATA = null;
+
+  fetch('data/drops.json')
+    .then(res => res.json())
+    .then(data => {
+      DROP_DATA = data;
+      initPage();
+    })
+    .catch(err => {
+      console.error('Failed to load drops.json', err);
+    });
+</script>
+
 </body>
 </html>
