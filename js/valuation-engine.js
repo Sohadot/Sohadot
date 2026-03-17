@@ -12,7 +12,7 @@ async function loadValuationData() {
     industryMap
   ] = await Promise.all([
     fetch('/data/valuation_config.json').then(r => r.json()),
-    fetch('/data/keywords.json').then(r => r.json()),
+    fetch('/data/valuation_keywords.json').then(r => r.json()),
     fetch('/data/lexical_words.json').then(r => r.json()),
     fetch('/data/rare_words.json').then(r => r.json()),
     fetch('/data/names.json').then(r => r.json()),
