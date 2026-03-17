@@ -31,12 +31,16 @@ function escapeHtml(str) {
 
 function renderKeywordSignals(keywordHits) {
   if (!keywordHits || !keywordHits.length) {
-    return `<p>No strong direct keyword signal</p>`;
+    return `<span style="color:var(--dim);font-size:.82rem;">No strong direct keyword signal</span>`;
   }
 
   return `
-    <div class="pill-row">
-      ${keywordHits.map(item => `<span class="pill">${escapeHtml(item)}</span>`).join('')}
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      ${keywordHits.map(item => `
+        <span style="padding:6px 12px;border-radius:999px;background:var(--accent3);border:1px solid rgba(99,102,241,.18);font-size:.76rem;color:var(--accent2);font-weight:600;">
+          ${escapeHtml(item)}
+        </span>
+      `).join('')}
     </div>
   `;
 }
@@ -44,257 +48,219 @@ function renderKeywordSignals(keywordHits) {
 function renderLexicalNotes(lexicalEntry) {
   if (!lexicalEntry) return '';
 
-  const blocks = [];
+  const rows = [];
 
   if (lexicalEntry.usage_note) {
-    blocks.push(`<p><strong>Usage:</strong> ${escapeHtml(lexicalEntry.usage_note)}</p>`);
+    rows.push(`<p><strong style="color:var(--text)">Usage:</strong> ${escapeHtml(lexicalEntry.usage_note)}</p>`);
   }
-
   if (lexicalEntry.origin_note) {
-    blocks.push(`<p><strong>Origin:</strong> ${escapeHtml(lexicalEntry.origin_note)}</p>`);
+    rows.push(`<p><strong style="color:var(--text)">Origin:</strong> ${escapeHtml(lexicalEntry.origin_note)}</p>`);
   }
-
   if (lexicalEntry.brandability_note) {
-    blocks.push(`<p><strong>Brandability:</strong> ${escapeHtml(lexicalEntry.brandability_note)}</p>`);
+    rows.push(`<p><strong style="color:var(--text)">Brandability:</strong> ${escapeHtml(lexicalEntry.brandability_note)}</p>`);
   }
-
   if (lexicalEntry.commercial_note) {
-    blocks.push(`<p><strong>Commercial note:</strong> ${escapeHtml(lexicalEntry.commercial_note)}</p>`);
+    rows.push(`<p><strong style="color:var(--text)">Commercial note:</strong> ${escapeHtml(lexicalEntry.commercial_note)}</p>`);
   }
-
   if (lexicalEntry.seo_strength) {
-    blocks.push(`<p><strong>Search visibility:</strong> ${escapeHtml(lexicalEntry.seo_strength)}</p>`);
+    rows.push(`<p><strong style="color:var(--text)">Search visibility:</strong> ${escapeHtml(lexicalEntry.seo_strength)}</p>`);
   }
 
-  return blocks.join('');
+  return rows.join('');
 }
 
 function renderComparables(comparables) {
   if (!comparables || !comparables.length) return '';
 
   return `
-    <div class="info-block">
-      <div class="block-title">Comparable Sales</div>
-      <ul>
-        ${comparables.map(item => `
-          <li>
-            <strong>${escapeHtml(item.domain)}</strong> — ${escapeHtml(item.price_display)} (${escapeHtml(item.year)})
-            ${item.notes ? `<div class="muted">${escapeHtml(item.notes)}</div>` : ''}
-          </li>
-        `).join('')}
-      </ul>
+    <div class="section-label">Comparable Sales</div>
+    <div class="comp-list">
+      ${comparables.map(item => `
+        <div class="comp-row">
+          <div>
+            <div class="comp-name">${escapeHtml(item.domain)}</div>
+            ${item.notes ? `<div class="comp-year" style="margin-top:4px;">${escapeHtml(item.notes)}</div>` : ''}
+          </div>
+          <div style="text-align:right;">
+            <div class="comp-price">${escapeHtml(item.price_display)}</div>
+            <div class="comp-year">${escapeHtml(item.year)}</div>
+          </div>
+        </div>
+      `).join('')}
     </div>
   `;
-}
-
-function renderList(items) {
-  if (!items || !items.length) {
-    return `<p>No strong signals found.</p>`;
-  }
-
-  return `<ul>${items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
 }
 
 function renderUseCases(items) {
   if (!items || !items.length) {
-    return `<p>No clear best-fit use cases detected.</p>`;
+    return `<span style="color:var(--dim);font-size:.82rem;">No clear best-fit use cases detected</span>`;
   }
 
   return `
-    <div class="pill-row">
-      ${items.map(item => `<span class="pill">${escapeHtml(item)}</span>`).join('')}
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      ${items.map(item => `
+        <span style="padding:6px 12px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-size:.76rem;color:var(--muted);font-weight:600;">
+          ${escapeHtml(item)}
+        </span>
+      `).join('')}
     </div>
   `;
 }
 
-function renderDomainHeader(result) {
-  return `
-    <div class="tier-row">
-      <div>
-        <div class="eyebrow-mini">Classification</div>
-        <h2>${humanizeClassification(result.classification)}</h2>
-        <p class="muted" style="margin-top:8px;">
-          <strong>${escapeHtml(result.domain)}</strong>
-        </p>
-      </div>
-      <div class="score-badge">${escapeHtml(result.score)}/100</div>
-    </div>
-  `;
-}
-
-function renderPriceGrid(result) {
-  return `
-    <div class="value-grid">
-      <div class="value-card">
-        <div class="value-label">Wholesale Midpoint</div>
-        <div class="value-amount">${formatMoney(result.pricing.midpoint)}</div>
-      </div>
-      <div class="value-card">
-        <div class="value-label">Wholesale Range</div>
-        <div class="value-amount">
-          ${formatMoney(result.pricing.wholesaleLow)} – ${formatMoney(result.pricing.wholesaleHigh)}
-        </div>
-      </div>
-      <div class="value-card">
-        <div class="value-label">End-User Retail</div>
-        <div class="value-amount">
-          ${formatMoney(result.pricing.retailLow)} – ${formatMoney(result.pricing.retailHigh)}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function renderLexicalBlock(result) {
-  return `
-    <div class="info-block">
-      <div class="block-title">Lexical Status</div>
-      <p>${escapeHtml(result.lexicalStatus)}</p>
-      ${renderLexicalNotes(result.lexicalEntry)}
-    </div>
-  `;
-}
-
-function renderConfidenceAndSignals(result) {
-  return `
-    <div class="grid-2">
-      <div class="info-block">
-        <div class="block-title">Confidence</div>
-        <p>${confidenceLabel(result.confidence)}</p>
-      </div>
-
-      <div class="info-block">
-        <div class="block-title">Keyword Signals</div>
-        ${renderKeywordSignals(result.keywordHits)}
-      </div>
-    </div>
-  `;
-}
-
-function renderStrengthsAndCautions(result) {
-  return `
-    <div class="grid-2">
-      <div class="info-block">
-        <div class="block-title">Strengths</div>
-        ${renderList(result.strengths)}
-      </div>
-
-      <div class="info-block">
-        <div class="block-title">Cautions</div>
-        ${renderList(result.cautions)}
-      </div>
-    </div>
-  `;
-}
-
-function renderUseCasesBlock(result) {
-  return `
-    <div class="info-block">
-      <div class="block-title">Best-Fit Use Cases</div>
-      ${renderUseCases(result.useCases)}
-    </div>
-  `;
-}
-
-function renderMetaBlock(result) {
-  return `
-    <div class="grid-2">
-      <div class="info-block">
-        <div class="block-title">Model Update</div>
-        <p>Last updated: ${escapeHtml(result.meta.lastUpdated)}</p>
-      </div>
-      <div class="info-block">
-        <div class="block-title">Next Refresh</div>
-        <p>${escapeHtml(result.meta.nextUpdate)}</p>
-      </div>
-    </div>
-  `;
-}
-
-function renderDisclaimer(result) {
-  let specialNote = '';
-
-  if (result.classification === 'rare_dictionary_word') {
-    specialNote = `
-      <div class="disclaimer-box" style="margin-bottom:12px;">
-        Rare dictionary words should not be treated as nonsense strings. Their value is usually driven by rarity, originality, elite branding fit, linguistic legitimacy, and story value rather than mainstream search volume alone.
-      </div>
-    `;
-  }
-
-  if (result.classification === 'personal_name') {
-    specialNote = `
-      <div class="disclaimer-box" style="margin-bottom:12px;">
-        Personal-name domains can be valuable, but market size is often narrower and strongly tied to identity relevance, cultural familiarity, and buyer specificity.
-      </div>
-    `;
+function renderBulletList(items) {
+  if (!items || !items.length) {
+    return `<span style="color:var(--dim);font-size:.82rem;">No strong signals found</span>`;
   }
 
   return `
-    ${specialNote}
-    <div class="disclaimer-box">
-      This valuation is a structured directional estimate based on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context. It is not a guaranteed market outcome, not a promise of buyer interest, and not a certified appraisal.
-    </div>
+    <ul style="padding-left:18px;color:var(--muted);line-height:1.8;font-size:.84rem;">
+      ${items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
+    </ul>
   `;
 }
 
 function renderValuationResult(result) {
-  const box = document.getElementById('valuationResult');
+  const resultCard = document.getElementById('resultCard');
 
-  box.innerHTML = `
-    ${renderDomainHeader(result)}
-    ${renderPriceGrid(result)}
-    ${renderLexicalBlock(result)}
-    ${renderConfidenceAndSignals(result)}
-    ${renderStrengthsAndCautions(result)}
-    ${renderUseCasesBlock(result)}
+  resultCard.innerHTML = `
+    <div class="result-domain">
+      <div class="tld-badge-big ${result.tld === '.com' ? 'tld-com' : result.tld === '.ai' ? 'tld-ai' : result.tld === '.io' ? 'tld-io' : 'tld-other'}">
+        ${escapeHtml(result.tld.replace('.', '').toUpperCase())}
+      </div>
+      <div>
+        <div class="result-name">${escapeHtml(result.sld)}<span class="tld-part">${escapeHtml(result.tld)}</span></div>
+        <div style="margin-top:8px;color:var(--muted);font-size:.86rem;">
+          ${humanizeClassification(result.classification)} · Confidence: ${confidenceLabel(result.confidence)}
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-badge tier-${result.score >= 85 ? 'ultra' : result.score >= 70 ? 'premium' : result.score >= 55 ? 'strong' : result.score >= 35 ? 'standard' : 'low'}">
+      Score: ${escapeHtml(result.score)}/100
+    </div>
+
+    <div class="value-grid">
+      <div class="value-box hl">
+        <div class="vb-label">Wholesale Midpoint</div>
+        <div class="vb-amt blue">${formatMoney(result.pricing.midpoint)}</div>
+        <div class="vb-sub">Directional investor midpoint</div>
+      </div>
+      <div class="value-box">
+        <div class="vb-label">Wholesale Range</div>
+        <div class="vb-amt green">${formatMoney(result.pricing.wholesaleLow)} – ${formatMoney(result.pricing.wholesaleHigh)}</div>
+        <div class="vb-sub">Investor-to-investor range</div>
+      </div>
+      <div class="value-box">
+        <div class="vb-label">End-User Retail</div>
+        <div class="vb-amt gold">${formatMoney(result.pricing.retailLow)} – ${formatMoney(result.pricing.retailHigh)}</div>
+        <div class="vb-sub">Potential end-user range</div>
+      </div>
+    </div>
+
+    <div class="ai-section" style="margin-bottom:18px;">
+      <div class="ai-header">
+        <div class="ai-icon">◆</div>
+        Lexical Status
+      </div>
+      <div class="ai-text">
+        <p>${escapeHtml(result.lexicalStatus)}</p>
+        ${renderLexicalNotes(result.lexicalEntry)}
+      </div>
+    </div>
+
+    <div class="section-label">Keyword Signals</div>
+    <div style="margin-bottom:18px;">
+      ${renderKeywordSignals(result.keywordHits)}
+    </div>
+
+    <div class="section-label">Best-Fit Use Cases</div>
+    <div style="margin-bottom:18px;">
+      ${renderUseCases(result.useCases)}
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+      <div class="value-box">
+        <div class="vb-label">Strengths</div>
+        ${renderBulletList(result.strengths)}
+      </div>
+      <div class="value-box">
+        <div class="vb-label">Cautions</div>
+        ${renderBulletList(result.cautions)}
+      </div>
+    </div>
+
     ${renderComparables(result.comparables)}
-    ${renderMetaBlock(result)}
-    ${renderDisclaimer(result)}
+
+    <div class="disclaimer" style="margin-top:16px;">
+      <strong>Note:</strong> This is a structured directional estimate based on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context. It is not a guaranteed sale price and not a certified appraisal.
+    </div>
   `;
 
-  box.style.display = 'block';
+  resultCard.classList.add('show');
+}
+
+function showError(message) {
+  const errorMsg = document.getElementById('errorMsg');
+  errorMsg.textContent = message;
+  errorMsg.style.display = 'block';
+}
+
+function clearError() {
+  const errorMsg = document.getElementById('errorMsg');
+  errorMsg.textContent = '';
+  errorMsg.style.display = 'none';
+}
+
+function showLoading() {
+  document.getElementById('loadingCard').style.display = 'block';
+  document.getElementById('resultCard').classList.remove('show');
+}
+
+function hideLoading() {
+  document.getElementById('loadingCard').style.display = 'none';
 }
 
 async function handleValuation() {
   const input = document.getElementById('domainInput');
-  const error = document.getElementById('valuationError');
-  const loading = document.getElementById('valuationLoading');
-  const resultBox = document.getElementById('valuationResult');
-  const button = document.getElementById('valuateBtn');
+  const button = document.getElementById('valBtn');
+  const resultCard = document.getElementById('resultCard');
 
-  error.style.display = 'none';
-  error.textContent = '';
-  resultBox.style.display = 'none';
-  resultBox.innerHTML = '';
-  loading.style.display = 'block';
+  clearError();
+  resultCard.classList.remove('show');
+  resultCard.innerHTML = '';
+
+  const value = input.value.trim();
+  if (!value) {
+    showError('Please enter a domain name.');
+    return;
+  }
+
   button.disabled = true;
+  showLoading();
 
   try {
-    const result = await evaluateDomain(input.value);
+    const result = await evaluateDomain(value);
 
-    loading.style.display = 'none';
+    hideLoading();
     button.disabled = false;
 
     if (!result.ok) {
-      error.textContent = result.error;
-      error.style.display = 'block';
+      showError(result.error || 'Unable to evaluate this domain.');
       return;
     }
 
     renderValuationResult(result);
-    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (err) {
-    loading.style.display = 'none';
+    hideLoading();
     button.disabled = false;
-    error.textContent = 'Something went wrong while evaluating the domain.';
-    error.style.display = 'block';
     console.error(err);
+    showError('Something went wrong while evaluating the domain.');
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const button = document.getElementById('valuateBtn');
+  const button = document.getElementById('valBtn');
   const input = document.getElementById('domainInput');
 
   if (button) {
@@ -303,9 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (input) {
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        handleValuation();
-      }
+      if (e.key === 'Enter') handleValuation();
     });
   }
 });
