@@ -2,191 +2,839 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Domain Valuation — Sohadot.com</title>
-  <meta name="description" content="Structured domain valuation using lexical legitimacy, keyword logic, TLD strength, and naming quality. Built as a transparent and directional valuation system."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Domain Valuation | Sohadot</title>
+  <meta name="description" content="A structured domain valuation tool built on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://sohadot.com/valuation.html"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Domain Valuation | Sohadot"/>
+  <meta property="og:description" content="Structured domain valuation based on lexical legitimacy, commercial keyword strength, TLD quality, and comparable public sales context."/>
+  <meta property="og:url" content="https://sohadot.com/valuation.html"/>
+  <meta property="og:site_name" content="Sohadot"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Domain Valuation | Sohadot"/>
+  <meta name="twitter:description" content="A structured domain valuation tool for investors, founders, brokers, and developers."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TCM7HJQS');
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J98F8F3ZS4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J98F8F3ZS4');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3711640853752026" crossorigin="anonymous"></script>
 
   <style>
     :root{
-      --bg:#f5f0e8;
+      --bg:#f6f2e9;
+      --bg-soft:#fbf8f2;
       --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
+      --surface:#f9f6ef;
       --border:rgba(15,23,42,0.08);
-      --accent:#1d4ed8;
-      --green:#10b981;
-      --gold:#f59e0b;
-      --red:#ef4444;
+      --border-strong:rgba(15,23,42,0.12);
+      --text:#142033;
+      --muted:#66758c;
+      --dim:#8c98ab;
+      --blue:#2454d3;
+      --blue-2:#1c43ab;
+      --blue-soft:rgba(36,84,211,0.08);
+      --gold:#f0a500;
+      --green:#15a66d;
+      --green-soft:rgba(21,166,109,0.08);
+      --red:#d45858;
+      --shadow:0 10px 30px rgba(17,24,39,0.06);
+      --radius:22px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text)}
-    nav{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:16px 24px;background:#f8f4ec;border-bottom:1px solid var(--border)
+
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:'Outfit',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(36,84,211,0.05), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(240,165,0,0.05), transparent 24%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
     }
-    .nav-logo{
+
+    a{color:inherit;text-decoration:none}
+
+    .site-nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(246,242,233,0.88);
+      border-bottom:1px solid var(--border);
+    }
+
+    .nav-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:18px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
       font-family:'Cormorant Garamond',serif;
-      color:var(--accent);font-weight:700;font-size:1.3rem;text-decoration:none
+      font-size:2rem;
+      font-weight:700;
+      color:var(--blue);
+      line-height:1;
+      letter-spacing:.01em;
+      flex-shrink:0;
     }
-    .nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-    .nav-links a{text-decoration:none;color:var(--muted);font-size:.78rem;text-transform:uppercase}
-    .nav-cta{
-      background:var(--accent);color:#fff !important;padding:8px 15px;border-radius:10px
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:600;
+      transition:.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--blue);
+    }
+
+    .nav-links .kb{
+      background:var(--blue);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:16px;
+      box-shadow:0 8px 22px rgba(36,84,211,0.22);
     }
 
     .hero{
-      background:linear-gradient(135deg,#0f172a,#1a2f5a 60%,#1d4ed8);
-      padding:56px 20px 42px;text-align:center
+      padding:68px 20px 34px;
     }
-    .hero-inner{max-width:880px;margin:0 auto}
+
+    .hero-shell{
+      max-width:1200px;
+      margin:0 auto;
+      background:linear-gradient(135deg, #0f2658 0%, #12337a 42%, #1f57d8 100%);
+      border-radius:30px;
+      box-shadow:0 20px 60px rgba(15,38,88,0.18);
+      padding:54px 28px 42px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero-shell::before{
+      content:"";
+      position:absolute;
+      inset:auto auto -40px -40px;
+      width:180px;
+      height:180px;
+      background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 65%);
+      pointer-events:none;
+    }
+
+    .hero-shell::after{
+      content:"";
+      position:absolute;
+      right:-40px;
+      top:-40px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(240,165,0,0.20), transparent 62%);
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      max-width:920px;
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+      text-align:center;
+    }
+
     .eyebrow{
-      display:inline-block;padding:6px 16px;border-radius:999px;
-      color:#fcd34d;border:1px solid rgba(245,158,11,.35);
-      background:rgba(245,158,11,.12);font-size:.74rem;
-      text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:18px
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 16px;
+      border-radius:999px;
+      background:rgba(240,165,0,0.12);
+      border:1px solid rgba(240,165,0,0.35);
+      color:#ffd978;
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:18px;
     }
+
     h1{
       font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.2rem,5vw,3.4rem);color:#fff;margin-bottom:12px
+      font-size:clamp(2.7rem, 5.5vw, 4.9rem);
+      line-height:.98;
+      color:#fff;
+      margin-bottom:16px;
+      letter-spacing:-.02em;
     }
+
     .hero-sub{
-      max-width:760px;margin:0 auto;color:rgba(255,255,255,.78);
-      line-height:1.8;font-size:.96rem
+      max-width:900px;
+      margin:0 auto;
+      color:rgba(255,255,255,0.82);
+      font-size:1.02rem;
+      line-height:1.85;
+      font-weight:300;
     }
 
-    .wrapper{max-width:1080px;margin:0 auto;padding:32px 20px 72px}
+    .hero-pills{
+      margin-top:22px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .hero-pill{
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.16);
+      color:rgba(255,255,255,0.90);
+      font-size:.8rem;
+      font-weight:500;
+    }
+
+    .main{
+      max-width:1200px;
+      margin:0 auto;
+      padding:24px 20px 80px;
+    }
+
+    .valuation-layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1.35fr) minmax(290px, .65fr);
+      gap:22px;
+      align-items:start;
+    }
+
     .card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:18px;padding:24px;margin-bottom:20px
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
 
-    .input-row{display:flex;gap:10px;flex-wrap:wrap}
-    .input-row input{
-      flex:1;min-width:240px;padding:14px 16px;border-radius:12px;
-      border:1px solid var(--border);font-size:1rem
-    }
-    .input-row button{
-      padding:14px 22px;border:none;border-radius:12px;
-      background:var(--accent);color:#fff;font-weight:600;cursor:pointer
+    .input-card{
+      padding:24px;
     }
 
-    .error{
-      display:none;margin-top:12px;color:var(--red);font-size:.88rem
-    }
-    .loading{
-      display:none;margin-top:12px;color:var(--muted);font-size:.88rem
+    .section-label-top{
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:12px;
     }
 
-    .tier-row{
-      display:flex;justify-content:space-between;align-items:flex-start;
-      gap:16px;flex-wrap:wrap;margin-bottom:18px
+    .input-row{
+      display:flex;
+      gap:12px;
+      align-items:stretch;
     }
-    .eyebrow-mini{
-      font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
-      color:var(--muted);margin-bottom:6px;font-weight:700
+
+    .domain-input{
+      flex:1;
+      min-width:0;
+      height:66px;
+      border-radius:18px;
+      border:2px solid rgba(20,32,51,0.18);
+      background:#fff;
+      padding:0 20px;
+      font-size:1.08rem;
+      font-family:'Outfit',sans-serif;
+      color:var(--text);
+      outline:none;
+      transition:.18s ease;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,0.02);
     }
-    .tier-row h2{
+
+    .domain-input:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 4px rgba(36,84,211,0.08);
+    }
+
+    .domain-input::placeholder{
+      color:#98a2b3;
+    }
+
+    .val-btn{
+      flex-shrink:0;
+      min-width:146px;
+      height:66px;
+      border:none;
+      border-radius:18px;
+      background:linear-gradient(135deg, var(--blue), var(--blue-2));
+      color:#fff;
+      font-family:'Outfit',sans-serif;
+      font-weight:700;
+      font-size:.96rem;
+      cursor:pointer;
+      box-shadow:0 12px 26px rgba(36,84,211,0.20);
+      transition:.18s ease;
+    }
+
+    .val-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 30px rgba(36,84,211,0.25);
+    }
+
+    .val-btn:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .sub-hint{
+      margin-top:12px;
+      color:var(--dim);
+      font-size:.82rem;
+      line-height:1.7;
+    }
+
+    .error-msg{
+      display:none;
+      margin-top:12px;
+      color:var(--red);
+      font-size:.9rem;
+      font-weight:500;
+    }
+
+    .loading-card{
+      display:none;
+      padding:18px 22px;
+      margin-top:16px;
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      border-radius:18px;
+      color:var(--muted);
+    }
+
+    .loading-line{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:.92rem;
+    }
+
+    .spinner{
+      width:18px;
+      height:18px;
+      border:2px solid rgba(36,84,211,0.15);
+      border-top-color:var(--blue);
+      border-radius:50%;
+      animation:spin .8s linear infinite;
+      flex-shrink:0;
+    }
+
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+
+    .result-card{
+      display:none;
+      padding:24px;
+      margin-top:18px;
+      animation:fadeUp .25s ease;
+    }
+
+    .result-card.show{
+      display:block;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .method-card,
+    .sidebar-card{
+      padding:24px;
+    }
+
+    .sidebar-stack{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .block-kicker{
+      color:var(--blue);
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .block-title{
       font-family:'Cormorant Garamond',serif;
-      font-size:2rem;line-height:1.1
+      font-size:2rem;
+      line-height:1.04;
+      margin-bottom:12px;
+      color:var(--text);
     }
-    .score-badge{
-      background:rgba(29,78,216,.08);color:var(--accent);
-      padding:12px 16px;border-radius:12px;font-weight:700
+
+    .method-text{
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.95;
     }
+
+    .mini-list{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .mini-item{
+      padding:12px 14px;
+      border-radius:16px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:.86rem;
+      line-height:1.7;
+    }
+
+    .mini-item strong{
+      color:var(--text);
+    }
+
+    .result-domain{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      justify-content:space-between;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    .result-name{
+      font-family:'Cormorant Garamond',serif;
+      font-size:2.35rem;
+      line-height:1;
+      color:var(--text);
+      word-break:break-word;
+    }
+
+    .tld-part{color:var(--muted)}
+
+    .tld-badge-big{
+      min-width:58px;
+      height:58px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:.82rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      border:1px solid var(--border);
+      background:var(--surface);
+      color:var(--text);
+    }
+
+    .tld-com{background:rgba(36,84,211,0.08); color:var(--blue); border-color:rgba(36,84,211,0.15)}
+    .tld-ai{background:rgba(240,165,0,0.10); color:#be7d00; border-color:rgba(240,165,0,0.16)}
+    .tld-io{background:rgba(21,166,109,0.09); color:var(--green); border-color:rgba(21,166,109,0.16)}
+    .tld-other{background:var(--surface); color:var(--muted)}
+
+    .tier-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 15px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:700;
+      letter-spacing:.05em;
+      margin-bottom:18px;
+    }
+
+    .tier-ultra{background:rgba(240,165,0,0.12); color:#be7d00; border:1px solid rgba(240,165,0,0.16)}
+    .tier-premium{background:rgba(36,84,211,0.09); color:var(--blue); border:1px solid rgba(36,84,211,0.16)}
+    .tier-strong{background:rgba(21,166,109,0.09); color:var(--green); border:1px solid rgba(21,166,109,0.16)}
+    .tier-standard{background:rgba(15,23,42,0.04); color:var(--muted); border:1px solid var(--border)}
+    .tier-low{background:rgba(212,88,88,0.08); color:var(--red); border:1px solid rgba(212,88,88,0.14)}
 
     .value-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px
-    }
-    .value-card{
-      background:#fbfaf7;border:1px solid var(--border);border-radius:14px;padding:16px
-    }
-    .value-label{
-      font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
-      color:var(--muted);font-weight:700;margin-bottom:8px
-    }
-    .value-amount{font-weight:700;font-size:1.06rem;color:var(--text)}
-
-    .grid-2{
-      display:grid;grid-template-columns:1fr 1fr;gap:16px
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-bottom:18px;
     }
 
-    .info-block{
-      background:#fbfaf7;border:1px solid var(--border);
-      border-radius:14px;padding:16px;margin-bottom:16px
-    }
-    .block-title{
-      font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;
-      color:var(--accent);font-weight:700;margin-bottom:10px
-    }
-    .info-block p,.info-block li{
-      color:var(--muted);line-height:1.75;font-size:.92rem
-    }
-    .info-block ul{padding-left:18px}
-    .muted{margin-top:8px;color:var(--muted)}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap}
-    .pill{
-      padding:7px 12px;border-radius:999px;border:1px solid var(--border);
-      background:#fff;font-size:.82rem;color:var(--muted)
+    .value-box{
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:var(--surface);
     }
 
-    .disclaimer-box{
-      margin-top:6px;padding:14px 16px;border-radius:12px;
-      background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);
-      color:#8a5a00;font-size:.88rem;line-height:1.75
+    .value-box.hl{
+      background:linear-gradient(135deg, rgba(36,84,211,0.05), rgba(36,84,211,0.02));
+      border-color:rgba(36,84,211,0.12);
     }
 
-    @media(max-width:860px){
-      .value-grid,.grid-2{grid-template-columns:1fr}
-      .nav-links a:not(.nav-cta){display:none}
+    .vb-label{
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--dim);
+      margin-bottom:8px;
+    }
+
+    .vb-amt{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.8rem;
+      line-height:1.05;
+      color:var(--text);
+    }
+
+    .vb-amt.blue{color:var(--blue)}
+    .vb-amt.green{color:var(--green)}
+    .vb-amt.gold{color:#be7d00}
+
+    .vb-sub{
+      margin-top:6px;
+      font-size:.8rem;
+      color:var(--dim);
+    }
+
+    .ai-section{
+      padding:18px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(36,84,211,0.04), rgba(255,255,255,0.65));
+      border:1px solid rgba(36,84,211,0.10);
+    }
+
+    .ai-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin-bottom:10px;
+    }
+
+    .ai-icon{
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:rgba(36,84,211,0.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .ai-text{
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.85;
+    }
+
+    .section-label{
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin-bottom:10px;
+      margin-top:18px;
+    }
+
+    .comp-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .comp-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:var(--surface);
+      border:1px solid var(--border);
+    }
+
+    .comp-name{
+      font-weight:700;
+      color:var(--text);
+      font-size:.92rem;
+    }
+
+    .comp-year{
+      color:var(--dim);
+      font-size:.8rem;
+    }
+
+    .comp-price{
+      color:var(--green);
+      font-weight:700;
+      font-size:.92rem;
+      white-space:nowrap;
+    }
+
+    .disclaimer{
+      margin-top:18px;
+      padding:15px 16px;
+      border-radius:16px;
+      background:rgba(240,165,0,0.08);
+      border:1px solid rgba(240,165,0,0.14);
+      color:#826200;
+      font-size:.85rem;
+      line-height:1.8;
+    }
+
+    .footer{
+      border-top:1px solid var(--border);
+      margin-top:34px;
+      padding:28px 20px 50px;
+    }
+
+    .footer-inner{
+      max-width:1200px;
+      margin:0 auto;
+      text-align:center;
+      color:var(--dim);
+      font-size:.86rem;
+      line-height:2;
+    }
+
+    .footer-inner a{
+      color:var(--blue);
+    }
+
+    @media (max-width: 980px){
+      .valuation-layout{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar-stack{
+        order:2;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links{
+        gap:14px;
+      }
+
+      .hero-shell{
+        padding:42px 18px 34px;
+        border-radius:24px;
+      }
+
+      .input-row{
+        flex-direction:column;
+      }
+
+      .val-btn{
+        width:100%;
+      }
+
+      .value-grid{
+        grid-template-columns:1fr;
+      }
+
+      .result-domain{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .result-name{
+        font-size:1.95rem;
+      }
+
+      .comp-row{
+        flex-direction:column;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo">Sohadot.com</a>
-    <div class="nav-links">
-      <a href="/valuation.html">Valuation</a>
-      <a href="/portfolio.html">Portfolio</a>
-      <a href="/keywords.html">Keywords</a>
-      <a href="/dropping.html">Drops</a>
-      <a href="/about.html">About</a>
-      <a href="/knowledge-base.html" class="nav-cta">Knowledge Base</a>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCM7HJQS" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="brand">Sohadot.com</a>
+      <div class="nav-links">
+        <a href="/valuation.html" class="active">Valuation</a>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/keywords.html">Keywords</a>
+        <a href="/dropping.html">Drops</a>
+        <a href="/en/blog/">Blog</a>
+        <a href="/about.html">About</a>
+        <a href="/knowledge-base.html" class="kb">Knowledge Base</a>
+      </div>
     </div>
   </nav>
 
   <section class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">Sovereign Valuation System</div>
-      <h1>Domain Valuation</h1>
-      <p class="hero-sub">
-        A transparent, directional valuation tool built on lexical legitimacy, commercial keyword logic, TLD quality, and naming structure rather than black-box AI output.
-      </p>
+    <div class="hero-shell">
+      <div class="hero-inner">
+        <div class="eyebrow">Structured Domain Pricing Intelligence</div>
+        <h1>Domain Valuation</h1>
+        <p class="hero-sub">
+          A transparent, market-aware valuation tool built on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context rather than black-box output.
+        </p>
+        <div class="hero-pills">
+          <span class="hero-pill">Lexical Legitimacy</span>
+          <span class="hero-pill">Commercial Keyword Logic</span>
+          <span class="hero-pill">Comparable Sales Context</span>
+          <span class="hero-pill">TLD Quality</span>
+          <span class="hero-pill">Brand Structure</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="wrapper">
-    <div class="card">
-      <div class="eyebrow-mini">Enter Domain</div>
-      <div class="input-row">
-        <input id="domainInput" type="text" placeholder="e.g. allenarly.com or gweduc.com"/>
-        <button id="valuateBtn">Evaluate</button>
+  <main class="main">
+    <div class="valuation-layout">
+
+      <div>
+        <div class="card input-card">
+          <div class="section-label-top">Enter Domain</div>
+
+          <div class="input-row">
+            <input
+              class="domain-input"
+              id="domainInput"
+              type="text"
+              placeholder="Enter a domain like lumen.com or stackscan.com"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="val-btn" id="valBtn">Evaluate</button>
+          </div>
+
+          <div class="sub-hint">
+            Built for investors, brokers, founders, and developers seeking a cleaner directional view of naming quality and market plausibility.
+          </div>
+
+          <div class="error-msg" id="errorMsg"></div>
+
+          <div class="loading-card" id="loadingCard">
+            <div class="loading-line">
+              <div class="spinner"></div>
+              <div>Evaluating domain structure, lexical quality, and comparable public sales context...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card result-card" id="resultCard"></div>
       </div>
-      <div id="valuationError" class="error"></div>
-      <div id="valuationLoading" class="loading">Analyzing domain structure, lexical legitimacy, and commercial logic…</div>
-    </div>
 
-    <div id="valuationResult" class="card" style="display:none;"></div>
+      <div class="sidebar-stack">
+        <div class="card method-card">
+          <div class="block-kicker">Methodology</div>
+          <div class="block-title">How This Model Thinks</div>
+          <p class="method-text">
+            This tool evaluates domains through a structured model that weighs lexical legitimacy, commercial keyword strength, TLD quality, naming structure, and comparable public sales context. It is designed to distinguish between commercially strong keywords, legitimate dictionary-based terms, personal-name domains, clean brandables, and weaker low-signal strings without relying on opaque black-box scoring alone.
+          </p>
+        </div>
 
-    <div class="card">
-      <div class="block-title">Methodology</div>
-      <p style="color:var(--muted);line-height:1.9;">
-        This tool classifies domains into commercial keywords, dictionary words, rare dictionary words, personal names, brandables, or low-quality random strings. It is designed to avoid unfairly treating authentic rare words as nonsense while also avoiding inflated claims based on hype alone.
-      </p>
+        <div class="card sidebar-card">
+          <div class="block-kicker">What It Is Good For</div>
+          <div class="mini-list">
+            <div class="mini-item"><strong>Investors:</strong> Directional wholesale and retail framing.</div>
+            <div class="mini-item"><strong>Brokers:</strong> Faster triage for naming quality and market plausibility.</div>
+            <div class="mini-item"><strong>Founders:</strong> Early signal on naming credibility and extension fit.</div>
+            <div class="mini-item"><strong>Developers:</strong> Better context on lexical legitimacy and product suitability.</div>
+          </div>
+        </div>
+
+        <div class="card sidebar-card">
+          <div class="block-kicker">Important Note</div>
+          <div class="mini-list">
+            <div class="mini-item">
+              This is a structured directional estimate, not a certified appraisal and not a guaranteed sale outcome.
+            </div>
+            <div class="mini-item">
+              Short premium assets, exact-match commercial terms, and buyer-specific opportunities can sell materially above any model output.
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      © 2026 <a href="/">Sohadot.com</a> ·
+      <a href="/portfolio.html">Portfolio</a> ·
+      <a href="/valuation.html">Valuation</a> ·
+      <a href="/keywords.html">Keywords</a> ·
+      <a href="/dropping.html">Weekly Drops</a> ·
+      <a href="/knowledge-base.html">Knowledge Base</a> ·
+      <a href="/about.html">About</a> ·
+      <a href="/en/blog/">Blog</a> ·
+      <a href="/privacy.html">Privacy</a> ·
+      <a href="/terms.html">Terms</a>
+    </div>
+  </footer>
 
   <script src="/js/valuation-engine.js"></script>
   <script src="/js/valuation-ui.js"></script>
