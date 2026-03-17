@@ -1,445 +1,503 @@
 import csv
 import json
-import math
 import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.request import urlopen, Request
-from urllib.error import URLError, HTTPError
+from typing import Dict, List, Optional, Tuple
+from urllib.parse import urlparse
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
-INPUT_CSV = DATA_DIR / "drops_candidates.csv"
-OUTPUT_JSON = DATA_DIR / "drops.json"
-IANA_RDAP_BOOTSTRAP = "https://data.iana.org/rdap/dns.json"
+import urllib.request
+import urllib.error
 
-QUALITY_TLDS = {
-    "com": 30,
-    "ai": 26,
-    "io": 22,
-    "co": 18,
-    "org": 14,
-    "net": 12,
-    "app": 14,
-    "dev": 12,
+
+ROOT = Path(__file__).resolve().parents[1]
+CSV_PATH = ROOT / "data" / "drops_candidates.csv"
+JSON_PATH = ROOT / "data" / "drops.json"
+
+
+TLD_WEIGHTS = {
+    "com": 24,
+    "ai": 20,
+    "io": 17,
+    "co": 13,
+    "org": 10,
+    "net": 8,
 }
 
-CATEGORY_KEYWORDS = {
-    "ai": ["ai", "agent", "agents", "neural", "model", "gpt", "vision", "prompt"],
-    "finance": ["cash", "pay", "bank", "fund", "capital", "coin", "wallet", "wealth", "credit"],
-    "health": ["health", "mind", "care", "therapy", "med", "clinic"],
-    "geo": ["city", "map", "dubai", "london", "miami", "paris", "tokyo", "austin", "detroit"],
-    "tech": ["stack", "scan", "cloud", "data", "token", "api", "dev", "secure"],
+CATEGORY_RULES = {
+    "ai": ["ai", "agent", "agents", "neural", "rag", "llm", "gpt", "model"],
+    "finance": ["pay", "cash", "coin", "crypto", "bank", "fund", "capital", "wallet"],
+    "health": ["health", "med", "clinic", "bio", "well", "mind"],
+    "geo": ["city", "map", "dubai", "geneva", "singapore", "miami", "detroit", "austin"],
+    "tech": ["stack", "scan", "cloud", "token", "data", "labs", "logic", "sync"],
     "brand": [],
 }
 
-FEATURED_COUNT = 3
+CATEGORY_LABELS = {
+    "ai": "AI",
+    "finance": "Finance / Crypto",
+    "health": "Health",
+    "geo": "Geo",
+    "tech": "Tech / SaaS",
+    "brand": "Brand",
+}
+
+CATEGORY_PRIORITY = {
+    "ai": 5,
+    "finance": 5,
+    "tech": 4,
+    "health": 4,
+    "geo": 3,
+    "brand": 2,
+}
+
+KEYWORD_BONUS = {
+    "ai": 8,
+    "agent": 10,
+    "agents": 10,
+    "neural": 7,
+    "rag": 7,
+    "cash": 7,
+    "coin": 7,
+    "pay": 8,
+    "stack": 6,
+    "scan": 6,
+    "health": 7,
+    "mind": 5,
+    "token": 6,
+    "logic": 5,
+    "map": 4,
+}
+
+QUALITY_WORDS = {
+    "flare", "pulse", "logic", "mate", "folio", "scan", "vault", "link",
+    "genie", "factor", "stack", "mind", "health", "cash", "coin"
+}
+
+WEAK_WORDS = {
+    "significant", "consistent"
+}
+
+SOURCE_WEIGHTS = {
+    "GoDaddy Auctions": 6,
+    "Afternic": 5,
+    "Atom": 5,
+    "Namecheap": 4,
+    "Unknown": 2,
+}
 
 
-def fetch_json(url: str):
-    req = Request(
-        url,
-        headers={
-            "User-Agent": "SohadotDropsBot/1.0 (+https://sohadot.com)"
-        }
-    )
-    with urlopen(req, timeout=20) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+def slug_words(name: str) -> List[str]:
+    return re.findall(r"[a-z]+", name.lower())
 
 
-def load_iana_bootstrap():
-    return fetch_json(IANA_RDAP_BOOTSTRAP)
+def split_domain(domain: str) -> Tuple[str, str]:
+    parts = domain.lower().strip().split(".")
+    if len(parts) < 2:
+        return domain.lower().strip(), ""
+    return parts[0], parts[-1]
 
 
-def get_tld(domain: str) -> str:
-    return domain.lower().split(".")[-1]
+def is_pure_alpha(sld: str) -> bool:
+    return bool(re.fullmatch(r"[a-z]+", sld))
 
 
-def get_sld(domain: str) -> str:
-    parts = domain.lower().split(".")
-    return parts[0] if parts else domain.lower()
+def has_hyphen_or_number(sld: str) -> bool:
+    return bool(re.search(r"[-0-9]", sld))
 
 
-def find_rdap_base(bootstrap: dict, domain: str) -> str | None:
-    tld = get_tld(domain)
-    for service in bootstrap.get("services", []):
-        tlds, urls = service
-        if tld in tlds and urls:
-            return urls[0].rstrip("/")
-    return None
-
-
-def rdap_lookup(bootstrap: dict, domain: str) -> dict:
-    """
-    Returns:
-      {
-        "rdap_ok": bool,
-        "registered": bool | None,
-        "status": list[str],
-        "events": list[dict],
-        "error": str | None
-      }
-    """
-    rdap_base = find_rdap_base(bootstrap, domain)
-    if not rdap_base:
-        return {
-            "rdap_ok": False,
-            "registered": None,
-            "status": [],
-            "events": [],
-            "error": "No RDAP server found for TLD",
-        }
-
-    url = f"{rdap_base}/domain/{domain}"
-    req = Request(
-        url,
-        headers={"User-Agent": "SohadotDropsBot/1.0 (+https://sohadot.com)"}
-    )
-
-    try:
-        with urlopen(req, timeout=20) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-            return {
-                "rdap_ok": True,
-                "registered": True,
-                "status": payload.get("status", []),
-                "events": payload.get("events", []),
-                "error": None,
-            }
-    except HTTPError as e:
-        # 404 often means not found / not registered, but behavior varies by registry
-        if e.code == 404:
-            return {
-                "rdap_ok": True,
-                "registered": False,
-                "status": [],
-                "events": [],
-                "error": None,
-            }
-        return {
-            "rdap_ok": False,
-            "registered": None,
-            "status": [],
-            "events": [],
-            "error": f"HTTP {e.code}",
-        }
-    except URLError as e:
-        return {
-            "rdap_ok": False,
-            "registered": None,
-            "status": [],
-            "events": [],
-            "error": str(e),
-        }
-    except Exception as e:
-        return {
-            "rdap_ok": False,
-            "registered": None,
-            "status": [],
-            "events": [],
-            "error": str(e),
-        }
-
-
-def infer_category(domain: str, category_hint: str = "") -> tuple[str, str]:
-    hint = (category_hint or "").strip().lower()
-    if hint in CATEGORY_KEYWORDS:
-        return hint, category_label(hint)
-
-    sld = get_sld(domain)
-    for cat, kws in CATEGORY_KEYWORDS.items():
-        for kw in kws:
-            if kw in sld:
-                return cat, category_label(cat)
-
-    return "brand", category_label("brand")
-
-
-def category_label(cat: str) -> str:
-    return {
-        "ai": "AI",
-        "finance": "Finance / Crypto",
-        "health": "Health",
-        "geo": "Geo",
-        "tech": "Tech / SaaS",
-        "brand": "Brand",
-    }.get(cat, "Brand")
-
-
-def score_domain(domain: str, category_hint: str = "") -> tuple[int, dict]:
-    sld = get_sld(domain)
-    tld = get_tld(domain)
-
-    score = 0
-    reasons = []
-
-    # TLD
-    tld_score = QUALITY_TLDS.get(tld, 8)
-    score += tld_score
-    reasons.append(f"TLD quality: +{tld_score}")
-
-    # Length
-    length = len(sld.replace("-", ""))
+def length_score(length: int) -> int:
     if length <= 4:
-        score += 28
-        reasons.append("Ultra-short structure: +28")
-    elif length <= 6:
-        score += 24
-        reasons.append("Short structure: +24")
-    elif length <= 8:
-        score += 20
-        reasons.append("Compact structure: +20")
-    elif length <= 12:
-        score += 14
-        reasons.append("Usable length: +14")
-    else:
-        score += 6
-        reasons.append("Longer length: +6")
-
-    # Character quality
-    if re.fullmatch(r"[a-z]+", sld):
-        score += 14
-        reasons.append("Pure alpha: +14")
-    elif "-" not in sld and not re.search(r"\d", sld):
-        score += 10
-        reasons.append("Clean structure: +10")
-    else:
-        score -= 8
-        reasons.append("Hyphen/number penalty: -8")
-
-    # Category relevance
-    cat, _ = infer_category(domain, category_hint)
-    if cat == "ai":
-        score += 14
-        reasons.append("AI relevance: +14")
-    elif cat == "finance":
-        score += 12
-        reasons.append("Finance relevance: +12")
-    elif cat == "tech":
-        score += 11
-        reasons.append("Tech relevance: +11")
-    elif cat == "health":
-        score += 10
-        reasons.append("Health relevance: +10")
-    elif cat == "geo":
-        score += 8
-        reasons.append("Geo relevance: +8")
-    else:
-        score += 6
-        reasons.append("Brandable relevance: +6")
-
-    # Word quality bonus
-    if re.search(r"(logic|scan|pulse|genie|folio|factor|health|flare|stack|mind|token)", sld):
-        score += 6
-        reasons.append("Strong lexical signal: +6")
-
-    # Penalty for awkward length
-    if length > 14:
-        score -= 10
-        reasons.append("Long name penalty: -10")
-
-    score = max(35, min(95, score))
-    return score, {"length": length, "reasons": reasons}
+        return 24
+    if length <= 6:
+        return 22
+    if length <= 8:
+        return 18
+    if length <= 10:
+        return 14
+    if length <= 12:
+        return 10
+    return 4
 
 
-def score_to_class(score: int) -> str:
+def pronounceability_score(sld: str) -> int:
+    vowels = len(re.findall(r"[aeiou]", sld))
+    if len(sld) == 0:
+        return 0
+    ratio = vowels / len(sld)
+    if 0.25 <= ratio <= 0.6:
+        return 10
+    if 0.15 <= ratio <= 0.7:
+        return 6
+    return 2
+
+
+def quality_word_score(words: List[str]) -> int:
+    score = 0
+    for word in words:
+        if word in QUALITY_WORDS:
+            score += 3
+        if word in WEAK_WORDS:
+            score -= 2
+        if word in KEYWORD_BONUS:
+            score += KEYWORD_BONUS[word]
+    return max(score, 0)
+
+
+def detect_category(sld: str) -> str:
+    words = slug_words(sld)
+    joined = " ".join(words)
+    for category, keywords in CATEGORY_RULES.items():
+        if not keywords:
+            continue
+        for kw in keywords:
+            if kw in joined or kw in sld:
+                return category
+    return "brand"
+
+
+def category_label(category: str) -> str:
+    return CATEGORY_LABELS.get(category, "Brand")
+
+
+def source_score(source: str) -> int:
+    return SOURCE_WEIGHTS.get(source or "Unknown", 2)
+
+
+def score_class(score: int) -> str:
     if score >= 85:
-        return "high"
+        return "hi"
     if score >= 70:
         return "mid"
     return "low"
 
 
-def estimate_value(score: int, tld: str, category: str) -> tuple[str, int]:
-    base = 200
+def compute_status(rdap_ok: bool, registered_now: Optional[bool], drop_date: str) -> Tuple[str, str]:
+    try:
+        d = datetime.strptime(drop_date, "%Y-%m-%d").date()
+        today = datetime.now(timezone.utc).date()
+        days = (d - today).days
+    except Exception:
+        days = None
+
+    if rdap_ok and registered_now is False:
+        return "likely_available", "Likely available now"
+
+    if rdap_ok and registered_now is True:
+        if days is not None and days <= 2:
+            return "expiring", "Still registered — near drop window"
+        return "watchlist", "Still registered — watchlist candidate"
+
+    if not rdap_ok:
+        if days is not None and days <= 2:
+            return "unconfirmed", "Status unconfirmed — near drop window"
+        return "watchlist", "Status unconfirmed — watchlist candidate"
+
+    return "watchlist", "Watchlist candidate"
+
+
+def urgency_from_date(drop_date: str) -> str:
+    try:
+        d = datetime.strptime(drop_date, "%Y-%m-%d").date()
+        today = datetime.now(timezone.utc).date()
+        days = (d - today).days
+        if days <= 2:
+            return "urgent"
+        if days <= 5:
+            return "soon"
+        return "normal"
+    except Exception:
+        return "normal"
+
+
+def estimate_value(score: int, category: str, tld: str, length: int) -> Tuple[str, int]:
+    base = 250
 
     if tld == "com":
-        base += 350
-    elif tld == "ai":
-        base += 300
-    elif tld == "io":
-        base += 220
-    elif tld == "co":
-        base += 140
-
-    if category == "ai":
-        base += 220
-    elif category == "finance":
+        base += 250
+    elif tld in {"ai", "io"}:
         base += 180
-    elif category == "tech":
-        base += 160
-    elif category == "health":
-        base += 120
-    elif category == "geo":
-        base += 80
-    else:
+    elif tld == "co":
         base += 100
 
-    midpoint = int(base * (score / 70))
-    low = int(midpoint * 0.65)
-    high = int(midpoint * 1.45)
+    base += score * 8
 
-    # round for cleaner display
-    def round_n(x):
-        if x >= 1000:
-            return int(round(x / 100.0) * 100)
-        return int(round(x / 50.0) * 50)
+    if category in {"ai", "finance", "tech"}:
+        base += 120
 
-    low = round_n(low)
-    high = round_n(high)
+    if length <= 8:
+        base += 140
+    elif length <= 10:
+        base += 60
+
+    low = max(200, int(base * 0.7))
+    high = max(low + 150, int(base * 1.5))
     return f"${low:,}–{high:,}", high
 
 
-def drop_label(date_str: str) -> str:
-    dt = datetime.strptime(date_str, "%Y-%m-%d").date()
-    return dt.strftime("%b %-d") if hasattr(dt, "strftime") else dt.isoformat()
+def make_why(domain: str, category: str, length: int, tld: str, status_label: str) -> str:
+    parts = []
+    cat_label = category_label(category)
+
+    if category == "ai":
+        parts.append("Strong AI positioning")
+    elif category == "finance":
+        parts.append("Commercial fintech / crypto relevance")
+    elif category == "tech":
+        parts.append("Good B2B / SaaS naming pattern")
+    elif category == "health":
+        parts.append("Clear health / wellness use case")
+    elif category == "geo":
+        parts.append("Localized utility or directory potential")
+    else:
+        parts.append("Brandable commercial name")
+
+    if length <= 8:
+        parts.append("short and memorable")
+    elif length <= 10:
+        parts.append("manageable length")
+    else:
+        parts.append("longer but still commercially usable")
+
+    if tld == "com":
+        parts.append(".com strengthens resale liquidity")
+    elif tld in {"ai", "io"}:
+        parts.append(f".{tld} fits modern tech usage")
+
+    parts.append(f"Category fit: {cat_label}")
+    parts.append(status_label)
+
+    sentence = ". ".join(parts)
+    if not sentence.endswith("."):
+        sentence += "."
+    return sentence
 
 
-def week_label_from_dates(rows: list[dict]) -> str:
-    dates = sorted(datetime.strptime(r["drop_date"], "%Y-%m-%d").date() for r in rows)
-    first = dates[0]
-    return f"Curated Weekly Picks — Week of {first.strftime('%b')} {first.day}, {first.year}"
+def rdap_lookup(domain: str) -> Tuple[bool, Optional[bool], Optional[str]]:
+    """
+    Lightweight RDAP check.
+    Returns:
+      rdap_ok, registered_now, error
+    """
+    _, tld = split_domain(domain)
+    if tld not in {"com", "net", "org"}:
+        return False, None, "No RDAP server found for TLD"
+
+    url = f"https://rdap.verisign.com/{tld}/v1/domain/{domain}"
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "SohadotDropsBot/1.0"}
+        )
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            if resp.status == 200:
+                return True, True, None
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return True, False, None
+        return False, None, f"HTTP {e.code}"
+    except Exception as e:
+        return False, None, str(e)
+
+    return False, None, "Unknown RDAP response"
 
 
-def next_monday_8utc(from_dt=None) -> datetime:
-    now = from_dt or datetime.now(timezone.utc)
-    days_ahead = (7 - now.weekday()) % 7
-    if days_ahead == 0:
-        days_ahead = 7
-    target = (now + timedelta(days=days_ahead)).replace(hour=8, minute=0, second=0, microsecond=0)
-    return target
+def normalize_source(source: str) -> str:
+    source = (source or "").strip()
+    return source if source else "Unknown"
 
 
-def build_featured(domains: list[dict]) -> list[dict]:
-    top = sorted(domains, key=lambda x: (x["score"], x["value_sort"]), reverse=True)[:FEATURED_COUNT]
+def parse_csv() -> List[Dict]:
+    rows = []
+    if not CSV_PATH.exists():
+        return rows
+
+    with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for raw in reader:
+            domain = (raw.get("domain") or "").strip().lower()
+            if not domain or "." not in domain:
+                continue
+
+            source = normalize_source(raw.get("source", "Unknown"))
+
+            try:
+                drop_date = (raw.get("drop_date") or "").strip()
+                if not drop_date:
+                    # default fallback
+                    drop_date = (datetime.now(timezone.utc).date() + timedelta(days=3)).isoformat()
+            except Exception:
+                drop_date = (datetime.now(timezone.utc).date() + timedelta(days=3)).isoformat()
+
+            rows.append({
+                "domain": domain,
+                "source": source,
+                "drop_date": drop_date,
+            })
+
+    return rows
+
+
+def score_row(domain: str, source: str, drop_date: str) -> Dict:
+    sld, tld = split_domain(domain)
+    words = slug_words(sld)
+    category = detect_category(sld)
+    cat_label = category_label(category)
+
+    total = 0
+    total += length_score(len(sld))
+    total += pronounceability_score(sld)
+    total += quality_word_score(words)
+    total += TLD_WEIGHTS.get(tld, 6)
+    total += source_score(source)
+    total += CATEGORY_PRIORITY.get(category, 2) * 2
+
+    if is_pure_alpha(sld):
+        total += 8
+    if has_hyphen_or_number(sld):
+        total -= 10
+    if len(sld) > 12:
+        total -= 6
+
+    rdap_ok, registered_now, rdap_error = rdap_lookup(domain)
+    status_code, status_label = compute_status(rdap_ok, registered_now, drop_date)
+
+    if rdap_ok and registered_now is False:
+        total += 8
+    elif rdap_ok and registered_now is True:
+        total -= 2
+
+    total = max(45, min(94, total))
+
+    value_range, value_sort = estimate_value(total, category, tld, len(sld))
+    urgency = urgency_from_date(drop_date)
+    why = make_why(domain, category, len(sld), tld, status_label)
+
+    return {
+        "domain": domain,
+        "source": source,
+        "score": total,
+        "score_class": score_class(total),
+        "length": len(sld),
+        "category": category,
+        "category_label": cat_label,
+        "drop_label": datetime.strptime(drop_date, "%Y-%m-%d").strftime("%b %-d") if not is_windows() else datetime.strptime(drop_date, "%Y-%m-%d").strftime("%b %d").replace(" 0", " "),
+        "drop_sort": drop_date,
+        "drop_date": drop_date,
+        "urgency": urgency,
+        "status_code": status_code,
+        "status_label": status_label,
+        "value_range": value_range,
+        "value_sort": value_sort,
+        "why": why,
+        "rdap_ok": rdap_ok,
+        "registered_now": registered_now,
+        "rdap_error": rdap_error,
+        "check_url": f"https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck={domain}",
+    }
+
+
+def is_windows() -> bool:
+    import os
+    return os.name == "nt"
+
+
+def choose_featured(rows: List[Dict]) -> List[Dict]:
+    if not rows:
+        return []
+
+    selected = []
+    used_categories = set()
+
+    sorted_rows = sorted(
+        rows,
+        key=lambda r: (
+            r["score"],
+            1 if r["status_code"] == "likely_available" else 0,
+            1 if r["category"] in {"ai", "finance", "tech"} else 0,
+            -r["length"],
+            r["value_sort"],
+        ),
+        reverse=True,
+    )
+
+    for row in sorted_rows:
+        if row["category"] not in used_categories:
+            selected.append(row)
+            used_categories.add(row["category"])
+        if len(selected) == 3:
+            break
+
+    if len(selected) < 3:
+        for row in sorted_rows:
+            if row not in selected:
+                selected.append(row)
+            if len(selected) == 3:
+                break
+
     featured = []
-    for item in top:
+    for row in selected:
         featured.append({
             "badge": "Top Pick",
-            "domain": item["domain"],
-            "score": item["score"],
-            "tld": f".{get_tld(item['domain'])}",
-            "length": item["length"],
-            "category": item["category_label"],
-            "drop_label": item["drop_label"],
-            "urgency": item["urgency"],
-            "why": item["why"],
-            "value_range": item["value_range"],
-            "check_url": item["check_url"],
+            "domain": row["domain"],
+            "score": row["score"],
+            "tld": "." + split_domain(row["domain"])[1],
+            "length": row["length"],
+            "category": row["category_label"],
+            "drop_label": row["drop_label"],
+            "urgency": row["urgency"],
+            "why": row["why"],
+            "value_range": row["value_range"],
+            "check_url": row["check_url"],
+            "status_label": row["status_label"],
         })
     return featured
 
 
-def make_check_url(domain: str) -> str:
-    return f"https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck={domain}"
+def build_json(rows: List[Dict]) -> Dict:
+    now = datetime.now(timezone.utc)
+    next_monday = now + timedelta(days=(7 - now.weekday()) % 7 or 7)
+    next_monday = next_monday.replace(hour=8, minute=0, second=0, microsecond=0)
 
+    week_label = f"Curated Weekly Drops Watchlist — Week of {now.strftime('%b %-d, %Y')}" if not is_windows() else f"Curated Weekly Drops Watchlist — Week of {now.strftime('%b %d, %Y').replace(' 0', ' ')}"
 
-def build_why(domain: str, category_label: str, notes: str, rdap_data: dict) -> str:
-    pieces = []
+    rows = sorted(rows, key=lambda r: (-r["score"], r["drop_sort"], r["domain"]))
+    featured = choose_featured(rows)
 
-    if notes:
-        pieces.append(notes.strip().rstrip("."))
+    sources = sorted({row["source"] for row in rows})
 
-    pieces.append(f"Category fit: {category_label}.")
-
-    if rdap_data["rdap_ok"] and rdap_data["registered"] is False:
-        pieces.append("RDAP lookup did not find an active registration at generation time.")
-    elif rdap_data["rdap_ok"] and rdap_data["registered"] is True:
-        pieces.append("RDAP confirms the name is still currently registered or in registry state.")
-    elif rdap_data["error"]:
-        pieces.append("RDAP status could not be fully confirmed during this run.")
-
-    return " ".join(pieces)
-
-
-def main():
-    if not INPUT_CSV.exists():
-        raise FileNotFoundError(f"Missing input file: {INPUT_CSV}")
-
-    bootstrap = load_iana_bootstrap()
-
-    rows = []
-    with INPUT_CSV.open("r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            domain = row["domain"].strip().lower()
-            if not domain or "." not in domain:
-                continue
-
-            category, category_lbl = infer_category(domain, row.get("category_hint", ""))
-            score, score_meta = score_domain(domain, row.get("category_hint", ""))
-            value_range, value_sort = estimate_value(score, get_tld(domain), category)
-            rdap_data = rdap_lookup(bootstrap, domain)
-
-            drop_date_iso = row["drop_date"].strip()
-            dt = datetime.strptime(drop_date_iso, "%Y-%m-%d").date()
-            today = datetime.now(timezone.utc).date()
-            days_left = (dt - today).days
-
-            if days_left <= 2:
-                urgency = "urgent"
-            elif days_left <= 5:
-                urgency = "soon"
-            else:
-                urgency = "normal"
-
-            why = build_why(
-                domain=domain,
-                category_label=category_lbl,
-                notes=row.get("notes", ""),
-                rdap_data=rdap_data,
-            )
-
-            rows.append({
-                "domain": domain,
-                "source": row.get("source", "").strip(),
-                "score": score,
-                "score_class": score_to_class(score),
-                "length": score_meta["length"],
-                "category": category,
-                "category_label": category_lbl,
-                "drop_label": dt.strftime("%b ") + str(dt.day),
-                "drop_sort": drop_date_iso,
-                "drop_date": drop_date_iso,
-                "urgency": urgency,
-                "value_range": value_range,
-                "value_sort": value_sort,
-                "why": why,
-                "rdap_ok": rdap_data["rdap_ok"],
-                "registered_now": rdap_data["registered"],
-                "rdap_error": rdap_data["error"],
-                "check_url": make_check_url(domain),
-            })
-
-    rows.sort(key=lambda x: (x["score"], x["value_sort"]), reverse=True)
-
-    next_update = next_monday_8utc()
-    output = {
-        "week_label": week_label_from_dates(rows) if rows else "Curated Weekly Picks",
-        "last_updated": datetime.now(timezone.utc).strftime("%B %-d, %Y"),
+    return {
+        "week_label": week_label,
+        "last_updated": now.isoformat().replace("+00:00", "Z"),
+        "last_updated_human": now.strftime("%B %-d, %Y %H:%M UTC") if not is_windows() else now.strftime("%B %d, %Y %H:%M UTC").replace(" 0", " "),
         "next_update_label": "Next Monday refresh",
-        "next_update_iso": next_update.isoformat().replace("+00:00", "Z"),
+        "next_update_iso": next_monday.isoformat().replace("+00:00", "Z"),
         "curated_count": len(rows),
-        "sources": sorted(list({r["source"] for r in rows if r["source"]})),
+        "sources": sources,
+        "page_mode": "weekly_watchlist",
         "criteria": [
-            "Length generally kept concise",
-            "Pure alpha preferred over hyphens and numbers",
+            "Short, brandable, commercially plausible names preferred",
             "Quality TLDs prioritized (.com / .ai / .io / .co)",
-            "Brandability and memorability considered",
-            "Obvious trademark issues avoided where possible",
-            "Comparable public sales used as directional reference",
-            "RDAP checked when available for current registration state",
-            "Only names with plausible resale rationale included"
+            "Category fit used as a directional weighting, not absolute truth",
+            "RDAP used where possible to distinguish watchlist vs likely-available names",
+            "Comparable-sales style valuation shown as directional guidance only",
+            "Featured picks selected for quality plus category diversity"
         ],
-        "featured": build_featured(rows),
+        "featured": featured,
         "domains": rows
     }
 
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    with OUTPUT_JSON.open("w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"Generated {OUTPUT_JSON} with {len(rows)} domains.")
+def main():
+    candidates = parse_csv()
+    scored = [score_row(r["domain"], r["source"], r["drop_date"]) for r in candidates]
+    payload = build_json(scored)
+
+    JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with JSON_PATH.open("w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
+    print(f"Updated {JSON_PATH} with {len(scored)} domains.")
 
 
 if __name__ == "__main__":
