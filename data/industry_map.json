@@ -1,0 +1,11 @@
+{
+  "ai": ["artificial intelligence", "agent tools", "automation", "copilots", "model platforms"],
+  "finance": ["fintech", "payments", "wealth management", "credit", "banking", "financial tools"],
+  "health": ["healthtech", "wellness", "therapy", "diagnostics", "care software"],
+  "legal": ["law firms", "legal advisory", "compliance", "documentation"],
+  "tech": ["software", "saas", "developer tools", "data infrastructure", "cloud"],
+  "energy": ["clean energy", "battery tech", "solar", "climate products"],
+  "travel": ["hospitality", "travel tools", "destination brands", "tourism"],
+  "creative": ["studios", "media", "design", "editorial", "luxury branding"],
+  "culture": ["heritage brands", "niche storytelling", "premium identity", "cultural products"]
+}
