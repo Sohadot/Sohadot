@@ -1,0 +1,37 @@
+{
+  "vault": {
+    "type": "dictionary_word",
+    "usage_note": "clear commercial and metaphorical use",
+    "brandability_note": "strong for security, finance, storage, legal, or premium branding"
+  },
+  "echo": {
+    "type": "dictionary_word",
+    "usage_note": "common lexical word",
+    "brandability_note": "strong brand potential due to brevity and memorability"
+  },
+  "nova": {
+    "type": "dictionary_word",
+    "usage_note": "astronomical and metaphorical use",
+    "brandability_note": "strong startup and innovation tone"
+  },
+  "lumen": {
+    "type": "dictionary_word",
+    "usage_note": "scientific and design-oriented term",
+    "brandability_note": "strong for lighting, medical, science, and premium tech"
+  },
+  "arcadia": {
+    "type": "dictionary_word",
+    "usage_note": "literary and historical word",
+    "brandability_note": "strong for lifestyle, hospitality, culture, and premium branding"
+  },
+  "veritas": {
+    "type": "dictionary_word",
+    "usage_note": "classical lexical term",
+    "brandability_note": "strong for law, education, and advisory contexts"
+  },
+  "sojourner": {
+    "type": "rare_dictionary_word",
+    "usage_note": "rare but legitimate lexical word",
+    "brandability_note": "distinctive, literary, and premium-toned"
+  }
+}
