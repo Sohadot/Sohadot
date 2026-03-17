@@ -1,0 +1,56 @@
+{
+  "version": "2.0",
+  "last_updated": "2026-03-17T22:00:00Z",
+  "last_updated_human": "March 17, 2026 22:00 UTC",
+  "next_update_label": "Next weekly refresh",
+  "next_update_iso": "2026-03-24T08:00:00Z",
+
+  "base_scores": {
+    "commercial_keyword": 88,
+    "dictionary_word": 76,
+    "rare_dictionary_word": 70,
+    "personal_name": 62,
+    "brandable": 58,
+    "random_low_quality": 18
+  },
+
+  "tld_weights": {
+    ".com": 24,
+    ".ai": 18,
+    ".io": 14,
+    ".co": 10,
+    ".org": 8,
+    ".net": 7,
+    ".dev": 8,
+    "other": 4
+  },
+
+  "length_adjustments": {
+    "2": 30,
+    "3": 24,
+    "4": 18,
+    "5": 12,
+    "6": 9,
+    "7": 7,
+    "8": 5,
+    "9": 3,
+    "10": 1,
+    "11_plus": -3
+  },
+
+  "pricing_multipliers": {
+    "commercial_keyword": { "low": 0.72, "high": 1.45, "retail_low": 2.8, "retail_high": 6.4 },
+    "dictionary_word": { "low": 0.68, "high": 1.38, "retail_low": 2.4, "retail_high": 5.8 },
+    "rare_dictionary_word": { "low": 0.62, "high": 1.32, "retail_low": 2.2, "retail_high": 5.4 },
+    "personal_name": { "low": 0.60, "high": 1.25, "retail_low": 2.0, "retail_high": 4.6 },
+    "brandable": { "low": 0.58, "high": 1.22, "retail_low": 1.9, "retail_high": 4.4 },
+    "random_low_quality": { "low": 0.50, "high": 1.10, "retail_low": 1.2, "retail_high": 2.0 }
+  },
+
+  "confidence_rules": {
+    "dataset_exact": "high",
+    "multi_signal": "medium_high",
+    "brandable_clean": "medium",
+    "fallback_only": "low"
+  }
+}
