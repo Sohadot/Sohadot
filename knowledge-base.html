@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Knowledge Base — Sohadot.com</title>
+<meta name="description" content="Educational resources on domain valuation, comparable sales, pricing strategies, and market insights. Sohadot Knowledge Base is being actively expanded."/>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --bg:#f5f0e8;
+  --card:#fff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#1d4ed8;
+  --border:rgba(15,23,42,0.08);
+}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  margin:0;
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 32px;
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  color:var(--accent);
+  text-decoration:none;
+}
+.nav-links a{
+  margin-left:20px;
+  font-size:.85rem;
+  text-decoration:none;
+  color:var(--muted);
+}
+.nav-links a.active{
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:80px 20px 40px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  margin-bottom:12px;
+}
+.hero p{
+  max-width:600px;
+  margin:auto;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* BOX */
+.box{
+  max-width:900px;
+  margin:40px auto;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px;
+}
+
+.box h2{
+  margin-bottom:12px;
+}
+.box p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* LIST */
+.topics{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+.topic{
+  background:#fafafa;
+  padding:14px;
+  border-radius:10px;
+  font-size:.85rem;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  margin-top:30px;
+}
+.cta a{
+  background:var(--accent);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:.85rem;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:.8rem;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Sohadot.com</a>
+  <div class="nav-links">
+    <a href="/valuation.html">Valuation</a>
+    <a href="/portfolio.html">Portfolio</a>
+    <a href="/keywords.html">Keywords</a>
+    <a href="/dropping.html">Drops</a>
+    <a href="/knowledge-base.html" class="active">Knowledge Base</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Knowledge Base</h1>
+  <p>
+    Educational resources and market insights for domain investors, buyers, and professionals.
+    This section is currently being expanded to provide structured knowledge on domain valuation,
+    pricing strategy, and market behavior.
+  </p>
+</div>
+
+<div class="box">
+  <h2>What You Will Find Here</h2>
+  <p>
+    The Sohadot Knowledge Base is designed to explain how the domain market actually works —
+    from pricing and comparable sales to buyer psychology and keyword demand.
+  </p>
+
+  <div class="topics">
+    <div class="topic">How Domain Valuation Really Works</div>
+    <div class="topic">Wholesale vs Retail Pricing</div>
+    <div class="topic">How to Read Comparable Sales</div>
+    <div class="topic">What Makes a Domain Premium</div>
+    <div class="topic">Brandable vs Exact Match Domains</div>
+    <div class="topic">Domain Buyer Psychology</div>
+  </div>
+
+  <div class="cta">
+    <a href="/valuation.html">Use Valuation Tool</a>
+  </div>
+</div>
+
+<footer>
+© 2026 Sohadot.com · Domain Intelligence Platform
+</footer>
+
+</body>
+</html>
