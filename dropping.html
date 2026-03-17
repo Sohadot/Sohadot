@@ -4,20 +4,20 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-  <title>Weekly Dropping Domains — Curated Market Picks | Sohadot.com</title>
-  <meta name="description" content="Curated weekly dropping and expiring domains scored for structure, brandability, category relevance, TLD quality, and resale potential. Built for domain investors, brokers, and market participants."/>
+  <title>Weekly Domain Drops Watchlist | Sohadot.com</title>
+  <meta name="description" content="A curated weekly watchlist of dropping and expiring domain names reviewed for brandability, structure, category relevance, TLD quality, and resale potential. Built for domain investors, brokers, and serious market participants."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://sohadot.com/dropping.html"/>
 
   <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Weekly Dropping Domains — Curated Market Picks | Sohadot.com"/>
-  <meta property="og:description" content="Curated dropping domains with structured scoring, featured picks, and investor-oriented market logic."/>
+  <meta property="og:title" content="Weekly Domain Drops Watchlist | Sohadot.com"/>
+  <meta property="og:description" content="Curated weekly watchlist of dropping and expiring domains with structured scoring, featured picks, and investor-oriented market logic."/>
   <meta property="og:url" content="https://sohadot.com/dropping.html"/>
   <meta property="og:site_name" content="Sohadot.com"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Weekly Dropping Domains — Curated Market Picks | Sohadot.com"/>
-  <meta name="twitter:description" content="Curated dropping domains with structured scoring and investor-oriented market logic."/>
+  <meta name="twitter:title" content="Weekly Domain Drops Watchlist | Sohadot.com"/>
+  <meta name="twitter:description" content="Curated weekly watchlist of dropping and expiring domains with structured scoring and investor-oriented market logic."/>
 
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
@@ -43,233 +43,703 @@
 
   <style>
     :root{
-      --bg:#f5f0e8;--card:#fff;--border:rgba(15,23,42,0.08);
-      --accent:#1d4ed8;--accent2:#3b82f6;--text:#0f172a;
-      --muted:#64748b;--dim:#94a3b8;--gold:#f59e0b;--green:#10b981;--red:#ef4444;
-      --orange:#f97316;--surface:#fbfaf7;
+      --bg:#f5f0e8;
+      --card:#ffffff;
+      --surface:#fbfaf7;
+      --border:rgba(15,23,42,0.08);
+      --accent:#1d4ed8;
+      --accent2:#3b82f6;
+      --text:#0f172a;
+      --muted:#64748b;
+      --dim:#94a3b8;
+      --gold:#f59e0b;
+      --green:#10b981;
+      --red:#ef4444;
+      --orange:#f97316;
+      --blueSoft:rgba(29,78,216,0.06);
+      --greenSoft:rgba(16,185,129,0.09);
+      --goldSoft:rgba(245,158,11,0.12);
+      --shadow:0 8px 28px rgba(15,23,42,0.06);
     }
-    *{box-sizing:border-box;margin:0;padding:0;}
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html{scroll-behavior:smooth}
+
     body{
-      font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+      font-family:'Outfit',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      z-index:0;
     }
 
     nav{
-      display:flex;align-items:center;justify-content:space-between;padding:16px 32px;
-      border-bottom:1px solid var(--border);background:rgba(245,240,232,0.97);
-      backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;
+      position:sticky;
+      top:0;
+      z-index:100;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 32px;
+      border-bottom:1px solid var(--border);
+      background:rgba(245,240,232,0.94);
+      backdrop-filter:blur(12px);
     }
+
     .nav-logo{
-      font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--accent);text-decoration:none;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.34rem;
+      font-weight:700;
+      color:var(--accent);
+      text-decoration:none;
+      white-space:nowrap;
     }
-    .nav-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
     .nav-links a{
-      font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;
-      letter-spacing:.05em;text-transform:uppercase;transition:color .2s;
+      font-size:.78rem;
+      font-weight:500;
+      color:var(--muted);
+      text-decoration:none;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      transition:color .2s ease;
     }
-    .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+    .nav-links a:hover,
+    .nav-links a.active{color:var(--accent)}
+
     .nav-cta{
-      padding:7px 16px;border-radius:8px;background:var(--accent);color:#fff!important;font-weight:600!important;
-    }
-    @media(max-width:768px){
-      nav{padding:12px 16px;}
-      .nav-links a:not(.nav-cta){display:none;}
+      padding:8px 16px;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff !important;
+      font-weight:600 !important;
+      box-shadow:0 6px 18px rgba(29,78,216,0.18);
     }
 
     .hero{
-      background:linear-gradient(135deg,#0f172a,#1a2f5a 60%,#1d4ed8);
-      padding:52px 20px 38px;text-align:center;
+      position:relative;
+      z-index:1;
+      background:
+        radial-gradient(circle at 85% 50%, rgba(59,130,246,.42), transparent 35%),
+        radial-gradient(circle at 15% 15%, rgba(245,158,11,.08), transparent 30%),
+        linear-gradient(135deg,#0f172a 0%,#1a2f5a 58%,#1d4ed8 100%);
+      padding:58px 20px 42px;
+      text-align:center;
+      overflow:hidden;
     }
-    .hero-inner{max-width:780px;margin:0 auto;}
+
+    .hero-inner{
+      max-width:820px;
+      margin:0 auto;
+    }
+
     .week-badge{
-      display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;
-      letter-spacing:.12em;text-transform:uppercase;
-      background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.35);
-      color:#fcd34d;padding:5px 16px;border-radius:20px;margin-bottom:16px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:var(--goldSoft);
+      border:1px solid rgba(245,158,11,0.35);
+      color:#fcd34d;
+      padding:6px 16px;
+      border-radius:999px;
+      margin-bottom:18px;
     }
+
     h1{
-      font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3rem);
-      font-weight:800;color:#fff;line-height:1.08;margin-bottom:12px;
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.1rem,4.8vw,3.35rem);
+      font-weight:800;
+      color:#fff;
+      line-height:1.06;
+      margin-bottom:14px;
+      letter-spacing:-0.01em;
     }
+
     .hero-sub{
-      color:rgba(255,255,255,0.68);font-size:.94rem;line-height:1.8;font-weight:300;max-width:720px;margin:0 auto;
+      color:rgba(255,255,255,0.72);
+      font-size:.98rem;
+      line-height:1.9;
+      font-weight:300;
+      max-width:760px;
+      margin:0 auto;
     }
 
     .status-band{
-      background:var(--card);border-bottom:1px solid var(--border);
+      position:relative;
+      z-index:1;
+      background:var(--card);
+      border-bottom:1px solid var(--border);
       padding:16px 20px;
     }
+
     .status-inner{
-      max-width:1100px;margin:0 auto;display:flex;gap:18px;justify-content:space-between;align-items:center;flex-wrap:wrap;
-      font-size:.82rem;color:var(--muted);
-    }
-    .status-main strong{color:var(--accent);}
-    #countdown{font-family:monospace;font-size:.9rem;font-weight:700;color:var(--red);}
-    .status-meta{
-      display:flex;gap:12px;flex-wrap:wrap;
-    }
-    .meta-chip{
-      background:var(--surface);border:1px solid var(--border);border-radius:999px;
-      padding:6px 10px;font-size:.74rem;color:var(--muted);
+      max-width:1120px;
+      margin:0 auto;
+      display:flex;
+      gap:18px;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      font-size:.84rem;
+      color:var(--muted);
     }
 
-    .wrapper{max-width:1100px;margin:0 auto;padding:32px 20px 72px;}
+    .status-main{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .status-main strong{color:var(--accent)}
+
+    #countdown{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size:.92rem;
+      font-weight:700;
+      color:var(--red);
+    }
+
+    .status-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .meta-chip{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:7px 12px;
+      font-size:.74rem;
+      color:var(--muted);
+    }
+
+    .wrapper{
+      position:relative;
+      z-index:1;
+      max-width:1120px;
+      margin:0 auto;
+      padding:32px 20px 76px;
+    }
 
     .intro-grid{
-      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:24px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      margin-bottom:24px;
     }
-    .intro-card,.method-card,.how-section,.criteria-box,.disclaimer-box{
-      background:var(--card);border:1px solid var(--border);border-radius:16px;
-      padding:22px;
+
+    .intro-card,
+    .method-card,
+    .criteria-box,
+    .how-section,
+    .disclaimer-box{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:var(--shadow);
     }
-    .intro-title,.method-title,.how-title{
-      font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:700;margin-bottom:10px;color:var(--text);
+
+    .intro-title,
+    .method-title,
+    .how-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.42rem;
+      font-weight:700;
+      margin-bottom:12px;
+      color:var(--text);
+      line-height:1.2;
     }
-    .intro-card p,.method-card p,.how-text,.disc-text{
-      font-size:.84rem;color:var(--muted);line-height:1.75;
+
+    .intro-card p,
+    .method-card p,
+    .how-text,
+    .disc-text{
+      font-size:.87rem;
+      color:var(--muted);
+      line-height:1.8;
     }
+
     .method-list{
-      margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px 16px;
     }
+
     .method-item{
-      font-size:.8rem;color:var(--muted);display:flex;gap:8px;align-items:flex-start;
+      font-size:.82rem;
+      color:var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+      line-height:1.65;
     }
+
     .method-item::before{
-      content:'•';color:var(--accent);font-weight:700;line-height:1;
+      content:'•';
+      color:var(--accent);
+      font-weight:700;
+      line-height:1;
+      margin-top:2px;
     }
-    @media(max-width:860px){
-      .intro-grid{grid-template-columns:1fr;}
-      .method-list{grid-template-columns:1fr;}
+
+    .criteria-box{margin-bottom:26px}
+
+    .criteria-title,
+    .disc-title{
+      font-size:.73rem;
+      font-weight:700;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .criteria-title{color:var(--green)}
+    .disc-title{color:var(--accent)}
+
+    .criteria-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:10px;
+    }
+
+    .crit-item{
+      font-size:.81rem;
+      color:var(--muted);
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      line-height:1.65;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+    }
+
+    .crit-item::before{
+      content:'✓';
+      color:var(--green);
+      font-weight:700;
+      flex-shrink:0;
+      margin-top:1px;
+    }
+
+    .featured-section{margin-bottom:28px}
+
+    .section-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.55rem;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .section-sub{
+      font-size:.84rem;
+      color:var(--muted);
+      line-height:1.75;
+      margin-bottom:18px;
+    }
+
+    .featured-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .featured-card{
+      background:linear-gradient(180deg,#fff,#fdfbf7);
+      border:2px solid rgba(245,158,11,0.48);
+      border-radius:18px;
+      padding:22px;
+      position:relative;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 10px 30px rgba(245,158,11,0.08);
+    }
+
+    .featured-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 34px rgba(245,158,11,0.14);
+    }
+
+    .fc-badge{
+      position:absolute;
+      top:-1px;
+      right:16px;
+      font-size:.62rem;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      background:var(--gold);
+      color:#fff;
+      padding:4px 11px;
+      border-radius:0 0 10px 10px;
+    }
+
+    .fc-domain{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size:1.07rem;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:8px;
+      word-break:break-word;
+    }
+
+    .fc-score{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+    }
+
+    .score-bar{
+      flex:1;
+      height:7px;
+      background:rgba(15,23,42,0.08);
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .score-fill{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--gold),var(--orange));
+    }
+
+    .score-num{
+      font-size:.76rem;
+      font-weight:700;
+      color:var(--gold);
+      min-width:58px;
+      text-align:right;
+    }
+
+    .fc-meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .meta-tag{
+      font-size:.67rem;
+      font-weight:600;
+      padding:4px 10px;
+      border-radius:999px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .status-tag{
+      background:rgba(29,78,216,0.08);
+      border-color:rgba(29,78,216,0.14);
+      color:var(--accent);
+    }
+
+    .fc-why{
+      font-size:.81rem;
+      color:var(--muted);
+      line-height:1.72;
+      margin-bottom:14px;
+    }
+
+    .fc-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .fc-value{
+      font-size:.79rem;
+      color:var(--green);
+      font-weight:700;
+    }
+
+    .check-btn,
+    .avail-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      text-decoration:none;
+      font-weight:600;
+      white-space:nowrap;
+      transition:all .2s ease;
+    }
+
+    .check-btn{
+      font-size:.76rem;
+      padding:8px 14px;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 6px 18px rgba(29,78,216,0.18);
+    }
+
+    .check-btn:hover{
+      background:#1e40af;
+      transform:translateY(-1px);
     }
 
     .controls{
-      display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:24px;
-    }
-    .search-box{
-      flex:1;min-width:200px;padding:10px 16px;border-radius:10px;
-      border:1px solid var(--border);background:var(--card);font-size:.88rem;
-      font-family:'Outfit',sans-serif;outline:none;transition:border-color .2s;
-    }
-    .search-box:focus{border-color:var(--accent);}
-    .filter-btn{
-      padding:7px 14px;border-radius:20px;font-size:.74rem;font-weight:600;
-      border:1px solid var(--border);background:var(--card);color:var(--muted);
-      cursor:pointer;transition:all .2s;white-space:nowrap;
-    }
-    .filter-btn:hover,.filter-btn.active{
-      background:var(--accent);color:#fff;border-color:var(--accent);
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:22px;
     }
 
-    .featured-section{margin-bottom:28px;}
-    .section-title{
-      font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-weight:700;
-      color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px;
+    .search-box{
+      flex:1;
+      min-width:220px;
+      padding:11px 16px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      font-size:.9rem;
+      font-family:'Outfit',sans-serif;
+      outline:none;
+      transition:border-color .2s ease, box-shadow .2s ease;
+      box-shadow:var(--shadow);
     }
-    .section-sub{
-      font-size:.82rem;color:var(--muted);line-height:1.7;margin:-4px 0 18px;
+
+    .search-box:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(29,78,216,0.08);
     }
-    .featured-grid{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:28px;
+
+    .filter-btn{
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.74rem;
+      font-weight:600;
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--muted);
+      cursor:pointer;
+      transition:all .2s ease;
+      white-space:nowrap;
     }
-    .featured-card{
-      background:var(--card);border:2px solid var(--gold);border-radius:16px;
-      padding:20px;position:relative;transition:box-shadow .2s,transform .2s;
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:var(--accent);
+      color:#fff;
+      border-color:var(--accent);
     }
-    .featured-card:hover{box-shadow:0 8px 28px rgba(245,158,11,0.15);transform:translateY(-2px);}
-    .fc-badge{
-      position:absolute;top:-1px;right:16px;font-size:.62rem;font-weight:700;
-      letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#fff;
-      padding:3px 10px;border-radius:0 0 8px 8px;
-    }
-    .fc-domain{font-family:monospace;font-size:1.08rem;font-weight:700;color:var(--text);margin-bottom:6px;}
-    .fc-score{display:flex;align-items:center;gap:6px;margin-bottom:10px;}
-    .score-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
-    .score-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--orange));}
-    .score-num{font-size:.75rem;font-weight:700;color:var(--gold);}
-    .fc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
-    .meta-tag{
-      font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:20px;
-      background:var(--bg);border:1px solid var(--border);color:var(--muted);
-    }
-    .fc-why{font-size:.8rem;color:var(--muted);line-height:1.65;margin-bottom:12px;}
-    .fc-value{font-size:.78rem;color:var(--green);font-weight:700;}
-    .check-btn{
-      display:inline-flex;align-items:center;gap:5px;font-size:.76rem;font-weight:600;
-      padding:7px 14px;border-radius:8px;background:var(--accent);color:#fff;
-      text-decoration:none;transition:background .2s;
-    }
-    .check-btn:hover{background:#1e40af;}
 
     .drops-table-wrap{
-      overflow-x:auto;background:var(--card);border:1px solid var(--border);
-      border-radius:18px;margin-bottom:28px;
+      overflow-x:auto;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      margin-bottom:28px;
+      box-shadow:var(--shadow);
     }
-    .drops-table{width:100%;border-collapse:collapse;font-size:.84rem;}
-    .drops-table thead th{
-      background:rgba(29,78,216,0.04);color:var(--accent);font-weight:700;
-      padding:12px 16px;text-align:left;border-bottom:2px solid var(--border);
-      white-space:nowrap;cursor:pointer;user-select:none;
-    }
-    .drops-table thead th:hover{background:rgba(29,78,216,0.08);}
-    .drops-table tbody tr{transition:background .15s;}
-    .drops-table tbody tr:hover{background:rgba(29,78,216,0.02);}
-    .drops-table td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:middle;}
-    .drops-table tbody tr:last-child td{border-bottom:none;}
-    .domain-col{font-family:monospace;font-weight:700;color:var(--text);}
-    .score-col{font-weight:700;}
-    .score-hi{color:var(--green);}
-    .score-mid{color:var(--gold);}
-    .score-lo{color:var(--orange);}
-    .value-col{font-weight:700;color:var(--green);}
-    .drop-date{font-size:.78rem;color:var(--muted);}
-    .drop-urgent{color:var(--red);font-weight:700;}
-    .drop-soon{color:var(--orange);font-weight:700;}
-    .cat-pill{
-      font-size:.63rem;font-weight:700;padding:2px 9px;border-radius:20px;
-      border:1px solid var(--border);color:var(--muted);white-space:nowrap;
-    }
-    .avail-btn{
-      font-size:.72rem;font-weight:600;padding:5px 11px;border-radius:7px;
-      background:rgba(16,185,129,0.08);color:var(--green);border:1px solid rgba(16,185,129,0.25);
-      text-decoration:none;transition:background .2s;white-space:nowrap;
-    }
-    .avail-btn:hover{background:rgba(16,185,129,0.18);}
 
-    .criteria-box{margin-bottom:24px;}
-    .criteria-title{
-      font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-      color:var(--green);margin-bottom:10px;
+    .drops-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.84rem;
+      min-width:980px;
     }
-    .criteria-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;
+
+    .drops-table thead th{
+      background:var(--blueSoft);
+      color:var(--accent);
+      font-weight:700;
+      padding:13px 16px;
+      text-align:left;
+      border-bottom:2px solid var(--border);
+      white-space:nowrap;
+      cursor:pointer;
+      user-select:none;
     }
-    .crit-item{
-      font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:6px;
-      line-height:1.6;
+
+    .drops-table thead th:hover{
+      background:rgba(29,78,216,0.09);
     }
-    .crit-item::before{
-      content:'✓';color:var(--green);font-weight:700;flex-shrink:0;
+
+    .drops-table tbody tr{
+      transition:background .15s ease;
+    }
+
+    .drops-table tbody tr:hover{
+      background:rgba(29,78,216,0.025);
+    }
+
+    .drops-table td{
+      padding:13px 16px;
+      border-bottom:1px solid var(--border);
+      vertical-align:middle;
+    }
+
+    .drops-table tbody tr:last-child td{border-bottom:none}
+
+    .domain-col{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-weight:700;
+      color:var(--text);
+      word-break:break-word;
+    }
+
+    .score-col{font-weight:700}
+    .score-hi{color:var(--green)}
+    .score-mid{color:var(--gold)}
+    .score-lo{color:var(--orange)}
+
+    .value-col{
+      font-weight:700;
+      color:var(--green);
+      white-space:nowrap;
+    }
+
+    .drop-date{
+      font-size:.79rem;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .drop-urgent{color:var(--red);font-weight:700}
+    .drop-soon{color:var(--orange);font-weight:700}
+
+    .cat-pill{
+      display:inline-flex;
+      align-items:center;
+      font-size:.64rem;
+      font-weight:700;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      white-space:nowrap;
+      background:var(--surface);
+    }
+
+    .status-inline{
+      margin-top:7px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:.7rem;
+      font-weight:600;
+      color:var(--accent);
+      background:rgba(29,78,216,0.06);
+      border:1px solid rgba(29,78,216,0.1);
+      padding:4px 8px;
+      border-radius:999px;
+    }
+
+    .avail-btn{
+      font-size:.72rem;
+      padding:7px 11px;
+      border-radius:9px;
+      background:rgba(16,185,129,0.08);
+      color:var(--green);
+      border:1px solid rgba(16,185,129,0.25);
+    }
+
+    .avail-btn:hover{
+      background:rgba(16,185,129,0.16);
+      transform:translateY(-1px);
     }
 
     .how-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;
-    }
-    .how-item{display:flex;flex-direction:column;gap:6px;}
-    .how-num{
-      width:28px;height:28px;border-radius:7px;background:var(--accent);color:#fff;
-      display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:14px;
     }
 
-    .disclaimer-box{margin-top:24px;}
-    .disc-title{
-      font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-      color:var(--accent);margin-bottom:8px;
+    .how-item{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
     }
+
+    .how-num{
+      width:30px;
+      height:30px;
+      border-radius:9px;
+      background:var(--accent);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.77rem;
+      font-weight:700;
+    }
+
+    .disclaimer-box{margin-top:24px}
 
     footer{
-      text-align:center;padding:28px 20px;border-top:1px solid var(--border);
-      color:var(--dim);font-size:.75rem;line-height:2;
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding:30px 20px;
+      border-top:1px solid var(--border);
+      color:var(--dim);
+      font-size:.76rem;
+      line-height:2;
+      background:rgba(255,255,255,0.18);
     }
-    footer a{color:var(--accent2);text-decoration:none;}
+
+    footer a{
+      color:var(--accent2);
+      text-decoration:none;
+    }
+
+    footer a:hover{text-decoration:underline}
+
+    @media(max-width:920px){
+      .intro-grid{grid-template-columns:1fr}
+      .method-list{grid-template-columns:1fr}
+    }
+
+    @media(max-width:768px){
+      nav{padding:12px 16px}
+      .nav-links a:not(.nav-cta){display:none}
+      .hero{padding:48px 18px 34px}
+      .wrapper{padding:26px 16px 64px}
+      .status-inner{align-items:flex-start}
+      .featured-grid{grid-template-columns:1fr}
+      .section-title{font-size:1.42rem}
+    }
   </style>
 </head>
 <body>
@@ -291,20 +761,21 @@
     </div>
   </nav>
 
-  <div class="hero">
+  <section class="hero">
     <div class="hero-inner">
-      <div class="week-badge" id="weekBadge">Curated Weekly Picks</div>
-      <h1>Weekly Dropping Domains</h1>
+      <div class="week-badge" id="weekBadge">Weekly Curated Drops Watchlist</div>
+      <h1>Weekly Domain Drops Watchlist</h1>
       <p class="hero-sub">
-        A structured weekly watchlist of dropping and expiring domains reviewed for brandability, structural quality, category relevance, TLD strength, and resale potential.
+        A structured weekly watchlist of dropping and expiring domain names reviewed for brandability, structural quality, category relevance, TLD strength, and resale potential.
       </p>
     </div>
-  </div>
+  </section>
 
-  <div class="status-band">
+  <section class="status-band">
     <div class="status-inner">
       <div class="status-main">
-        ⏱ Next refresh: <span id="countdown">loading...</span>
+        ⏱ <span id="nextUpdateLabel">Next refresh</span>:
+        <span id="countdown">loading...</span>
       </div>
       <div class="status-meta">
         <span class="meta-chip" id="lastUpdatedChip">Last updated: —</span>
@@ -312,15 +783,14 @@
         <span class="meta-chip" id="sourceChip">Sources: —</span>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="wrapper">
-
-    <div class="intro-grid">
+  <main class="wrapper">
+    <section class="intro-grid">
       <div class="intro-card">
         <div class="intro-title">What This Page Is</div>
         <p>
-          This is not an automated dump of expiring names. It is a curated weekly shortlist built to surface domains that may justify investor attention based on structure, use-case potential, comparable sales context, and acquisition practicality.
+          This is not a raw automated dump of expiring names. It is a curated weekly shortlist built to surface domains that may justify investor attention based on structure, category fit, naming quality, comparable-sales context, and practical acquisition logic.
         </p>
       </div>
 
@@ -328,29 +798,29 @@
         <div class="method-title">How Sohadot Evaluates Weekly Drops</div>
         <div class="method-list">
           <div class="method-item">Structural quality: length, readability, memorability</div>
-          <div class="method-item">Extension quality: .com, .ai, .io, .co favored</div>
-          <div class="method-item">Category relevance: AI, tech, finance, health, geo, brandable</div>
-          <div class="method-item">Comparable public sales used as directional reference</div>
-          <div class="method-item">Trademark and obvious risk signals avoided where possible</div>
-          <div class="method-item">Resale range shown as guidance, not guaranteed outcome</div>
+          <div class="method-item">Extension quality: .com, .ai, .io, .co prioritized</div>
+          <div class="method-item">Category weighting: AI, tech, finance, health, geo, brandable</div>
+          <div class="method-item">Public comparable-sales logic used as directional context</div>
+          <div class="method-item">Trademark and obvious risk signals filtered where possible</div>
+          <div class="method-item">Availability status framed carefully as watchlist guidance</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="criteria-box">
+    <section class="criteria-box">
       <div class="criteria-title">Core Curation Criteria</div>
       <div class="criteria-grid" id="criteriaGrid"></div>
-    </div>
+    </section>
 
-    <div class="featured-section">
+    <section class="featured-section">
       <p class="section-title">⭐ Featured Picks</p>
       <p class="section-sub">
-        The strongest names in this week’s shortlist based on score, category potential, and resale logic.
+        The strongest names in this week’s shortlist based on score, category potential, status context, and resale logic.
       </p>
       <div class="featured-grid" id="featuredGrid"></div>
-    </div>
+    </section>
 
-    <div class="controls">
+    <section class="controls">
       <input type="text" class="search-box" id="searchBox" placeholder="Search domains..." oninput="filterTable()"/>
       <button class="filter-btn active" onclick="filterCat('all',this)">All</button>
       <button class="filter-btn" onclick="filterCat('ai',this)">AI</button>
@@ -359,9 +829,9 @@
       <button class="filter-btn" onclick="filterCat('geo',this)">Geo</button>
       <button class="filter-btn" onclick="filterCat('health',this)">Health</button>
       <button class="filter-btn" onclick="filterCat('tech',this)">Tech</button>
-    </div>
+    </section>
 
-    <div class="drops-table-wrap">
+    <section class="drops-table-wrap">
       <table class="drops-table" id="dropsTable">
         <thead>
           <tr>
@@ -376,38 +846,37 @@
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
-    </div>
+    </section>
 
-    <div class="how-section">
+    <section class="how-section">
       <p class="how-title">How to Use This List</p>
       <div class="how-grid">
         <div class="how-item">
           <div class="how-num">1</div>
-          <div class="how-text"><strong>Scan featured picks first.</strong> They are the highest-conviction names of the week based on current scoring and comparable context.</div>
+          <div class="how-text"><strong>Start with featured picks.</strong> They represent the highest-conviction names for the current cycle based on quality, category, and market logic.</div>
         </div>
         <div class="how-item">
           <div class="how-num">2</div>
-          <div class="how-text"><strong>Use filters by category.</strong> AI, finance, geo, and health behave differently in the resale market.</div>
+          <div class="how-text"><strong>Filter by category.</strong> AI, finance, geo, health, and SaaS names behave differently in the aftermarket.</div>
         </div>
         <div class="how-item">
           <div class="how-num">3</div>
-          <div class="how-text"><strong>Treat values as directional.</strong> A resale range is not a guarantee; buyer fit, timing, and competition matter.</div>
+          <div class="how-text"><strong>Treat values as directional.</strong> Resale ranges are guidance, not guarantees. Buyer fit, timing, and competition matter.</div>
         </div>
         <div class="how-item">
           <div class="how-num">4</div>
-          <div class="how-text"><strong>Move early.</strong> Once a quality name drops, it can be registered by anyone at standard registration cost or captured elsewhere.</div>
+          <div class="how-text"><strong>Use the status label carefully.</strong> Some names may be near-drop watchlist candidates rather than definitively available right now.</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="disclaimer-box">
+    <section class="disclaimer-box">
       <div class="disc-title">Important Note</div>
       <div class="disc-text">
-        This page is a curated research resource, not a promise of availability or resale outcome. Availability can change quickly. Comparable sales and estimated values are used as directional market signals only. Final acquisition results depend on timing, competing registrations, and end-user demand.
+        This page is a curated research resource, not a promise of availability or resale outcome. Availability can change quickly. Status labels, comparable-sales logic, and estimated values are directional market signals only. Final acquisition results depend on timing, competing registrations, registrar processes, and actual end-user demand.
       </div>
-    </div>
-
-  </div>
+    </section>
+  </main>
 
   <footer>
     © 2026 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
@@ -423,254 +892,7 @@
   </footer>
 
   <script>
-    /*
-      This page is intentionally data-driven.
-      Later, you can replace DROP_DATA with:
-      fetch('/data/drops.json').then(res => res.json()).then(data => { DROP_DATA = data; initPage(); });
-    */
-
-    const DROP_DATA = {
-      week_label: "Curated Weekly Picks — Week of Mar 2, 2026",
-      last_updated: "March 2, 2026",
-      next_update_label: "Next Monday refresh",
-      next_update_iso: "2026-03-09T08:00:00Z",
-      curated_count: 15,
-      sources: ["ExpiredDomains.net", "NameJet", "GoDaddy Auctions"],
-      criteria: [
-        "Length generally kept concise",
-        "Pure alpha preferred over hyphens and numbers",
-        "Quality TLDs prioritized (.com / .ai / .io / .co)",
-        "Brandability and memorability considered",
-        "Obvious trademark issues avoided where possible",
-        "Spam/adult history avoided where possible",
-        "Comparable sales used as directional reference",
-        "Only names with plausible resale rationale included"
-      ],
-      featured: [
-        {
-          badge: "Top Pick",
-          domain: "fusionflare.com",
-          score: 92,
-          tld: ".com",
-          length: 11,
-          category: "AI / Energy",
-          drop_label: "Mar 3",
-          urgency: "urgent",
-          why: "Energetic compound brand combining 'fusion' and 'flare'. Flexible across AI, energy, analytics, and startup branding. Strong memory value and broad commercial fit.",
-          value_range: "$800 – $1,500",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=fusionflare.com"
-        },
-        {
-          badge: "Top Pick",
-          domain: "gogenie.com",
-          score: 88,
-          tld: ".com",
-          length: 8,
-          category: "AI / Consumer",
-          drop_label: "Mar 4",
-          urgency: "soon",
-          why: "Short, memorable, and action-oriented. 'Go' plus 'Genie' gives strong assistant, automation, or consumer AI positioning. Brandable and commercially flexible.",
-          value_range: "$1,800 – $3,000",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=gogenie.com"
-        },
-        {
-          badge: "Top Pick",
-          domain: "weatherpulse.com",
-          score: 85,
-          tld: ".com",
-          length: 12,
-          category: "Data / SaaS",
-          drop_label: "Mar 5",
-          urgency: "soon",
-          why: "Useful product-style compound for weather intelligence, dashboards, APIs, or data monitoring. Strong use-case clarity and good SaaS naming pattern.",
-          value_range: "$2,000 – $3,500",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=weatherpulse.com"
-        }
-      ],
-      domains: [
-        {
-          domain: "significantai.com",
-          score: 87,
-          category: "ai",
-          category_label: "AI",
-          drop_label: "Mar 3",
-          drop_sort: "2026-03-03",
-          value_range: "$400–800",
-          value_sort: 800,
-          why: "AI-forward compound with clear relevance to models, products, or labs. Strong semantic alignment even if not ultra-short.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=significantai.com"
-        },
-        {
-          domain: "cashlogic.com",
-          score: 84,
-          category: "finance",
-          category_label: "Finance",
-          drop_label: "Mar 3",
-          drop_sort: "2026-03-03",
-          value_range: "$700–1,200",
-          value_sort: 1200,
-          why: "Solid fintech-style compound. Direct, commercially understandable, and usable for payments, budgeting, or analytics.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=cashlogic.com"
-        },
-        {
-          domain: "stackscan.com",
-          score: 83,
-          category: "tech",
-          category_label: "Tech",
-          drop_label: "Mar 4",
-          drop_sort: "2026-03-04",
-          value_range: "$2,200–3,500",
-          value_sort: 3500,
-          why: "Excellent developer or security product name. Clear action + technical relevance. Strong SaaS and tooling fit.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=stackscan.com"
-        },
-        {
-          domain: "nightrocket.com",
-          score: 82,
-          category: "brand",
-          category_label: "Brand",
-          drop_label: "Mar 4",
-          drop_sort: "2026-03-04",
-          value_range: "$2,400–3,500",
-          value_sort: 3500,
-          why: "High-energy brand compound with startup, media, gaming, and consumer appeal. Memorable and cinematic.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=nightrocket.com"
-        },
-        {
-          domain: "artlink.ai",
-          score: 81,
-          category: "ai",
-          category_label: "AI",
-          drop_label: "Mar 5",
-          drop_sort: "2026-03-05",
-          value_range: "$250–500",
-          value_sort: 500,
-          why: "Creative AI signal with direct use-case relevance in art, generation, tooling, discovery, or marketplaces.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=artlink.ai"
-        },
-        {
-          domain: "wealthplacement.com",
-          score: 79,
-          category: "finance",
-          category_label: "Finance",
-          drop_label: "Mar 5",
-          drop_sort: "2026-03-05",
-          value_range: "$180–350",
-          value_sort: 350,
-          why: "Longer, but strongly aligned to advisory, capital placement, or wealth management positioning.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=wealthplacement.com"
-        },
-        {
-          domain: "consistent.io",
-          score: 78,
-          category: "tech",
-          category_label: "Tech / SaaS",
-          drop_label: "Mar 6",
-          drop_sort: "2026-03-06",
-          value_range: "$1,400–2,200",
-          value_sort: 2200,
-          why: "Strong SaaS adjective brand. Clean, modern, and useful for reliability, automation, QA, or workflow products.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=consistent.io"
-        },
-        {
-          domain: "ecomovement.com",
-          score: 77,
-          category: "brand",
-          category_label: "Energy / ESG",
-          drop_label: "Mar 6",
-          drop_sort: "2026-03-06",
-          value_range: "$900–1,500",
-          value_sort: 1500,
-          why: "ESG and clean-energy narrative fit. Useful for advocacy, products, climate organizations, or media.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=ecomovement.com"
-        },
-        {
-          domain: "mindhealth.io",
-          score: 76,
-          category: "health",
-          category_label: "Health",
-          drop_label: "Mar 7",
-          drop_sort: "2026-03-07",
-          value_range: "$180–350",
-          value_sort: 350,
-          why: "Clear digital-health signal. Good for wellness, therapy, mental health platforms, or tracking products.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=mindhealth.io"
-        },
-        {
-          domain: "austinmap.com",
-          score: 75,
-          category: "geo",
-          category_label: "Geo",
-          drop_label: "Mar 7",
-          drop_sort: "2026-03-07",
-          value_range: "$220–450",
-          value_sort: 450,
-          why: "Simple city utility name with local business, events, directory, or tourism possibilities.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=austinmap.com"
-        },
-        {
-          domain: "coinfactor.com",
-          score: 74,
-          category: "finance",
-          category_label: "Crypto",
-          drop_label: "Mar 8",
-          drop_sort: "2026-03-08",
-          value_range: "$850–1,400",
-          value_sort: 1400,
-          why: "Short, commercial crypto-style compound. Strong enough for analytics, exchange, or token infrastructure.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=coinfactor.com"
-        },
-        {
-          domain: "neuralgame.com",
-          score: 73,
-          category: "ai",
-          category_label: "AI / Gaming",
-          drop_label: "Mar 8",
-          drop_sort: "2026-03-08",
-          value_range: "$480–900",
-          value_sort: 900,
-          why: "Specific but relevant. Good crossover between AI and gaming, especially for generated content or simulation products.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=neuralgame.com"
-        },
-        {
-          domain: "upfolio.com",
-          score: 71,
-          category: "brand",
-          category_label: "Brand / SaaS",
-          drop_label: "Mar 9",
-          drop_sort: "2026-03-09",
-          value_range: "$1,400–2,200",
-          value_sort: 2200,
-          why: "Compact and clean invented/compound feel. Useful for portfolio, finance, or creator tooling contexts.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=upfolio.com"
-        },
-        {
-          domain: "detroitcmo.com",
-          score: 70,
-          category: "geo",
-          category_label: "Geo / Marketing",
-          drop_label: "Mar 9",
-          drop_sort: "2026-03-09",
-          value_range: "$750–1,200",
-          value_sort: 1200,
-          why: "Local executive/marketing fit. More niche, but still commercially usable in a city-business context.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=detroitcmo.com"
-        },
-        {
-          domain: "tokenmate.com",
-          score: 68,
-          category: "tech",
-          category_label: "Crypto / Web3",
-          drop_label: "Mar 10",
-          drop_sort: "2026-03-10",
-          value_range: "$340–600",
-          value_sort: 600,
-          why: "Useful Web3 companion-style naming. Friendly and productizable, though slightly narrower than top-tier picks.",
-          check_url: "https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=tokenmate.com"
-        }
-      ]
-    };
-
+    let DROP_DATA = null;
     let activeCat = 'all';
     let sortDir = {};
 
@@ -682,67 +904,144 @@
       return map[label] || '';
     }
 
-    function scoreClass(score){
-      if(score >= 80) return 'score-hi';
-      if(score >= 70) return 'score-mid';
+    function scoreClassFromText(scoreClass, score) {
+      if (scoreClass === 'hi') return 'score-hi';
+      if (scoreClass === 'mid') return 'score-mid';
+      if (scoreClass === 'low') return 'score-lo';
+
+      if (score >= 85) return 'score-hi';
+      if (score >= 70) return 'score-mid';
       return 'score-lo';
     }
 
+    function safeText(value, fallback = '—') {
+      if (value === null || value === undefined || value === '') return fallback;
+      return value;
+    }
+
     function renderMeta() {
-      document.getElementById('weekBadge').textContent = DROP_DATA.week_label;
-      document.getElementById('lastUpdatedChip').textContent = `Last updated: ${DROP_DATA.last_updated}`;
-      document.getElementById('curatedCountChip').textContent = `${DROP_DATA.curated_count} domains this week`;
-      document.getElementById('sourceChip').textContent = `Sources: ${DROP_DATA.sources.join(' + ')}`;
+      document.getElementById('weekBadge').textContent =
+        safeText(DROP_DATA.week_label, 'Weekly Curated Drops Watchlist');
+
+      document.getElementById('lastUpdatedChip').textContent =
+        `Last updated: ${safeText(DROP_DATA.last_updated_human || DROP_DATA.last_updated)}`;
+
+      document.getElementById('curatedCountChip').textContent =
+        `${safeText(DROP_DATA.curated_count, 0)} domains this week`;
+
+      document.getElementById('sourceChip').textContent =
+        `Sources: ${(DROP_DATA.sources || []).join(' + ') || '—'}`;
+
+      document.getElementById('nextUpdateLabel').textContent =
+        safeText(DROP_DATA.next_update_label, 'Next refresh');
     }
 
     function renderCriteria() {
       const grid = document.getElementById('criteriaGrid');
-      grid.innerHTML = DROP_DATA.criteria.map(item => `<div class="crit-item">${item}</div>`).join('');
+      const criteria = DROP_DATA.criteria || [];
+      grid.innerHTML = criteria.map(item => `<div class="crit-item">${item}</div>`).join('');
     }
 
     function renderFeatured() {
       const grid = document.getElementById('featuredGrid');
-      grid.innerHTML = DROP_DATA.featured.map(item => `
-        <div class="featured-card">
-          <div class="fc-badge">${item.badge}</div>
-          <div class="fc-domain">${item.domain}</div>
+      const featured = DROP_DATA.featured || [];
+
+      if (!featured.length) {
+        grid.innerHTML = `<div class="intro-card"><p>No featured picks are available for this cycle.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = featured.map(item => `
+        <article class="featured-card">
+          <div class="fc-badge">${safeText(item.badge, 'Top Pick')}</div>
+          <div class="fc-domain">${safeText(item.domain)}</div>
+
           <div class="fc-score">
-            <div class="score-bar"><div class="score-fill" style="width:${item.score}%"></div></div>
-            <span class="score-num">${item.score}/100</span>
+            <div class="score-bar">
+              <div class="score-fill" style="width:${Number(item.score || 0)}%"></div>
+            </div>
+            <span class="score-num">${Number(item.score || 0)}/100</span>
           </div>
+
           <div class="fc-meta">
-            <span class="meta-tag">${item.tld}</span>
-            <span class="meta-tag">${item.length} chars</span>
-            <span class="meta-tag">${item.category}</span>
-            <span class="meta-tag ${urgencyClass(item.urgency)}">${item.drop_label}</span>
+            <span class="meta-tag">${safeText(item.tld, '')}</span>
+            <span class="meta-tag">${safeText(item.length, 0)} chars</span>
+            <span class="meta-tag">${safeText(item.category, '')}</span>
+            <span class="meta-tag ${urgencyClass(item.urgency)}">${safeText(item.drop_label, '')}</span>
+            ${item.status_label ? `<span class="meta-tag status-tag">${item.status_label}</span>` : ''}
           </div>
-          <p class="fc-why">${item.why}</p>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:10px;">
-            <span class="fc-value">Est. resale: ${item.value_range}</span>
-            <a href="${item.check_url}" class="check-btn" target="_blank" rel="noopener">Check →</a>
+
+          <p class="fc-why">${safeText(item.why)}</p>
+
+          <div class="fc-bottom">
+            <span class="fc-value">Est. resale: ${safeText(item.value_range)}</span>
+            <a href="${item.check_url || '#'}" class="check-btn" target="_blank" rel="noopener">Check →</a>
           </div>
-        </div>
+        </article>
       `).join('');
     }
 
     function renderTable() {
       const tbody = document.getElementById('tableBody');
-      tbody.innerHTML = DROP_DATA.domains.map(item => `
-        <tr data-cat="${item.category}">
-          <td class="domain-col">${item.domain}</td>
-          <td class="score-col ${scoreClass(item.score)}" data-sort="${item.score}">${item.score}</td>
-          <td><span class="cat-pill">${item.category_label}</span></td>
-          <td class="drop-date" data-sort="${item.drop_sort}">${item.drop_label}</td>
-          <td class="value-col" data-sort="${item.value_sort}">${item.value_range}</td>
-          <td style="font-size:.78rem;color:var(--muted);max-width:240px;">${item.why}</td>
-          <td><a href="${item.check_url}" class="avail-btn" target="_blank" rel="noopener">Check ↗</a></td>
+      const domains = DROP_DATA.domains || [];
+
+      if (!domains.length) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="padding:24px 16px;color:var(--muted);text-align:center;">
+              No domains are available in this cycle.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = domains.map(item => `
+        <tr data-cat="${item.category || ''}">
+          <td class="domain-col">${safeText(item.domain)}</td>
+
+          <td class="score-col ${scoreClassFromText(item.score_class, Number(item.score || 0))}" data-sort="${Number(item.score || 0)}">
+            ${Number(item.score || 0)}
+          </td>
+
+          <td>
+            <span class="cat-pill">${safeText(item.category_label || item.category)}</span>
+          </td>
+
+          <td class="drop-date ${urgencyClass(item.urgency)}" data-sort="${item.drop_sort || ''}">
+            ${safeText(item.drop_label)}
+          </td>
+
+          <td class="value-col" data-sort="${Number(item.value_sort || 0)}">
+            ${safeText(item.value_range)}
+          </td>
+
+          <td style="font-size:.79rem;color:var(--muted);max-width:285px;line-height:1.7;">
+            <div>${safeText(item.why)}</div>
+            ${item.status_label ? `<div class="status-inline">${item.status_label}</div>` : ''}
+          </td>
+
+          <td>
+            <a href="${item.check_url || '#'}" class="avail-btn" target="_blank" rel="noopener">Check ↗</a>
+          </td>
         </tr>
       `).join('');
     }
 
     function updateCountdown() {
+      if (!DROP_DATA || !DROP_DATA.next_update_iso) {
+        document.getElementById('countdown').textContent = '—';
+        return;
+      }
+
       const now = new Date();
       const target = new Date(DROP_DATA.next_update_iso);
+
+      if (isNaN(target.getTime())) {
+        document.getElementById('countdown').textContent = '—';
+        return;
+      }
+
       const diff = target - now;
 
       if (diff <= 0) {
@@ -760,9 +1059,13 @@
     }
 
     function filterTable() {
-      const q = document.getElementById('searchBox').value.toLowerCase();
+      const q = document.getElementById('searchBox').value.toLowerCase().trim();
+
       document.querySelectorAll('#tableBody tr').forEach(row => {
-        const domain = row.cells[0].textContent.toLowerCase();
+        const firstCell = row.cells[0];
+        if (!firstCell) return;
+
+        const domain = firstCell.textContent.toLowerCase();
         const cat = row.dataset.cat;
         const matchSearch = domain.includes(q);
         const matchCat = activeCat === 'all' || cat === activeCat;
@@ -779,7 +1082,8 @@
 
     function sortTable(col) {
       const tbody = document.getElementById('tableBody');
-      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const rows = Array.from(tbody.querySelectorAll('tr')).filter(row => row.cells.length > 1);
+
       sortDir[col] = !sortDir[col];
 
       rows.sort((a, b) => {
@@ -805,31 +1109,40 @@
       filterTable();
     }
 
-    <script>
-function initPage() {
-  renderMeta();
-  renderCriteria();
-  renderFeatured();
-  renderTable();
-  updateCountdown();
-  setInterval(updateCountdown, 1000)
-}
-</script>
+    function initPage() {
+      renderMeta();
+      renderCriteria();
+      renderFeatured();
+      renderTable();
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
 
-<!-- 👇 أضف هذا هنا -->
-<script>
-  let DROP_DATA = null;
-
-  fetch('data/drops.json')
-    .then(res => res.json())
-    .then(data => {
-      DROP_DATA = data;
-      initPage();
-    })
-    .catch(err => {
-      console.error('Failed to load drops.json', err);
-    });
-</script>
-
+    fetch('data/drops.json')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        DROP_DATA = data;
+        initPage();
+      })
+      .catch(err => {
+        console.error('Failed to load drops.json', err);
+        document.getElementById('weekBadge').textContent = 'Data load failed';
+        document.getElementById('countdown').textContent = 'unavailable';
+        document.getElementById('lastUpdatedChip').textContent = 'Last updated: unavailable';
+        document.getElementById('curatedCountChip').textContent = '0 domains this week';
+        document.getElementById('sourceChip').textContent = 'Sources: unavailable';
+        document.getElementById('criteriaGrid').innerHTML =
+          `<div class="crit-item">The data feed could not be loaded for this cycle.</div>`;
+        document.getElementById('featuredGrid').innerHTML =
+          `<div class="intro-card"><p>The weekly data feed is temporarily unavailable. Please check again shortly.</p></div>`;
+        document.getElementById('tableBody').innerHTML =
+          `<tr><td colspan="7" style="padding:24px 16px;color:var(--muted);text-align:center;">Unable to load weekly watchlist data.</td></tr>`;
+      });
+  </script>
 </body>
 </html>
