@@ -1,0 +1,193 @@
+{
+  "sales": [
+    {
+      "domain": "ai.com",
+      "price": 11000000,
+      "year": 2023,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["ai"],
+      "notes": "landmark exact-match AI asset"
+    },
+    {
+      "domain": "gpt.com",
+      "price": 2000000,
+      "year": 2023,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["gpt"],
+      "notes": "short AI-linked acronym sale"
+    },
+    {
+      "domain": "agents.ai",
+      "price": 400000,
+      "year": 2023,
+      "tld": ".ai",
+      "classification": "commercial_keyword",
+      "keywords": ["agent", "agents", "ai"],
+      "notes": "strong AI category alignment"
+    },
+    {
+      "domain": "data.ai",
+      "price": 500000,
+      "year": 2022,
+      "tld": ".ai",
+      "classification": "commercial_keyword",
+      "keywords": ["data", "ai"],
+      "notes": "exact-fit AI extension alignment"
+    },
+    {
+      "domain": "wallet.com",
+      "price": 1500000,
+      "year": 2022,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["wallet"],
+      "notes": "strong finance keyword sale"
+    },
+    {
+      "domain": "trading.com",
+      "price": 3000000,
+      "year": 2019,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["trading"],
+      "notes": "category-defining finance term"
+    },
+    {
+      "domain": "wealthlogic.com",
+      "price": 24000,
+      "year": 2024,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["wealth", "logic"],
+      "notes": "finance compound"
+    },
+    {
+      "domain": "stackscan.com",
+      "price": 2711,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["stack", "scan"],
+      "notes": "devtools/security style compound"
+    },
+    {
+      "domain": "weatherpulse.com",
+      "price": 2607,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": ["weather", "pulse"],
+      "notes": "data/SaaS style compound"
+    },
+    {
+      "domain": "fusionflare.com",
+      "price": 1073,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": ["fusion", "flare"],
+      "notes": "energetic brandable compound"
+    },
+    {
+      "domain": "gogenie.com",
+      "price": 2400,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": ["genie"],
+      "notes": "short consumer AI brandable"
+    },
+    {
+      "domain": "nightrocket.com",
+      "price": 2974,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": ["night", "rocket"],
+      "notes": "high-energy brandable"
+    },
+    {
+      "domain": "upfolio.com",
+      "price": 1676,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": ["folio"],
+      "notes": "portfolio/brandable hybrid"
+    },
+    {
+      "domain": "aluren.com",
+      "price": 1524,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "clean invented brandable"
+    },
+    {
+      "domain": "sojourner.com",
+      "price": 10750,
+      "year": 2025,
+      "tld": ".com",
+      "classification": "rare_dictionary_word",
+      "keywords": [],
+      "notes": "rare but legitimate lexical word"
+    },
+    {
+      "domain": "veritas.com",
+      "price": 95000,
+      "year": 2021,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "classical dictionary-style premium"
+    },
+    {
+      "domain": "lumen.com",
+      "price": 250000,
+      "year": 2020,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "short premium lexical word"
+    },
+    {
+      "domain": "echo.com",
+      "price": 700000,
+      "year": 2014,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "short and memorable dictionary word"
+    },
+    {
+      "domain": "nova.com",
+      "price": 800000,
+      "year": 2018,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": ["nova"],
+      "notes": "premium short lexical/scientific word"
+    },
+    {
+      "domain": "emma.com",
+      "price": 50000,
+      "year": 2019,
+      "tld": ".com",
+      "classification": "personal_name",
+      "keywords": [],
+      "notes": "premium first-name domain"
+    },
+    {
+      "domain": "alex.ai",
+      "price": 9000,
+      "year": 2024,
+      "tld": ".ai",
+      "classification": "personal_name",
+      "keywords": [],
+      "notes": "short personal-name AI extension"
+    }
+  ]
+}
