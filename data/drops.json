@@ -1,0 +1,20 @@
+{
+  "week_label": "Curated Weekly Picks — Week of Mar 3, 2026",
+  "last_updated": "March 17, 2026",
+  "next_update_label": "Next Monday refresh",
+  "next_update_iso": "2026-03-23T08:00:00Z",
+  "curated_count": 15,
+  "sources": ["Afternic", "Atom", "GoDaddy Auctions", "Namecheap"],
+  "criteria": [
+    "Length generally kept concise",
+    "Pure alpha preferred over hyphens and numbers",
+    "Quality TLDs prioritized (.com / .ai / .io / .co)",
+    "Brandability and memorability considered",
+    "Obvious trademark issues avoided where possible",
+    "Comparable public sales used as directional reference",
+    "RDAP checked when available for current registration state",
+    "Only names with plausible resale rationale included"
+  ],
+  "featured": [],
+  "domains": []
+}
