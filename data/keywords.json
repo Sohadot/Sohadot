@@ -1,0 +1,327 @@
+{
+  "month_label": "Monthly Domain Intelligence — March 2026",
+  "last_updated": "2026-03-17T18:20:00Z",
+  "last_updated_human": "March 17, 2026 18:20 UTC",
+  "next_update_label": "Next monthly refresh",
+  "next_update_iso": "2026-04-01T08:00:00Z",
+  "sources": [
+    "Internal keyword scoring model",
+    "Commercial intent review",
+    "Public market observations",
+    "Reported domain sales references"
+  ],
+  "market_insight_title": "What the Market Is Signaling This Month",
+  "market_insight": "March 2026 continues to favor commercially usable AI, finance, infrastructure, and productivity keywords rather than purely speculative hype terms. The strongest naming signals are coming from keywords that combine technological relevance with clear end-user business logic. In practice, the market remains selective: not every high-volume term translates into domain liquidity, but keywords with pricing power, enterprise utility, or strong product naming patterns continue to hold strategic value.",
+  "insight_bullets": [
+    "AI remains dominant, but narrower operational terms are outperforming vague hype language.",
+    "Finance and payment vocabulary still shows strong commercial naming potential, especially where trust and utility are explicit.",
+    "Developer and infrastructure terms remain valuable when they produce clean B2B SaaS-style names.",
+    "Health-related keywords are strongest when tied to software, care delivery, or wellness products rather than generic medical terminology."
+  ],
+  "methodology": [
+    {
+      "title": "Commercial intent first",
+      "text": "Keywords are weighted more heavily when they imply budgets, buyers, or business use-cases rather than passive informational traffic."
+    },
+    {
+      "title": "Naming usability matters",
+      "text": "A strong keyword is not enough by itself. The keyword also has to work well inside a domain name, brandable compound, or exact-match structure."
+    },
+    {
+      "title": "Direction, not certainty",
+      "text": "Search volume and CPC are used as directional indicators. They do not guarantee resale liquidity or buyer urgency."
+    },
+    {
+      "title": "Sales are contextual proof",
+      "text": "Reported sales help validate market attention, but adjacent names do not automatically inherit the same value."
+    }
+  ],
+  "keywords": [
+    {
+      "rank": 1,
+      "keyword": "AI Agents",
+      "category": "AI",
+      "activity_level": "Very High",
+      "search_volume": "High",
+      "cpc_range": "$8–18",
+      "domain_logic": "One of the strongest current naming themes because it combines AI relevance with an immediately monetizable product category. Works especially well in compounds, platforms, automation tools, enterprise workflows, and agent-management products.",
+      "example_domains": [
+        "AgentStack.com",
+        "AgentLayer.ai",
+        "AgentFlow.io"
+      ],
+      "investor_note": "Look for short compounds, plural/singular variations, orchestration words, and enterprise-friendly structures rather than generic hype strings.",
+      "developer_note": "This keyword family fits dashboards, orchestration tools, copilots, workflow software, and team productivity products.",
+      "score": 94,
+      "trend": "Rising",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".io"
+      ]
+    },
+    {
+      "rank": 2,
+      "keyword": "Payments",
+      "category": "Finance",
+      "activity_level": "High",
+      "search_volume": "High",
+      "cpc_range": "$10–24",
+      "domain_logic": "Payments remains one of the strongest finance keywords because it connects directly to budgets, merchants, infrastructure, and enterprise software. It works in exact-match contexts and in powerful compounds.",
+      "example_domains": [
+        "PaymentsHub.com",
+        "PaymentsFlow.com",
+        "InstantPayments.ai"
+      ],
+      "investor_note": "Payments names tend to work best when paired with clarity, speed, trust, settlement, gateway, or infrastructure logic.",
+      "developer_note": "This keyword suits APIs, gateways, merchant dashboards, payout systems, embedded finance, and B2B fintech products.",
+      "score": 91,
+      "trend": "Stable Up",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".io"
+      ]
+    },
+    {
+      "rank": 3,
+      "keyword": "Cybersecurity",
+      "category": "Tech",
+      "activity_level": "High",
+      "search_volume": "High",
+      "cpc_range": "$14–32",
+      "domain_logic": "Cybersecurity terms continue to hold strong commercial value because they map directly to services, products, compliance, and enterprise budgets. The keyword is most valuable when transformed into sharper domain structures rather than used raw.",
+      "example_domains": [
+        "CyberShield.com",
+        "SecureStack.io",
+        "ThreatLayer.com"
+      ],
+      "investor_note": "Shorter trust-forward compounds generally outperform overly technical strings unless the buyer pool is highly specialized.",
+      "developer_note": "Useful for security scanners, compliance tools, incident response products, managed security services, and infrastructure platforms.",
+      "score": 89,
+      "trend": "Rising",
+      "priority_tlds": [
+        ".com",
+        ".io",
+        ".ai"
+      ]
+    },
+    {
+      "rank": 4,
+      "keyword": "Data Infrastructure",
+      "category": "Tech",
+      "activity_level": "High",
+      "search_volume": "Medium",
+      "cpc_range": "$7–16",
+      "domain_logic": "Infrastructure terms are strong in domain markets when they produce clean, credible B2B software names. This area rewards names that sound foundational, durable, and operational rather than trendy.",
+      "example_domains": [
+        "DataCore.com",
+        "InfraLayer.io",
+        "DataFabric.ai"
+      ],
+      "investor_note": "Focus on words like core, layer, stack, fabric, sync, and vault when building around this theme.",
+      "developer_note": "Excellent for observability, data pipelines, sync layers, developer tooling, and internal platform products.",
+      "score": 86,
+      "trend": "Rising",
+      "priority_tlds": [
+        ".com",
+        ".io",
+        ".ai"
+      ]
+    },
+    {
+      "rank": 5,
+      "keyword": "Wealth",
+      "category": "Finance",
+      "activity_level": "Medium High",
+      "search_volume": "Medium",
+      "cpc_range": "$12–28",
+      "domain_logic": "Wealth remains commercially attractive because it signals advisory, premium positioning, assets, and financial decision-making. It performs best when paired with trust, management, or planning vocabulary.",
+      "example_domains": [
+        "WealthLogic.com",
+        "WealthPilot.com",
+        "WealthBase.ai"
+      ],
+      "investor_note": "Avoid overly generic long strings. The strongest names in this family sound trustworthy and client-facing.",
+      "developer_note": "Good fit for portfolio platforms, planning software, advisory tools, and investor dashboards.",
+      "score": 84,
+      "trend": "Stable",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".co"
+      ]
+    },
+    {
+      "rank": 6,
+      "keyword": "Health AI",
+      "category": "Health",
+      "activity_level": "High",
+      "search_volume": "Medium High",
+      "cpc_range": "$6–14",
+      "domain_logic": "Health AI is strong because it links a major technology theme to a high-value sector. The domain opportunity is strongest in productized workflows, triage systems, diagnostics support, and wellness software.",
+      "example_domains": [
+        "HealthAgent.ai",
+        "CareLogic.com",
+        "MindAssist.ai"
+      ],
+      "investor_note": "The best names in this area balance innovation with trust. Overly aggressive or gimmicky branding can weaken buyer confidence.",
+      "developer_note": "Useful for wellness apps, symptom tools, triage systems, care coordination software, and patient-support interfaces.",
+      "score": 83,
+      "trend": "Rising",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".io"
+      ]
+    },
+    {
+      "rank": 7,
+      "keyword": "Automation",
+      "category": "AI",
+      "activity_level": "Medium High",
+      "search_volume": "High",
+      "cpc_range": "$5–12",
+      "domain_logic": "Automation is broad, but still valuable when narrowed into business-ready naming structures. It works best when paired with operations, workflows, agents, tasks, or vertical-specific use-cases.",
+      "example_domains": [
+        "TaskFlow.com",
+        "OpsAutomation.ai",
+        "AutoLayer.io"
+      ],
+      "investor_note": "Avoid very broad generic forms unless they are exceptionally short. Compounds with workflow or operational meaning usually perform better.",
+      "developer_note": "Strong for no-code, workflow tools, CRM automations, business operations software, and AI-enhanced task systems.",
+      "score": 81,
+      "trend": "Stable Up",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".io"
+      ]
+    },
+    {
+      "rank": 8,
+      "keyword": "Diagnostics",
+      "category": "Health",
+      "activity_level": "Medium",
+      "search_volume": "Medium",
+      "cpc_range": "$8–15",
+      "domain_logic": "Diagnostics is a serious keyword with high-value vertical use, but domain performance depends on pairing it with clarity or specialized context. Stronger in exact-match professional settings than in casual consumer branding.",
+      "example_domains": [
+        "DiagLogic.com",
+        "RapidDiagnostics.ai",
+        "SignalDx.com"
+      ],
+      "investor_note": "Works best in medically credible or enterprise product naming. Avoid overly playful compounds in this category.",
+      "developer_note": "Suitable for imaging support, analysis tools, health reporting software, testing platforms, and biosignal products.",
+      "score": 78,
+      "trend": "Stable",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".io"
+      ]
+    },
+    {
+      "rank": 9,
+      "keyword": "Geo Search",
+      "category": "Geo",
+      "activity_level": "Medium",
+      "search_volume": "Medium",
+      "cpc_range": "$4–10",
+      "domain_logic": "Geo terms can work well when tied to business directories, maps, local SaaS, real estate, or city-level discovery. Liquidity is narrower than AI or finance, but local use-case clarity can still create demand.",
+      "example_domains": [
+        "AustinMap.com",
+        "DubaiSearch.com",
+        "CityRadar.io"
+      ],
+      "investor_note": "Choose city keywords carefully. The strongest names either match major economic centers or solve a clear local-use problem.",
+      "developer_note": "Good for local indexes, event discovery, map interfaces, real estate tools, and city utility products.",
+      "score": 74,
+      "trend": "Stable",
+      "priority_tlds": [
+        ".com",
+        ".io",
+        ".co"
+      ]
+    },
+    {
+      "rank": 10,
+      "keyword": "Brandable AI Compounds",
+      "category": "Brand",
+      "activity_level": "Medium High",
+      "search_volume": "Low Direct / High Market Relevance",
+      "cpc_range": "$3–9",
+      "domain_logic": "This category is less about exact keyword traffic and more about naming usability. Strong AI brandables remain attractive when they are short, pronounceable, commercially clean, and suggest product utility without being too narrow.",
+      "example_domains": [
+        "Gogenie.com",
+        "NeuralMint.com",
+        "CortexFlow.ai"
+      ],
+      "investor_note": "This category rewards taste more than raw metrics. The best names feel natural, memorable, and product-ready.",
+      "developer_note": "Ideal for startup naming, copilots, creative tools, workflow products, and user-facing AI applications.",
+      "score": 77,
+      "trend": "Rising",
+      "priority_tlds": [
+        ".com",
+        ".ai",
+        ".io"
+      ]
+    }
+  ],
+  "top_sales": [
+    {
+      "domain": "Ai.com",
+      "price": "$11,000,000",
+      "category": "AI",
+      "sale_month": "Reference Landmark Sale",
+      "source": "Publicly reported",
+      "why_it_sold": "Ultra-short exact-match AI term on the strongest global extension. This is a category-defining digital asset rather than a normal comparable.",
+      "market_signal": "Confirms that the AI category remains structurally important, but this sale should be treated as a landmark exception rather than a standard pricing model."
+    },
+    {
+      "domain": "Gpt.com",
+      "price": "$2,000,000",
+      "category": "AI",
+      "sale_month": "Reference Market Sale",
+      "source": "Publicly reported",
+      "why_it_sold": "Short, iconic, directly connected to one of the most commercially powerful terms in modern AI branding.",
+      "market_signal": "Shows that high-intensity AI abbreviations can command premium prices when demand, recognition, and timing converge."
+    },
+    {
+      "domain": "Wallet.com",
+      "price": "$1,500,000",
+      "category": "Finance / Crypto",
+      "sale_month": "Reference Market Sale",
+      "source": "Publicly reported",
+      "why_it_sold": "Strong exact-match commercial term with clear finance and crypto utility across multiple end-user types.",
+      "market_signal": "Supports the idea that finance infrastructure keywords retain value when they are simple, trustable, and product-defining."
+    },
+    {
+      "domain": "Trading.com",
+      "price": "$3,000,000",
+      "category": "Finance",
+      "sale_month": "Reference Market Sale",
+      "source": "Publicly reported",
+      "why_it_sold": "Category-defining finance keyword with direct commercial use and high-intent traffic relevance.",
+      "market_signal": "Reinforces that finance terms with obvious buyer logic remain among the strongest classes of domain assets."
+    },
+    {
+      "domain": "Data.ai",
+      "price": "$500,000",
+      "category": "Tech / AI",
+      "sale_month": "Reference Market Sale",
+      "source": "Publicly reported",
+      "why_it_sold": "Clean exact-match pairing between a major technology term and a now highly relevant extension.",
+      "market_signal": "Validates that strong exact matches on .ai can become strategically significant when category fit is obvious."
+    },
+    {
+      "domain": "Agents.ai",
+      "price": "$400,000",
+      "category": "AI",
+      "sale_month": "Reference Market Sale",
+      "source": "Publicly reported",
+      "why_it_sold": "Perfect alignment between a rising product category and a matching extension.",
+      "market_signal": "Supports the current strength of agent-based naming patterns across AI software and automation."
+    }
+  ]
+}
