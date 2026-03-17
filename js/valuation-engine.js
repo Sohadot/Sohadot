@@ -9,14 +9,16 @@ async function loadValuationData() {
     lexicalWords,
     rareWords,
     names,
-    industryMap
+    industryMap,
+    comps
   ] = await Promise.all([
     fetch('/data/valuation_config.json').then(r => r.json()),
     fetch('/data/valuation_keywords.json').then(r => r.json()),
     fetch('/data/lexical_words.json').then(r => r.json()),
     fetch('/data/rare_words.json').then(r => r.json()),
     fetch('/data/names.json').then(r => r.json()),
-    fetch('/data/industry_map.json').then(r => r.json())
+    fetch('/data/industry_map.json').then(r => r.json()),
+    fetch('/data/valuation_comps.json').then(r => r.json())
   ]);
 
   VALUATION_DATA = {
@@ -25,7 +27,8 @@ async function loadValuationData() {
     lexicalWords,
     rareWords,
     names,
-    industryMap
+    industryMap,
+    comps
   };
 
   return VALUATION_DATA;
@@ -84,7 +87,8 @@ function classifyDomain(sld, datasets) {
       classification: 'commercial_keyword',
       confidence: 'medium_high',
       lexicalStatus: 'commercial keyword pattern',
-      keywordHits: commercialHits
+      keywordHits: commercialHits,
+      lexicalEntry: null
     };
   }
 
@@ -113,7 +117,8 @@ function classifyDomain(sld, datasets) {
       classification: 'personal_name',
       confidence: 'high',
       lexicalStatus: 'recognized personal name',
-      keywordHits: []
+      keywordHits: [],
+      lexicalEntry: null
     };
   }
 
@@ -122,7 +127,8 @@ function classifyDomain(sld, datasets) {
       classification: 'brandable',
       confidence: 'medium',
       lexicalStatus: 'clean invented or brandable structure',
-      keywordHits: []
+      keywordHits: [],
+      lexicalEntry: null
     };
   }
 
@@ -130,37 +136,101 @@ function classifyDomain(sld, datasets) {
     classification: 'random_low_quality',
     confidence: 'low',
     lexicalStatus: 'weak lexical legitimacy',
-    keywordHits: []
+    keywordHits: [],
+    lexicalEntry: null
   };
 }
 
 function estimateUseCases(result, industryMap) {
-  const sld = result.sld;
   const hits = new Set();
+  const keywordHits = result.keywordHits || [];
 
-  if (result.keywordHits?.includes('ai') || result.keywordHits?.includes('agent') || result.keywordHits?.includes('agents') || result.keywordHits?.includes('gpt') || result.keywordHits?.includes('llm')) {
+  if (
+    keywordHits.includes('ai') ||
+    keywordHits.includes('agent') ||
+    keywordHits.includes('agents') ||
+    keywordHits.includes('gpt') ||
+    keywordHits.includes('llm') ||
+    keywordHits.includes('neural') ||
+    keywordHits.includes('vision') ||
+    keywordHits.includes('model')
+  ) {
     industryMap.ai.forEach(v => hits.add(v));
   }
 
-  if (result.keywordHits?.includes('finance') || result.keywordHits?.includes('pay') || result.keywordHits?.includes('payments') || result.keywordHits?.includes('wealth') || result.keywordHits?.includes('bank') || result.keywordHits?.includes('cash')) {
+  if (
+    keywordHits.includes('finance') ||
+    keywordHits.includes('fintech') ||
+    keywordHits.includes('pay') ||
+    keywordHits.includes('payments') ||
+    keywordHits.includes('wealth') ||
+    keywordHits.includes('wallet') ||
+    keywordHits.includes('bank') ||
+    keywordHits.includes('cash') ||
+    keywordHits.includes('credit') ||
+    keywordHits.includes('loan') ||
+    keywordHits.includes('loans') ||
+    keywordHits.includes('mortgage') ||
+    keywordHits.includes('trading') ||
+    keywordHits.includes('forex')
+  ) {
     industryMap.finance.forEach(v => hits.add(v));
   }
 
-  if (result.keywordHits?.includes('health') || result.keywordHits?.includes('therapy') || result.keywordHits?.includes('medical') || result.keywordHits?.includes('pharma')) {
+  if (
+    keywordHits.includes('health') ||
+    keywordHits.includes('therapy') ||
+    keywordHits.includes('medical') ||
+    keywordHits.includes('pharma') ||
+    keywordHits.includes('clinic') ||
+    keywordHits.includes('bio') ||
+    keywordHits.includes('genomics')
+  ) {
     industryMap.health.forEach(v => hits.add(v));
   }
 
-  if (result.keywordHits?.includes('legal') || result.keywordHits?.includes('law') || result.keywordHits?.includes('attorney')) {
+  if (
+    keywordHits.includes('legal') ||
+    keywordHits.includes('law') ||
+    keywordHits.includes('attorney')
+  ) {
     industryMap.legal.forEach(v => hits.add(v));
   }
 
-  if (result.keywordHits?.includes('data') || result.keywordHits?.includes('cloud') || result.keywordHits?.includes('security')) {
+  if (
+    keywordHits.includes('data') ||
+    keywordHits.includes('cloud') ||
+    keywordHits.includes('security') ||
+    keywordHits.includes('cyber')
+  ) {
     industryMap.tech.forEach(v => hits.add(v));
+  }
+
+  if (
+    keywordHits.includes('solar') ||
+    keywordHits.includes('energy') ||
+    keywordHits.includes('battery') ||
+    keywordHits.includes('hydrogen')
+  ) {
+    industryMap.energy.forEach(v => hits.add(v));
+  }
+
+  if (
+    keywordHits.includes('travel') ||
+    keywordHits.includes('hotel') ||
+    keywordHits.includes('hotels')
+  ) {
+    industryMap.travel.forEach(v => hits.add(v));
   }
 
   if (result.classification === 'rare_dictionary_word') {
     industryMap.culture.forEach(v => hits.add(v));
     industryMap.creative.forEach(v => hits.add(v));
+  }
+
+  if (result.classification === 'dictionary_word') {
+    industryMap.creative.forEach(v => hits.add(v));
+    industryMap.tech.forEach(v => hits.add(v));
   }
 
   if (result.classification === 'brandable') {
@@ -203,6 +273,49 @@ function buildPricing(score, classification, config, tld) {
   };
 }
 
+function findComparableSales(sld, tld, classification, keywordHits, compsData) {
+  const sales = compsData.sales || [];
+
+  const matches = sales.map(item => {
+    let score = 0;
+
+    if (item.tld === tld) score += 18;
+    if (item.classification === classification) score += 20;
+
+    const lengthDiff = Math.abs(item.length - sld.length);
+    score += Math.max(0, 16 - (lengthDiff * 2));
+
+    if (keywordHits?.length) {
+      const shared = item.keywords.filter(k => keywordHits.includes(k));
+      score += shared.length * 12;
+    }
+
+    if (item.sld === sld) score += 50;
+
+    return { ...item, matchScore: score };
+  });
+
+  return matches
+    .filter(item => item.matchScore >= 16)
+    .sort((a, b) => b.matchScore - a.matchScore || b.price - a.price)
+    .slice(0, 4);
+}
+
+function refinePricingWithComparables(basePricing, comparables) {
+  if (!comparables.length) return basePricing;
+
+  const avg = comparables.reduce((sum, item) => sum + item.price, 0) / comparables.length;
+  const adjustedMid = (basePricing.midpoint * 0.7) + (avg * 0.3);
+
+  return {
+    midpoint: adjustedMid,
+    wholesaleLow: adjustedMid * 0.68,
+    wholesaleHigh: adjustedMid * 1.34,
+    retailLow: adjustedMid * 2.2,
+    retailHigh: adjustedMid * 5.4
+  };
+}
+
 function buildStrengths(result) {
   const strengths = [];
 
@@ -214,6 +327,7 @@ function buildStrengths(result) {
 
   if (result.tld === '.com') strengths.push('strongest global resale extension');
   if (result.tld === '.ai') strengths.push('strong alignment with modern AI naming demand');
+  if (result.tld === '.io') strengths.push('strong fit for software and developer-oriented branding');
   if (result.sld.length <= 6) strengths.push('short length advantage');
   if (result.sld.length <= 10) strengths.push('manageable brand length');
 
@@ -228,6 +342,10 @@ function buildCautions(result) {
     cautions.push('buyer pool is narrower than generic commercial keywords');
   }
 
+  if (result.classification === 'dictionary_word') {
+    cautions.push('value depends on buyer fit, not lexical legitimacy alone');
+  }
+
   if (result.classification === 'brandable') {
     cautions.push('value depends heavily on buyer taste and branding fit');
   }
@@ -240,7 +358,12 @@ function buildCautions(result) {
     cautions.push('weak lexical and commercial foundation');
   }
 
-  if (result.tld !== '.com' && result.tld !== '.ai' && result.tld !== '.io' && result.tld !== '.co') {
+  if (
+    result.tld !== '.com' &&
+    result.tld !== '.ai' &&
+    result.tld !== '.io' &&
+    result.tld !== '.co'
+  ) {
     cautions.push('extension may limit resale liquidity');
   }
 
@@ -289,7 +412,17 @@ async function evaluateDomain(domainInput) {
 
   score = Math.max(5, Math.min(100, score));
 
-  const pricing = buildPricing(score, classificationData.classification, config, tld);
+  const comparables = findComparableSales(
+    sld,
+    tld,
+    classificationData.classification,
+    classificationData.keywordHits || [],
+    datasets.comps
+  );
+
+  const rawPricing = buildPricing(score, classificationData.classification, config, tld);
+  const pricing = refinePricingWithComparables(rawPricing, comparables);
+
   const useCases = estimateUseCases({
     sld,
     tld,
@@ -309,9 +442,17 @@ async function evaluateDomain(domainInput) {
     keywordHits: classificationData.keywordHits || [],
     lexicalEntry: classificationData.lexicalEntry || null,
     pricing,
+    comparables,
     useCases,
-    strengths: buildStrengths({ sld, tld, classification: classificationData.classification }),
-    cautions: buildCautions({ tld, classification: classificationData.classification }),
+    strengths: buildStrengths({
+      sld,
+      tld,
+      classification: classificationData.classification
+    }),
+    cautions: buildCautions({
+      tld,
+      classification: classificationData.classification
+    }),
     meta: {
       lastUpdated: config.last_updated_human,
       nextUpdate: config.next_update_label
