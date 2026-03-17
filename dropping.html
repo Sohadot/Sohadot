@@ -63,7 +63,6 @@
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-
     html{scroll-behavior:smooth}
 
     body{
@@ -489,7 +488,8 @@
     }
 
     .check-btn,
-    .avail-btn{
+    .avail-btn,
+    .mc-btn{
       display:inline-flex;
       align-items:center;
       gap:6px;
@@ -676,6 +676,117 @@
       transform:translateY(-1px);
     }
 
+    .mobile-cards{
+      display:none;
+      gap:14px;
+      margin-bottom:28px;
+    }
+
+    .mobile-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .mc-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .mc-domain{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size:1.02rem;
+      font-weight:700;
+      color:var(--text);
+      line-height:1.35;
+      word-break:break-word;
+    }
+
+    .mc-score{
+      font-weight:800;
+      font-size:1rem;
+      white-space:nowrap;
+    }
+
+    .mc-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:12px;
+    }
+
+    .mc-why{
+      font-size:.83rem;
+      color:var(--muted);
+      line-height:1.72;
+      margin-bottom:14px;
+    }
+
+    .mc-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px 12px;
+      margin-bottom:14px;
+    }
+
+    .mc-item{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 11px;
+    }
+
+    .mc-label{
+      display:block;
+      font-size:.66rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--dim);
+      margin-bottom:5px;
+      font-weight:700;
+    }
+
+    .mc-value{
+      font-size:.84rem;
+      color:var(--text);
+      font-weight:600;
+      line-height:1.45;
+    }
+
+    .mc-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .mc-range{
+      color:var(--green);
+      font-weight:800;
+      font-size:.88rem;
+    }
+
+    .mc-btn{
+      justify-content:center;
+      min-width:108px;
+      padding:10px 14px;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      font-size:.82rem;
+      box-shadow:0 6px 18px rgba(29,78,216,0.18);
+    }
+
+    .mc-btn:hover{
+      background:#1e40af;
+    }
+
     .how-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
@@ -739,6 +850,9 @@
       .status-inner{align-items:flex-start}
       .featured-grid{grid-template-columns:1fr}
       .section-title{font-size:1.42rem}
+      .drops-table-wrap{display:none}
+      .mobile-cards{display:grid}
+      .mc-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -847,6 +961,8 @@
         <tbody id="tableBody"></tbody>
       </table>
     </section>
+
+    <section class="mobile-cards" id="mobileCards"></section>
 
     <section class="how-section">
       <p class="how-title">How to Use This List</p>
@@ -983,6 +1099,7 @@
 
     function renderTable() {
       const tbody = document.getElementById('tableBody');
+      const mobileCards = document.getElementById('mobileCards');
       const domains = DROP_DATA.domains || [];
 
       if (!domains.length) {
@@ -992,6 +1109,12 @@
               No domains are available in this cycle.
             </td>
           </tr>
+        `;
+
+        mobileCards.innerHTML = `
+          <div class="mobile-card">
+            <div class="mc-why">No domains are available in this cycle.</div>
+          </div>
         `;
         return;
       }
@@ -1025,6 +1148,42 @@
             <a href="${item.check_url || '#'}" class="avail-btn" target="_blank" rel="noopener">Check ↗</a>
           </td>
         </tr>
+      `).join('');
+
+      mobileCards.innerHTML = domains.map(item => `
+        <article class="mobile-card" data-cat="${item.category || ''}" data-domain="${safeText(item.domain).toLowerCase()}">
+          <div class="mc-top">
+            <div class="mc-domain">${safeText(item.domain)}</div>
+            <div class="mc-score ${scoreClassFromText(item.score_class, Number(item.score || 0))}">
+              ${Number(item.score || 0)}
+            </div>
+          </div>
+
+          <div class="mc-meta">
+            <span class="cat-pill">${safeText(item.category_label || item.category)}</span>
+            <span class="meta-tag ${urgencyClass(item.urgency)}">${safeText(item.drop_label)}</span>
+            ${item.status_label ? `<span class="meta-tag status-tag">${item.status_label}</span>` : ''}
+          </div>
+
+          <div class="mc-grid">
+            <div class="mc-item">
+              <span class="mc-label">Estimated Value</span>
+              <div class="mc-value">${safeText(item.value_range)}</div>
+            </div>
+
+            <div class="mc-item">
+              <span class="mc-label">Drop Date</span>
+              <div class="mc-value ${urgencyClass(item.urgency)}">${safeText(item.drop_label)}</div>
+            </div>
+          </div>
+
+          <div class="mc-why">${safeText(item.why)}</div>
+
+          <div class="mc-bottom">
+            <div class="mc-range">Est. resale: ${safeText(item.value_range)}</div>
+            <a href="${item.check_url || '#'}" class="mc-btn" target="_blank" rel="noopener">Check →</a>
+          </div>
+        </article>
       `).join('');
     }
 
@@ -1070,6 +1229,14 @@
         const matchSearch = domain.includes(q);
         const matchCat = activeCat === 'all' || cat === activeCat;
         row.style.display = matchSearch && matchCat ? '' : 'none';
+      });
+
+      document.querySelectorAll('#mobileCards .mobile-card').forEach(card => {
+        const domain = (card.dataset.domain || '').toLowerCase();
+        const cat = card.dataset.cat;
+        const matchSearch = domain.includes(q);
+        const matchCat = activeCat === 'all' || cat === activeCat;
+        card.style.display = matchSearch && matchCat ? '' : 'none';
       });
     }
 
@@ -1142,6 +1309,8 @@
           `<div class="intro-card"><p>The weekly data feed is temporarily unavailable. Please check again shortly.</p></div>`;
         document.getElementById('tableBody').innerHTML =
           `<tr><td colspan="7" style="padding:24px 16px;color:var(--muted);text-align:center;">Unable to load weekly watchlist data.</td></tr>`;
+        document.getElementById('mobileCards').innerHTML =
+          `<div class="mobile-card"><div class="mc-why">Unable to load weekly watchlist data.</div></div>`;
       });
   </script>
 </body>
