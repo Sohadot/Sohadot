@@ -694,6 +694,65 @@
       .kw-grid{grid-template-columns:1fr}
       .section-title{font-size:1.42rem}
     }
+    
+    .seo-links {
+  max-width: 1200px;; /* ليتحاذى مع عرض محتوى الموقع */
+  margin: 60px auto;
+  padding: 32px;
+  background: var(--card); /* يستخدم خلفية الكروت البيضاء في موقعك */
+  border: 1px solid var(--border); /* يضيف حدوداً خفيفة بدل الخط العلوي فقط */
+  border-radius: var(--radius-lg); /* نفس درجة انحناء الزوايا في موقعك */
+  box-shadow: var(--shadow); /* يضيف الظل الناعم المستخدم في بقية العناصر */
+}
+
+.seo-links h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.85rem;
+  color: var(--blue); /* يستخدم اللون الأزرق الموحد للموقع */
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.seo-links p {
+  color: var(--muted); /* يستخدم لون النص الهادئ الموحد */
+  font-size: 0.98rem;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.seo-links ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+}
+
+.seo-links a {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: color 0.18s ease; /* حركة ناعمة عند مرور الفأرة */
+}
+
+.seo-links a:hover {
+  color: var(--blue-2); /* يتغير لونه للأزرق الأغمق عند المرور عليه */
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* لجعل القسم متجاوباً مع الهواتف بشكل احترافي */
+@media (max-width: 640px) {
+  .seo-links {
+    margin: 40px 0 0;
+    padding: 24px 18px;
+  }
+  .seo-links ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
   </style>
 </head>
 <body>
