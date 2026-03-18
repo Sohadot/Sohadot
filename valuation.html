@@ -11,7 +11,7 @@
 
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Domain Valuation | Sohadot"/>
-  <meta property="og:description" content="Structured domain valuation based on lexical legitimacy, commercial keyword strength, TLD quality, and comparable public sales context."/>
+  <meta property="og:description" content="Structured domain valuation based on lexical legitimacy, commercial keyword strength, TLD quality, naming structure, and comparable public sales context."/>
   <meta property="og:url" content="https://sohadot.com/valuation.html"/>
   <meta property="og:site_name" content="Sohadot"/>
 
@@ -49,6 +49,7 @@
       --bg-soft:#fbf8f2;
       --card:#ffffff;
       --surface:#f9f6ef;
+      --surface-2:#f4efe5;
       --border:rgba(15,23,42,0.08);
       --border-strong:rgba(15,23,42,0.12);
       --text:#142033;
@@ -58,15 +59,17 @@
       --blue-2:#1c43ab;
       --blue-soft:rgba(36,84,211,0.08);
       --gold:#f0a500;
+      --gold-soft:rgba(240,165,0,0.10);
       --green:#15a66d;
       --green-soft:rgba(21,166,109,0.08);
       --red:#d45858;
+      --red-soft:rgba(212,88,88,0.08);
       --shadow:0 10px 30px rgba(17,24,39,0.06);
+      --shadow-strong:0 24px 60px rgba(17,24,39,0.10);
       --radius:22px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-
     html{scroll-behavior:smooth}
 
     body{
@@ -84,7 +87,7 @@
     .site-nav{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:70;
       backdrop-filter:blur(14px);
       background:rgba(246,242,233,0.88);
       border-bottom:1px solid var(--border);
@@ -141,7 +144,7 @@
     }
 
     .hero{
-      padding:68px 20px 34px;
+      padding:34px 20px 20px;
     }
 
     .hero-shell{
@@ -150,7 +153,7 @@
       background:linear-gradient(135deg, #0f2658 0%, #12337a 42%, #1f57d8 100%);
       border-radius:30px;
       box-shadow:0 20px 60px rgba(15,38,88,0.18);
-      padding:54px 28px 42px;
+      padding:56px 28px 30px;
       overflow:hidden;
       position:relative;
     }
@@ -177,7 +180,7 @@
     }
 
     .hero-inner{
-      max-width:920px;
+      max-width:940px;
       margin:0 auto;
       position:relative;
       z-index:1;
@@ -202,7 +205,7 @@
 
     h1{
       font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.7rem, 5.5vw, 4.9rem);
+      font-size:clamp(2.8rem, 5.6vw, 5rem);
       line-height:.98;
       color:#fff;
       margin-bottom:16px;
@@ -212,7 +215,7 @@
     .hero-sub{
       max-width:900px;
       margin:0 auto;
-      color:rgba(255,255,255,0.82);
+      color:rgba(255,255,255,0.84);
       font-size:1.02rem;
       line-height:1.85;
       font-weight:300;
@@ -231,33 +234,20 @@
       border-radius:999px;
       background:rgba(255,255,255,0.10);
       border:1px solid rgba(255,255,255,0.16);
-      color:rgba(255,255,255,0.90);
+      color:rgba(255,255,255,0.92);
       font-size:.8rem;
       font-weight:500;
     }
 
-    .main{
-      max-width:1200px;
-      margin:0 auto;
-      padding:24px 20px 80px;
-    }
-
-    .valuation-layout{
-      display:grid;
-      grid-template-columns:minmax(0, 1.35fr) minmax(290px, .65fr);
-      gap:22px;
-      align-items:start;
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    .input-card{
+    .hero-eval{
+      max-width:900px;
+      margin:28px auto 0;
+      background:rgba(255,255,255,0.97);
+      border:1px solid rgba(255,255,255,0.16);
+      border-radius:24px;
+      box-shadow:0 20px 50px rgba(12,33,79,0.20);
       padding:24px;
+      text-align:left;
     }
 
     .section-label-top{
@@ -280,10 +270,10 @@
       min-width:0;
       height:66px;
       border-radius:18px;
-      border:2px solid rgba(20,32,51,0.18);
+      border:2px solid rgba(20,32,51,0.16);
       background:#fff;
       padding:0 20px;
-      font-size:1.08rem;
+      font-size:1.05rem;
       font-family:'Outfit',sans-serif;
       color:var(--text);
       outline:none;
@@ -302,7 +292,7 @@
 
     .val-btn{
       flex-shrink:0;
-      min-width:146px;
+      min-width:150px;
       height:66px;
       border:none;
       border-radius:18px;
@@ -329,9 +319,9 @@
 
     .sub-hint{
       margin-top:12px;
-      color:var(--dim);
-      font-size:.82rem;
-      line-height:1.7;
+      color:var(--muted);
+      font-size:.83rem;
+      line-height:1.75;
     }
 
     .error-msg{
@@ -373,11 +363,31 @@
       to{transform:rotate(360deg)}
     }
 
+    .main{
+      max-width:1200px;
+      margin:0 auto;
+      padding:8px 20px 80px;
+    }
+
+    .valuation-layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1.35fr) minmax(290px, .65fr);
+      gap:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
     .result-card{
       display:none;
       padding:24px;
-      margin-top:18px;
       animation:fadeUp .25s ease;
+      min-height:100px;
     }
 
     .result-card.show{
@@ -430,13 +440,13 @@
     }
 
     .mini-item{
-      padding:12px 14px;
+      padding:14px 15px;
       border-radius:16px;
       background:var(--surface);
       border:1px solid var(--border);
       color:var(--muted);
       font-size:.86rem;
-      line-height:1.7;
+      line-height:1.75;
     }
 
     .mini-item strong{
@@ -477,6 +487,7 @@
       border:1px solid var(--border);
       background:var(--surface);
       color:var(--text);
+      flex-shrink:0;
     }
 
     .tld-com{background:rgba(36,84,211,0.08); color:var(--blue); border-color:rgba(36,84,211,0.15)}
@@ -668,26 +679,84 @@
     }
 
     @media (max-width: 760px){
+      .site-nav{
+        position:static;
+      }
+
       .nav-inner{
         flex-direction:column;
         align-items:flex-start;
+        padding:18px 16px;
       }
 
       .nav-links{
         gap:14px;
       }
 
+      .hero{
+        padding:18px 16px 14px;
+      }
+
       .hero-shell{
-        padding:42px 18px 34px;
+        padding:34px 16px 22px;
         border-radius:24px;
+      }
+
+      .hero-sub{
+        font-size:.98rem;
+        line-height:1.85;
+      }
+
+      .hero-pill{
+        font-size:.75rem;
+        padding:8px 12px;
+      }
+
+      .hero-eval{
+        margin-top:22px;
+        padding:16px;
+        border-radius:18px;
       }
 
       .input-row{
         flex-direction:column;
       }
 
+      .domain-input{
+        height:58px;
+        font-size:1rem;
+        border-radius:15px;
+        padding:0 16px;
+      }
+
       .val-btn{
         width:100%;
+        min-width:100%;
+        height:58px;
+        border-radius:15px;
+      }
+
+      .main{
+        padding:8px 16px 64px;
+      }
+
+      .method-card,
+      .sidebar-card,
+      .result-card{
+        padding:18px;
+      }
+
+      .block-title{
+        font-size:1.65rem;
+      }
+
+      .method-text{
+        font-size:.88rem;
+        line-height:1.85;
+      }
+
+      .mini-item{
+        font-size:.84rem;
       }
 
       .value-grid{
@@ -737,8 +806,9 @@
         <div class="eyebrow">Structured Domain Pricing Intelligence</div>
         <h1>Domain Valuation</h1>
         <p class="hero-sub">
-          A transparent, market-aware valuation tool built on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context rather than black-box output.
+          A transparent, market-aware valuation tool built on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context rather than opaque black-box scoring.
         </p>
+
         <div class="hero-pills">
           <span class="hero-pill">Lexical Legitimacy</span>
           <span class="hero-pill">Commercial Keyword Logic</span>
@@ -746,15 +816,8 @@
           <span class="hero-pill">TLD Quality</span>
           <span class="hero-pill">Brand Structure</span>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <main class="main">
-    <div class="valuation-layout">
-
-      <div>
-        <div class="card input-card">
+        <div class="hero-eval">
           <div class="section-label-top">Enter Domain</div>
 
           <div class="input-row">
@@ -762,7 +825,7 @@
               class="domain-input"
               id="domainInput"
               type="text"
-              placeholder="Enter a domain like lumen.com or stackscan.com"
+              placeholder="Enter a domain like lumen.com"
               autocomplete="off"
               spellcheck="false"
             />
@@ -770,7 +833,7 @@
           </div>
 
           <div class="sub-hint">
-            Built for investors, brokers, founders, and developers seeking a cleaner directional view of naming quality and market plausibility.
+            Built for investors, brokers, founders, and developers seeking a cleaner directional view of naming quality, lexical legitimacy, and market plausibility.
           </div>
 
           <div class="error-msg" id="errorMsg"></div>
@@ -778,11 +841,17 @@
           <div class="loading-card" id="loadingCard">
             <div class="loading-line">
               <div class="spinner"></div>
-              <div>Evaluating domain structure, lexical quality, and comparable public sales context...</div>
+              <div>Evaluating domain structure, lexical quality, keyword strength, and comparable public sales context...</div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <main class="main">
+    <div class="valuation-layout">
+      <div>
         <div class="card result-card" id="resultCard"></div>
       </div>
 
@@ -791,17 +860,17 @@
           <div class="block-kicker">Methodology</div>
           <div class="block-title">How This Model Thinks</div>
           <p class="method-text">
-            This tool evaluates domains through a structured model that weighs lexical legitimacy, commercial keyword strength, TLD quality, naming structure, and comparable public sales context. It is designed to distinguish between commercially strong keywords, legitimate dictionary-based terms, personal-name domains, clean brandables, and weaker low-signal strings without relying on opaque black-box scoring alone.
+            This model weighs lexical legitimacy, commercial keyword strength, TLD quality, naming structure, and comparable public sales context. It is designed to distinguish between commercially strong keywords, legitimate dictionary-based terms, rare but authentic words, personal-name domains, clean brandables, and weaker low-signal strings without relying on opaque scoring alone.
           </p>
         </div>
 
         <div class="card sidebar-card">
           <div class="block-kicker">What It Is Good For</div>
           <div class="mini-list">
-            <div class="mini-item"><strong>Investors:</strong> Directional wholesale and retail framing.</div>
-            <div class="mini-item"><strong>Brokers:</strong> Faster triage for naming quality and market plausibility.</div>
-            <div class="mini-item"><strong>Founders:</strong> Early signal on naming credibility and extension fit.</div>
-            <div class="mini-item"><strong>Developers:</strong> Better context on lexical legitimacy and product suitability.</div>
+            <div class="mini-item"><strong>Investors:</strong> Directional wholesale and retail framing with cleaner market context.</div>
+            <div class="mini-item"><strong>Brokers:</strong> Faster triage for naming quality, buyer plausibility, and positioning.</div>
+            <div class="mini-item"><strong>Founders:</strong> Early signal on naming credibility, extension fit, and perceived strength.</div>
+            <div class="mini-item"><strong>Developers:</strong> Better context on lexical legitimacy, product suitability, and naming usability.</div>
           </div>
         </div>
 
@@ -812,12 +881,11 @@
               This is a structured directional estimate, not a certified appraisal and not a guaranteed sale outcome.
             </div>
             <div class="mini-item">
-              Short premium assets, exact-match commercial terms, and buyer-specific opportunities can sell materially above any model output.
+              Exceptional short assets, exact-match commercial terms, and buyer-specific strategic matches can sell materially above any model output.
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </main>
 
