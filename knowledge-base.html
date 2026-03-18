@@ -1,173 +1,999 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Knowledge Base — Sohadot.com</title>
-<meta name="description" content="Educational resources on domain valuation, comparable sales, pricing strategies, and market insights. Sohadot Knowledge Base is being actively expanded."/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <title>Knowledge Base | Sohadot.com</title>
+  <meta name="description" content="The Sohadot Knowledge Base is a growing domain intelligence reference layer covering valuation logic, comparable sales, keyword strength, pricing frameworks, buyer behavior, and premium naming strategy."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://sohadot.com/knowledge-base.html"/>
 
-<style>
-:root{
-  --bg:#f5f0e8;
-  --card:#fff;
-  --text:#0f172a;
-  --muted:#64748b;
-  --accent:#1d4ed8;
-  --border:rgba(15,23,42,0.08);
-}
-body{
-  font-family:'Outfit',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  margin:0;
-}
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Knowledge Base | Sohadot.com"/>
+  <meta property="og:description" content="Structured educational resources on domain valuation, pricing logic, buyer behavior, keyword intelligence, and premium naming strategy."/>
+  <meta property="og:url" content="https://sohadot.com/knowledge-base.html"/>
+  <meta property="og:site_name" content="Sohadot.com"/>
 
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 32px;
-  border-bottom:1px solid var(--border);
-  background:#fff;
-}
-.nav-logo{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:700;
-  color:var(--accent);
-  text-decoration:none;
-}
-.nav-links a{
-  margin-left:20px;
-  font-size:.85rem;
-  text-decoration:none;
-  color:var(--muted);
-}
-.nav-links a.active{
-  color:var(--accent);
-  font-weight:600;
-}
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Knowledge Base | Sohadot.com"/>
+  <meta name="twitter:description" content="A structured domain intelligence reference layer for valuation, pricing, naming, and market understanding."/>
 
-/* HERO */
-.hero{
-  text-align:center;
-  padding:80px 20px 40px;
-}
-.hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:3rem;
-  margin-bottom:12px;
-}
-.hero p{
-  max-width:600px;
-  margin:auto;
-  color:var(--muted);
-  line-height:1.7;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-/* BOX */
-.box{
-  max-width:900px;
-  margin:40px auto;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:32px;
-}
+  <style>
+    :root{
+      --bg:#f6f2e9;
+      --bg-soft:#fbf8f2;
+      --card:#ffffff;
+      --surface:#f8f5ee;
+      --surface-2:#f1ede4;
+      --border:rgba(15,23,42,0.08);
+      --border-strong:rgba(15,23,42,0.12);
+      --text:#122033;
+      --muted:#67768d;
+      --dim:#93a1b3;
+      --blue:#2454d3;
+      --blue-2:#173b98;
+      --blue-soft:rgba(36,84,211,0.08);
+      --gold:#f0ad1a;
+      --gold-soft:rgba(240,173,26,0.12);
+      --green:#17a36f;
+      --green-soft:rgba(23,163,111,0.09);
+      --shadow:0 12px 32px rgba(15,23,42,0.06);
+      --shadow-strong:0 22px 54px rgba(15,23,42,0.10);
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --radius-sm:14px;
+      --max:1180px;
+    }
 
-.box h2{
-  margin-bottom:12px;
-}
-.box p{
-  color:var(--muted);
-  line-height:1.7;
-}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Outfit',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(36,84,211,0.05), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(240,173,26,0.06), transparent 22%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
 
-/* LIST */
-.topics{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
-}
-.topic{
-  background:#fafafa;
-  padding:14px;
-  border-radius:10px;
-  font-size:.85rem;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.84' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      z-index:0;
+    }
 
-/* CTA */
-.cta{
-  text-align:center;
-  margin-top:30px;
-}
-.cta a{
-  background:var(--accent);
-  color:#fff;
-  padding:10px 18px;
-  border-radius:8px;
-  text-decoration:none;
-  font-size:.85rem;
-}
+    a{text-decoration:none;color:inherit}
+    .page{position:relative;z-index:1}
 
-footer{
-  text-align:center;
-  padding:30px;
-  font-size:.8rem;
-  color:var(--muted);
-}
-</style>
+    .site-nav{
+      position:sticky;
+      top:0;
+      z-index:80;
+      backdrop-filter:blur(16px);
+      background:rgba(246,242,233,0.88);
+      border-bottom:1px solid var(--border);
+    }
+
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      font-family:'Cormorant Garamond',serif;
+      font-size:2rem;
+      line-height:1;
+      font-weight:700;
+      color:var(--blue);
+      letter-spacing:.01em;
+      flex-shrink:0;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
+      font-size:.82rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      color:var(--muted);
+      transition:.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--blue);
+    }
+
+    .nav-links .kb{
+      padding:12px 18px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      color:#fff;
+      box-shadow:0 10px 24px rgba(36,84,211,0.20);
+    }
+
+    .hero{
+      padding:34px 20px 22px;
+    }
+
+    .hero-shell{
+      max-width:var(--max);
+      margin:0 auto;
+      background:linear-gradient(135deg,#0e2452 0%, #153978 44%, #2454d3 100%);
+      border-radius:32px;
+      padding:56px 32px 40px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 24px 70px rgba(14,36,82,0.20);
+    }
+
+    .hero-shell::before{
+      content:"";
+      position:absolute;
+      left:-70px;
+      bottom:-70px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 68%);
+      pointer-events:none;
+    }
+
+    .hero-shell::after{
+      content:"";
+      position:absolute;
+      right:-60px;
+      top:-60px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(240,173,26,0.18), transparent 64%);
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      max-width:920px;
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+      text-align:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 16px;
+      border-radius:999px;
+      border:1px solid rgba(240,173,26,0.35);
+      background:rgba(240,173,26,0.10);
+      color:#ffd978;
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-family:'Cormorant Garamond',serif;
+      color:#fff;
+      font-size:clamp(3rem,5.7vw,5.2rem);
+      line-height:.95;
+      letter-spacing:-.02em;
+      margin-bottom:16px;
+    }
+
+    .hero-sub{
+      color:rgba(255,255,255,0.84);
+      font-size:1.03rem;
+      line-height:1.9;
+      max-width:840px;
+      margin:0 auto 24px;
+      font-weight:300;
+    }
+
+    .hero-pills{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .hero-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.16);
+      color:rgba(255,255,255,0.92);
+      font-size:.82rem;
+      font-weight:500;
+    }
+
+    .main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px 84px;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:20px;
+    }
+
+    .section-kicker{
+      color:var(--blue);
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .section-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2rem,4.2vw,3rem);
+      line-height:1.03;
+      color:var(--text);
+      margin-bottom:10px;
+      letter-spacing:-.01em;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      font-size:.98rem;
+      line-height:1.9;
+      max-width:860px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .intro-card{
+      padding:28px;
+    }
+
+    .intro-card.dark{
+      background:linear-gradient(135deg,#102553 0%, #183c7e 100%);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 22px 52px rgba(16,37,83,0.16);
+    }
+
+    .intro-card .title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:2rem;
+      line-height:1.05;
+      margin-bottom:12px;
+    }
+
+    .intro-card p{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.9;
+    }
+
+    .intro-card.dark p{
+      color:rgba(255,255,255,0.80);
+    }
+
+    .stat-card{
+      padding:24px 18px;
+      text-align:center;
+    }
+
+    .stat-num{
+      font-family:'Cormorant Garamond',serif;
+      font-size:2.4rem;
+      line-height:1;
+      color:var(--blue);
+      margin-bottom:6px;
+    }
+
+    .stat-lbl{
+      color:var(--dim);
+      font-size:.73rem;
+      text-transform:uppercase;
+      letter-spacing:.11em;
+      line-height:1.6;
+    }
+
+    .topic-card{
+      padding:24px 22px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      transition:.18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .topic-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--blue),var(--gold));
+      opacity:0;
+      transition:.18s ease;
+    }
+
+    .topic-card:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-strong);
+      border-color:rgba(36,84,211,0.18);
+    }
+
+    .topic-card:hover::before{
+      opacity:1;
+    }
+
+    .icon-box{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:var(--blue-soft);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.25rem;
+    }
+
+    .topic-title{
+      font-size:1.1rem;
+      font-weight:700;
+      line-height:1.35;
+      color:var(--text);
+    }
+
+    .topic-desc{
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.8;
+      flex:1;
+    }
+
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
+    }
+
+    .chip{
+      padding:8px 11px;
+      border-radius:999px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:.75rem;
+      font-weight:600;
+      line-height:1;
+    }
+
+    .use-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+      gap:22px;
+    }
+
+    .use-main{
+      padding:30px 28px;
+      background:linear-gradient(135deg,#102553 0%, #183d80 100%);
+      border-color:transparent;
+      color:#fff;
+      box-shadow:0 22px 56px rgba(16,37,83,0.18);
+    }
+
+    .use-main .section-kicker{
+      color:#ffd978;
+    }
+
+    .use-main .section-title{
+      color:#fff;
+      margin-bottom:14px;
+      font-size:2.45rem;
+    }
+
+    .use-main p{
+      color:rgba(255,255,255,0.82);
+      font-size:.97rem;
+      line-height:1.95;
+      margin-bottom:18px;
+    }
+
+    .use-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .use-item{
+      padding:18px 18px 16px;
+      border-radius:18px;
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .use-item h4{
+      font-size:1rem;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:6px;
+    }
+
+    .use-item p{
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.8;
+    }
+
+    .path-card{
+      padding:28px;
+    }
+
+    .path-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:22px;
+    }
+
+    .path-step{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .path-num{
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:.9rem;
+      box-shadow:0 10px 18px rgba(36,84,211,0.18);
+    }
+
+    .path-step h4{
+      font-size:1rem;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .path-step p{
+      color:var(--muted);
+      font-size:.85rem;
+      line-height:1.75;
+    }
+
+    .cta-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(320px,.88fr);
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .cta-card{
+      padding:28px;
+    }
+
+    .cta-card.whatsapp{
+      background:linear-gradient(135deg,#1dbf73 0%, #159b65 100%);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 22px 52px rgba(21,155,101,0.18);
+    }
+
+    .cta-card.whatsapp .section-kicker{
+      color:#dfffe9;
+    }
+
+    .cta-card.whatsapp .section-title{
+      color:#fff;
+      margin-bottom:12px;
+      font-size:2.2rem;
+    }
+
+    .cta-card.whatsapp p{
+      color:rgba(255,255,255,0.88);
+      font-size:.95rem;
+      line-height:1.9;
+    }
+
+    .link-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      font-size:.88rem;
+      font-weight:700;
+      transition:.18s ease;
+      width:fit-content;
+      margin-top:16px;
+    }
+
+    .link-btn.primary{
+      background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      color:#fff;
+      box-shadow:0 10px 20px rgba(36,84,211,0.16);
+    }
+
+    .link-btn.primary:hover{
+      transform:translateY(-1px);
+    }
+
+    .link-btn.secondary{
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--muted);
+    }
+
+    .link-btn.secondary:hover{
+      color:var(--blue);
+      border-color:rgba(36,84,211,0.16);
+    }
+
+    .cta-card.whatsapp .link-btn{
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.20);
+      color:#fff;
+    }
+
+    .cta-card.whatsapp .link-btn:hover{
+      background:rgba(255,255,255,0.18);
+    }
+
+    .footer{
+      border-top:1px solid var(--border);
+      margin-top:38px;
+      padding:32px 20px 56px;
+    }
+
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      text-align:center;
+      color:var(--dim);
+      font-size:.84rem;
+      line-height:2;
+    }
+
+    .footer-inner a{
+      color:var(--blue);
+    }
+
+    @media (max-width: 1080px){
+      .use-grid,
+      .cta-grid{
+        grid-template-columns:1fr;
+      }
+
+      .grid-4{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .path-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 840px){
+      .nav-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links{
+        gap:14px;
+      }
+
+      .grid-2,
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+
+      .hero-shell{
+        padding:42px 18px 30px;
+        border-radius:26px;
+      }
+
+      .hero{
+        padding:20px 14px 16px;
+      }
+
+      .main{
+        padding:10px 14px 76px;
+      }
+
+      .intro-card,
+      .topic-card,
+      .path-card,
+      .cta-card,
+      .use-item,
+      .use-main,
+      .stat-card{
+        padding:22px 18px;
+      }
+
+      .path-grid,
+      .grid-4{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav-links a:not(.active){
+        display:none;
+      }
+
+      .brand{
+        font-size:1.8rem;
+      }
+
+      h1{
+        font-size:3.1rem;
+      }
+
+      .section-title{
+        font-size:2.2rem;
+      }
+
+      .use-main .section-title,
+      .cta-card.whatsapp .section-title{
+        font-size:2rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="brand">Sohadot.com</a>
+        <div class="nav-links">
+          <a href="/valuation.html">Valuation</a>
+          <a href="/portfolio.html">Portfolio</a>
+          <a href="/keywords.html">Keywords</a>
+          <a href="/dropping.html">Drops</a>
+          <a href="/about.html">About</a>
+          <a href="/knowledge-base.html" class="kb active">Knowledge Base</a>
+        </div>
+      </div>
+    </nav>
 
-<nav>
-  <a href="/" class="nav-logo">Sohadot.com</a>
-  <div class="nav-links">
-    <a href="/valuation.html">Valuation</a>
-    <a href="/portfolio.html">Portfolio</a>
-    <a href="/keywords.html">Keywords</a>
-    <a href="/dropping.html">Drops</a>
-    <a href="/knowledge-base.html" class="active">Knowledge Base</a>
+    <section class="hero">
+      <div class="hero-shell">
+        <div class="hero-inner">
+          <div class="eyebrow">Domain Intelligence Reference Layer</div>
+          <h1>Knowledge Base</h1>
+          <p class="hero-sub">
+            The Sohadot Knowledge Base is being built as an educational and reference layer around domain names — covering valuation logic, comparable sales, pricing frameworks, keyword strength, buyer behavior, naming structure, and the practical mechanics of premium domain decision-making.
+          </p>
+
+          <div class="hero-pills">
+            <span class="hero-pill">Valuation Logic</span>
+            <span class="hero-pill">Comparable Sales Context</span>
+            <span class="hero-pill">Pricing Frameworks</span>
+            <span class="hero-pill">Keyword Intelligence</span>
+            <span class="hero-pill">Buyer Psychology</span>
+            <span class="hero-pill">Naming Quality</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="main">
+      <section class="section">
+        <div class="grid-2">
+          <div class="card intro-card dark">
+            <div class="section-kicker">Why This Exists</div>
+            <div class="title">To explain how the domain market actually works, not just display prices.</div>
+            <p>
+              Strong domain platforms should not rely on opaque valuation outputs or shallow marketplace rhetoric. They should also help users understand why certain names matter, how pricing logic works, what comparable sales actually mean, and where naming quality intersects with real buyer demand.
+            </p>
+          </div>
+
+          <div class="card intro-card">
+            <div class="section-kicker">Knowledge Positioning</div>
+            <div class="title">A growing reference layer for investors, buyers, founders, brokers, and serious market observers.</div>
+            <p>
+              This section is intended to become a structured knowledge environment rather than a generic blog index. It will connect the site’s valuation, keyword intelligence, portfolio, and drop watchlists into one more coherent educational system.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid-4">
+          <div class="card stat-card">
+            <div class="stat-num">6+</div>
+            <div class="stat-lbl">Core Knowledge Tracks</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-num">1</div>
+            <div class="stat-lbl">Reference Layer in Progress</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-num">445+</div>
+            <div class="stat-lbl">Portfolio Names In Context</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-num">300+</div>
+            <div class="stat-lbl">Public Sales Signals Behind The System</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Knowledge Tracks</div>
+          <div class="section-title">What this reference layer is built to cover.</div>
+          <div class="section-sub">
+            The goal is not random article accumulation. The goal is a clear map of the domain market’s most important decision-making areas, explained in a way that supports better judgment.
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card topic-card">
+            <div class="icon-box">📊</div>
+            <div class="topic-title">How domain valuation actually works</div>
+            <div class="topic-desc">
+              Why structured valuation should weigh lexical legitimacy, naming structure, TLD fit, keyword strength, and comparable public sales rather than flat scoring alone.
+            </div>
+            <div class="chip-row">
+              <span class="chip">valuation logic</span>
+              <span class="chip">pricing signals</span>
+            </div>
+          </div>
+
+          <div class="card topic-card">
+            <div class="icon-box">💰</div>
+            <div class="topic-title">Wholesale vs retail pricing</div>
+            <div class="topic-desc">
+              The difference between investor-to-investor market behavior and end-user buyer pricing, and why many users confuse one for the other.
+            </div>
+            <div class="chip-row">
+              <span class="chip">wholesale</span>
+              <span class="chip">retail</span>
+            </div>
+          </div>
+
+          <div class="card topic-card">
+            <div class="icon-box">📚</div>
+            <div class="topic-title">How to read comparable sales correctly</div>
+            <div class="topic-desc">
+              Why public sales validate market context without automatically granting identical value to every adjacent name in the same category.
+            </div>
+            <div class="chip-row">
+              <span class="chip">public comps</span>
+              <span class="chip">context</span>
+            </div>
+          </div>
+
+          <div class="card topic-card">
+            <div class="icon-box">🧠</div>
+            <div class="topic-title">What makes a domain premium</div>
+            <div class="topic-desc">
+              Beyond shortness: memorability, trust, category fit, structural clarity, buyer logic, lexical credibility, and brand usability.
+            </div>
+            <div class="chip-row">
+              <span class="chip">premium logic</span>
+              <span class="chip">quality signals</span>
+            </div>
+          </div>
+
+          <div class="card topic-card">
+            <div class="icon-box">🔑</div>
+            <div class="topic-title">Keyword strength and naming terrain</div>
+            <div class="topic-desc">
+              Why some keywords carry real domain value while others merely have search interest without translating into naming liquidity.
+            </div>
+            <div class="chip-row">
+              <span class="chip">keywords</span>
+              <span class="chip">commercial intent</span>
+            </div>
+          </div>
+
+          <div class="card topic-card">
+            <div class="icon-box">🤝</div>
+            <div class="topic-title">Buyer psychology and negotiation reality</div>
+            <div class="topic-desc">
+              How trust, timing, perceived utility, category clarity, and transaction structure influence what real buyers are willing to do.
+            </div>
+            <div class="chip-row">
+              <span class="chip">buyers</span>
+              <span class="chip">negotiation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="use-grid">
+          <div class="card use-main">
+            <div class="section-kicker">How It Connects</div>
+            <div class="section-title">This page is meant to support the whole platform, not sit beside it.</div>
+            <p>
+              The Knowledge Base is important because Sohadot is not being built as a disconnected collection of pages. The valuation layer, the premium portfolio, the monthly keyword intelligence, and the weekly drop watchlists all become stronger when users understand the reasoning behind them.
+            </p>
+            <p>
+              In that sense, this section is the explanatory backbone of the platform: the place where the site’s logic is clarified, not merely displayed.
+            </p>
+          </div>
+
+          <div class="use-list">
+            <div class="use-item">
+              <h4>Supports valuation interpretation</h4>
+              <p>
+                Helps users understand why the valuation layer produces directional ranges rather than false certainty.
+              </p>
+            </div>
+
+            <div class="use-item">
+              <h4>Supports portfolio credibility</h4>
+              <p>
+                Gives buyers and observers a stronger framework for understanding naming quality across the premium portfolio.
+              </p>
+            </div>
+
+            <div class="use-item">
+              <h4>Supports keyword intelligence</h4>
+              <p>
+                Explains why some categories and keyword families behave better than others in domain naming markets.
+              </p>
+            </div>
+
+            <div class="use-item">
+              <h4>Supports drop watchlist discipline</h4>
+              <p>
+                Makes clear that weekly drop picks are curated directional opportunities rather than raw availability promises.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card path-card">
+          <div class="section-head" style="margin-bottom:0;">
+            <div class="section-kicker">Recommended Path</div>
+            <div class="section-title" style="font-size:2.45rem;">How to use the Sohadot system intelligently.</div>
+            <div class="section-sub">
+              The strongest use of the platform comes from treating it as an integrated system: learn the logic, test the valuation, explore the portfolio, and read the market context around naming opportunities.
+            </div>
+          </div>
+
+          <div class="path-grid">
+            <div class="path-step">
+              <div class="path-num">1</div>
+              <h4>Learn the logic</h4>
+              <p>Use this section to understand how pricing, naming quality, and sales context are framed.</p>
+            </div>
+
+            <div class="path-step">
+              <div class="path-num">2</div>
+              <h4>Test valuation</h4>
+              <p>Use the structured valuation layer to frame a domain through real market logic.</p>
+            </div>
+
+            <div class="path-step">
+              <div class="path-num">3</div>
+              <h4>Study market terrain</h4>
+              <p>Use keywords and weekly drops to understand category direction and opportunity behavior.</p>
+            </div>
+
+            <div class="path-step">
+              <div class="path-num">4</div>
+              <h4>Move to action</h4>
+              <p>Browse the portfolio or contact Sohadot directly when serious interest or questions exist.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-grid">
+          <div class="card cta-card">
+            <div class="section-kicker">Next Best Actions</div>
+            <div class="section-title" style="font-size:2.35rem;">Use the platform, not just the page.</div>
+            <p class="section-sub" style="max-width:none;">
+              The knowledge layer becomes most useful when combined with the tools and reference pages it is built to support.
+            </p>
+
+            <a href="/valuation.html" class="link-btn primary">Open Valuation</a>
+            <a href="/keywords.html" class="link-btn secondary">View Keyword Intelligence</a>
+            <a href="/dropping.html" class="link-btn secondary">View Weekly Drops</a>
+            <a href="/portfolio.html" class="link-btn secondary">Browse Premium Portfolio</a>
+          </div>
+
+          <div class="card cta-card whatsapp">
+            <div class="section-kicker">Direct Questions</div>
+            <div class="section-title">Need a faster human answer?</div>
+            <p>
+              If your question is about pricing logic, a domain in the portfolio, acquisition strategy, or a naming opportunity you are evaluating, direct contact is available through WhatsApp.
+            </p>
+            <a href="https://wa.me/212668992259?text=Hi%20Sohadot%2C%20I%20have%20a%20question%20about%20the%20Knowledge%20Base%20or%20domain%20valuation." class="link-btn" target="_blank">Open WhatsApp Chat</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        © 2026 <a href="/">Sohadot.com</a> ·
+        <a href="/portfolio.html">Portfolio</a> ·
+        <a href="/valuation.html">Valuation</a> ·
+        <a href="/keywords.html">Keywords</a> ·
+        <a href="/dropping.html">Weekly Drops</a> ·
+        <a href="/knowledge-base.html">Knowledge Base</a> ·
+        <a href="/about.html">About</a> ·
+        <a href="/en/blog/">Blog</a> ·
+        <a href="/privacy.html">Privacy</a> ·
+        <a href="/terms.html">Terms</a>
+      </div>
+    </footer>
   </div>
-</nav>
-
-<div class="hero">
-  <h1>Knowledge Base</h1>
-  <p>
-    Educational resources and market insights for domain investors, buyers, and professionals.
-    This section is currently being expanded to provide structured knowledge on domain valuation,
-    pricing strategy, and market behavior.
-  </p>
-</div>
-
-<div class="box">
-  <h2>What You Will Find Here</h2>
-  <p>
-    The Sohadot Knowledge Base is designed to explain how the domain market actually works —
-    from pricing and comparable sales to buyer psychology and keyword demand.
-  </p>
-
-  <div class="topics">
-    <div class="topic">How Domain Valuation Really Works</div>
-    <div class="topic">Wholesale vs Retail Pricing</div>
-    <div class="topic">How to Read Comparable Sales</div>
-    <div class="topic">What Makes a Domain Premium</div>
-    <div class="topic">Brandable vs Exact Match Domains</div>
-    <div class="topic">Domain Buyer Psychology</div>
-  </div>
-
-  <div class="cta">
-    <a href="/valuation.html">Use Valuation Tool</a>
-  </div>
-</div>
-
-<footer>
-© 2026 Sohadot.com · Domain Intelligence Platform
-</footer>
-
 </body>
 </html>
