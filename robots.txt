@@ -1,8 +1,16 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sohadot.com/sitemap.xml
-
-# Block sensitive paths
+# Block non-essential files
+Disallow: /scripts/
+Disallow: /data/
 Disallow: /.github/
-Disallow: /.git/
+
+# Allow important pages explicitly
+Allow: /valuation.html
+Allow: /keywords.html
+Allow: /dropping.html
+Allow: /knowledge-base.html
+
+# Sitemap
+Sitemap: https://sohadot.com/sitemap.xml
