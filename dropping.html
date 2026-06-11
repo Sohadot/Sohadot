@@ -3,6 +3,29 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<meta name="theme-color" content="#0d224f"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sohadot.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Weekly Drop Watchlist",
+      "item": "https://sohadot.com/dropping.html"
+    }
+  ]
+}
+</script>
+
 
   <title>Weekly Domain Drops Watchlist | Sohadot.com</title>
   <meta name="description" content="A curated weekly watchlist of dropping and expiring domain names reviewed for brandability, structure, category relevance, TLD quality, and resale potential. Built for domain investors, brokers, and serious market participants."/>
@@ -869,8 +892,7 @@
       <a href="/portfolio.html">Portfolio</a>
       <a href="/keywords.html">Keywords</a>
       <a href="/dropping.html" class="active">Drops</a>
-      <a href="/en/blog/">Blog</a>
-      <a href="/about.html">About</a>
+            <a href="/about.html">About</a>
       <a href="/knowledge-base.html" class="nav-cta">Knowledge Base</a>
     </div>
   </nav>
@@ -1001,8 +1023,7 @@
     <a href="/keywords.html">Keywords</a> &nbsp;·&nbsp;
     <a href="/dropping.html">Weekly Drops</a> &nbsp;·&nbsp;
     <a href="/knowledge-base.html">Knowledge Base</a> &nbsp;·&nbsp;
-    <a href="/about.html">About</a> &nbsp;·&nbsp;
-    <a href="/en/blog/">Blog</a> &nbsp;·&nbsp;
+    <a href="/about.html">About</a> &nbsp;·&nbsp; &nbsp;·&nbsp;
     <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
     <a href="/terms.html">Terms</a>
   </footer>
@@ -1032,7 +1053,17 @@
 
     function safeText(value, fallback = '—') {
       if (value === null || value === undefined || value === '') return fallback;
-      return value;
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function safeUrl(value) {
+      if (typeof value !== 'string' || !/^https?:\/\//i.test(value)) return '#';
+      return value.replaceAll('"', '%22');
     }
 
     function renderMeta() {
@@ -1055,7 +1086,7 @@
     function renderCriteria() {
       const grid = document.getElementById('criteriaGrid');
       const criteria = DROP_DATA.criteria || [];
-      grid.innerHTML = criteria.map(item => `<div class="crit-item">${item}</div>`).join('');
+      grid.innerHTML = criteria.map(item => `<div class="crit-item">${safeText(item)}</div>`).join('');
     }
 
     function renderFeatured() {
@@ -1084,14 +1115,14 @@
             <span class="meta-tag">${safeText(item.length, 0)} chars</span>
             <span class="meta-tag">${safeText(item.category, '')}</span>
             <span class="meta-tag ${urgencyClass(item.urgency)}">${safeText(item.drop_label, '')}</span>
-            ${item.status_label ? `<span class="meta-tag status-tag">${item.status_label}</span>` : ''}
+            ${item.status_label ? `<span class="meta-tag status-tag">${safeText(item.status_label)}</span>` : ''}
           </div>
 
           <p class="fc-why">${safeText(item.why)}</p>
 
           <div class="fc-bottom">
             <span class="fc-value">Est. resale: ${safeText(item.value_range)}</span>
-            <a href="${item.check_url || '#'}" class="check-btn" target="_blank" rel="noopener">Check →</a>
+            <a href="${safeUrl(item.check_url)}" class="check-btn" target="_blank" rel="noopener">Check →</a>
           </div>
         </article>
       `).join('');
@@ -1141,11 +1172,11 @@
 
           <td style="font-size:.79rem;color:var(--muted);max-width:285px;line-height:1.7;">
             <div>${safeText(item.why)}</div>
-            ${item.status_label ? `<div class="status-inline">${item.status_label}</div>` : ''}
+            ${item.status_label ? `<div class="status-inline">${safeText(item.status_label)}</div>` : ''}
           </td>
 
           <td>
-            <a href="${item.check_url || '#'}" class="avail-btn" target="_blank" rel="noopener">Check ↗</a>
+            <a href="${safeUrl(item.check_url)}" class="avail-btn" target="_blank" rel="noopener">Check ↗</a>
           </td>
         </tr>
       `).join('');
@@ -1162,7 +1193,7 @@
           <div class="mc-meta">
             <span class="cat-pill">${safeText(item.category_label || item.category)}</span>
             <span class="meta-tag ${urgencyClass(item.urgency)}">${safeText(item.drop_label)}</span>
-            ${item.status_label ? `<span class="meta-tag status-tag">${item.status_label}</span>` : ''}
+            ${item.status_label ? `<span class="meta-tag status-tag">${safeText(item.status_label)}</span>` : ''}
           </div>
 
           <div class="mc-grid">
@@ -1181,7 +1212,7 @@
 
           <div class="mc-bottom">
             <div class="mc-range">Est. resale: ${safeText(item.value_range)}</div>
-            <a href="${item.check_url || '#'}" class="mc-btn" target="_blank" rel="noopener">Check →</a>
+            <a href="${safeUrl(item.check_url)}" class="mc-btn" target="_blank" rel="noopener">Check →</a>
           </div>
         </article>
       `).join('');

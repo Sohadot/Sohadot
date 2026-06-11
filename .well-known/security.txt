@@ -1,0 +1,4 @@
+Contact: mailto:agent@sohadot.com
+Expires: 2027-06-11T00:00:00.000Z
+Preferred-Languages: en, ar, fr
+Canonical: https://sohadot.com/.well-known/security.txt

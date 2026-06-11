@@ -3,6 +3,29 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<meta name="theme-color" content="#0d224f"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sohadot.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Monthly Keyword Intelligence",
+      "item": "https://sohadot.com/keywords.html"
+    }
+  ]
+}
+</script>
+
 
   <title>Monthly Domain Intelligence Report | Sohadot.com</title>
   <meta name="description" content="A monthly domain intelligence report covering top domain keywords, market signals, and notable reported domain sales. Built for investors, brokers, founders, and domain professionals."/>
@@ -768,8 +791,7 @@
       <a href="/portfolio.html">Portfolio</a>
       <a href="/keywords.html" class="active">Keywords</a>
       <a href="/dropping.html">Drops</a>
-      <a href="/en/blog/">Blog</a>
-      <a href="/about.html">About</a>
+            <a href="/about.html">About</a>
       <a href="/knowledge-base.html" class="nav-cta">Knowledge Base</a>
     </div>
   </nav>
@@ -895,8 +917,7 @@
     <a href="/keywords.html">Keywords</a> &nbsp;·&nbsp;
     <a href="/dropping.html">Weekly Drops</a> &nbsp;·&nbsp;
     <a href="/knowledge-base.html">Knowledge Base</a> &nbsp;·&nbsp;
-    <a href="/about.html">About</a> &nbsp;·&nbsp;
-    <a href="/en/blog/">Blog</a> &nbsp;·&nbsp;
+    <a href="/about.html">About</a> &nbsp;·&nbsp; &nbsp;·&nbsp;
     <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
     <a href="/terms.html">Terms</a>
   </footer>
@@ -907,7 +928,17 @@
 
     function safeText(value, fallback = '—') {
       if (value === null || value === undefined || value === '') return fallback;
-      return value;
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function safeUrl(value) {
+      if (typeof value !== 'string' || !/^https?:\/\//i.test(value)) return '#';
+      return value.replaceAll('"', '%22');
     }
 
     function scoreClass(score) {
@@ -949,7 +980,7 @@
 
       const bullets = KEYWORD_DATA.insight_bullets || [];
       document.getElementById('insightBullets').innerHTML = bullets
-        .map(item => `<div class="insight-item">${item}</div>`)
+        .map(item => `<div class="insight-item">${safeText(item)}</div>`)
         .join('');
     }
 
@@ -1003,19 +1034,19 @@
             <div class="kw-logic">${safeText(item.domain_logic)}</div>
 
             ${item.example_domains && item.example_domains.length ? `
-              <div class="kw-note"><strong>Example naming directions:</strong> ${item.example_domains.join(' · ')}</div>
+              <div class="kw-note"><strong>Example naming directions:</strong> ${safeText(item.example_domains.join(' · '))}</div>
             ` : ''}
 
             ${item.investor_note ? `
-              <div class="kw-note" style="margin-top:8px;"><strong>Investor note:</strong> ${item.investor_note}</div>
+              <div class="kw-note" style="margin-top:8px;"><strong>Investor note:</strong> ${safeText(item.investor_note)}</div>
             ` : ''}
 
             ${item.developer_note ? `
-              <div class="kw-note" style="margin-top:8px;"><strong>Developer note:</strong> ${item.developer_note}</div>
+              <div class="kw-note" style="margin-top:8px;"><strong>Developer note:</strong> ${safeText(item.developer_note)}</div>
             ` : ''}
 
             <div class="kw-footer">
-              <div class="kw-tlds">Priority TLDs: ${(item.priority_tlds || []).join(' · ') || '—'}</div>
+              <div class="kw-tlds">Priority TLDs: ${safeText((item.priority_tlds || []).join(' · ') || '—')}</div>
             </div>
           </article>
         `;
@@ -1041,12 +1072,12 @@
           <div class="kw-meta" style="margin-bottom:12px;">
             <span class="tag">${safeText(item.category)}</span>
             <span class="tag tag-sales">${safeText(item.sale_month)}</span>
-            ${item.source ? `<span class="tag">${item.source}</span>` : ''}
+            ${item.source ? `<span class="tag">${safeText(item.source)}</span>` : ''}
           </div>
 
           <div class="sale-body">
-            ${item.why_it_sold ? `<p><strong style="color:var(--text)">Why it mattered:</strong> ${item.why_it_sold}</p>` : ''}
-            ${item.market_signal ? `<p><strong style="color:var(--text)">Market signal:</strong> ${item.market_signal}</p>` : ''}
+            ${item.why_it_sold ? `<p><strong style="color:var(--text)">Why it mattered:</strong> ${safeText(item.why_it_sold)}</p>` : ''}
+            ${item.market_signal ? `<p><strong style="color:var(--text)">Market signal:</strong> ${safeText(item.market_signal)}</p>` : ''}
           </div>
         </article>
       `).join('');

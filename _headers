@@ -1,6 +1,7 @@
 # Sohadot.com — Security Headers
 # Works with: Cloudflare Pages, Netlify, or any CDN that supports _headers files
-# For GitHub Pages: add these via a Cloudflare proxy (free plan)
+# NOTE: GitHub Pages ignores this file. To activate these headers, put the site
+# behind a Cloudflare proxy (free plan) and mirror these rules there.
 
 /*
   # Prevent clickjacking
@@ -9,9 +10,6 @@
   # Prevent MIME sniffing
   X-Content-Type-Options: nosniff
 
-  # XSS protection (legacy browsers)
-  X-XSS-Protection: 1; mode=block
-
   # Referrer policy — privacy-friendly
   Referrer-Policy: strict-origin-when-cross-origin
 
@@ -19,8 +17,8 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
 
   # Content Security Policy
-  # Allows: self, Google Fonts, WhatsApp links, Anthropic API (for valuation AI mode)
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.anthropic.com; img-src 'self' data: https:; frame-ancestors 'none';
+  # Allows: self, Google Fonts, Google Tag Manager / Analytics, Google AdSense
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.adtrafficquality.google; img-src 'self' data: https:; frame-src https://www.googletagmanager.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.adtrafficquality.google; frame-ancestors 'self';
 
   # HTTPS upgrade
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
