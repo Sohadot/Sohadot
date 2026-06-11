@@ -1,8 +1,13 @@
 let VALUATION_DATA = null;
 
+// Bump with each framework release so browsers never serve stale
+// scoring data after a methodology update.
+const FRAMEWORK_VERSION = '2.2';
+
 async function loadValuationData() {
   if (VALUATION_DATA) return VALUATION_DATA;
 
+  const v = '?v=' + FRAMEWORK_VERSION;
   const [
     config,
     keywords,
@@ -12,13 +17,13 @@ async function loadValuationData() {
     industryMap,
     comps
   ] = await Promise.all([
-    fetch('/data/valuation_config.json').then(r => r.json()),
-    fetch('/data/valuation_keywords.json').then(r => r.json()),
-    fetch('/data/lexical_words.json').then(r => r.json()),
-    fetch('/data/rare_words.json').then(r => r.json()),
-    fetch('/data/names.json').then(r => r.json()),
-    fetch('/data/industry_map.json').then(r => r.json()),
-    fetch('/data/valuation_comps.json').then(r => r.json())
+    fetch('/data/valuation_config.json' + v).then(r => r.json()),
+    fetch('/data/valuation_keywords.json' + v).then(r => r.json()),
+    fetch('/data/lexical_words.json' + v).then(r => r.json()),
+    fetch('/data/rare_words.json' + v).then(r => r.json()),
+    fetch('/data/names.json' + v).then(r => r.json()),
+    fetch('/data/industry_map.json' + v).then(r => r.json()),
+    fetch('/data/valuation_comps.json' + v).then(r => r.json())
   ]);
 
   VALUATION_DATA = {
