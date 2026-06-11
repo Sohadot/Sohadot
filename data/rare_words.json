@@ -6,7 +6,8 @@
     "origin_note": "documented rare lexical form",
     "brandability_note": "strong for elite, boutique, legal, advisory, or heritage branding",
     "seo_strength": "low",
-    "commercial_note": "not keyword-driven, but stronger than a random invented string"
+    "commercial_note": "not keyword-driven, but stronger than a random invented string",
+    "brandability": "strong"
   },
   "gweduc": {
     "type": "rare_dictionary_word",
@@ -15,6 +16,7 @@
     "origin_note": "older/original attested form with linguistic and cultural legitimacy",
     "brandability_note": "stronger for distinctive, cultural, niche, premium, or story-driven branding than for mainstream keyword demand",
     "seo_strength": "low",
-    "commercial_note": "not a high-volume commercial keyword, but not a nonsense string"
+    "commercial_note": "not a high-volume commercial keyword, but not a nonsense string",
+    "brandability": "moderate"
   }
 }

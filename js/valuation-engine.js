@@ -426,6 +426,15 @@ async function evaluateDomain(domainInput) {
     score += 4;
   }
 
+  // Curated per-word brandability rating from the public lexical
+  // datasets — recorded in the data, never assigned at evaluation time.
+  const brandability = classificationData.lexicalEntry?.brandability;
+  if (brandability === 'strong') {
+    score += 8;
+  } else if (brandability === 'moderate') {
+    score += 4;
+  }
+
   if (classificationData.classification === 'random_low_quality') {
     score -= 8;
   }

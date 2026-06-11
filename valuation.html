@@ -1305,6 +1305,12 @@
           </tbody>
         </table>
       </div>
+      <p>
+        Dictionary-attested words additionally carry a curated <strong>brandability rating</strong> in the public
+        lexical datasets: a word rated <strong>strong</strong> for branding suitability adds +8 raw points and
+        <strong>moderate</strong> adds +4. The rating is recorded per word in the dataset itself — never assigned
+        at evaluation time — so the same word always receives the same adjustment regardless of who evaluates it.
+      </p>
 
       <h3>Step 2 — Extension (TLD) weighting</h3>
       <p>
@@ -1399,6 +1405,37 @@
         rather than the mean, and blending geometrically rather than linearly, prevents a single outlier sale
         from inflating an estimate by orders of magnitude.
       </p>
+
+      <h3>Governance and integrity</h3>
+      <p>
+        This framework is operated under fixed governance rules designed to keep it citable:
+      </p>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Rule</th><th>Commitment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>One model for everyone</td><td>The same published model applies to every domain evaluated — including domains in Sohadot's own portfolio. There are no manual overrides, owner adjustments, or per-domain exceptions.</td></tr>
+            <tr><td>Versioned changes</td><td>Every change to the scoring rules ships with a version bump and an entry in the public changelog below. The model never changes silently.</td></tr>
+            <tr><td>Reproducible estimates</td><td>All scoring datasets (keywords, lexical words, comparable sales) are public JSON files served from this site; any estimate can be reproduced from the published rules and data.</td></tr>
+            <tr><td>Corrections, not patches</td><td>When a miscalibration is found, it is fixed in the model for all domains — never patched for an individual result.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Changelog</h3>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2.1</td><td class="num">June 2026</td><td>Calibration revision: comparable sales now require a shared pricing driver (classification, keyword, or exact name); blending switched to geometric 70/30 against the median comparable to neutralize outlier sales; composite score normalized against the 154-point maximum instead of clamping; vowel requirement added to the brandable class; curated per-word brandability adjustment (+8 strong / +4 moderate) introduced.</td></tr>
+            <tr><td>2.0</td><td class="num">March 2026</td><td>Initial public framework: six lexical classes, extension weights, length curve, five-tier system, wholesale and retail bands, comparable-sales calibration.</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3>Scope and limitations</h3>
       <p>
