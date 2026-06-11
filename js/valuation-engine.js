@@ -317,14 +317,34 @@ function medianPrice(comparables) {
   return prices.length % 2 ? prices[mid] : (prices[mid - 1] + prices[mid]) / 2;
 }
 
-function refinePricingWithComparables(basePricing, comparables) {
+function refinePricingWithComparables(basePricing, comparables, sld, tld) {
   if (!comparables.length) return basePricing;
 
-  // Geometric 70/30 blend against the median comparable so a single
-  // outlier sale cannot inflate the estimate by orders of magnitude.
-  const median = medianPrice(comparables);
+  // Evidence hierarchy: a documented public sale of the asset itself
+  // outranks any model output, so pricing anchors to the market record
+  // and the model only sets the resale spread around it.
+  const ownSale = comparables.find(item => item.sld === sld && item.tld === tld);
+  if (ownSale) {
+    return {
+      midpoint: ownSale.price * 0.5,
+      wholesaleLow: ownSale.price * 0.35,
+      wholesaleHigh: ownSale.price * 0.65,
+      retailLow: ownSale.price * 0.9,
+      retailHigh: ownSale.price * 1.4,
+      anchoredToOwnSale: true
+    };
+  }
+
+  // A sale of the same name on another extension is strong evidence
+  // (50% weight); otherwise blend 30% against the median comparable.
+  const sameName = comparables.find(item => item.sld === sld);
+  const anchor = sameName ? sameName.price : medianPrice(comparables);
+  const weight = sameName ? 0.5 : 0.3;
+
+  // Geometric blending so a single outlier sale cannot inflate the
+  // estimate by orders of magnitude.
   const adjustedMid = Math.exp(
-    (Math.log(basePricing.midpoint) * 0.7) + (Math.log(median) * 0.3)
+    (Math.log(basePricing.midpoint) * (1 - weight)) + (Math.log(anchor) * weight)
   );
 
   return {
@@ -454,7 +474,7 @@ async function evaluateDomain(domainInput) {
   );
 
   const rawPricing = buildPricing(score, classificationData.classification, config, tld);
-  const pricing = refinePricingWithComparables(rawPricing, comparables);
+  const pricing = refinePricingWithComparables(rawPricing, comparables, sld, tld);
 
   const useCases = estimateUseCases({
     sld,
