@@ -25,16 +25,142 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://sohadot.com/valuation.html#webpage",
+      "url": "https://sohadot.com/valuation.html",
+      "name": "Domain Valuation Tool & Pricing Framework",
+      "description": "Free domain valuation tool with a fully published methodology covering lexical classification, TLD weights, length adjustments, valuation tiers, wholesale vs retail price bands, and comparable-sales calibration.",
+      "inLanguage": "en",
+      "dateModified": "2026-06-11",
+      "isPartOf": { "@id": "https://sohadot.com/#website" },
+      "publisher": { "@id": "https://sohadot.com/#organization" },
+      "about": { "@id": "https://sohadot.com/valuation.html#service" },
+      "mainEntity": { "@id": "https://sohadot.com/valuation.html#app" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sohadot.com/valuation.html#service",
+      "name": "Sohadot Domain Valuation",
+      "serviceType": "Domain name valuation and appraisal",
+      "description": "Structured domain valuation built on lexical classification, extension and length weighting, and comparable public sales calibration, with the full scoring methodology published as an open reference.",
+      "provider": { "@id": "https://sohadot.com/#organization" },
+      "areaServed": "Worldwide",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Domain investors, brokers, founders, and developers"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "termsOfService": "https://sohadot.com/terms.html"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sohadot.com/valuation.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the Sohadot domain valuation model work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It scores a domain in three layers: lexical classification of the name (commercial keyword, dictionary word, rare dictionary word, personal name, brandable, or low signal), market weighting for the extension and length, and calibration against comparable public sales. The composite 5–100 score is then converted into wholesale and retail price bands using published class multipliers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between wholesale and retail domain value?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wholesale value is what a domain typically fetches in fast, investor-to-investor channels such as auctions and marketplace liquidations. Retail value is what an end user, typically a business acquiring its brand name, pays. In this framework retail runs roughly 2x to 6.4x the model midpoint, while wholesale runs roughly 0.5x to 1.45x."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which domain extension is most valuable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": ".com carries the highest weight in the framework (+24) because it remains the strongest global resale extension. .ai (+18) and .io (+14) follow, driven by AI and software branding demand, then .co (+10), .org (+8), .dev (+8), and .net (+7). All other extensions receive +4."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does length affect a domain's value?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shorter is scarcer and more valuable. Two-character names receive the maximum +30 adjustment, declining steadily with each additional character (3 letters +24, 4 letters +18, 5 letters +12) until names of 11 or more characters receive a -3 penalty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are automated domain appraisals accurate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They are directional, not definitive. This framework publishes its full inputs so every estimate can be audited, but no automated model is a certified appraisal: exceptional short assets, exact-match commercial terms, and buyer-specific strategic matches routinely sell far above any model output."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes a domain brandable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In this framework, a brandable is a clean invented string of 4 to 12 letters with no awkward character repetition, a pronounceable structure, and no hyphens or digits. Brandables carry a base score of 58, and their realized value depends heavily on buyer taste and branding fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are comparable sales and how are they used?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Comparables are publicly reported domain sales that share the subject domain's extension, lexical classification, length profile, or keywords. When matches are found, the model blends its own midpoint (70%) with the average comparable price (30%) before computing the final wholesale and retail bands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Sohadot domain valuation tool free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The valuation tool and the full published methodology are free to use, with no account or signup required."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://sohadot.com/valuation.html#glossary",
+      "name": "Domain Valuation Glossary",
+      "hasDefinedTerm": [
+        { "@type": "DefinedTerm", "name": "Wholesale value", "description": "The price a domain typically achieves in fast, investor-to-investor channels such as expired-domain auctions and marketplace liquidations.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Retail value", "description": "The price an end user, typically a business acquiring its brand name, pays for a domain; usually a multiple of wholesale value.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Comparable sale (comp)", "description": "A publicly reported domain sale that shares the subject domain's extension, classification, length profile, or keywords, used to calibrate an estimate.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Lexical legitimacy", "description": "The degree to which a domain name is an authentic, attested word or recognized name rather than an arbitrary string; a core driver of naming credibility.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Brandable domain", "description": "A clean invented name, typically 4 to 12 letters, pronounceable, with no hyphens or digits, valued for branding potential rather than search demand.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Exact-match domain (EMD)", "description": "A domain whose name exactly matches a commercial search term, such as loans.com, commanding premium pricing from category buyers.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "TLD (top-level domain)", "description": "The extension after the final dot, such as .com, .ai, or .io; a major weighting factor in resale value and liquidity.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Valuation tier", "description": "A quality band derived from the composite score: Ultra Premium (85-100), Premium (70-84), Strong (55-69), Standard (35-54), and Low Signal (5-34).", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Liquidity", "description": "How quickly a domain can be converted to cash near its wholesale value; .com and short, keyword-rich names are the most liquid.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" },
+        { "@type": "DefinedTerm", "name": "Drop (expired domain)", "description": "A previously registered domain released back to public availability after its registration lapses, often acquired at wholesale prices.", "inDefinedTermSet": "https://sohadot.com/valuation.html#glossary" }
+      ]
+    }
+  ]
+}
+</script>
 
 
-  <title>Domain Valuation | Sohadot</title>
-  <meta name="description" content="A structured domain valuation tool built on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context."/>
+  <title>Domain Valuation Tool & Pricing Framework | Sohadot</title>
+  <meta name="description" content="Free domain valuation tool with a fully published methodology: lexical classification, TLD weights, length adjustments, valuation tiers, wholesale vs retail price bands, comparable-sales calibration, FAQ, and glossary."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://sohadot.com/valuation.html"/>
 
   <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Domain Valuation | Sohadot"/>
-  <meta property="og:description" content="Structured domain valuation based on lexical legitimacy, commercial keyword strength, TLD quality, naming structure, and comparable public sales context."/>
+  <meta property="og:title" content="Domain Valuation Tool & Pricing Framework | Sohadot"/>
+  <meta property="og:description" content="Free domain valuation tool with a fully published, auditable methodology: lexical classification, TLD weights, valuation tiers, and wholesale vs retail price bands."/>
   <meta property="og:url" content="https://sohadot.com/valuation.html"/>
   <meta property="og:site_name" content="Sohadot"/>
 
@@ -799,7 +925,186 @@
         flex-direction:column;
       }
     }
-  
+
+  .ref-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:32px;
+    margin-top:26px;
+  }
+
+  .ref-card h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.2rem;
+    line-height:1.05;
+    color:var(--text);
+    margin-bottom:14px;
+  }
+
+  .ref-card h3{
+    font-family:'Outfit',sans-serif;
+    font-size:1.02rem;
+    font-weight:700;
+    color:var(--text);
+    margin:26px 0 10px;
+  }
+
+  .ref-card p{
+    color:var(--muted);
+    font-size:.93rem;
+    line-height:1.95;
+    margin-bottom:12px;
+  }
+
+  .ref-card p strong{
+    color:var(--text);
+  }
+
+  .table-scroll{
+    overflow-x:auto;
+    margin:14px 0 6px;
+  }
+
+  .ref-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.88rem;
+    min-width:520px;
+  }
+
+  .ref-table th{
+    text-align:left;
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--dim);
+    padding:10px 14px;
+    border-bottom:2px solid var(--border-strong);
+    background:var(--surface);
+  }
+
+  .ref-table td{
+    padding:12px 14px;
+    border-bottom:1px solid var(--border);
+    color:var(--muted);
+    line-height:1.7;
+    vertical-align:top;
+  }
+
+  .ref-table td:first-child{
+    color:var(--text);
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  .ref-table .num{
+    color:var(--blue);
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .faq-item{
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:var(--surface);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+
+  .faq-item summary{
+    cursor:pointer;
+    list-style:none;
+    padding:16px 18px;
+    font-weight:600;
+    font-size:.95rem;
+    color:var(--text);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+  }
+
+  .faq-item summary::-webkit-details-marker{display:none}
+
+  .faq-item summary::after{
+    content:"+";
+    color:var(--blue);
+    font-size:1.25rem;
+    font-weight:400;
+    flex-shrink:0;
+    transition:.18s ease;
+  }
+
+  .faq-item[open] summary::after{
+    content:"−";
+  }
+
+  .faq-item .faq-answer{
+    padding:0 18px 16px;
+    color:var(--muted);
+    font-size:.9rem;
+    line-height:1.9;
+  }
+
+  .glossary-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+
+  .glossary-grid .term{
+    padding:16px 17px;
+    border-radius:16px;
+    background:var(--surface);
+    border:1px solid var(--border);
+  }
+
+  .glossary-grid dt{
+    font-weight:700;
+    color:var(--text);
+    font-size:.93rem;
+    margin-bottom:6px;
+  }
+
+  .glossary-grid dd{
+    color:var(--muted);
+    font-size:.86rem;
+    line-height:1.8;
+  }
+
+  .cite-box{
+    margin-top:22px;
+    padding:18px 20px;
+    border-radius:18px;
+    background:var(--blue-soft);
+    border:1px solid rgba(36,84,211,0.14);
+    color:var(--muted);
+    font-size:.88rem;
+    line-height:1.9;
+  }
+
+  .cite-box strong{
+    color:var(--text);
+  }
+
+  @media (max-width: 760px){
+    .ref-card{
+      padding:20px 18px;
+    }
+
+    .ref-card h2{
+      font-size:1.75rem;
+    }
+
+    .glossary-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
   .seo-links {
   max-width: 1200px;; /* ليتحاذى مع عرض محتوى الموقع */
   margin: 60px auto;
@@ -969,6 +1274,205 @@
         </div>
       </div>
     </div>
+
+    <section class="ref-card" id="methodology" aria-labelledby="methodology-title">
+      <div class="block-kicker">Open Methodology · Version 2.0</div>
+      <h2 id="methodology-title">The Sohadot Domain Valuation Framework</h2>
+      <p>
+        Every estimate produced by the tool above is generated by the <strong>Sohadot Domain Valuation Framework</strong> —
+        an open, versioned scoring methodology. Unlike black-box appraisal tools, the complete inputs are published below
+        so that investors, brokers, marketplaces, researchers, and automated systems can verify exactly how each figure
+        is derived. The underlying keyword, lexical, and comparable-sales datasets are refreshed weekly.
+      </p>
+
+      <h3>Step 1 — Lexical classification</h3>
+      <p>
+        The name portion of the domain (the part before the dot) is matched against curated keyword, dictionary,
+        and name datasets and assigned one of six classes. The class sets the base score on a 0–100 scale:
+      </p>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Classification</th><th>Base score</th><th>Definition</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Commercial keyword</td><td class="num">88</td><td>Contains at least one recognized high-demand commercial term (e.g. ai, pay, cloud, loans). Each detected keyword adds +4, capped at +12.</td></tr>
+            <tr><td>Dictionary word</td><td class="num">76</td><td>An exact, dictionary-attested English word with mainstream usage.</td></tr>
+            <tr><td>Rare dictionary word</td><td class="num">70</td><td>An authentic but low-frequency dictionary word; receives an additional +4 authenticity bonus.</td></tr>
+            <tr><td>Personal name</td><td class="num">62</td><td>A recognized given name or surname.</td></tr>
+            <tr><td>Brandable</td><td class="num">58</td><td>A clean invented string of 4–12 letters, pronounceable, with no hyphens, digits, or awkward repetition.</td></tr>
+            <tr><td>Random / low signal</td><td class="num">18</td><td>No lexical or commercial foundation; an additional −8 penalty applies.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Step 2 — Extension (TLD) weighting</h3>
+      <p>
+        The extension adds a fixed weight reflecting global resale strength and liquidity:
+      </p>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Extension</th><th>Weight</th><th>Market rationale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>.com</td><td class="num">+24</td><td>Strongest global resale extension and the default for end-user acquisitions.</td></tr>
+            <tr><td>.ai</td><td class="num">+18</td><td>Strong alignment with modern AI naming demand.</td></tr>
+            <tr><td>.io</td><td class="num">+14</td><td>Established fit for software and developer-oriented branding.</td></tr>
+            <tr><td>.co</td><td class="num">+10</td><td>Recognized startup alternative with meaningful resale history.</td></tr>
+            <tr><td>.org</td><td class="num">+8</td><td>Credible for institutions, nonprofits, and communities.</td></tr>
+            <tr><td>.dev</td><td class="num">+8</td><td>Developer-focused branding with growing adoption.</td></tr>
+            <tr><td>.net</td><td class="num">+7</td><td>Legacy alternative with moderate resale liquidity.</td></tr>
+            <tr><td>All others</td><td class="num">+4</td><td>Limited resale liquidity outside niche or geographic demand.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Step 3 — Length adjustment</h3>
+      <p>
+        Shorter names are scarcer and command structural premiums. The adjustment declines with each character:
+      </p>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Name length</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11+</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adjustment</td><td class="num">+30</td><td class="num">+24</td><td class="num">+18</td><td class="num">+12</td><td class="num">+9</td><td class="num">+7</td><td class="num">+5</td><td class="num">+3</td><td class="num">+1</td><td class="num">−3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Step 4 — Composite score and valuation tiers</h3>
+      <p>
+        Base score, extension weight, length adjustment, and keyword bonuses are summed and clamped to a 5–100
+        composite score, which maps to five published tiers:
+      </p>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Tier</th><th>Score range</th><th>Interpretation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ultra Premium</td><td class="num">85–100</td><td>Category-defining assets: exact-match commercial terms, ultra-short names, top extensions.</td></tr>
+            <tr><td>Premium</td><td class="num">70–84</td><td>Strong commercial or lexical foundation with broad buyer plausibility.</td></tr>
+            <tr><td>Strong</td><td class="num">55–69</td><td>Credible naming quality; value depends more on buyer fit than raw demand.</td></tr>
+            <tr><td>Standard</td><td class="num">35–54</td><td>Usable but unremarkable; realistic outcomes cluster near wholesale levels.</td></tr>
+            <tr><td>Low Signal</td><td class="num">5–34</td><td>Weak lexical and commercial foundation; resale demand is unlikely.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Step 5 — Pricing bands: wholesale vs retail</h3>
+      <p>
+        The composite score is converted to a dollar midpoint
+        (<strong>midpoint = max($75, score × 16 + extension weight × 14)</strong>), and class-specific multipliers
+        produce two distinct bands. <strong>Wholesale</strong> is the fast, investor-to-investor price achievable in
+        auctions and marketplace liquidations. <strong>Retail</strong> is the end-user acquisition price — what a
+        business pays for its brand name:
+      </p>
+      <div class="table-scroll">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Classification</th><th>Wholesale band (× midpoint)</th><th>Retail band (× midpoint)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Commercial keyword</td><td class="num">0.72 – 1.45</td><td class="num">2.8 – 6.4</td></tr>
+            <tr><td>Dictionary word</td><td class="num">0.68 – 1.38</td><td class="num">2.4 – 5.8</td></tr>
+            <tr><td>Rare dictionary word</td><td class="num">0.62 – 1.32</td><td class="num">2.2 – 5.4</td></tr>
+            <tr><td>Personal name</td><td class="num">0.60 – 1.25</td><td class="num">2.0 – 4.6</td></tr>
+            <tr><td>Brandable</td><td class="num">0.58 – 1.22</td><td class="num">1.9 – 4.4</td></tr>
+            <tr><td>Random / low signal</td><td class="num">0.50 – 1.10</td><td class="num">1.2 – 2.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Step 6 — Comparable-sales calibration</h3>
+      <p>
+        When publicly reported sales share the subject domain's extension, classification, length profile, or
+        keywords, the model blends its midpoint <strong>70%</strong> with the average comparable price
+        <strong>30%</strong>, then recomputes the bands (wholesale 0.68–1.34×, retail 2.2–5.4× the blended midpoint).
+        This anchors estimates to observed market behavior rather than formula output alone.
+      </p>
+
+      <h3>Scope and limitations</h3>
+      <p>
+        The framework produces structured directional estimates, not certified appraisals or guaranteed sale outcomes.
+        Exceptional short assets, exact-match commercial terms, and buyer-specific strategic matches routinely sell
+        materially above any model output. Estimates assume an unencumbered domain with no trademark conflicts.
+      </p>
+
+      <div class="cite-box">
+        <strong>Citing this framework:</strong> Sohadot Domain Valuation Framework, version 2.0. Sohadot.com,
+        last reviewed June 11, 2026. <a href="https://sohadot.com/valuation.html">https://sohadot.com/valuation.html</a>.
+        The methodology tables on this page are the canonical public reference for how Sohadot estimates are produced
+        and may be cited by investors, marketplaces, researchers, and AI systems.
+      </div>
+    </section>
+
+    <section class="ref-card" id="faq" aria-labelledby="faq-title">
+      <div class="block-kicker">Reference</div>
+      <h2 id="faq-title">Domain Valuation FAQ</h2>
+
+      <details class="faq-item">
+        <summary>How does the Sohadot domain valuation model work?</summary>
+        <div class="faq-answer">It scores a domain in three layers: lexical classification of the name (commercial keyword, dictionary word, rare dictionary word, personal name, brandable, or low signal), market weighting for the extension and length, and calibration against comparable public sales. The composite 5–100 score is then converted into wholesale and retail price bands using published class multipliers.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is the difference between wholesale and retail domain value?</summary>
+        <div class="faq-answer">Wholesale value is what a domain typically fetches in fast, investor-to-investor channels such as auctions and marketplace liquidations. Retail value is what an end user — typically a business acquiring its brand name — pays. In this framework retail runs roughly 2× to 6.4× the model midpoint, while wholesale runs roughly 0.5× to 1.45×.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Which domain extension is most valuable?</summary>
+        <div class="faq-answer">.com carries the highest weight in the framework (+24) because it remains the strongest global resale extension. .ai (+18) and .io (+14) follow, driven by AI and software branding demand, then .co (+10), .org (+8), .dev (+8), and .net (+7). All other extensions receive +4.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How does length affect a domain's value?</summary>
+        <div class="faq-answer">Shorter is scarcer and more valuable. Two-character names receive the maximum +30 adjustment, declining steadily with each additional character (3 letters +24, 4 letters +18, 5 letters +12) until names of 11 or more characters receive a −3 penalty.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are automated domain appraisals accurate?</summary>
+        <div class="faq-answer">They are directional, not definitive. This framework publishes its full inputs so every estimate can be audited, but no automated model is a certified appraisal: exceptional short assets, exact-match commercial terms, and buyer-specific strategic matches routinely sell far above any model output.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What makes a domain brandable?</summary>
+        <div class="faq-answer">In this framework, a brandable is a clean invented string of 4 to 12 letters with no awkward character repetition, a pronounceable structure, and no hyphens or digits. Brandables carry a base score of 58, and their realized value depends heavily on buyer taste and branding fit.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are comparable sales and how are they used?</summary>
+        <div class="faq-answer">Comparables are publicly reported domain sales that share the subject domain's extension, lexical classification, length profile, or keywords. When matches are found, the model blends its own midpoint (70%) with the average comparable price (30%) before computing the final wholesale and retail bands.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is the Sohadot domain valuation tool free?</summary>
+        <div class="faq-answer">Yes. The valuation tool and the full published methodology are free to use, with no account or signup required.</div>
+      </details>
+    </section>
+
+    <section class="ref-card" id="glossary" aria-labelledby="glossary-title">
+      <div class="block-kicker">Reference</div>
+      <h2 id="glossary-title">Domain Valuation Glossary</h2>
+      <p>Standard terminology used across this framework and the domain aftermarket:</p>
+
+      <dl class="glossary-grid">
+        <div class="term"><dt>Wholesale value</dt><dd>The price a domain typically achieves in fast, investor-to-investor channels such as expired-domain auctions and marketplace liquidations.</dd></div>
+        <div class="term"><dt>Retail value</dt><dd>The price an end user — typically a business acquiring its brand name — pays for a domain; usually a multiple of wholesale value.</dd></div>
+        <div class="term"><dt>Comparable sale (comp)</dt><dd>A publicly reported domain sale that shares the subject domain's extension, classification, length profile, or keywords, used to calibrate an estimate.</dd></div>
+        <div class="term"><dt>Lexical legitimacy</dt><dd>The degree to which a domain name is an authentic, attested word or recognized name rather than an arbitrary string; a core driver of naming credibility.</dd></div>
+        <div class="term"><dt>Brandable domain</dt><dd>A clean invented name, typically 4–12 letters, pronounceable, with no hyphens or digits, valued for branding potential rather than search demand.</dd></div>
+        <div class="term"><dt>Exact-match domain (EMD)</dt><dd>A domain whose name exactly matches a commercial search term (e.g. loans.com), commanding premium pricing from category buyers.</dd></div>
+        <div class="term"><dt>TLD (top-level domain)</dt><dd>The extension after the final dot, such as .com, .ai, or .io; a major weighting factor in resale value and liquidity.</dd></div>
+        <div class="term"><dt>Valuation tier</dt><dd>A quality band derived from the composite score: Ultra Premium (85–100), Premium (70–84), Strong (55–69), Standard (35–54), and Low Signal (5–34).</dd></div>
+        <div class="term"><dt>Liquidity</dt><dd>How quickly a domain can be converted to cash near its wholesale value; .com and short, keyword-rich names are the most liquid.</dd></div>
+        <div class="term"><dt>Drop (expired domain)</dt><dd>A previously registered domain released back to public availability after its registration lapses, often acquired at wholesale prices.</dd></div>
+      </dl>
+    </section>
 
     <div class="seo-links">
   <h3>Expand Your Domain Valuation Analysis</h3>
