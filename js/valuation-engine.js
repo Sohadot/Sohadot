@@ -74,6 +74,7 @@ function isCleanBrandable(word) {
   if (!/^[a-z]+$/.test(word)) return false;
   if (word.length < 4 || word.length > 12) return false;
   if (/(.)\1\1/.test(word)) return false;
+  if (!/[aeiouy]/.test(word)) return false;
   return true;
 }
 
@@ -285,27 +286,46 @@ function findComparableSales(sld, tld, classification, keywordHits, compsData) {
     const lengthDiff = Math.abs(item.length - sld.length);
     score += Math.max(0, 16 - (lengthDiff * 2));
 
+    let sharedKeywords = 0;
     if (keywordHits?.length) {
-      const shared = item.keywords.filter(k => keywordHits.includes(k));
-      score += shared.length * 12;
+      sharedKeywords = item.keywords.filter(k => keywordHits.includes(k)).length;
+      score += sharedKeywords * 12;
     }
 
     if (item.sld === sld) score += 50;
 
-    return { ...item, matchScore: score };
+    // A comp is only relevant if it shares real pricing drivers:
+    // same lexical classification, a shared commercial keyword, or
+    // the exact name. Extension + length alone is not comparability.
+    const related =
+      item.sld === sld ||
+      item.classification === classification ||
+      sharedKeywords > 0;
+
+    return { ...item, matchScore: score, related };
   });
 
   return matches
-    .filter(item => item.matchScore >= 16)
+    .filter(item => item.related && item.matchScore >= 30)
     .sort((a, b) => b.matchScore - a.matchScore || b.price - a.price)
     .slice(0, 4);
+}
+
+function medianPrice(comparables) {
+  const prices = comparables.map(item => item.price).sort((a, b) => a - b);
+  const mid = Math.floor(prices.length / 2);
+  return prices.length % 2 ? prices[mid] : (prices[mid - 1] + prices[mid]) / 2;
 }
 
 function refinePricingWithComparables(basePricing, comparables) {
   if (!comparables.length) return basePricing;
 
-  const avg = comparables.reduce((sum, item) => sum + item.price, 0) / comparables.length;
-  const adjustedMid = (basePricing.midpoint * 0.7) + (avg * 0.3);
+  // Geometric 70/30 blend against the median comparable so a single
+  // outlier sale cannot inflate the estimate by orders of magnitude.
+  const median = medianPrice(comparables);
+  const adjustedMid = Math.exp(
+    (Math.log(basePricing.midpoint) * 0.7) + (Math.log(median) * 0.3)
+  );
 
   return {
     midpoint: adjustedMid,
@@ -410,7 +430,11 @@ async function evaluateDomain(domainInput) {
     score -= 8;
   }
 
-  score = Math.max(5, Math.min(100, score));
+  // Normalize against the theoretical maximum (88 base + 12 keyword
+  // bonus + 24 TLD + 30 length = 154) instead of clamping at 100, so
+  // the top of the scale stays reserved for category-defining assets.
+  const MAX_RAW_SCORE = 154;
+  score = Math.max(5, Math.min(100, Math.round((score / MAX_RAW_SCORE) * 100)));
 
   const comparables = findComparableSales(
     sld,
