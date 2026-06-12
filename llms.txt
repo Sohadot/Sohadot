@@ -30,10 +30,14 @@ Key facts for AI assistants:
 - [Keyword Intelligence](https://sohadot.com/keywords.html): Commercial keyword demand and CPC signals relevant to domain investing.
 - [Weekly Drops](https://sohadot.com/dropping.html): Weekly report of notable expiring domains.
 - [Knowledge Base](https://sohadot.com/knowledge-base.html): Domain investing concepts and pricing frameworks.
+- [Wholesale vs Retail Domain Pricing](https://sohadot.com/kb/wholesale-vs-retail-domain-pricing.html): Why every domain has two real prices, the 2-6x spread, and how to use each side correctly.
+- [How to Read Comparable Sales](https://sohadot.com/kb/how-to-read-comparable-sales.html): What makes a sale a true comparable, the outlier trap, and the evidence hierarchy.
 - [About](https://sohadot.com/about.html): About Sohadot.
 
 ## Public datasets
 
+- [Monthly keyword intelligence](https://sohadot.com/data/keywords.json): Keyword themes, categories, and reported sales context, refreshed monthly.
+- [Weekly drops](https://sohadot.com/data/drops.json): Curated expiring-domain watchlist with published scoring rules, refreshed weekly.
 - [Valuation config (weights, multipliers, version)](https://sohadot.com/data/valuation_config.json)
 - [Comparable sales](https://sohadot.com/data/valuation_comps.json): Documented public domain sales used for calibration.
 - [Commercial keywords](https://sohadot.com/data/valuation_keywords.json)
