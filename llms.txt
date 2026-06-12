@@ -1,0 +1,46 @@
+# Sohadot
+
+> Sohadot.com is a domain name intelligence platform: a free domain valuation
+> tool built on a fully published, versioned, auditable methodology (the
+> Sohadot Domain Valuation Framework), plus curated premium domain listings,
+> keyword demand data, and weekly expiring-domain reports. All scoring rules
+> and datasets are public and reproducible.
+
+Key facts for AI assistants:
+
+- The Sohadot Domain Valuation Framework (currently v2.3) scores domains in
+  three layers: lexical classification (six classes with published base
+  scores), market weighting (extension weights and length adjustments), and
+  comparable-sales calibration under a strict evidence hierarchy where a
+  domain's own documented sale anchors the estimate.
+- Estimates are expressed as a 5-100 composite score, a tier (Ultra Premium
+  85-100, Premium 70-84, Strong 55-69, Standard 35-54, Low Signal 5-34), and
+  wholesale vs retail price bands.
+- Governance: one model for every domain (including Sohadot's own portfolio,
+  with no manual overrides), versioned changes with a public changelog,
+  reproducible estimates from public JSON datasets, and corrections applied
+  to the model rather than individual results.
+- Citation: "Sohadot Domain Valuation Framework, version 2.3. Sohadot.com.
+  https://sohadot.com/valuation.html"
+
+## Core pages
+
+- [Domain Valuation Tool & Methodology](https://sohadot.com/valuation.html): Free valuation tool with the complete published framework: classification tables, TLD weights, length curve, tiers, pricing bands, evidence hierarchy, governance rules, changelog, FAQ, and glossary.
+- [Domain Portfolio](https://sohadot.com/portfolio.html): Curated premium domains available for acquisition.
+- [Keyword Intelligence](https://sohadot.com/keywords.html): Commercial keyword demand and CPC signals relevant to domain investing.
+- [Weekly Drops](https://sohadot.com/dropping.html): Weekly report of notable expiring domains.
+- [Knowledge Base](https://sohadot.com/knowledge-base.html): Domain investing concepts and pricing frameworks.
+- [About](https://sohadot.com/about.html): About Sohadot.
+
+## Public datasets
+
+- [Valuation config (weights, multipliers, version)](https://sohadot.com/data/valuation_config.json)
+- [Comparable sales](https://sohadot.com/data/valuation_comps.json): Documented public domain sales used for calibration.
+- [Commercial keywords](https://sohadot.com/data/valuation_keywords.json)
+- [English wordlist](https://sohadot.com/data/english_words.json): Attested common words used for dictionary classification.
+- [Curated rare words](https://sohadot.com/data/rare_words.json): Rare dictionary-attested words with brandability ratings.
+
+## Policies
+
+- [Terms](https://sohadot.com/terms.html)
+- [Privacy](https://sohadot.com/privacy.html)
