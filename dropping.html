@@ -25,6 +25,60 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://sohadot.com/dropping.html#webpage",
+      "url": "https://sohadot.com/dropping.html",
+      "name": "Weekly Domain Drops Watchlist",
+      "description": "A curated weekly watchlist of dropping and expiring domains, scored by published structural, extension, and category rules.",
+      "inLanguage": "en",
+      "dateModified": "2026-06-12",
+      "isPartOf": { "@id": "https://sohadot.com/#website" },
+      "publisher": { "@id": "https://sohadot.com/#organization" }
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://sohadot.com/dropping.html#dataset",
+      "name": "Sohadot Weekly Domain Drops",
+      "description": "Weekly refreshed, curated list of notable expiring and dropping domain names with quality scores, categories, and directional value ranges.",
+      "url": "https://sohadot.com/dropping.html",
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://sohadot.com/data/drops.json"
+      },
+      "creator": { "@id": "https://sohadot.com/#organization" },
+      "license": "https://sohadot.com/terms.html",
+      "isAccessibleForFree": true
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sohadot.com/dropping.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a dropping or expired domain?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A dropping domain is a previously registered name whose registration has lapsed and is being released back to public availability. Because such names often carry age, history, or naming quality, they can frequently be acquired at wholesale prices well below end-user retail value." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Sohadot score weekly drops?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Each candidate is scored by published rules: extension quality (.com +20, .ai +16, .io +13, .co +11, .net +6, .org +5), category weighting (AI +14, Finance +12, Tech +11, Health +9, Brand +8, Geo +7), and structural quality covering length, readability, and memorability. The list is curated, not a raw automated dump." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the listed domains guaranteed to be available?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The list is a watchlist: some names are confirmed drops while others are near-drop candidates. Availability changes hourly in the expired-domain market, so every name should be verified at the linked source before acting." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 
   <title>Weekly Domain Drops Watchlist | Sohadot.com</title>
@@ -1015,6 +1069,37 @@
       </div>
     </section>
   </main>
+
+
+  <section style="max-width:1200px;margin:34px auto 0;padding:0 20px">
+    <div style="background:var(--card,#fff);border:1px solid rgba(15,23,42,0.08);border-radius:22px;box-shadow:0 10px 30px rgba(17,24,39,0.06);padding:30px">
+      <div style="color:#2454d3;font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px">Open Methodology</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;line-height:1.05;margin:0 0 12px;color:#142033">Published Drop-Scoring Rules</h2>
+      <p style="color:#66758c;font-size:.93rem;line-height:1.95;margin-bottom:14px">
+        Like the <a href="/valuation.html#methodology" style="color:#2454d3">Sohadot Valuation Framework</a>, this watchlist is governed by published, auditable rules rather than opaque scoring. Each candidate's score combines three weighted layers:
+      </p>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:.88rem;min-width:480px">
+          <thead>
+            <tr>
+              <th style="text-align:left;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:#8c98ab;padding:10px 14px;border-bottom:2px solid rgba(15,23,42,0.12);background:#f9f6ef">Layer</th>
+              <th style="text-align:left;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:#8c98ab;padding:10px 14px;border-bottom:2px solid rgba(15,23,42,0.12);background:#f9f6ef">Published weights</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:12px 14px;border-bottom:1px solid rgba(15,23,42,0.08);color:#142033;font-weight:600;white-space:nowrap">Extension quality</td><td style="padding:12px 14px;border-bottom:1px solid rgba(15,23,42,0.08);color:#66758c;line-height:1.7">.com +20 &middot; .ai +16 &middot; .io +13 &middot; .co +11 &middot; .net +6 &middot; .org +5</td></tr>
+            <tr><td style="padding:12px 14px;border-bottom:1px solid rgba(15,23,42,0.08);color:#142033;font-weight:600;white-space:nowrap">Category weighting</td><td style="padding:12px 14px;border-bottom:1px solid rgba(15,23,42,0.08);color:#66758c;line-height:1.7">AI +14 &middot; Finance / Crypto +12 &middot; Tech / SaaS +11 &middot; Health +9 &middot; Brand +8 &middot; Geo +7</td></tr>
+            <tr><td style="padding:12px 14px;border-bottom:1px solid rgba(15,23,42,0.08);color:#142033;font-weight:600;white-space:nowrap">Structural quality</td><td style="padding:12px 14px;border-bottom:1px solid rgba(15,23,42,0.08);color:#66758c;line-height:1.7">Length, readability, memorability, and clean composition (no hyphens, digits, or typo-like patterns)</td></tr>
+            <tr><td style="padding:12px 14px;color:#142033;font-weight:600;white-space:nowrap">Sources monitored</td><td style="padding:12px 14px;color:#66758c;line-height:1.7">GoDaddy Auctions, Afternic, Namecheap, NameJet, Atom, ExpiredDomains.net</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color:#66758c;font-size:.88rem;line-height:1.9;margin-top:14px">
+        Estimated value ranges shown in the list are directional wholesale guidance derived from the same logic as the
+        <a href="/valuation.html#methodology" style="color:#2454d3">published valuation framework</a>, and every name should be independently verified for availability and trademark conflicts before acquisition.
+      </p>
+    </div>
+  </section>
 
   <footer>
     © 2026 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
