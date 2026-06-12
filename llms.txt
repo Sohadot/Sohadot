@@ -8,7 +8,7 @@
 
 Key facts for AI assistants:
 
-- The Sohadot Domain Valuation Framework (currently v2.4) scores domains in
+- The Sohadot Domain Valuation Framework (currently v2.5) scores domains in
   three layers: lexical classification (six classes with published base
   scores), market weighting (extension weights and length adjustments), and
   comparable-sales calibration under a strict evidence hierarchy where a
@@ -20,7 +20,7 @@ Key facts for AI assistants:
   with no manual overrides), versioned changes with a public changelog,
   reproducible estimates from public JSON datasets, and corrections applied
   to the model rather than individual results.
-- Citation: "Sohadot Domain Valuation Framework, version 2.4. Sohadot.com.
+- Citation: "Sohadot Domain Valuation Framework, version 2.5. Sohadot.com.
   https://sohadot.com/valuation.html"
 
 ## Core pages
@@ -39,6 +39,7 @@ Key facts for AI assistants:
 - [Commercial keywords](https://sohadot.com/data/valuation_keywords.json)
 - [English wordlist](https://sohadot.com/data/english_words.json): Attested common words used for dictionary classification.
 - [Extended wordlist](https://sohadot.com/data/extended_words.json): 319,000+ attested entries used for deep lexical checks.
+- [Multilingual wordlist](https://sohadot.com/data/multilingual_words.json): 25,000+ common French/Spanish/German/Italian/Portuguese words.
 - [Curated rare words](https://sohadot.com/data/rare_words.json): Rare dictionary-attested words with brandability ratings.
 
 ## Policies

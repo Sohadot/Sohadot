@@ -2,7 +2,7 @@ let VALUATION_DATA = null;
 
 // Bump with each framework release so browsers never serve stale
 // scoring data after a methodology update.
-const FRAMEWORK_VERSION = '2.4';
+const FRAMEWORK_VERSION = '2.5';
 
 async function loadValuationData() {
   if (VALUATION_DATA) return VALUATION_DATA;
@@ -42,18 +42,24 @@ async function loadValuationData() {
   return VALUATION_DATA;
 }
 
-// The extended attested wordlist (~319k entries) is heavy, so it is
-// fetched lazily — only when a name is not resolved by the common
+// The extended attested wordlists (~319k English entries plus ~25k
+// French/Spanish/German/Italian/Portuguese entries) are heavy, so they
+// are fetched lazily — only when a name is not resolved by the common
 // dictionary, curated entries, names, or keyword checks.
-let EXTENDED_WORDS = null;
+let DEEP_LEXICON = null;
 
-async function loadExtendedWords() {
-  if (EXTENDED_WORDS) return EXTENDED_WORDS;
-  const data = await fetch('/data/extended_words.json?v=' + FRAMEWORK_VERSION)
-    .then(r => r.json())
-    .catch(() => ({ words: [] }));
-  EXTENDED_WORDS = new Set(data.words || []);
-  return EXTENDED_WORDS;
+async function loadDeepLexicon() {
+  if (DEEP_LEXICON) return DEEP_LEXICON;
+  const v = '?v=' + FRAMEWORK_VERSION;
+  const [extended, multilingual] = await Promise.all([
+    fetch('/data/extended_words.json' + v).then(r => r.json()).catch(() => ({ words: [] })),
+    fetch('/data/multilingual_words.json' + v).then(r => r.json()).catch(() => ({ words: [] }))
+  ]);
+  DEEP_LEXICON = {
+    extended: new Set(extended.words || []),
+    multilingual: new Set(multilingual.words || [])
+  };
+  return DEEP_LEXICON;
 }
 
 function normalizeDomain(input) {
@@ -492,19 +498,28 @@ async function evaluateDomain(domainInput) {
   let classificationData = classifyDomain(sld, datasets);
 
   // Deep lexical check: before accepting a name as invented or random,
-  // verify it against the extended attested wordlist. Uncommon but real
-  // words ("dactylograph") classify as rare dictionary words, with
-  // medium-high confidence and no curated brandability bonus.
+  // verify it against the extended English and major non-English
+  // attested wordlists. Real but uncommon words ("dactylograph",
+  // "vacances") classify as rare dictionary words, with medium-high
+  // confidence and no curated brandability bonus.
   if (
     classificationData.classification === 'brandable' ||
     classificationData.classification === 'random_low_quality'
   ) {
-    const extendedWords = await loadExtendedWords();
-    if (extendedWords.has(sld)) {
+    const lexicon = await loadDeepLexicon();
+    if (lexicon.extended.has(sld)) {
       classificationData = {
         classification: 'rare_dictionary_word',
         confidence: 'medium_high',
         lexicalStatus: 'attested but uncommon dictionary word',
+        keywordHits: [],
+        lexicalEntry: null
+      };
+    } else if (lexicon.multilingual.has(sld)) {
+      classificationData = {
+        classification: 'rare_dictionary_word',
+        confidence: 'medium_high',
+        lexicalStatus: 'attested non-English dictionary word (fr/es/de/it/pt)',
         keywordHits: [],
         lexicalEntry: null
       };
