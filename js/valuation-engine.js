@@ -2,7 +2,7 @@ let VALUATION_DATA = null;
 
 // Bump with each framework release so browsers never serve stale
 // scoring data after a methodology update.
-const FRAMEWORK_VERSION = '2.3';
+const FRAMEWORK_VERSION = '2.4';
 
 async function loadValuationData() {
   if (VALUATION_DATA) return VALUATION_DATA;
@@ -40,6 +40,20 @@ async function loadValuationData() {
   };
 
   return VALUATION_DATA;
+}
+
+// The extended attested wordlist (~319k entries) is heavy, so it is
+// fetched lazily — only when a name is not resolved by the common
+// dictionary, curated entries, names, or keyword checks.
+let EXTENDED_WORDS = null;
+
+async function loadExtendedWords() {
+  if (EXTENDED_WORDS) return EXTENDED_WORDS;
+  const data = await fetch('/data/extended_words.json?v=' + FRAMEWORK_VERSION)
+    .then(r => r.json())
+    .catch(() => ({ words: [] }));
+  EXTENDED_WORDS = new Set(data.words || []);
+  return EXTENDED_WORDS;
 }
 
 function normalizeDomain(input) {
@@ -88,6 +102,9 @@ function isCleanBrandable(word) {
   if (word.length < 4 || word.length > 12) return false;
   if (/(.)\1\1/.test(word)) return false;
   if (!/[aeiouy]/.test(word)) return false;
+  // A doubled consonant ending reads as a typo unless it is one of the
+  // natural English endings (ll, ss, ff, zz).
+  if (/(.)\1$/.test(word) && !/(ll|ss|ff|zz|ee|oo)$/.test(word)) return false;
   return true;
 }
 
@@ -472,7 +489,27 @@ async function evaluateDomain(domainInput) {
   const { sld, tld } = parts;
   const config = datasets.config;
 
-  const classificationData = classifyDomain(sld, datasets);
+  let classificationData = classifyDomain(sld, datasets);
+
+  // Deep lexical check: before accepting a name as invented or random,
+  // verify it against the extended attested wordlist. Uncommon but real
+  // words ("dactylograph") classify as rare dictionary words, with
+  // medium-high confidence and no curated brandability bonus.
+  if (
+    classificationData.classification === 'brandable' ||
+    classificationData.classification === 'random_low_quality'
+  ) {
+    const extendedWords = await loadExtendedWords();
+    if (extendedWords.has(sld)) {
+      classificationData = {
+        classification: 'rare_dictionary_word',
+        confidence: 'medium_high',
+        lexicalStatus: 'attested but uncommon dictionary word',
+        keywordHits: [],
+        lexicalEntry: null
+      };
+    }
+  }
 
   let score = config.base_scores[classificationData.classification] || 0;
   score += config.tld_weights[tld] || config.tld_weights.other;
