@@ -2,7 +2,7 @@ let VALUATION_DATA = null;
 
 // Bump with each framework release so browsers never serve stale
 // scoring data after a methodology update.
-const FRAMEWORK_VERSION = '2.3';
+const FRAMEWORK_VERSION = '2.5';
 
 async function loadValuationData() {
   if (VALUATION_DATA) return VALUATION_DATA;
@@ -40,6 +40,26 @@ async function loadValuationData() {
   };
 
   return VALUATION_DATA;
+}
+
+// The extended attested wordlists (~319k English entries plus ~25k
+// French/Spanish/German/Italian/Portuguese entries) are heavy, so they
+// are fetched lazily — only when a name is not resolved by the common
+// dictionary, curated entries, names, or keyword checks.
+let DEEP_LEXICON = null;
+
+async function loadDeepLexicon() {
+  if (DEEP_LEXICON) return DEEP_LEXICON;
+  const v = '?v=' + FRAMEWORK_VERSION;
+  const [extended, multilingual] = await Promise.all([
+    fetch('/data/extended_words.json' + v).then(r => r.json()).catch(() => ({ words: [] })),
+    fetch('/data/multilingual_words.json' + v).then(r => r.json()).catch(() => ({ words: [] }))
+  ]);
+  DEEP_LEXICON = {
+    extended: new Set(extended.words || []),
+    multilingual: new Set(multilingual.words || [])
+  };
+  return DEEP_LEXICON;
 }
 
 function normalizeDomain(input) {
@@ -88,6 +108,9 @@ function isCleanBrandable(word) {
   if (word.length < 4 || word.length > 12) return false;
   if (/(.)\1\1/.test(word)) return false;
   if (!/[aeiouy]/.test(word)) return false;
+  // A doubled consonant ending reads as a typo unless it is one of the
+  // natural English endings (ll, ss, ff, zz).
+  if (/(.)\1$/.test(word) && !/(ll|ss|ff|zz|ee|oo)$/.test(word)) return false;
   return true;
 }
 
@@ -472,7 +495,36 @@ async function evaluateDomain(domainInput) {
   const { sld, tld } = parts;
   const config = datasets.config;
 
-  const classificationData = classifyDomain(sld, datasets);
+  let classificationData = classifyDomain(sld, datasets);
+
+  // Deep lexical check: before accepting a name as invented or random,
+  // verify it against the extended English and major non-English
+  // attested wordlists. Real but uncommon words ("dactylograph",
+  // "vacances") classify as rare dictionary words, with medium-high
+  // confidence and no curated brandability bonus.
+  if (
+    classificationData.classification === 'brandable' ||
+    classificationData.classification === 'random_low_quality'
+  ) {
+    const lexicon = await loadDeepLexicon();
+    if (lexicon.extended.has(sld)) {
+      classificationData = {
+        classification: 'rare_dictionary_word',
+        confidence: 'medium_high',
+        lexicalStatus: 'attested but uncommon dictionary word',
+        keywordHits: [],
+        lexicalEntry: null
+      };
+    } else if (lexicon.multilingual.has(sld)) {
+      classificationData = {
+        classification: 'rare_dictionary_word',
+        confidence: 'medium_high',
+        lexicalStatus: 'attested non-English dictionary word (fr/es/de/it/pt)',
+        keywordHits: [],
+        lexicalEntry: null
+      };
+    }
+  }
 
   let score = config.base_scores[classificationData.classification] || 0;
   score += config.tld_weights[tld] || config.tld_weights.other;

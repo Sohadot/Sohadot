@@ -67,7 +67,7 @@ def main():
     now = now_utc()
 
     payload = {
-        "version": "2.3",
+        "version": "2.5",
         "last_updated": now.isoformat().replace("+00:00", "Z"),
         "last_updated_human": human_date(now),
         "count": len(sales),
