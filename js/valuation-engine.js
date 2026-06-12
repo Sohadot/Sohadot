@@ -2,7 +2,7 @@ let VALUATION_DATA = null;
 
 // Bump with each framework release so browsers never serve stale
 // scoring data after a methodology update.
-const FRAMEWORK_VERSION = '2.2';
+const FRAMEWORK_VERSION = '2.3';
 
 async function loadValuationData() {
   if (VALUATION_DATA) return VALUATION_DATA;
@@ -15,7 +15,8 @@ async function loadValuationData() {
     rareWords,
     names,
     industryMap,
-    comps
+    comps,
+    englishWords
   ] = await Promise.all([
     fetch('/data/valuation_config.json' + v).then(r => r.json()),
     fetch('/data/valuation_keywords.json' + v).then(r => r.json()),
@@ -23,7 +24,8 @@ async function loadValuationData() {
     fetch('/data/rare_words.json' + v).then(r => r.json()),
     fetch('/data/names.json' + v).then(r => r.json()),
     fetch('/data/industry_map.json' + v).then(r => r.json()),
-    fetch('/data/valuation_comps.json' + v).then(r => r.json())
+    fetch('/data/valuation_comps.json' + v).then(r => r.json()),
+    fetch('/data/english_words.json' + v).then(r => r.json())
   ]);
 
   VALUATION_DATA = {
@@ -33,7 +35,8 @@ async function loadValuationData() {
     rareWords,
     names,
     industryMap,
-    comps
+    comps,
+    dictionarySet: new Set(englishWords.words || [])
   };
 
   return VALUATION_DATA;
@@ -70,7 +73,12 @@ function getLengthAdjustment(config, len) {
 function detectCommercialKeywords(word, keywordsData) {
   const hits = [];
   for (const kw of keywordsData.commercial_keywords) {
-    if (word.includes(kw)) hits.push(kw);
+    // Keywords shorter than 3 characters only match as the whole word
+    // or at a word boundary, so "ai" fires on "aitools" but not "rain".
+    const matched = kw.length >= 3
+      ? word.includes(kw)
+      : word === kw || word.startsWith(kw) || word.endsWith(kw);
+    if (matched) hits.push(kw);
   }
   return hits;
 }
@@ -84,16 +92,19 @@ function isCleanBrandable(word) {
 }
 
 function classifyDomain(sld, datasets) {
-  const { lexicalWords, rareWords, names, keywords } = datasets;
+  const { lexicalWords, rareWords, names, keywords, dictionarySet } = datasets;
 
   const commercialHits = detectCommercialKeywords(sld, keywords);
+  const isExactKeyword = keywords.commercial_keywords.includes(sld);
 
-  if (commercialHits.length > 0) {
+  // The name being itself a commercial term (exact-match domain)
+  // outranks everything else.
+  if (isExactKeyword) {
     return {
       classification: 'commercial_keyword',
-      confidence: 'medium_high',
-      lexicalStatus: 'commercial keyword pattern',
-      keywordHits: commercialHits,
+      confidence: 'high',
+      lexicalStatus: 'exact-match commercial keyword',
+      keywordHits: commercialHits.length ? commercialHits : [sld],
       lexicalEntry: null
     };
   }
@@ -124,6 +135,30 @@ function classifyDomain(sld, datasets) {
       confidence: 'high',
       lexicalStatus: 'recognized personal name',
       keywordHits: [],
+      lexicalEntry: null
+    };
+  }
+
+  // Attested dictionary words rank by their lexical class even when a
+  // commercial substring happens to appear inside them ("brain" is a
+  // dictionary word, not an "ai" keyword domain).
+  if (dictionarySet && dictionarySet.has(sld)) {
+    return {
+      classification: 'dictionary_word',
+      confidence: 'high',
+      lexicalStatus: 'dictionary-attested word',
+      keywordHits: [],
+      lexicalEntry: null
+    };
+  }
+
+  // Compound names containing a commercial term ("aitools", "payify").
+  if (commercialHits.length > 0) {
+    return {
+      classification: 'commercial_keyword',
+      confidence: 'medium_high',
+      lexicalStatus: 'commercial keyword pattern',
+      keywordHits: commercialHits,
       lexicalEntry: null
     };
   }

@@ -18,5 +18,185 @@
     "seo_strength": "low",
     "commercial_note": "not a high-volume commercial keyword, but not a nonsense string",
     "brandability": "moderate"
+  },
+  "selcouth": {
+    "type": "rare_dictionary_word",
+    "subcategory": "archaic_english",
+    "usage_note": "rare, attested Middle English term meaning strange or marvelous",
+    "origin_note": "documented in major historical dictionaries",
+    "brandability_note": "strong for distinctive, creative, or premium curiosity-driven branding",
+    "seo_strength": "low",
+    "commercial_note": "not keyword-driven, but stronger than a random invented string",
+    "brandability": "strong"
+  },
+  "eldritch": {
+    "type": "rare_dictionary_word",
+    "subcategory": "literary",
+    "usage_note": "rare literary adjective meaning eerie or otherworldly",
+    "origin_note": "attested since the 16th century, popularized in gothic fiction",
+    "brandability_note": "strong for gaming, fiction, entertainment, or atmospheric branding",
+    "seo_strength": "low",
+    "commercial_note": "niche cultural demand from gaming and fiction audiences",
+    "brandability": "strong"
+  },
+  "petrichor": {
+    "type": "rare_dictionary_word",
+    "subcategory": "scientific_coinage",
+    "usage_note": "rare noun for the scent of rain on dry earth",
+    "origin_note": "coined 1964 in Nature; now in major dictionaries",
+    "brandability_note": "strong for fragrance, wellness, nature, or sensory branding",
+    "seo_strength": "low",
+    "commercial_note": "evocative meaning with genuine niche recognition",
+    "brandability": "strong"
+  },
+  "susurrus": {
+    "type": "rare_dictionary_word",
+    "subcategory": "literary",
+    "usage_note": "rare literary noun meaning a whispering or rustling sound",
+    "origin_note": "attested Latin borrowing in major dictionaries",
+    "brandability_note": "strong for audio, ambient, wellness, or literary branding",
+    "seo_strength": "low",
+    "commercial_note": "not keyword-driven; value rests on sound and meaning",
+    "brandability": "strong"
+  },
+  "vesper": {
+    "type": "rare_dictionary_word",
+    "subcategory": "liturgical_poetic",
+    "usage_note": "rare poetic term for evening or the evening star",
+    "origin_note": "attested from Latin; long literary history",
+    "brandability_note": "strong for hospitality, beverage, evening-economy, or premium branding",
+    "seo_strength": "low",
+    "commercial_note": "recognized via cultural references; modest direct demand",
+    "brandability": "strong"
+  },
+  "sylvan": {
+    "type": "rare_dictionary_word",
+    "subcategory": "literary",
+    "usage_note": "rare adjective meaning of the forest",
+    "origin_note": "attested from Latin silva; established literary usage",
+    "brandability_note": "strong for nature, hospitality, real estate, or wellness branding",
+    "seo_strength": "low",
+    "commercial_note": "attractive meaning with modest direct search demand",
+    "brandability": "strong"
+  },
+  "numinous": {
+    "type": "rare_dictionary_word",
+    "subcategory": "philosophical",
+    "usage_note": "rare adjective for a spiritual or awe-inspiring quality",
+    "origin_note": "attested theological/philosophical term",
+    "brandability_note": "moderate for wellness, art, or contemplative branding",
+    "seo_strength": "low",
+    "commercial_note": "meaning-led value; minimal direct search demand",
+    "brandability": "moderate"
+  },
+  "argent": {
+    "type": "rare_dictionary_word",
+    "subcategory": "heraldic",
+    "usage_note": "rare heraldic term for silver",
+    "origin_note": "attested Old French borrowing; heraldic standard",
+    "brandability_note": "strong for finance, jewelry, heritage, or premium branding",
+    "seo_strength": "low",
+    "commercial_note": "short, elegant, finance-adjacent connotation",
+    "brandability": "strong"
+  },
+  "aether": {
+    "type": "rare_dictionary_word",
+    "subcategory": "classical",
+    "usage_note": "rare classical term for the upper air or a universal medium",
+    "origin_note": "attested Greek borrowing with scientific history",
+    "brandability_note": "strong for science, energy, cloud, or futuristic branding",
+    "seo_strength": "low",
+    "commercial_note": "tech-adjacent connotation without being a keyword",
+    "brandability": "strong"
+  },
+  "zephyr": {
+    "type": "rare_dictionary_word",
+    "subcategory": "classical",
+    "usage_note": "rare poetic term for a gentle west wind",
+    "origin_note": "attested Greek borrowing; long literary use",
+    "brandability_note": "strong for travel, energy, apparel, or lightweight-product branding",
+    "seo_strength": "low",
+    "commercial_note": "recognized poetic word with brand history",
+    "brandability": "strong"
+  },
+  "liminal": {
+    "type": "rare_dictionary_word",
+    "subcategory": "academic",
+    "usage_note": "rare academic adjective for threshold or transitional states",
+    "origin_note": "attested anthropological term now in general dictionaries",
+    "brandability_note": "moderate for art, architecture, or concept-led branding",
+    "seo_strength": "low",
+    "commercial_note": "rising cultural usage; minimal commercial search",
+    "brandability": "moderate"
+  },
+  "umbra": {
+    "type": "rare_dictionary_word",
+    "subcategory": "scientific",
+    "usage_note": "rare term for the darkest part of a shadow",
+    "origin_note": "attested Latin borrowing; astronomy standard",
+    "brandability_note": "strong for security, privacy, gaming, or premium dark-aesthetic branding",
+    "seo_strength": "low",
+    "commercial_note": "short, real, and visually evocative",
+    "brandability": "strong"
+  },
+  "verdant": {
+    "type": "rare_dictionary_word",
+    "subcategory": "literary",
+    "usage_note": "rare adjective meaning lush green",
+    "origin_note": "attested from Old French; established literary usage",
+    "brandability_note": "strong for agriculture, sustainability, landscaping, or wellness branding",
+    "seo_strength": "low",
+    "commercial_note": "green-economy connotation with authentic lexical status",
+    "brandability": "strong"
+  },
+  "limerence": {
+    "type": "rare_dictionary_word",
+    "subcategory": "psychological",
+    "usage_note": "rare psychological term for involuntary romantic infatuation",
+    "origin_note": "coined 1979 in psychology literature; dictionary-attested",
+    "brandability_note": "moderate for dating, wellness, or relationship branding",
+    "seo_strength": "low",
+    "commercial_note": "niche but precisely meaningful",
+    "brandability": "moderate"
+  },
+  "apricity": {
+    "type": "rare_dictionary_word",
+    "subcategory": "archaic_english",
+    "usage_note": "very rare archaic noun for the warmth of the sun in winter",
+    "origin_note": "attested in 17th-century English dictionaries",
+    "brandability_note": "strong for wellness, hospitality, solar, or comfort branding",
+    "seo_strength": "low",
+    "commercial_note": "beautiful meaning; near-zero direct search demand",
+    "brandability": "strong"
+  },
+  "cynosure": {
+    "type": "rare_dictionary_word",
+    "subcategory": "literary",
+    "usage_note": "rare noun for a focal point of admiration",
+    "origin_note": "attested Greek borrowing; established literary usage",
+    "brandability_note": "moderate for media, luxury, or attention-economy branding",
+    "seo_strength": "low",
+    "commercial_note": "meaning-led value; low direct demand",
+    "brandability": "moderate"
+  },
+  "lambent": {
+    "type": "rare_dictionary_word",
+    "subcategory": "literary",
+    "usage_note": "rare adjective for softly glowing light",
+    "origin_note": "attested Latin borrowing; established literary usage",
+    "brandability_note": "moderate for lighting, art, or ambient-tech branding",
+    "seo_strength": "low",
+    "commercial_note": "aesthetic appeal with low search volume",
+    "brandability": "moderate"
+  },
+  "nacre": {
+    "type": "rare_dictionary_word",
+    "subcategory": "scientific",
+    "usage_note": "rare term for mother-of-pearl",
+    "origin_note": "attested French borrowing; materials-science standard",
+    "brandability_note": "strong for jewelry, cosmetics, materials, or premium branding",
+    "seo_strength": "low",
+    "commercial_note": "short, real, and product-adjacent",
+    "brandability": "strong"
   }
 }

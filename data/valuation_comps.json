@@ -1,9 +1,134 @@
 {
-  "version": "2.0",
-  "last_updated": "2026-06-08T12:23:40.301550Z",
-  "last_updated_human": "June 08, 2026 12:23 UTC",
-  "count": 21,
+  "version": "2.3",
+  "last_updated": "2026-06-12T06:22:56.028766Z",
+  "last_updated_human": "June 12, 2026 06:22 UTC",
+  "count": 45,
   "sales": [
+    {
+      "domain": "insurance.com",
+      "price": 35600000,
+      "price_display": "$35,600,000",
+      "year": 2010,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "insurance"
+      ],
+      "notes": "category-defining exact-match insurance term",
+      "sld": "insurance",
+      "length": 9
+    },
+    {
+      "domain": "vacationrentals.com",
+      "price": 35000000,
+      "price_display": "$35,000,000",
+      "year": 2007,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "travel"
+      ],
+      "notes": "exact-match travel category acquisition",
+      "sld": "vacationrentals",
+      "length": 15
+    },
+    {
+      "domain": "privatejet.com",
+      "price": 30180000,
+      "price_display": "$30,180,000",
+      "year": 2012,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "travel"
+      ],
+      "notes": "luxury travel exact-match sale",
+      "sld": "privatejet",
+      "length": 10
+    },
+    {
+      "domain": "voice.com",
+      "price": 30000000,
+      "price_display": "$30,000,000",
+      "year": 2019,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "voice"
+      ],
+      "notes": "landmark one-word dictionary sale to Block.one",
+      "sld": "voice",
+      "length": 5
+    },
+    {
+      "domain": "internet.com",
+      "price": 18000000,
+      "price_display": "$18,000,000",
+      "year": 2009,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "web"
+      ],
+      "notes": "foundational internet-category term",
+      "sld": "internet",
+      "length": 8
+    },
+    {
+      "domain": "360.com",
+      "price": 17000000,
+      "price_display": "$17,000,000",
+      "year": 2015,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "short numeric brand acquired by Qihoo 360",
+      "sld": "360",
+      "length": 3
+    },
+    {
+      "domain": "chat.com",
+      "price": 15500000,
+      "price_display": "$15,500,000",
+      "year": 2023,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "chat",
+        "ai"
+      ],
+      "notes": "AI-era conversational category sale",
+      "sld": "chat",
+      "length": 4
+    },
+    {
+      "domain": "sex.com",
+      "price": 13000000,
+      "price_display": "$13,000,000",
+      "year": 2010,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "dating"
+      ],
+      "notes": "landmark adult-category exact match",
+      "sld": "sex",
+      "length": 3
+    },
+    {
+      "domain": "crypto.com",
+      "price": 12000000,
+      "price_display": "$12,000,000",
+      "year": 2018,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "crypto"
+      ],
+      "notes": "category-defining crypto exact match",
+      "sld": "crypto",
+      "length": 6
+    },
     {
       "domain": "ai.com",
       "price": 11000000,
@@ -19,6 +144,199 @@
       "length": 2
     },
     {
+      "domain": "hotels.com",
+      "price": 11000000,
+      "price_display": "$11,000,000",
+      "year": 2001,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "hotel",
+        "hotels",
+        "travel"
+      ],
+      "notes": "early travel category landmark",
+      "sld": "hotels",
+      "length": 6
+    },
+    {
+      "domain": "fund.com",
+      "price": 9990000,
+      "price_display": "$9,990,000",
+      "year": 2008,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "fund",
+        "finance"
+      ],
+      "notes": "finance exact-match landmark",
+      "sld": "fund",
+      "length": 4
+    },
+    {
+      "domain": "porn.com",
+      "price": 9500000,
+      "price_display": "$9,500,000",
+      "year": 2007,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [],
+      "notes": "adult category exact match",
+      "sld": "porn",
+      "length": 4
+    },
+    {
+      "domain": "fb.com",
+      "price": 8500000,
+      "price_display": "$8,500,000",
+      "year": 2010,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "two-letter acquisition by Facebook",
+      "sld": "fb",
+      "length": 2
+    },
+    {
+      "domain": "we.com",
+      "price": 8000000,
+      "price_display": "$8,000,000",
+      "year": 2015,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "two-letter dictionary word sale",
+      "sld": "we",
+      "length": 2
+    },
+    {
+      "domain": "diamond.com",
+      "price": 7500000,
+      "price_display": "$7,500,000",
+      "year": 2006,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "diamond"
+      ],
+      "notes": "jewelry category one-word sale",
+      "sld": "diamond",
+      "length": 7
+    },
+    {
+      "domain": "business.com",
+      "price": 7500000,
+      "price_display": "$7,500,000",
+      "year": 1999,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "business"
+      ],
+      "notes": "dot-com era category landmark",
+      "sld": "business",
+      "length": 8
+    },
+    {
+      "domain": "beer.com",
+      "price": 7000000,
+      "price_display": "$7,000,000",
+      "year": 2004,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "beer"
+      ],
+      "notes": "beverage category one-word sale",
+      "sld": "beer",
+      "length": 4
+    },
+    {
+      "domain": "z.com",
+      "price": 6800000,
+      "price_display": "$6,800,000",
+      "year": 2014,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "single-letter sale to GMO Internet",
+      "sld": "z",
+      "length": 1
+    },
+    {
+      "domain": "slots.com",
+      "price": 5500000,
+      "price_display": "$5,500,000",
+      "year": 2013,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "casino",
+        "game",
+        "games"
+      ],
+      "notes": "gaming category exact match",
+      "sld": "slots",
+      "length": 5
+    },
+    {
+      "domain": "toys.com",
+      "price": 5100000,
+      "price_display": "$5,100,000",
+      "year": 2009,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "shop"
+      ],
+      "notes": "retail category exact match",
+      "sld": "toys",
+      "length": 4
+    },
+    {
+      "domain": "clothes.com",
+      "price": 4900000,
+      "price_display": "$4,900,000",
+      "year": 2008,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "shop",
+        "store"
+      ],
+      "notes": "apparel category exact match",
+      "sld": "clothes",
+      "length": 7
+    },
+    {
+      "domain": "medicare.com",
+      "price": 4800000,
+      "price_display": "$4,800,000",
+      "year": 2014,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "health",
+        "insurance"
+      ],
+      "notes": "health-insurance category sale",
+      "sld": "medicare",
+      "length": 8
+    },
+    {
+      "domain": "whisky.com",
+      "price": 3100000,
+      "price_display": "$3,100,000",
+      "year": 2014,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "beverage category one-word sale",
+      "sld": "whisky",
+      "length": 6
+    },
+    {
       "domain": "trading.com",
       "price": 3000000,
       "price_display": "$3,000,000",
@@ -31,6 +349,20 @@
       "notes": "category-defining finance term",
       "sld": "trading",
       "length": 7
+    },
+    {
+      "domain": "candy.com",
+      "price": 3000000,
+      "price_display": "$3,000,000",
+      "year": 2009,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "food"
+      ],
+      "notes": "confectionery category one-word sale",
+      "sld": "candy",
+      "length": 5
     },
     {
       "domain": "gpt.com",

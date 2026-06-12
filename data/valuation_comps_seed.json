@@ -6,7 +6,9 @@
       "year": 2023,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["ai"],
+      "keywords": [
+        "ai"
+      ],
       "notes": "landmark exact-match AI asset"
     },
     {
@@ -15,7 +17,9 @@
       "year": 2023,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["gpt"],
+      "keywords": [
+        "gpt"
+      ],
       "notes": "short AI-linked acronym sale"
     },
     {
@@ -24,7 +28,11 @@
       "year": 2023,
       "tld": ".ai",
       "classification": "commercial_keyword",
-      "keywords": ["agent", "agents", "ai"],
+      "keywords": [
+        "agent",
+        "agents",
+        "ai"
+      ],
       "notes": "strong AI category alignment"
     },
     {
@@ -33,7 +41,10 @@
       "year": 2022,
       "tld": ".ai",
       "classification": "commercial_keyword",
-      "keywords": ["data", "ai"],
+      "keywords": [
+        "data",
+        "ai"
+      ],
       "notes": "exact-fit AI extension alignment"
     },
     {
@@ -42,7 +53,9 @@
       "year": 2022,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["wallet"],
+      "keywords": [
+        "wallet"
+      ],
       "notes": "strong finance keyword sale"
     },
     {
@@ -51,7 +64,9 @@
       "year": 2019,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["trading"],
+      "keywords": [
+        "trading"
+      ],
       "notes": "category-defining finance term"
     },
     {
@@ -60,7 +75,10 @@
       "year": 2024,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["wealth", "logic"],
+      "keywords": [
+        "wealth",
+        "logic"
+      ],
       "notes": "finance compound"
     },
     {
@@ -69,7 +87,10 @@
       "year": 2025,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["stack", "scan"],
+      "keywords": [
+        "stack",
+        "scan"
+      ],
       "notes": "devtools/security style compound"
     },
     {
@@ -78,7 +99,10 @@
       "year": 2025,
       "tld": ".com",
       "classification": "commercial_keyword",
-      "keywords": ["weather", "pulse"],
+      "keywords": [
+        "weather",
+        "pulse"
+      ],
       "notes": "data/SaaS style compound"
     },
     {
@@ -87,7 +111,10 @@
       "year": 2025,
       "tld": ".com",
       "classification": "brandable",
-      "keywords": ["fusion", "flare"],
+      "keywords": [
+        "fusion",
+        "flare"
+      ],
       "notes": "energetic brandable compound"
     },
     {
@@ -96,7 +123,9 @@
       "year": 2025,
       "tld": ".com",
       "classification": "brandable",
-      "keywords": ["genie"],
+      "keywords": [
+        "genie"
+      ],
       "notes": "short consumer AI brandable"
     },
     {
@@ -105,7 +134,10 @@
       "year": 2025,
       "tld": ".com",
       "classification": "brandable",
-      "keywords": ["night", "rocket"],
+      "keywords": [
+        "night",
+        "rocket"
+      ],
       "notes": "high-energy brandable"
     },
     {
@@ -114,7 +146,9 @@
       "year": 2025,
       "tld": ".com",
       "classification": "brandable",
-      "keywords": ["folio"],
+      "keywords": [
+        "folio"
+      ],
       "notes": "portfolio/brandable hybrid"
     },
     {
@@ -168,7 +202,9 @@
       "year": 2018,
       "tld": ".com",
       "classification": "dictionary_word",
-      "keywords": ["nova"],
+      "keywords": [
+        "nova"
+      ],
       "notes": "premium short lexical/scientific word"
     },
     {
@@ -188,6 +224,266 @@
       "classification": "personal_name",
       "keywords": [],
       "notes": "short personal-name AI extension"
+    },
+    {
+      "domain": "insurance.com",
+      "price": 35600000,
+      "year": 2010,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "insurance"
+      ],
+      "notes": "category-defining exact-match insurance term"
+    },
+    {
+      "domain": "vacationrentals.com",
+      "price": 35000000,
+      "year": 2007,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "travel"
+      ],
+      "notes": "exact-match travel category acquisition"
+    },
+    {
+      "domain": "privatejet.com",
+      "price": 30180000,
+      "year": 2012,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "travel"
+      ],
+      "notes": "luxury travel exact-match sale"
+    },
+    {
+      "domain": "voice.com",
+      "price": 30000000,
+      "year": 2019,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "voice"
+      ],
+      "notes": "landmark one-word dictionary sale to Block.one"
+    },
+    {
+      "domain": "internet.com",
+      "price": 18000000,
+      "year": 2009,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "web"
+      ],
+      "notes": "foundational internet-category term"
+    },
+    {
+      "domain": "360.com",
+      "price": 17000000,
+      "year": 2015,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "short numeric brand acquired by Qihoo 360"
+    },
+    {
+      "domain": "chat.com",
+      "price": 15500000,
+      "year": 2023,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "chat",
+        "ai"
+      ],
+      "notes": "AI-era conversational category sale"
+    },
+    {
+      "domain": "sex.com",
+      "price": 13000000,
+      "year": 2010,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "dating"
+      ],
+      "notes": "landmark adult-category exact match"
+    },
+    {
+      "domain": "crypto.com",
+      "price": 12000000,
+      "year": 2018,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "crypto"
+      ],
+      "notes": "category-defining crypto exact match"
+    },
+    {
+      "domain": "hotels.com",
+      "price": 11000000,
+      "year": 2001,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "hotel",
+        "hotels",
+        "travel"
+      ],
+      "notes": "early travel category landmark"
+    },
+    {
+      "domain": "fund.com",
+      "price": 9990000,
+      "year": 2008,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "fund",
+        "finance"
+      ],
+      "notes": "finance exact-match landmark"
+    },
+    {
+      "domain": "porn.com",
+      "price": 9500000,
+      "year": 2007,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [],
+      "notes": "adult category exact match"
+    },
+    {
+      "domain": "fb.com",
+      "price": 8500000,
+      "year": 2010,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "two-letter acquisition by Facebook"
+    },
+    {
+      "domain": "we.com",
+      "price": 8000000,
+      "year": 2015,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "two-letter dictionary word sale"
+    },
+    {
+      "domain": "business.com",
+      "price": 7500000,
+      "year": 1999,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "business"
+      ],
+      "notes": "dot-com era category landmark"
+    },
+    {
+      "domain": "diamond.com",
+      "price": 7500000,
+      "year": 2006,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "diamond"
+      ],
+      "notes": "jewelry category one-word sale"
+    },
+    {
+      "domain": "beer.com",
+      "price": 7000000,
+      "year": 2004,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "beer"
+      ],
+      "notes": "beverage category one-word sale"
+    },
+    {
+      "domain": "z.com",
+      "price": 6800000,
+      "year": 2014,
+      "tld": ".com",
+      "classification": "brandable",
+      "keywords": [],
+      "notes": "single-letter sale to GMO Internet"
+    },
+    {
+      "domain": "slots.com",
+      "price": 5500000,
+      "year": 2013,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "casino",
+        "game",
+        "games"
+      ],
+      "notes": "gaming category exact match"
+    },
+    {
+      "domain": "toys.com",
+      "price": 5100000,
+      "year": 2009,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "shop"
+      ],
+      "notes": "retail category exact match"
+    },
+    {
+      "domain": "clothes.com",
+      "price": 4900000,
+      "year": 2008,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "shop",
+        "store"
+      ],
+      "notes": "apparel category exact match"
+    },
+    {
+      "domain": "medicare.com",
+      "price": 4800000,
+      "year": 2014,
+      "tld": ".com",
+      "classification": "commercial_keyword",
+      "keywords": [
+        "health",
+        "insurance"
+      ],
+      "notes": "health-insurance category sale"
+    },
+    {
+      "domain": "whisky.com",
+      "price": 3100000,
+      "year": 2014,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [],
+      "notes": "beverage category one-word sale"
+    },
+    {
+      "domain": "candy.com",
+      "price": 3000000,
+      "year": 2009,
+      "tld": ".com",
+      "classification": "dictionary_word",
+      "keywords": [
+        "food"
+      ],
+      "notes": "confectionery category one-word sale"
     }
   ]
 }
