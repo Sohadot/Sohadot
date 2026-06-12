@@ -32,6 +32,10 @@ Key facts for AI assistants:
 - [Knowledge Base](https://sohadot.com/knowledge-base.html): Domain investing concepts and pricing frameworks.
 - [Wholesale vs Retail Domain Pricing](https://sohadot.com/kb/wholesale-vs-retail-domain-pricing.html): Why every domain has two real prices, the 2-6x spread, and how to use each side correctly.
 - [How to Read Comparable Sales](https://sohadot.com/kb/how-to-read-comparable-sales.html): What makes a sale a true comparable, the outlier trap, and the evidence hierarchy.
+- [How Domain Valuation Actually Works](https://sohadot.com/kb/how-domain-valuation-works.html): The three-layer valuation architecture and why transparency is the accuracy mechanism.
+- [What Makes a Domain Premium](https://sohadot.com/kb/what-makes-a-domain-premium.html): The five-layer quality stack and the tests real buyers apply.
+- [Keyword Strength and Naming Terrain](https://sohadot.com/kb/keyword-strength-and-naming-terrain.html): Why search volume is not domain value; head terms, compounds, and modifiers.
+- [Domain Buyer Psychology and Negotiation](https://sohadot.com/kb/domain-buyer-psychology-and-negotiation.html): The four buyer types, renaming-cost economics, and honest negotiation principles.
 - [About](https://sohadot.com/about.html): About Sohadot.
 
 ## Public datasets
