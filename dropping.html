@@ -30,13 +30,32 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://sohadot.com/#organization",
+      "name": "Sohadot.com",
+      "url": "https://sohadot.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sohadot.com/favicon.svg",
+        "width": 512,
+        "height": 512
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sohadot.com/#website",
+      "url": "https://sohadot.com/",
+      "name": "Sohadot.com",
+      "publisher": { "@id": "https://sohadot.com/#organization" }
+    },
+    {
       "@type": "WebPage",
       "@id": "https://sohadot.com/dropping.html#webpage",
       "url": "https://sohadot.com/dropping.html",
       "name": "Weekly Domain Drops Watchlist",
       "description": "A curated weekly watchlist of dropping and expiring domains, scored by published structural, extension, and category rules.",
       "inLanguage": "en",
-      "dateModified": "2026-06-12",
+      "dateModified": "2026-06-28",
       "isPartOf": { "@id": "https://sohadot.com/#website" },
       "publisher": { "@id": "https://sohadot.com/#organization" }
     },
@@ -51,7 +70,12 @@
         "encodingFormat": "application/json",
         "contentUrl": "https://sohadot.com/data/drops.json"
       },
-      "creator": { "@id": "https://sohadot.com/#organization" },
+      "creator": {
+        "@type": "Organization",
+        "@id": "https://sohadot.com/#organization",
+        "name": "Sohadot.com",
+        "url": "https://sohadot.com/"
+      },
       "license": "https://sohadot.com/terms.html",
       "isAccessibleForFree": true
     },
@@ -964,13 +988,13 @@
   <section class="status-band">
     <div class="status-inner">
       <div class="status-main">
-        ⏱ <span id="nextUpdateLabel">Next refresh</span>:
+        &#9201; <span id="nextUpdateLabel">Next refresh</span>:
         <span id="countdown">loading...</span>
       </div>
       <div class="status-meta">
-        <span class="meta-chip" id="lastUpdatedChip">Last updated: —</span>
-        <span class="meta-chip" id="curatedCountChip">—</span>
-        <span class="meta-chip" id="sourceChip">Sources: —</span>
+        <span class="meta-chip" id="lastUpdatedChip">Last updated: &mdash;</span>
+        <span class="meta-chip" id="curatedCountChip">&mdash;</span>
+        <span class="meta-chip" id="sourceChip">Sources: &mdash;</span>
       </div>
     </div>
   </section>
@@ -1003,9 +1027,9 @@
     </section>
 
     <section class="featured-section">
-      <p class="section-title">⭐ Featured Picks</p>
+      <p class="section-title">&#11088; Featured Picks</p>
       <p class="section-sub">
-        The strongest names in this week’s shortlist based on score, category potential, status context, and resale logic.
+        The strongest names in this week's shortlist based on score, category potential, status context, and resale logic.
       </p>
       <div class="featured-grid" id="featuredGrid"></div>
     </section>
@@ -1025,11 +1049,11 @@
       <table class="drops-table" id="dropsTable">
         <thead>
           <tr>
-            <th onclick="sortTable(0)">Domain ↕</th>
-            <th onclick="sortTable(1)">Score ↕</th>
+            <th onclick="sortTable(0)">Domain &#8597;</th>
+            <th onclick="sortTable(1)">Score &#8597;</th>
             <th>Category</th>
-            <th onclick="sortTable(3)">Drop Date ↕</th>
-            <th onclick="sortTable(4)">Est. Value ↕</th>
+            <th onclick="sortTable(3)">Drop Date &#8597;</th>
+            <th onclick="sortTable(4)">Est. Value &#8597;</th>
             <th>Why It Stands Out</th>
             <th>Check</th>
           </tr>
@@ -1102,14 +1126,15 @@
   </section>
 
   <footer>
-    © 2026 <a href="/">Sohadot.com</a> &nbsp;·&nbsp;
-    <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
-    <a href="/valuation.html">Valuation</a> &nbsp;·&nbsp;
-    <a href="/keywords.html">Keywords</a> &nbsp;·&nbsp;
-    <a href="/dropping.html">Weekly Drops</a> &nbsp;·&nbsp;
-    <a href="/knowledge-base.html">Knowledge Base</a> &nbsp;·&nbsp;
-    <a href="/about.html">About</a> &nbsp;·&nbsp; &nbsp;·&nbsp;
-    <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+    &copy; 2026 <a href="/">Sohadot.com</a> &nbsp;&middot;&nbsp;
+    <a href="/portfolio.html">Portfolio</a> &nbsp;&middot;&nbsp;
+    <a href="/valuation.html">Valuation</a> &nbsp;&middot;&nbsp;
+    <a href="/keywords.html">Keywords</a> &nbsp;&middot;&nbsp;
+    <a href="/dropping.html">Weekly Drops</a> &nbsp;&middot;&nbsp;
+    <a href="/knowledge-base.html">Knowledge Base</a> &nbsp;&middot;&nbsp;
+    <a href="/how-to-buy.html">How to Buy</a> &nbsp;&middot;&nbsp;
+    <a href="/about.html">About</a> &nbsp;&middot;&nbsp;
+    <a href="/privacy.html">Privacy</a> &nbsp;&middot;&nbsp;
     <a href="/terms.html">Terms</a>
   </footer>
 
@@ -1207,7 +1232,7 @@
 
           <div class="fc-bottom">
             <span class="fc-value">Est. resale: ${safeText(item.value_range)}</span>
-            <a href="${safeUrl(item.check_url)}" class="check-btn" target="_blank" rel="noopener">Check →</a>
+            <a href="${safeUrl(item.check_url)}" class="check-btn" target="_blank" rel="noopener">Check &rarr;</a>
           </div>
         </article>
       `).join('');
@@ -1261,7 +1286,7 @@
           </td>
 
           <td>
-            <a href="${safeUrl(item.check_url)}" class="avail-btn" target="_blank" rel="noopener">Check ↗</a>
+            <a href="${safeUrl(item.check_url)}" class="avail-btn" target="_blank" rel="noopener">Check &#8599;</a>
           </td>
         </tr>
       `).join('');
@@ -1297,7 +1322,7 @@
 
           <div class="mc-bottom">
             <div class="mc-range">Est. resale: ${safeText(item.value_range)}</div>
-            <a href="${safeUrl(item.check_url)}" class="mc-btn" target="_blank" rel="noopener">Check →</a>
+            <a href="${safeUrl(item.check_url)}" class="mc-btn" target="_blank" rel="noopener">Check &rarr;</a>
           </div>
         </article>
       `).join('');
