@@ -91,17 +91,36 @@ agreement and seller approval — is specified, but deliberately not implemented
 buyer data in this public repository, and must run as a private backend (e.g. a Cloudflare Worker or
 other server-side function) with secrets held only in environment variables.
 
+### Conceptual Inventory Ledger
+
+`conceptual-inventory.html` is a portfolio-level coverage layer above the meaning layer: it answers
+how many domains are in the Sohadot portfolio, how many carry a protected canonical meaning, which
+fields each defined asset is suitable for, and which domains are still pending Canonical Meaning
+Lock. It is generated — not hand-maintained — by `scripts/generate_conceptual_inventory.py`, which
+extracts the full domain list from `portfolio.html`, cross-references it against
+`data/asset-meanings.json` (canonical meanings and possible fields) and `data/category-clusters.json`
+(primary cluster and buyer logic), and writes `data/conceptual-inventory.json`. It never invents a
+canonical meaning for an undefined domain — undefined domains are rendered plainly as "Pending
+Canonical Meaning Lock" with a null meaning and no possible fields — and it never expands the 50
+Category Artifacts. The page renders statically (readable with JavaScript off; every domain row is
+already in the DOM), progressively enhanced by `js/conceptual-inventory.js` (search/status-filter
+only), and checked by `scripts/validate_conceptual_inventory.py`, which fails the build if the
+committed counts drift from any of the three source files, if a defined asset is missing from the
+ledger, if an undefined domain carries an invented meaning or fields, or if any domain is duplicated.
+See `docs/CONCEPTUAL_INVENTORY_LEDGER.md` for the full methodology.
+
 ### Trust & Acquisition Readiness Audit
 
-The full acquisition path — Home → Portfolio / Category Artifacts / Category Clusters → Strategic
-Brief — is checked as one connected system, not five independent pages. `scripts/audit_acquisition_readiness.py`
+The full acquisition path — Home → Portfolio / Category Artifacts / Category Clusters / Conceptual
+Inventory Ledger → Strategic Brief — is checked as one connected system, not five independent pages.
+`scripts/audit_acquisition_readiness.py`
 verifies that every internal link and `category-artifacts.html#slug` / `category-clusters.html#cluster-id`
 anchor resolves, that every `?asset=` / `?cluster=` deep link on the Strategic Brief CTAs points to a
 real artifact or cluster, that no cheap-marketplace language ("buy now", "checkout", "cart", "clearance",
 "bargain", and similar) appears outside an explicit negation, that `strategic-brief.html` carries no
 pricing table or urgency pressure, and that `sitemap.xml` and this README stay current with the
-Category Artifact, Category Cluster, and Strategic Brief layers. Findings and the pass/fail result are
-recorded in `docs/TRUST_AND_ACQUISITION_READINESS_AUDIT.md`.
+Category Artifact, Category Cluster, Conceptual Inventory, and Strategic Brief layers. Findings and
+the pass/fail result are recorded in `docs/TRUST_AND_ACQUISITION_READINESS_AUDIT.md`.
 
 ## Principles
 
