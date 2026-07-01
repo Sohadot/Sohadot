@@ -1,6 +1,6 @@
 {
   "description": "Category Artifact Meaning Layer — canonical meaning records for selected Sohadot domains. Each record explains a domain as a category artifact: what it names, what it must not be misread as, what it claims about a category, and who it is built for. This dataset is the source of truth rendered in /category-artifacts.html and checked by scripts/validate_asset_meanings.py and scripts/validate_protected_meanings.py.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "updated": "2026-07-01",
   "assets": [
     {
@@ -444,6 +444,666 @@
       ],
       "asset_type": "Active-Verb Coordination Coinage",
       "buyer_logic": "Coordination, partner-relationship, or liaison-focused platforms wanting a name that states the active verb — to liaise — directly."
+    },
+    {
+      "domain": "AIElectronicChips.com",
+      "canonical_segmentation": "AI + Electronic + Chips",
+      "acronym_expansion": "AI = Artificial Intelligence",
+      "canonical_meaning": "Names AI-specific electronic chips — the semiconductor layer purpose-built for artificial intelligence workloads — read together as Compute Sovereignty Intelligence: the strategic capacity to reason about and control who owns, fabricates, and allocates the chips that AI depends on.",
+      "arabic_meaning": "سيادة الحوسبة الذكية: القدرة الاستراتيجية على فهم والتحكم في من يملك ويوزّع الرقائق الإلكترونية التي يعتمد عليها الذكاء الاصطناعي.",
+      "surface_misreadings_to_avoid": [
+        "Not a consumer electronics or chip shopping/comparison site.",
+        "Not a generic semiconductor distributor.",
+        "Not a chip-design tutorial or hobbyist resource."
+      ],
+      "conceptual_thesis": "As AI capability increasingly bottlenecks on chip access rather than algorithms, the artifact claims the sovereignty layer: intelligence about who controls compute, not a shopping page for parts.",
+      "category_claim": "Category artifact for Compute Sovereignty Intelligence — strategic intelligence over AI chip supply, allocation, and control.",
+      "possible_fields": [
+        "AI chip supply-chain intelligence platforms",
+        "Compute allocation and governance dashboards",
+        "Semiconductor export-control and sovereignty analytics",
+        "AI infrastructure strategic advisory"
+      ],
+      "asset_type": "AI Infrastructure Sovereignty Compound",
+      "buyer_logic": "Compute-strategy, semiconductor-policy, or AI-infrastructure ventures building intelligence over chip sovereignty rather than a component marketplace."
+    },
+    {
+      "domain": "EuraPlan.com",
+      "canonical_segmentation": "Eura (Europe) + Plan",
+      "acronym_expansion": null,
+      "canonical_meaning": "Names European Entry Planning Intelligence: the strategic layer for navigating Europe's regulatory, visa, market-entry, and compliance terrain — a continent that punishes absence of preparation and rewards genuine understanding of its systems.",
+      "arabic_meaning": "ذكاء التخطيط لدخول أوروبا: أوروبا تعاقب غياب الفهم وتكافئ من يفهم أنظمتها التنظيمية المعقدة.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic travel-planning or itinerary app.",
+        "Not a tourism booking site.",
+        "Not limited to a single country's visa process — the claim is pan-European regulatory intelligence."
+      ],
+      "conceptual_thesis": "Europe is not a single market but a lattice of regulatory regimes; the artifact claims the planning-intelligence layer that turns that complexity into an entry advantage rather than a trap for the unprepared.",
+      "category_claim": "Category artifact for European Entry Planning Intelligence — strategic navigation of Europe's regulatory and market-entry terrain.",
+      "possible_fields": [
+        "EU market-entry and regulatory strategy platforms",
+        "Visa, residency, and business-registration planning tools",
+        "Cross-border compliance intelligence for Europe",
+        "Expansion consultancies serving non-EU founders"
+      ],
+      "asset_type": "Geo-Strategic Planning Compound",
+      "buyer_logic": "Market-entry consultancies, relocation platforms, or compliance-intelligence ventures helping non-European founders and companies navigate Europe's regulatory lattice."
+    },
+    {
+      "domain": "FunnelPlugs.com",
+      "canonical_segmentation": "Funnel + Plugs",
+      "acronym_expansion": null,
+      "canonical_meaning": "Names the logic of the missing plug: a governed diagnostic classification system for where a commercial path leaks — the specific gap ('plug') that, once identified and filled, stops value from draining out of a funnel.",
+      "arabic_meaning": "منطق السدادة المفقودة: تصنيف تشخيصي منظم لتحديد نقطة تسرب القيمة داخل المسار التجاري.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic funnel-marketing or landing-page builder tool.",
+        "Not a literal plumbing or hardware-plug product.",
+        "Not a simple conversion-rate dashboard — the claim is diagnostic classification of the failure point itself."
+      ],
+      "conceptual_thesis": "Most funnel tools describe volume and conversion rates; this artifact claims the diagnostic layer underneath — classifying the specific structural gap causing failure, the way a plumber diagnoses a leak rather than just measuring water pressure.",
+      "category_claim": "Category artifact for governed diagnostic classification of commercial path failure — the logic of the missing plug.",
+      "possible_fields": [
+        "Conversion-funnel diagnostic platforms",
+        "Revenue-leak classification and root-cause tools",
+        "Sales-pipeline failure-point analytics",
+        "Growth diagnostics for commercial path integrity"
+      ],
+      "asset_type": "Diagnostic Classification Compound",
+      "buyer_logic": "Growth, RevOps, or diagnostic-analytics ventures whose product classifies exactly where and why a commercial path fails, not just how many people dropped off."
+    },
+    {
+      "domain": "Ketonemia.com",
+      "canonical_segmentation": "Keton(e) + -emia (blood-condition suffix)",
+      "acronym_expansion": null,
+      "canonical_meaning": "Names ketonemia, a real clinical/metabolic term for elevated ketone bodies in the blood — a reference-grade term from metabolic medicine, not a coined wellness brandable.",
+      "arabic_meaning": "الكيتونيمية: مصطلح طبي أيضي حقيقي يشير إلى ارتفاع أجسام الكيتون في الدم، للاستخدام المرجعي فقط وليس نصيحة طبية أو ادعاءً غذائياً.",
+      "surface_misreadings_to_avoid": [
+        "Not medical advice, a diagnosis, or a treatment claim of any kind.",
+        "Not a diet or weight-loss program brand.",
+        "Not a supplement or nutraceutical product name."
+      ],
+      "conceptual_thesis": "The artifact claims scientific/clinical reference authority for a real metabolic state, positioned strictly as a naming and reference boundary — not as medical guidance, treatment, or dietary prescription.",
+      "category_claim": "Category artifact for metabolic-reference and clinical-terminology platforms grounded in the real term ketonemia.",
+      "possible_fields": [
+        "Clinical and metabolic reference/education platforms",
+        "Medical terminology and glossary tools",
+        "Research-grade metabolic monitoring platforms (non-diagnostic)",
+        "Scientific publishing referencing ketone metabolism"
+      ],
+      "asset_type": "Authentic Clinical-Metabolic Nomenclature",
+      "buyer_logic": "Clinical-education, metabolic-research, or medical-reference ventures wanting a name grounded in genuine clinical terminology, used strictly as reference — not for diagnosis, treatment, or diet-plan marketing."
+    },
+    {
+      "domain": "SuperSXO.com",
+      "canonical_segmentation": "Super + SXO",
+      "acronym_expansion": "SXO = Search Experience Optimization",
+      "canonical_meaning": "Names Search Experience Optimization taken further ('Super') — optimizing the full search experience (relevance, intent match, on-page journey, AI-answer readiness) rather than legacy keyword/backlink SEO alone.",
+      "arabic_meaning": "تحسين تجربة البحث بما يتجاوز تحسين محركات البحث التقليدي: التركيز على تجربة الباحث الكاملة ومدى الاستعداد لإجابات الذكاء الاصطناعي.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic SEO tool or backlink-building service.",
+        "Not a keyword-density checker.",
+        "SXO here is Search Experience Optimization, not a stock ticker or unrelated abbreviation."
+      ],
+      "conceptual_thesis": "SEO optimizes for ranking; SXO optimizes for the experience a searcher has once they arrive and beyond, including AI-mediated search. The artifact claims that broader, experience-first category as its own discipline.",
+      "category_claim": "Category artifact for Search Experience Optimization platforms — beyond ranking, into full search-journey and AI-answer readiness.",
+      "possible_fields": [
+        "Search Experience Optimization (SXO) platforms",
+        "AI-answer and generative-search readiness tools",
+        "On-site search-journey and intent-match analytics",
+        "Conversion-focused search UX consultancies"
+      ],
+      "asset_type": "Search-Discipline Acronym Compound",
+      "buyer_logic": "Search/marketing platforms whose product goes beyond keyword ranking into full search-experience and AI-search readiness, wanting the broader discipline named directly."
+    },
+    {
+      "domain": "Space-Based-Solar-Power.com",
+      "canonical_segmentation": "Space-Based + Solar + Power",
+      "acronym_expansion": null,
+      "canonical_meaning": "A literal, fully descriptive name for orbital solar-power infrastructure: satellites that collect solar energy in space, unfiltered by atmosphere, and transmit it to Earth or in-space consumers.",
+      "arabic_meaning": "الطاقة الشمسية الفضائية المدارية: بنية تحتية لتجميع الطاقة الشمسية في الفضاء ونقلها إلى الأرض، وليست طاقة شمسية أرضية عامة.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic terrestrial solar-panel or rooftop-solar company.",
+        "Not a general renewable-energy marketing brand.",
+        "Not shortened to plain 'solar power' — the orbital/space-based mechanism is the entire claim."
+      ],
+      "conceptual_thesis": "The name is denotative by design — it states the entire category outright, claiming the specific orbital-collection-and-transmission mechanism rather than solar power generally.",
+      "category_claim": "Category artifact for space-based solar power (SBSP) infrastructure and orbital energy transmission.",
+      "possible_fields": [
+        "Space-based solar power (SBSP) infrastructure ventures",
+        "Orbital energy collection and microwave/laser transmission",
+        "Space-energy policy and standards bodies",
+        "Deep-tech aerospace-energy venture studios"
+      ],
+      "asset_type": "Direct Descriptive Category Phrase",
+      "buyer_logic": "Aerospace-energy ventures building or advocating for orbital solar collection and transmission infrastructure, wanting the literal category name rather than a generic 'solar' brand."
+    },
+    {
+      "domain": "AccountCcy.com",
+      "canonical_segmentation": "Account + Ccy",
+      "acronym_expansion": "Ccy = Currency (standard finance/banking abbreviation)",
+      "canonical_meaning": "Names account-currency control: the finance-infrastructure layer that governs which Currency an account is denominated in, how multi-currency accounts are structured, and how currency exposure is tracked at the account level.",
+      "arabic_meaning": "التحكم في عملة الحساب: طبقة بنية تحتية مالية تدير العملة التي يُقوَّم بها الحساب ومنطق الحسابات متعددة العملات.",
+      "surface_misreadings_to_avoid": [
+        "Ccy is the standard finance abbreviation for Currency, not an invented syllable.",
+        "Not a generic accounting/bookkeeping SaaS unrelated to currency.",
+        "Not a cryptocurrency-specific product — Ccy applies to any currency, fiat or crypto."
+      ],
+      "conceptual_thesis": "Multi-currency finance products often bolt currency handling on as an afterthought; the artifact claims currency denomination as a first-class account property, not a converted display value.",
+      "category_claim": "Category artifact for account-currency control and multi-currency account infrastructure.",
+      "possible_fields": [
+        "Multi-currency banking and neobank infrastructure",
+        "Treasury and FX exposure management platforms",
+        "Cross-border account and ledger systems",
+        "Embedded-finance currency-denomination APIs"
+      ],
+      "asset_type": "Finance Abbreviation Compound",
+      "buyer_logic": "Neobank, treasury, or embedded-finance ventures building multi-currency account infrastructure who want the currency-control mechanism named directly."
+    },
+    {
+      "domain": "YetFut.com",
+      "canonical_segmentation": "YetFut — a single Amazigh (Tamazight) word",
+      "acronym_expansion": null,
+      "canonical_meaning": "YetFut is grounded in Tamazight (Amazigh/Berber), where it carries the sense of sweet or tasty — a real cultural-linguistic term of taste and pleasure, not an English compound.",
+      "arabic_meaning": "كلمة أمازيغية أصيلة تعني الحلو أو اللذيذ، هوية ثقافية للطعم وليست تعبيراً إنجليزياً.",
+      "surface_misreadings_to_avoid": [
+        "Not to be read as the English phrase \"yet future\" — the letters coincidentally resemble that phrase, but the canonical source is the Amazigh word for sweet/tasty.",
+        "Not a futurism or forecasting brand.",
+        "Not an invented English portmanteau."
+      ],
+      "conceptual_thesis": "The artifact claims cultural taste identity: a genuine Amazigh word for sweetness and deliciousness, positioned as an authentic linguistic root for food, hospitality, or cultural-heritage branding rather than a coined English pun.",
+      "category_claim": "Category artifact for cultural taste identity — food, hospitality, and heritage brands grounded in an authentic Amazigh word for sweetness.",
+      "possible_fields": [
+        "Amazigh / North African food and hospitality brands",
+        "Cultural-heritage culinary platforms",
+        "Taste-identity and flavor-branding ventures",
+        "Tamazight-language cultural preservation projects"
+      ],
+      "asset_type": "Authentic Amazigh Cultural Term",
+      "buyer_logic": "Food, hospitality, or cultural-heritage ventures — especially those rooted in Amazigh/North African identity — wanting a name grounded in a real word for sweetness and taste."
+    },
+    {
+      "domain": "Alwakile.com",
+      "canonical_segmentation": "Al + Wakil (Arabic: الوكيل, 'the agent/representative')",
+      "acronym_expansion": null,
+      "canonical_meaning": "Alwakile transliterates the Arabic الوكيل (al-wakīl) — the agent, representative, or trusted delegate empowered to act on another's behalf — a real Arabic legal/commercial term for delegated agency.",
+      "arabic_meaning": "الوكيل: الشخص أو الجهة المخوّلة بالتصرف نيابة عن آخر، وكالة موثوقة تشمل الوكلاء البشريين ووكلاء الذكاء الاصطناعي المستقلين على حد سواء.",
+      "surface_misreadings_to_avoid": [
+        "Not an invented brandable — al-wakīl is a real, specific Arabic legal/commercial term.",
+        "Not limited to a religious context alone — the delegated-agency meaning applies broadly to legal and commercial representation.",
+        "Not a generic 'wallet' or fintech-app misreading from the phonetic similarity."
+      ],
+      "conceptual_thesis": "The artifact claims delegated agency as a category grounded in an authentic Arabic legal concept: the trusted party empowered to act for another, applicable equally to human representatives and autonomous AI agents acting under delegated authority.",
+      "category_claim": "Category artifact for delegated-agency platforms — AI agents, legal representation, and commercial delegation grounded in the Arabic concept of al-wakīl.",
+      "possible_fields": [
+        "AI-agent / autonomous-agent authorization platforms",
+        "Legal power-of-attorney and representation tech",
+        "Commercial agency and delegated-authority systems",
+        "Islamic-finance wakala-based agency products"
+      ],
+      "asset_type": "Authentic Arabic Legal-Agency Term",
+      "buyer_logic": "AI-agent infrastructure, legal-tech, or Islamic-finance ventures wanting a name grounded in the real Arabic concept of delegated, trusted agency."
+    },
+    {
+      "domain": "Asavor.com",
+      "canonical_segmentation": "A + Savor",
+      "acronym_expansion": null,
+      "canonical_meaning": "Reads as 'a savor' — naming savor/taste as an act of judgment: the discerning evaluation that separates what is worth choosing from what is not, whether applied to flavor, sensory data, or algorithmic selection.",
+      "arabic_meaning": "التذوق كحكم: القدرة على التمييز والاختيار الفعّال، سواء في الطعام أو الذكاء الحسي أو أنظمة الاختيار الدلالي.",
+      "surface_misreadings_to_avoid": [
+        "Not a passive 'flavor' or 'taste' descriptor alone — the claim is judgment, discernment, and selection.",
+        "Not a misspelling of 'a savior.'",
+        "Not limited to culinary use — the discernment logic extends to sensory AI and semantic selection."
+      ],
+      "conceptual_thesis": "The artifact claims 'savor' not as a passive sensation but as an active judgment faculty — the discernment layer that selects and ranks by quality, transferable from food to sensory AI to semantic recommendation.",
+      "category_claim": "Category artifact for taste-as-judgment platforms — sensory intelligence, discernment, and quality-selection systems.",
+      "possible_fields": [
+        "Food and flavor discernment / sommelier-style platforms",
+        "Sensory-intelligence and taste-sensor hardware",
+        "AI-driven curation and semantic quality-selection systems",
+        "Recommendation engines built on discernment rather than popularity"
+      ],
+      "asset_type": "Active-Judgment Sensory Coinage",
+      "buyer_logic": "Food-tech, sensory-hardware, or AI-curation ventures wanting a name that frames taste and selection as active judgment rather than passive consumption."
+    },
+    {
+      "domain": "ASILiaison.com",
+      "canonical_segmentation": "ASI + Liaison",
+      "acronym_expansion": "ASI = Artificial Super Intelligence",
+      "canonical_meaning": "Names the liaison layer between institutions or humans and Artificial Super Intelligence — the coordination and translation function that sits between human governance and a superintelligent system.",
+      "arabic_meaning": "طبقة التنسيق بين المؤسسات البشرية والذكاء الفائق الاصطناعي: واجهة تفاهم وحوكمة تسبق أي تنسيق آمن بين الطرفين.",
+      "surface_misreadings_to_avoid": [
+        "ASI is Artificial Super Intelligence, not an unrelated industry abbreviation.",
+        "Not a generic AI-consulting brand.",
+        "Not a diplomatic/embassy liaison service unrelated to AI."
+      ],
+      "conceptual_thesis": "As ASI moves from theory toward infrastructure, the artifact claims the liaison category directly: the governance-and-translation interface required before humans and superintelligent systems can coordinate safely.",
+      "category_claim": "Category artifact for the liaison layer between human institutions and Artificial Super Intelligence.",
+      "possible_fields": [
+        "AI-governance and ASI-safety liaison platforms",
+        "Human-AI oversight and translation interfaces",
+        "Superintelligence policy and coordination bodies",
+        "Long-horizon AI-safety research organizations"
+      ],
+      "asset_type": "ASI Governance Acronym Compound",
+      "buyer_logic": "AI-governance, safety-research, or policy organizations building the coordination layer between human institutions and future superintelligent systems."
+    },
+    {
+      "domain": "AGIBeget.com",
+      "canonical_segmentation": "AGI + Beget",
+      "acronym_expansion": "AGI = Artificial General Intelligence",
+      "canonical_meaning": "Names AGI as an origin event — 'beget' (to father, to bring into being) frames artificial general intelligence not as a product feature but as a generative origin point from which further systems, capabilities, or entities descend.",
+      "arabic_meaning": "الذكاء العام الاصطناعي كنقطة أصل: مصدر تكويني تتفرّع منه أنظمة وقدرات لاحقة، لا مجرد ميزة في منتج ذكاء اصطناعي عادي.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic AI-startup brandable — the claim is origin/genesis, not a product feature.",
+        "Beget is used in its literal 'to bring into being' sense, not as unrelated wordplay.",
+        "Not a religious-text reference divorced from the AGI context — the pairing is intentional and technical."
+      ],
+      "conceptual_thesis": "The artifact claims AGI's arrival as a genesis event — the point that begets what follows — rather than positioning it as one more feature in a generic AI product roadmap.",
+      "category_claim": "Category artifact for AGI-as-origin ventures — the generative genesis point of general-intelligence-derived systems.",
+      "possible_fields": [
+        "Foundational AGI research labs",
+        "Long-horizon deep-tech venture studios (AGI-focused)",
+        "AGI safety and origin-governance research",
+        "Generative-lineage AI architecture platforms"
+      ],
+      "asset_type": "AGI Genesis Acronym Compound",
+      "buyer_logic": "Foundational AGI research labs or deep-tech studios wanting a name that frames their work as an originating event, not a feature of an existing AI product."
+    },
+    {
+      "domain": "ASIBeget.com",
+      "canonical_segmentation": "ASI + Beget",
+      "acronym_expansion": "ASI = Artificial Super Intelligence",
+      "canonical_meaning": "Names Artificial Super Intelligence as a genesis event one order beyond AGIBeget — the origin point of superintelligent systems, held as a long-horizon deep-tech seed rather than a near-term product.",
+      "arabic_meaning": "الذكاء الفائق الاصطناعي كنقطة أصل بعيدة المدى: بذرة تقنية عميقة لأفق يتجاوز الذكاء العام.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic AI-startup brandable — the claim is genesis/origin, one horizon beyond general intelligence.",
+        "Beget is used in its literal 'to bring into being' sense.",
+        "Not intended as a near-term consumer product name — this is a long-horizon seed asset."
+      ],
+      "conceptual_thesis": "The artifact claims the furthest horizon of the AI genesis lineage — ASI as the point that begets what comes after general intelligence — positioned deliberately as a seed asset for a future category, not a current product.",
+      "category_claim": "Category artifact for ASI-as-origin ventures — the long-horizon genesis point of superintelligent systems.",
+      "possible_fields": [
+        "Long-horizon superintelligence research seeds",
+        "Deep-tech venture studios positioning for post-AGI horizons",
+        "ASI safety and origin-governance research",
+        "Speculative/foundational AI-lineage naming assets"
+      ],
+      "asset_type": "ASI Genesis Acronym Compound",
+      "buyer_logic": "Long-horizon research labs or deep-tech studios wanting a seed-stage name for the point at which superintelligence originates, held for a future category rather than today's product."
+    },
+    {
+      "domain": "Centralities.com",
+      "canonical_segmentation": "Centralities — plural of 'centrality', a real graph-theory term",
+      "acronym_expansion": null,
+      "canonical_meaning": "Centralities is the real, plural technical term from network/graph theory — the family of measures (degree, betweenness, eigenvector, closeness centrality) that quantify a node's structural importance within a network.",
+      "arabic_meaning": "المركزيات: مصطلح حقيقي من نظرية الشبكات يقيس الأهمية البنيوية لعقدة داخل شبكة، وليس مجرد وصف عام للمركزية.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic 'central' or 'centralized' branding play — the term is the specific plural graph-theory measure.",
+        "Not a data-center or centralized-hosting product name.",
+        "Not limited to social networks — centrality applies to any graph: financial, biological, organizational."
+      ],
+      "conceptual_thesis": "The artifact claims genuine graph-theory vocabulary directly: naming the measurement discipline of systemic importance within networks, not a vague 'influence' brandable.",
+      "category_claim": "Category artifact for network-influence and graph-intelligence platforms grounded in real centrality measures.",
+      "possible_fields": [
+        "Graph analytics and network-intelligence platforms",
+        "Social-network influence measurement tools",
+        "Systemic-risk and financial-network centrality analysis",
+        "Organizational network analysis (ONA) software"
+      ],
+      "asset_type": "Authentic Graph-Theory Nomenclature",
+      "buyer_logic": "Graph-analytics, network-intelligence, or systemic-risk platforms wanting a name grounded in the real technical vocabulary of network centrality."
+    },
+    {
+      "domain": "Dactylograph.com",
+      "canonical_segmentation": "Dactylo (finger, Greek daktylos) + graph (writing/mark)",
+      "acronym_expansion": null,
+      "canonical_meaning": "Dactylograph is a real word tied to finger-writing and fingerprint inscription — the recorded, inscribed trace a finger leaves, historically used in dactylography (fingerprint science) as an evidentiary identity mark.",
+      "arabic_meaning": "الأثر الأصبعي المكتوب: مصطلح حقيقي مرتبط بعلم بصمات الأصابع، يوثّق الأثر المسجَّل كدليل على الهوية.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic handwriting or calligraphy brand — the root is finger-inscription (dactylography), not penmanship.",
+        "Not a typography or font-design tool.",
+        "Not limited to paper records — the concept extends to digital biometric inscription."
+      ],
+      "conceptual_thesis": "The artifact claims the inscribed trace itself as the category: the recorded mark that serves as evidence of identity, prior to and beneath any digital biometric system built on top of it.",
+      "category_claim": "Category artifact for biometric inscription and evidentiary identity-trace platforms.",
+      "possible_fields": [
+        "Biometric fingerprint capture and forensic platforms",
+        "Identity-verification and evidentiary-mark systems",
+        "Digital-signature and inscription-based authentication",
+        "Forensic-science reference and training platforms"
+      ],
+      "asset_type": "Authentic Forensic-Biometric Nomenclature",
+      "buyer_logic": "Biometric-identity, forensic-science, or evidentiary-verification ventures wanting a name grounded in the real vocabulary of fingerprint inscription."
+    },
+    {
+      "domain": "Sciographic.com",
+      "canonical_segmentation": "Scio (shadow root, cf. 'sciagraphy') + -graphic",
+      "acronym_expansion": null,
+      "canonical_meaning": "Sciographic connects to sciagraphy's shadow-representation root — the technique of rendering or reading structure through shadow and projection — naming shadow as a legitimate carrier of structural evidence.",
+      "arabic_meaning": "التمثيل عبر الظل: جذر مرتبط بتقنية قراءة البنية من خلال الظل والإسقاط، حيث يُستخدم الظل كدليل بصري حقيقي على الشكل والموضع.",
+      "surface_misreadings_to_avoid": [
+        "Not a horror, occult, or 'shadow' aesthetic brand — the root is a technical representation discipline.",
+        "Not a generic photography filter or editing app.",
+        "Not related to 'science' by coincidence of spelling — the root is the shadow-representation term, not 'scientific.'"
+      ],
+      "conceptual_thesis": "The artifact claims shadow itself as evidentiary: a structure's shadow reveals real information about its form, position, and dimension — a visual-proof logic used historically in sundials, architecture, and radiographic imaging.",
+      "category_claim": "Category artifact for shadow-based structural evidence and visual-proof platforms.",
+      "possible_fields": [
+        "Architectural shadow-analysis and daylighting software",
+        "Forensic and structural imaging via projection/shadow analysis",
+        "Sundial and solar-geometry instrumentation",
+        "Computer-vision shadow-based 3D reconstruction"
+      ],
+      "asset_type": "Authentic Shadow-Representation Nomenclature",
+      "buyer_logic": "Architectural, forensic-imaging, or computer-vision ventures wanting a name grounded in the real technical root of shadow-based structural representation."
+    },
+    {
+      "domain": "Photoperceptive.com",
+      "canonical_segmentation": "Photo (light) + Perceptive",
+      "acronym_expansion": null,
+      "canonical_meaning": "Photoperceptive is a real word naming the capacity to perceive light — the property, biological or mechanical, of sensing and responding to light stimuli.",
+      "arabic_meaning": "القدرة على إدراك الضوء: مصطلح حقيقي يصف قدرة بيولوجية أو آلية على استشعار الضوء والاستجابة له.",
+      "surface_misreadings_to_avoid": [
+        "Not a photography-editing app — the claim is the perceptual/sensing capacity, not image editing.",
+        "Not limited to cameras — the term covers biological photoreception equally.",
+        "Not a lighting/fixture retail brand."
+      ],
+      "conceptual_thesis": "The artifact claims light-sensing as an active perceptual capacity rather than a passive sensor spec — applicable equally to biological photoreception and engineered vision/sensor systems.",
+      "category_claim": "Category artifact for light-sensing intelligence — vision systems, biological photoreception, and light-responsive sensors.",
+      "possible_fields": [
+        "Machine-vision and optical-sensor platforms",
+        "Biological photoreception research (biology/neuroscience)",
+        "Ambient-light and environmental-sensing IoT devices",
+        "Camera and imaging-sensor technology"
+      ],
+      "asset_type": "Authentic Perceptual-Capacity Nomenclature",
+      "buyer_logic": "Machine-vision, sensor-hardware, or photobiology ventures wanting a name grounded in the real word for the capacity to perceive light."
+    },
+    {
+      "domain": "Preimmunize.com",
+      "canonical_segmentation": "Pre + Immunize",
+      "acronym_expansion": null,
+      "canonical_meaning": "Preimmunize is a real word meaning to immunize in advance — establishing immune readiness before exposure, a genuine term from immunology and public-health vocabulary.",
+      "arabic_meaning": "التحصين المسبق: مصطلح مناعي حقيقي يعني تهيئة الجهاز المناعي قبل التعرض، للاستخدام المرجعي فقط دون تقديم نصيحة طبية أو علاجية.",
+      "surface_misreadings_to_avoid": [
+        "Not medical advice, a vaccination recommendation, or a treatment claim of any kind.",
+        "Not a supplement or over-the-counter product brand.",
+        "Not limited to a single disease — the term is a general preventive-immunology concept."
+      ],
+      "conceptual_thesis": "The artifact claims preventive readiness as its category: acting before exposure rather than responding after it, positioned strictly as naming/reference — not medical guidance, treatment, or vaccination advice.",
+      "category_claim": "Category artifact for preventive-readiness platforms grounded in the real immunological term preimmunize.",
+      "possible_fields": [
+        "Public-health preparedness and readiness platforms",
+        "Immunology research and reference tools",
+        "Biosecurity and outbreak-preparedness systems",
+        "Preventive-health education platforms (non-clinical)"
+      ],
+      "asset_type": "Authentic Immunological Nomenclature",
+      "buyer_logic": "Public-health, biosecurity, or immunology-research ventures wanting a name grounded in genuine preventive-immunity terminology, used strictly as reference — not for medical advice or treatment marketing."
+    },
+    {
+      "domain": "Orthoepical.com",
+      "canonical_segmentation": "Ortho (correct) + epical (speech) — the adjective form of 'orthoepy'",
+      "acronym_expansion": null,
+      "canonical_meaning": "Orthoepical is the real adjective form of orthoepy — the study and standard of correct pronunciation — naming the discipline of evaluating and teaching accurate spoken-word form.",
+      "arabic_meaning": "علم اللفظ الصحيح (الأورثوإيبي): مصطلح حقيقي يتعلق بمعيار النطق السليم، قابل للتطبيق في تقييم الذكاء الاصطناعي للنطق وتعلم اللغات.",
+      "surface_misreadings_to_avoid": [
+        "Not related to orthopedics or orthodontics despite the 'ortho-' prefix — the root here is orthoepy (correct pronunciation), not bones or teeth.",
+        "Not a generic voice-recording app.",
+        "Not limited to any single language — orthoepy applies as a discipline across languages."
+      ],
+      "conceptual_thesis": "The artifact claims pronunciation correctness as a formal, measurable standard (orthoepy), applicable to AI speech evaluation and language-learning tools, not just an abstract notion of 'good speech.'",
+      "category_claim": "Category artifact for pronunciation-standard platforms — AI speech evaluation, voice coaching, and orthoepy-based language learning.",
+      "possible_fields": [
+        "AI pronunciation-assessment and speech-scoring platforms",
+        "Language-learning voice-evaluation tools",
+        "Speech-therapy and accent-coaching software",
+        "Text-to-speech pronunciation-standard engines"
+      ],
+      "asset_type": "Authentic Phonetic-Standard Nomenclature",
+      "buyer_logic": "Speech-AI, language-learning, or voice-coaching ventures wanting a name grounded in the real linguistic discipline of pronunciation standards (orthoepy)."
+    },
+    {
+      "domain": "Gravimeters.com",
+      "canonical_segmentation": "Gravi (gravity) + meters (measuring instruments)",
+      "acronym_expansion": null,
+      "canonical_meaning": "Gravimeters is the real plural term for instruments that measure gravitational acceleration — precision devices used to detect minute variations in gravity for geophysical and scientific purposes.",
+      "arabic_meaning": "مقاييس الجاذبية: مصطلح حقيقي يسمي أجهزة دقيقة تقيس التسارع الجاذبي، تُستخدم في الجيوفيزياء واستكشاف المعادن وأبحاث الفضاء.",
+      "surface_misreadings_to_avoid": [
+        "Not a fitness or weightlifting brand despite gravity-adjacent branding trends.",
+        "Not a generic sensor company — the term specifically names gravitational-acceleration measurement instruments.",
+        "Not a typo of the singular 'gravimeter' — the plural names the instrument category broadly."
+      ],
+      "conceptual_thesis": "The artifact claims a genuine scientific-instrumentation category directly: the measurement of gravity itself as a signal, revealing subsurface structure, mass distribution, and geological composition.",
+      "category_claim": "Category artifact for gravity-measurement instrumentation — geophysics, mineral exploration, and space research.",
+      "possible_fields": [
+        "Geophysical survey and mineral-exploration instrumentation",
+        "Space-research and satellite gravimetry",
+        "Oil and gas subsurface-mapping technology",
+        "Geodesy and earth-monitoring instrumentation"
+      ],
+      "asset_type": "Authentic Scientific-Instrumentation Nomenclature",
+      "buyer_logic": "Geophysics, mineral-exploration, or space-research ventures wanting a name grounded in the real instrumentation term for gravity measurement."
+    },
+    {
+      "domain": "Antithermic.com",
+      "canonical_segmentation": "Anti + Thermic",
+      "acronym_expansion": null,
+      "canonical_meaning": "Antithermic is a real word meaning heat-resisting or anti-thermal — describing materials, treatments, or systems designed to resist or counteract heat transfer.",
+      "arabic_meaning": "مضاد للحرارة: مصطلح حقيقي يصف المواد أو الأنظمة المصممة لمقاومة انتقال الحرارة، ويُستخدم في البناء والزراعة والطب والتبريد المتقدم.",
+      "surface_misreadings_to_avoid": [
+        "Not a pharmaceutical fever-reducing (antipyretic) brand — the term is about heat resistance/transfer, not body-temperature medicine specifically.",
+        "Not a generic air-conditioning consumer brand.",
+        "Not limited to one industry — the thermal-resistance logic spans construction, agriculture, and medicine."
+      ],
+      "conceptual_thesis": "The artifact claims thermal resistance as a direct, cross-industry category: the same heat-countering logic applies to construction materials, agricultural protection, medical cooling, and advanced industrial thermal control.",
+      "category_claim": "Category artifact for thermal-control and heat-resistance platforms across construction, agriculture, medicine, and cooling technology.",
+      "possible_fields": [
+        "Heat-resistant construction materials and coatings",
+        "Agricultural heat-stress protection systems",
+        "Medical cooling and thermal-management devices",
+        "Advanced industrial cooling and thermal-control technology"
+      ],
+      "asset_type": "Authentic Thermal-Property Nomenclature",
+      "buyer_logic": "Materials-science, construction, agri-tech, or medical-cooling ventures wanting a name grounded in the real term for heat resistance."
+    },
+    {
+      "domain": "FootAerial.com",
+      "canonical_segmentation": "Foot + Aerial",
+      "acronym_expansion": null,
+      "canonical_meaning": "Names personal aerial mobility for a single person on foot — wearable or individual flight/lift devices that carry a person aloft, distinct from vehicle-scale aircraft.",
+      "arabic_meaning": "التنقل الجوي الشخصي: أجهزة رفع أو طيران فردية تحمل شخصاً واحداً في الهواء، بمقياس المشاة الفردي لا وسيلة نقل جماعية.",
+      "surface_misreadings_to_avoid": [
+        "Not related to football or soccer despite the word 'Foot' — the pairing names personal aerial mobility, not a ball sport.",
+        "Not a drone or unmanned-vehicle product — the aerial mobility is for a person, not cargo.",
+        "Not a fitness/running app with an 'aerial' theme."
+      ],
+      "conceptual_thesis": "The artifact claims person-scale aerial mobility as its category: 'Foot' marks the individual, pedestrian scale of the traveler, 'Aerial' marks the lift into the air — a wearable alternative to walking, not a team sport.",
+      "category_claim": "Category artifact for personal, wearable aerial-mobility devices — individual flight and lift technology.",
+      "possible_fields": [
+        "Personal flight / jetpack and wearable lift devices",
+        "Urban air mobility for individual commuters",
+        "Emergency-response personal aerial equipment",
+        "Recreational and sport personal-flight technology"
+      ],
+      "asset_type": "Personal-Mobility Compound",
+      "buyer_logic": "Personal-flight, wearable-lift, or urban-air-mobility ventures building individual (not vehicle-scale) aerial transport, wanting the person-scale claim named directly."
+    },
+    {
+      "domain": "DriftAiry.com",
+      "canonical_segmentation": "Drift + Airy",
+      "acronym_expansion": null,
+      "canonical_meaning": "Names light, drifting aerial movement — a personal urban aerial vehicle category defined by airy, gliding motion through the air rather than powered ground-vehicle drift.",
+      "arabic_meaning": "الانجراف الهوائي الخفيف: مركبة جوية حضرية شخصية تتحرك بخفة وانسيابية في الهواء، ولا علاقة لها بمنتجات الحليب.",
+      "surface_misreadings_to_avoid": [
+        "Not related to milk or any milk-based product category — the pairing is aerial, not agricultural.",
+        "Not a car-drifting or ground-vehicle motorsport brand.",
+        "Not a weather or atmospheric-forecasting app."
+      ],
+      "conceptual_thesis": "The artifact claims a lightweight, buoyant mode of aerial urban transport: 'drift' names controlled gliding motion and 'airy' names the light, low-mass quality of the vehicle or movement itself.",
+      "category_claim": "Category artifact for light, drifting personal urban aerial vehicles.",
+      "possible_fields": [
+        "Personal urban air-mobility vehicles (light/gliding class)",
+        "Recreational aerial-drift sport technology",
+        "Lightweight eVTOL and personal glider platforms",
+        "Urban air-traffic concepts for low-mass individual transport"
+      ],
+      "asset_type": "Light-Aerial-Mobility Compound",
+      "buyer_logic": "Urban air-mobility or personal-glider ventures building light, low-mass aerial vehicles distinct from heavier eVTOL categories, wanting the airy/drifting quality named directly."
+    },
+    {
+      "domain": "ARTopSight.com",
+      "canonical_segmentation": "AR + TOP + Sight",
+      "acronym_expansion": "AR = Augmented Reality",
+      "canonical_meaning": "Names augmented-reality top-view sight: an AR system that renders a strategic overhead (top-down) view — situational awareness from above, rendered through augmented reality rather than a physical overhead camera alone.",
+      "arabic_meaning": "الرؤية العلوية الاستراتيجية بالواقع المعزز: نظام واقع معزز يعرض منظوراً علوياً استراتيجياً، وليس تصنيفاً كـ'فن وعمليات ورؤية'.",
+      "surface_misreadings_to_avoid": [
+        "Not 'Art' + 'Ops' + 'Sight' — the correct decomposition is AR (Augmented Reality) + TOP + Sight, not an art-operations reading.",
+        "Not a generic art-gallery or creative-ops brand.",
+        "Not a physical periscope or camera-only product — the top-view is AR-rendered, not purely optical."
+      ],
+      "conceptual_thesis": "The artifact claims the overhead strategic vantage as an AR-native category: top-down situational intelligence delivered directly into an augmented field of view, for command, logistics, or field operations.",
+      "category_claim": "Category artifact for AR-based top-down strategic sight and situational-awareness platforms.",
+      "possible_fields": [
+        "AR command-and-control / situational-awareness systems",
+        "Logistics and warehouse overhead-view AR tools",
+        "Sports and tactical-analysis AR overlays (top-view)",
+        "Defense and security overhead-intelligence AR platforms"
+      ],
+      "asset_type": "AR Strategic-Vantage Acronym Compound",
+      "buyer_logic": "AR/situational-awareness ventures building top-down strategic sight tools for command, logistics, or tactical analysis, wanting the exact decomposition named directly."
+    },
+    {
+      "domain": "EthLea.com",
+      "canonical_segmentation": "ETH + Lea",
+      "acronym_expansion": "ETH = Ethereum",
+      "canonical_meaning": "Names Ethereum paired with 'Lea' — an old-English word for meadow, a green, open, sustainable space — together naming a green and sustainable energy layer built on or for the Ethereum ecosystem.",
+      "arabic_meaning": "إيثريوم والمرج الأخضر: اسم يجمع بين عملة إيثريوم ومصطلح 'ليا' الذي يعني المرج أو الفضاء الأخضر المستدام، ليشكّل طبقة طاقة خضراء مبنية على إيثريوم.",
+      "surface_misreadings_to_avoid": [
+        "Not a generic Ethereum trading or wallet app — the claim is the sustainability/green-energy layer, not exchange functionality.",
+        "Lea is the real old-English word for meadow, not an invented syllable.",
+        "Not related to leather ('Lea' abbreviation in some trades) — the meadow/green reading governs here."
+      ],
+      "conceptual_thesis": "The artifact claims sustainability as a first-class layer of the Ethereum ecosystem — the meadow (Lea) as the green space Ethereum-based systems grow within, not just a token or trading brand.",
+      "category_claim": "Category artifact for Ethereum-based green and sustainable energy platforms.",
+      "possible_fields": [
+        "Ethereum-based green-energy and carbon-credit platforms",
+        "Sustainable proof-of-stake / low-carbon blockchain infrastructure",
+        "Renewable-energy tokenization on Ethereum",
+        "ESG-focused Web3 sustainability platforms"
+      ],
+      "asset_type": "Blockchain-Sustainability Acronym Compound",
+      "buyer_logic": "Ethereum-ecosystem ventures building green-energy, carbon-credit, or sustainability infrastructure who want the ticker-plus-meadow pairing named directly."
+    },
+    {
+      "domain": "OrbitSSP.com",
+      "canonical_segmentation": "Orbit + SSP",
+      "acronym_expansion": "SSP = Space Solar Power",
+      "canonical_meaning": "Names orbital Space Solar Power infrastructure directly — satellites in orbit collecting solar energy and transmitting it to Earth, the same category as Space-Based-Solar-Power.com named in acronym-compound form.",
+      "arabic_meaning": "الطاقة الشمسية المدارية (SSP): بنية تحتية فضائية لتجميع الطاقة الشمسية ونقلها من المدار إلى الأرض.",
+      "surface_misreadings_to_avoid": [
+        "SSP is Space Solar Power here, not 'Static Site Pages', 'Server-Side Processing', or an unrelated tech acronym.",
+        "Not a satellite-communications (SATCOM) brand unrelated to energy.",
+        "Not shortened to generic 'orbit' branding — the SSP energy claim is the whole point."
+      ],
+      "conceptual_thesis": "The artifact claims the orbital SSP category in its compact, industry-standard acronym form — a companion naming asset to the fully spelled-out domain, for contexts favoring the shorter technical acronym.",
+      "category_claim": "Category artifact for orbital Space Solar Power (SSP) infrastructure.",
+      "possible_fields": [
+        "Space-based solar power (SSP) satellite ventures",
+        "Orbital energy-transmission infrastructure",
+        "Space-energy policy and standards bodies",
+        "Aerospace-energy venture studios"
+      ],
+      "asset_type": "Space-Energy Acronym Compound",
+      "buyer_logic": "Aerospace-energy ventures wanting the compact 'SSP' acronym form of the space-based solar power category rather than the fully spelled-out name."
+    },
+    {
+      "domain": "RAGFull.com",
+      "canonical_segmentation": "RAG + Full",
+      "acronym_expansion": "RAG = Retrieval-Augmented Generation",
+      "canonical_meaning": "Names the complete, end-to-end Retrieval-Augmented Generation architecture — retrieval, ranking, grounding, and generation as one full pipeline, not a single component of a RAG stack.",
+      "arabic_meaning": "معمارية التوليد المعزز بالاسترجاع الكاملة: خط أنابيب متكامل يشمل الاسترجاع والترتيب والتأصيل والتوليد، وليس مكوناً واحداً فقط.",
+      "surface_misreadings_to_avoid": [
+        "RAG is Retrieval-Augmented Generation, not an unrelated acronym (e.g. red-amber-green status reporting) despite the shared letters.",
+        "Not a single-component tool (just a vector database or just a reranker) — the claim is the complete pipeline.",
+        "Not a textile or fabric ('rag') brand."
+      ],
+      "conceptual_thesis": "Most RAG tools solve one piece — the vector store, the reranker, or the prompt template. The artifact claims the full, assembled architecture as the category: a complete RAG system, not a single layer of one.",
+      "category_claim": "Category artifact for complete, end-to-end Retrieval-Augmented Generation architecture.",
+      "possible_fields": [
+        "Full-stack RAG platform-as-a-service",
+        "Enterprise knowledge-retrieval and grounded-generation systems",
+        "LLM application infrastructure (retrieval + generation)",
+        "AI search and grounded-answer platforms"
+      ],
+      "asset_type": "RAG Acronym Compound (Full-Stack)",
+      "buyer_logic": "LLM-infrastructure or enterprise-AI vendors offering the complete RAG pipeline as a product, wanting the full-architecture claim named directly rather than a single component."
+    },
+    {
+      "domain": "RAGLarge.com",
+      "canonical_segmentation": "RAG + Large",
+      "acronym_expansion": "RAG = Retrieval-Augmented Generation",
+      "canonical_meaning": "Names Retrieval-Augmented Generation built for scale — enterprise-grade RAG infrastructure engineered for large corpora, high query volume, and organization-wide deployment rather than a small-scale demo.",
+      "arabic_meaning": "التوليد المعزز بالاسترجاع على نطاق واسع: بنية تحتية مؤسسية مصممة للتعامل مع كميات ضخمة من البيانات وحمل استعلامات عالٍ.",
+      "surface_misreadings_to_avoid": [
+        "RAG is Retrieval-Augmented Generation, not an unrelated acronym despite the shared letters.",
+        "Not a generic 'large language model' brand — the claim is retrieval-augmented scale, not model size.",
+        "Not a textile or fabric ('rag') brand."
+      ],
+      "conceptual_thesis": "The artifact claims scale itself as the differentiator: RAG architecture that holds up under enterprise document volume and concurrent load, not a proof-of-concept RAG notebook.",
+      "category_claim": "Category artifact for large-scale, enterprise-grade Retrieval-Augmented Generation infrastructure.",
+      "possible_fields": [
+        "Enterprise RAG infrastructure at scale",
+        "Large-corpus knowledge-retrieval platforms",
+        "High-throughput LLM grounding and retrieval systems",
+        "Enterprise search and grounded-generation platforms"
+      ],
+      "asset_type": "RAG Acronym Compound (Enterprise Scale)",
+      "buyer_logic": "Enterprise-AI infrastructure vendors building RAG systems engineered specifically for scale, wanting the scale claim named directly rather than implied."
+    },
+    {
+      "domain": "Wokalae.com",
+      "canonical_segmentation": "Wakala (Arabic وكالة, 'agency') + e",
+      "acronym_expansion": null,
+      "canonical_meaning": "Wokalae transliterates wakala (Arabic: وكالة, 'agency') with an 'e' marking its digital/electronic form — naming electronic agency: digital delegation and representation systems built on the real Islamic-commercial concept of wakala.",
+      "arabic_meaning": "الوكالة الإلكترونية: صيغة رقمية لمفهوم الوكالة الحقيقي، تسمّي أنظمة التفويض والتمثيل الرقمي المبنية على هذا المفهوم الأصيل.",
+      "surface_misreadings_to_avoid": [
+        "Not an invented brandable — wakala is a real, specific agency/delegation concept.",
+        "Not a generic e-commerce marketplace unrelated to delegated agency.",
+        "Not a misspelling of an unrelated word — the 'e' suffix deliberately marks the electronic/digital form of wakala."
+      ],
+      "conceptual_thesis": "The artifact claims digital delegation as the modern, electronic extension of a genuine agency concept — the same trusted-delegate logic as Alwakile.com, oriented here toward electronic/digital agency systems specifically.",
+      "category_claim": "Category artifact for electronic-agency and digital-delegation platforms grounded in the concept of wakala.",
+      "possible_fields": [
+        "Digital power-of-attorney and e-delegation platforms",
+        "Islamic-finance wakala-based digital agency products",
+        "AI-agent authorization and electronic representation systems",
+        "E-government delegated-authority services"
+      ],
+      "asset_type": "Authentic Agency-Concept Digital Compound",
+      "buyer_logic": "Digital-delegation, Islamic-fintech, or e-government ventures wanting a name grounded in the real wakala agency concept, extended explicitly into electronic form."
+    },
+    {
+      "domain": "Bytelco.com",
+      "canonical_segmentation": "Byte + Telco",
+      "acronym_expansion": null,
+      "canonical_meaning": "Names software-defined, data-native telecommunications — 'Byte' marking the data/software layer and 'Telco' marking the telecommunications carrier layer, fused into telecom infrastructure that is data-native rather than legacy circuit-switched.",
+      "arabic_meaning": "الاتصالات المعرَّفة بالبرمجيات: بنية تحتية للاتصالات تُبنى على طبقة البيانات والبرمجيات من الأساس، لا شركة اتصالات تقليدية أضيفت لها طبقة برمجية.",
+      "surface_misreadings_to_avoid": [
+        "Not a legacy telecom carrier brand with no software-defined claim.",
+        "Not a cryptocurrency or blockchain 'byte' brandable unrelated to telecom.",
+        "Not a consumer mobile-plan comparison site."
+      ],
+      "conceptual_thesis": "The artifact claims the convergence of telecom and software as its category: a carrier built on data-native, software-defined infrastructure from the ground up, not a legacy telco with a software layer bolted on.",
+      "category_claim": "Category artifact for software-defined, data-native telecommunications infrastructure.",
+      "possible_fields": [
+        "Software-defined networking (SDN) telecom infrastructure",
+        "MVNO and data-native carrier platforms",
+        "5G/6G network-function virtualization providers",
+        "Telecom-infrastructure intelligence and analytics platforms"
+      ],
+      "asset_type": "Telecom-Software Convergence Compound",
+      "buyer_logic": "Software-defined telecom, MVNO, or network-virtualization ventures wanting a name that claims data-native carrier infrastructure directly."
     }
   ]
 }

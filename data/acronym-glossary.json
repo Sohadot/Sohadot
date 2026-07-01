@@ -57,6 +57,78 @@
       "definition": "A fixed technical expansion naming an advanced process concerned with the distal (downstream) end of a nascent (newly forming) chain during transcription — one word per letter.",
       "used_in": ["DNCTA.com"],
       "caution": "Not 'Call To Action' (CTA) despite those letters appearing inside the acronym. Not an existing government regulator or ticker. The expansion is fixed, not left open for buyer interpretation."
+    },
+    {
+      "acronym": "AI",
+      "expansion": "Artificial Intelligence",
+      "status": "fixed",
+      "definition": "Computational systems that perform tasks associated with human intelligence: pattern recognition, inference, and decision-making.",
+      "used_in": ["AIElectronicChips.com"],
+      "caution": "In AIElectronicChips, AI names the semiconductor category purpose-built for AI workloads — the claim is compute sovereignty, not a consumer chip storefront."
+    },
+    {
+      "acronym": "Ccy",
+      "expansion": "Currency",
+      "status": "fixed",
+      "definition": "Standard finance and banking shorthand for currency, used in account, treasury, and FX systems to denote the monetary unit of denomination.",
+      "used_in": ["AccountCcy.com"],
+      "caution": "Not an invented syllable — Ccy is conventional finance-industry shorthand. Not limited to cryptocurrency; it applies to any currency, fiat or crypto."
+    },
+    {
+      "acronym": "ASI",
+      "expansion": "Artificial Super Intelligence",
+      "status": "fixed",
+      "definition": "A hypothesized class of AI that exceeds human intelligence across virtually all domains, one horizon beyond AGI.",
+      "used_in": ["ASILiaison.com", "ASIBeget.com"],
+      "caution": "Not an unrelated industry abbreviation or ticker; ASI here always names artificial super intelligence."
+    },
+    {
+      "acronym": "AGI",
+      "expansion": "Artificial General Intelligence",
+      "status": "fixed",
+      "definition": "AI with generalized cognitive capability across domains, comparable to human general intelligence, one horizon short of ASI.",
+      "used_in": ["AGIBeget.com"],
+      "caution": "Not a generic AI-startup label — in AGIBeget, AGI is treated as a genesis/origin event, not a product feature."
+    },
+    {
+      "acronym": "ETH",
+      "expansion": "Ethereum",
+      "status": "fixed",
+      "definition": "The Ethereum blockchain platform and its native cryptocurrency.",
+      "used_in": ["EthLea.com"],
+      "caution": "Names the blockchain/cryptocurrency, not an unrelated institution or abbreviation sharing the same three letters."
+    },
+    {
+      "acronym": "AR",
+      "expansion": "Augmented Reality",
+      "status": "fixed",
+      "definition": "Technology that overlays computer-generated content onto a user's real-world view in real time.",
+      "used_in": ["ARTopSight.com"],
+      "caution": "Not 'Art' — ARTopSight segments as AR + TOP + Sight, not an art/operations reading."
+    },
+    {
+      "acronym": "RAG",
+      "expansion": "Retrieval-Augmented Generation",
+      "status": "fixed",
+      "definition": "An AI architecture that retrieves relevant external information at query time and supplies it to a generative model to ground its output.",
+      "used_in": ["RAGFull.com", "RAGLarge.com"],
+      "caution": "Not an unrelated acronym (e.g. red-amber-green status reporting) despite the shared letters, and not a textile 'rag' brand."
+    },
+    {
+      "acronym": "SSP",
+      "expansion": "Space Solar Power",
+      "status": "fixed",
+      "definition": "Orbital infrastructure that collects solar energy in space and transmits it to Earth or in-space consumers, unfiltered by atmosphere.",
+      "used_in": ["OrbitSSP.com"],
+      "caution": "Not 'Static Site Pages', 'Server-Side Processing', or any unrelated tech acronym — SSP here is always the space-energy category."
+    },
+    {
+      "acronym": "SXO",
+      "expansion": "Search Experience Optimization",
+      "status": "fixed",
+      "definition": "Optimizing the full search journey — relevance, intent match, on-page experience, and AI-answer readiness — beyond legacy keyword/backlink SEO.",
+      "used_in": ["SuperSXO.com"],
+      "caution": "Not a stock ticker or unrelated abbreviation; distinct from, and broader than, traditional SEO."
     }
   ]
 }
