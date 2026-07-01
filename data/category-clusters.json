@@ -1,0 +1,216 @@
+{
+  "description": "Category Cluster & Buyer Logic Layer — a strategic layer above the Category Artifact Meaning Layer (data/asset-meanings.json). Each cluster groups existing protected assets by strategic buyer logic and acquisition rationale, not by product category. This dataset does not define new domains; every member listed here must already exist in data/asset-meanings.json. Rendered in /category-clusters.html and checked by scripts/validate_category_clusters.py.",
+  "version": "1.0.0",
+  "updated": "2026-07-01",
+  "clusters": [
+    {
+      "id": "compute-sovereignty-post-ai-infrastructure",
+      "name": "Compute Sovereignty & Post-AI Infrastructure",
+      "short_claim": "Assets naming the next layers of AI, quantum, chip, RAG, and code-governance infrastructure.",
+      "strategic_thesis": "This cluster names the infrastructure layer after AI becomes normal: chips, quantum readiness, RAG scale, code access, and I/O observability. Once AI capability stops being the differentiator, the assets that name who controls compute, who governs code access, and who owns the observability layer over I/O become the actual chokepoints of the industry.",
+      "buyer_logic": "AI infrastructure firms, chip strategy companies, quantum-readiness vendors, enterprise RAG platforms, and AI code-governance companies — buyers who compete on the layer beneath the model, not the model itself.",
+      "acquisition_rationale": "A single buyer rarely needs just one of these names; a compute-infrastructure company building across chip strategy, quantum transition, and RAG delivery benefits from holding the naming rights to each chokepoint in the stack at once, rather than ceding an adjacent category's name to a competitor who then owns the narrative for the layer next door.",
+      "primary_buyer_types": [
+        "AI infrastructure companies",
+        "Chip strategy and semiconductor-sovereignty firms",
+        "Quantum-readiness vendors",
+        "Enterprise RAG platforms",
+        "AI code-governance companies"
+      ],
+      "primary_members": [
+        "AIElectronicChips.com",
+        "EmberQuantum.com",
+        "QuantumANN.com",
+        "RAGFull.com",
+        "RAGLarge.com",
+        "Codokey.com",
+        "IOCyclops.com",
+        "IOPace.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "AIElectronicChips.com"
+    },
+    {
+      "id": "enterprise-data-io-operational-intelligence",
+      "name": "Enterprise Data, IO & Operational Intelligence",
+      "short_claim": "Assets naming the machine-readable operational layer enterprises run on: I/O, EDI, currency, telecom, and network structure.",
+      "strategic_thesis": "This cluster names the machine-readable operational layer of enterprises: I/O, EDI, currency accounts, telecom, and network centrality — extended here to the hidden structural density beneath a system's surface (Reefier) and the cross-border regulatory-entry intelligence (EuraPlan) that determines whether an enterprise can operate in a given market at all.",
+      "buyer_logic": "B2B integration vendors, telecom infrastructure firms, payment infrastructure companies, enterprise data exchange platforms, and operational analytics vendors — buyers whose product is the plumbing other companies build on top of.",
+      "acquisition_rationale": "These names cluster around the unglamorous but indispensable operational core of enterprise software: currency handling, data interchange, network structure, and market-entry intelligence. A buyer consolidating an enterprise-infrastructure suite gains coherence by controlling the naming layer across each operational primitive rather than sourcing them from unrelated, disconnected brands.",
+      "primary_buyer_types": [
+        "B2B integration vendors",
+        "Telecom infrastructure firms",
+        "Payment infrastructure companies",
+        "Enterprise data-exchange platforms",
+        "Operational analytics vendors"
+      ],
+      "primary_members": [
+        "IOEDI.com",
+        "AccountCcy.com",
+        "PayOTIS.com",
+        "Bytelco.com",
+        "Centralities.com",
+        "Reefier.com",
+        "EuraPlan.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "IOEDI.com"
+    },
+    {
+      "id": "merchant-funnel-commercial-control",
+      "name": "Merchant, Funnel & Commercial Control",
+      "short_claim": "Assets naming control points in commerce: sovereignty, leakage, transition, infrastructure, search, and taste.",
+      "strategic_thesis": "This cluster names control points in commerce: merchant sovereignty, funnel leakage, transition analytics, picks-and-shovels infrastructure, search experience optimization, and taste/selection. Together they name the pressure points where commercial value is won or lost, from the merchant relationship itself down to the individual moment of choosing.",
+      "buyer_logic": "Commerce platforms, merchant enablement companies, CRO vendors, revenue diagnostic tools, SXO platforms, and growth infrastructure companies — buyers who compete on control of the commercial path, not just traffic volume.",
+      "acquisition_rationale": "Commerce infrastructure is won at specific control points, not in aggregate; a buyer building a merchant-enablement or growth-infrastructure suite benefits from owning the names for each control point — sovereignty, leakage diagnosis, transition measurement, search experience, and taste-based selection — so a competitor cannot claim the surrounding narrative first.",
+      "primary_buyer_types": [
+        "Commerce platforms",
+        "Merchant enablement companies",
+        "CRO vendors",
+        "Revenue diagnostic tool vendors",
+        "SXO platforms",
+        "Growth infrastructure companies"
+      ],
+      "primary_members": [
+        "Outmerchant.com",
+        "FunnelPlugs.com",
+        "AIDAtanaly.com",
+        "ShovelsSale.com",
+        "SuperSXO.com",
+        "Asavor.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "Outmerchant.com"
+    },
+    {
+      "id": "scientific-clinical-reference-grade-terms",
+      "name": "Scientific, Clinical & Reference-Grade Terms",
+      "short_claim": "Assets whose value is authentic scientific, clinical, historical, linguistic, or rare-word legitimacy, not invented branding.",
+      "strategic_thesis": "This cluster groups assets whose value comes from authentic scientific, clinical, historical, linguistic, or rare-word legitimacy — spanning metabolic and immunological reference terms, real chemistry and geophysics nomenclature, evidentiary and forensic inscription (including the genomic transcription reading of DNCTA and the mobile-evidence classification standard of MobileArtifacts), and rare but real words revived from dialect, legal, and civic history.",
+      "buyer_logic": "Scientific publishers, clinical reference platforms, biotech education companies, chemistry platforms, geophysics firms, pronunciation and linguistics tools, forensic and evidentiary standards bodies, and terminology databases — buyers whose credibility depends on naming being real, not invented.",
+      "acquisition_rationale": "Authenticity does not scale by inventing more words; it scales by holding the real ones. A buyer building a reference-grade or scientific-education brand benefits from consolidating multiple authentic terms under one strategy, since each name independently resists the 'coined brandable' skepticism that undermines less rigorous naming, and together they signal a portfolio built on genuine terminology rather than wordplay.",
+      "primary_buyer_types": [
+        "Scientific publishers",
+        "Clinical reference platforms",
+        "Biotech education companies",
+        "Chemistry platforms",
+        "Geophysics firms",
+        "Pronunciation and linguistics tools",
+        "Terminology and forensic-standards databases"
+      ],
+      "primary_members": [
+        "Ketonemia.com",
+        "Bisulfid.com",
+        "Mesomere.com",
+        "Gravimeters.com",
+        "Photoperceptive.com",
+        "Preimmunize.com",
+        "Antithermic.com",
+        "Dactylograph.com",
+        "Sciographic.com",
+        "Orthoepical.com",
+        "Isotely.com",
+        "Allenarly.com",
+        "DNCTA.com",
+        "MobileArtifacts.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "Ketonemia.com"
+    },
+    {
+      "id": "spatial-vr-ar-personal-mobility",
+      "name": "Spatial, VR, AR & Personal Mobility",
+      "short_claim": "Assets naming movement into, over, and through spatial environments — virtual, augmented, and physically aerial.",
+      "strategic_thesis": "This cluster names movement into, over, and through spatial environments: VR transition, AR top sight, wearable aerial mobility, and light personal aerial movement. Each asset names a distinct spatial vector — entering a virtual space, seeing a physical space from above, or moving a single person through the air — rather than a single unified product category.",
+      "buyer_logic": "XR platforms, AR visualization companies, personal mobility startups, simulation/onboarding products, and aerial mobility brands — buyers building the next physical or virtual interface layer for human movement and perception.",
+      "acquisition_rationale": "Spatial-computing and personal-mobility ventures are still naming their categories for the first time; a buyer entering early benefits from claiming the vocabulary across adjacent spatial vectors — virtual entry, aerial overhead view, personal flight — before the market settles on competing terms, giving one buyer a coherent naming footprint across a still-forming category.",
+      "primary_buyer_types": [
+        "XR platforms",
+        "AR visualization companies",
+        "Personal mobility startups",
+        "Simulation and onboarding products",
+        "Aerial mobility brands"
+      ],
+      "primary_members": [
+        "ToAVR.com",
+        "ARTopSight.com",
+        "FootAerial.com",
+        "DriftAiry.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "ToAVR.com"
+    },
+    {
+      "id": "energy-space-sustainability-systems",
+      "name": "Energy, Space & Sustainability Systems",
+      "short_claim": "Assets naming long-cycle infrastructure: orbital energy, space solar power, sustainable blockchain layers, and open succession.",
+      "strategic_thesis": "This cluster names long-cycle infrastructure around orbital energy, space solar power, sustainable Ethereum/green digital space, and open succession systems. These are not quarter-over-quarter product names; they name categories built to hold value across a decade-plus infrastructure cycle.",
+      "buyer_logic": "Space energy firms, sustainability infrastructure platforms, circular economy companies, energy-transition intelligence platforms, and climate-tech venture studios — buyers positioning for infrastructure that does not yet exist at scale.",
+      "acquisition_rationale": "Long-cycle infrastructure categories reward whoever holds the naming rights before the category becomes investable at scale; a buyer or venture studio positioning across orbital energy and sustainable digital infrastructure benefits from securing the vocabulary now, while the underlying industries are still forming, rather than competing for names once capital and attention arrive.",
+      "primary_buyer_types": [
+        "Space energy firms",
+        "Sustainability infrastructure platforms",
+        "Circular economy companies",
+        "Energy-transition intelligence platforms",
+        "Climate-tech venture studios"
+      ],
+      "primary_members": [
+        "Space-Based-Solar-Power.com",
+        "OrbitSSP.com",
+        "EthLea.com",
+        "OpenRevolve.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "Space-Based-Solar-Power.com"
+    },
+    {
+      "id": "agency-liaison-delegation-systems",
+      "name": "Agency, Liaison & Delegation Systems",
+      "short_claim": "Assets naming the delegation layer: agents, wakala, liaison, and the interface between humans, institutions, AGI, and ASI.",
+      "strategic_thesis": "This cluster names the delegation layer: agents, wakala, liaison, and the interface between humans, institutions, AGI, and ASI. As autonomous systems take on delegated authority, the vocabulary of trusted agency — a genuinely old legal and commercial concept — becomes the naming layer for how humans authorize machines to act on their behalf.",
+      "buyer_logic": "AI agent platforms, digital delegation systems, legal/commercial representation tools, liaison infrastructure, and frontier AI interface ventures — buyers building the authorization layer between a principal and the party acting for them.",
+      "acquisition_rationale": "Delegated-authority infrastructure spans a spectrum from present-day legal agency to future superintelligence liaison; a buyer positioning across that entire spectrum benefits from holding the naming rights end-to-end, rather than owning only the near-term human-agency end or only the speculative AGI/ASI-genesis end of the same underlying concept.",
+      "primary_buyer_types": [
+        "AI agent platforms",
+        "Digital delegation systems",
+        "Legal and commercial representation tools",
+        "Liaison infrastructure vendors",
+        "Frontier AI interface ventures"
+      ],
+      "primary_members": [
+        "Alwakile.com",
+        "Wokalae.com",
+        "Aliaise.com",
+        "ASILiaison.com",
+        "AGIBeget.com",
+        "ASIBeget.com"
+      ],
+      "secondary_members": [],
+      "lead_asset": "Alwakile.com"
+    },
+    {
+      "id": "cultural-taste-meaning-identity",
+      "name": "Cultural, Taste & Meaning Identity",
+      "short_claim": "Assets whose value is not only technical but cultural: taste, sweetness, meaning, identity, and language-rooted trust.",
+      "strategic_thesis": "This cluster captures assets whose value is not only technical but cultural: taste, sweetness, meaning, identity, and language-rooted trust. It is deliberately the smallest primary cluster — most of its weight comes from secondary membership, marking where a technical or commercial asset also carries authentic cultural identity that a buyer should not discard in favor of a purely functional read.",
+      "buyer_logic": "Cultural brands, food/taste ventures, Arabic/Amazigh identity platforms, semantic selection products, and culturally grounded AI brands — buyers for whom linguistic and cultural authenticity is the differentiator, not a footnote.",
+      "acquisition_rationale": "A handful of names in this portfolio carry a cultural or linguistic root strong enough to anchor a brand on its own — YetFut's Amazigh word for sweetness chief among them — while others (Asavor, Alwakile, Wokalae) already have a primary technical or commercial cluster but retain enough cultural weight to be legible a second way. A buyer building a culturally grounded brand should read this cluster first, then check each asset's primary cluster for its technical logic.",
+      "primary_buyer_types": [
+        "Cultural brands",
+        "Food and taste ventures",
+        "Arabic/Amazigh identity platforms",
+        "Semantic selection products",
+        "Culturally grounded AI brands"
+      ],
+      "primary_members": [
+        "YetFut.com"
+      ],
+      "secondary_members": [
+        "Asavor.com",
+        "Alwakile.com",
+        "Wokalae.com"
+      ],
+      "lead_asset": "YetFut.com"
+    }
+  ]
+}

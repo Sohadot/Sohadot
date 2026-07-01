@@ -1,6 +1,6 @@
 # Sohadot — Domain Intelligence & Sovereign Digital Assets
 
-**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer, and direct domain brokerage.
+**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer with a strategic buyer-logic cluster layer above it, and direct domain brokerage.
 
 ## What I build
 
@@ -33,6 +33,22 @@ libraries), and checked by two validators before it ships: `scripts/validate_ass
 (schema completeness, duplicate domains, valid TLDs) and `scripts/validate_protected_meanings.py`
 (a Canonical Meaning Lock that fails the build if a name's user-approved reading drifts back toward a
 plausible-but-wrong surface interpretation, or if a required canonical phrase goes missing).
+
+### Category Cluster & Buyer Logic Layer
+
+`category-clusters.html` sits one layer above the meaning layer, without adding a single new domain.
+It groups the same 50 protected assets into 8 strategic acquisition clusters — by buyer logic and
+acquisition rationale, not by product category — so the page reads as a map of strategic asset
+clusters rather than a marketplace filter. Each cluster names a strategic thesis, the buyer types it's
+legible to, an acquisition rationale explaining why a buyer would want several of its members at once,
+and one lead asset; every domain has exactly one primary cluster, and a small number also appear as
+secondary members of the Cultural, Taste & Meaning Identity cluster where a technical or commercial
+asset carries a second, cultural reading. The data lives in `data/category-clusters.json`, is rendered
+statically (readable with JavaScript off), progressively enhanced by `js/category-clusters.js`
+(search/filter only), and checked by `scripts/validate_category_clusters.py` — which fails if a
+cluster is missing required fields, references a domain absent from `data/asset-meanings.json`,
+double-assigns a domain to two primary clusters, leaves any asset without a primary cluster, or points
+`lead_asset` outside that cluster's own `primary_members`.
 
 ## Principles
 
