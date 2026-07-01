@@ -19,12 +19,12 @@
       "caution": "Not DEI (Diversity, Equity, Inclusion) despite the visual similarity."
     },
     {
-      "acronym": "AI",
-      "expansion": "Artificial Intelligence",
+      "acronym": "AIDA",
+      "expansion": "Attention, Interest, Desire, Action",
       "status": "fixed",
-      "definition": "Computational systems that perform tasks associated with human intelligence: pattern recognition, inference, and decision-making.",
+      "definition": "The classic marketing funnel model. AIDAtanaly reads as AIDA + T + Analy — AIDA Transition Analytics — measuring the transition between funnel stages, not just occupancy within them.",
       "used_in": ["AIDAtanaly.com"],
-      "caution": "In AIDAtanaly, AI is the first fused syllable, not a reference to the AIDA marketing funnel (Attention, Interest, Desire, Action)."
+      "caution": "The correct source acronym is this marketing funnel, not a fusion of the words Artificial, Intelligence, Data, and Analysis."
     },
     {
       "acronym": "ANN",
@@ -35,28 +35,28 @@
       "caution": "Not a given name; not an abbreviation for 'announcement.'"
     },
     {
-      "acronym": "AVR",
-      "expansion": "Audio/Video Receiver",
+      "acronym": "VR",
+      "expansion": "Virtual Reality",
       "status": "fixed",
-      "definition": "The primary reading for consumer electronics: the hub device that switches and amplifies audio/video signals in a home theater or AV integration setup.",
+      "definition": "Computer-generated simulated environments. ToAVR segments as To + A + VR, read aloud as 'to a VR' — naming the transition into a virtual reality environment.",
       "used_in": ["ToAVR.com"],
-      "caution": "Secondary technical readings exist (Automatic Voltage Regulator; the AVR microcontroller architecture) — field selection determines which applies. Not a vehicle-repair abbreviation."
+      "caution": "The domain is not read as the three-letter acronym AVR (Audio/Video Receiver) — the correct segmentation splits the article 'A' from 'VR.'"
     },
     {
-      "acronym": "OTIS",
-      "expansion": "One-Time Instant Settlement",
-      "status": "candidate",
-      "definition": "A buyer-facing, proposed expansion for a payments-settlement product name — not a fixed industry standard acronym.",
+      "acronym": "OT",
+      "expansion": "Operational Technology",
+      "status": "fixed",
+      "definition": "The hardware and software systems that monitor and control physical industrial processes and devices, as distinct from conventional IT.",
       "used_in": ["PayOTIS.com"],
-      "caution": "Not affiliated with the Otis Elevator Company or any mobility/elevator brand. Not a person's given name. The expansion is buyer-defined, not codified."
+      "caution": "PayOTIS segments as Pay + OT + IS, not Pay + OTIS as a single unit — do not read OTIS as a standalone acronym."
     },
     {
       "acronym": "DNCTA",
-      "expansion": "Data Network Compliance & Trust Authority",
-      "status": "candidate",
-      "definition": "An illustrative institutional-style expansion showing the cadence the five-letter acronym can carry. The letters function as an authoritative shell before any single expansion is chosen.",
+      "expansion": "Distal Nascent Chain Transcription Advanced",
+      "status": "fixed",
+      "definition": "A fixed technical expansion naming an advanced process concerned with the distal (downstream) end of a nascent (newly forming) chain during transcription — one word per letter.",
       "used_in": ["DNCTA.com"],
-      "caution": "No existing regulator or ticker uses this initialism. Do not assume it means a specific Do-Not-Call registry without buyer definition — the expansion is intentionally open."
+      "caution": "Not 'Call To Action' (CTA) despite those letters appearing inside the acronym. Not an existing government regulator or ticker. The expansion is fixed, not left open for buyer interpretation."
     }
   ]
 }
