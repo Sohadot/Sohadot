@@ -1,6 +1,6 @@
 # Sohadot — Domain Intelligence & Sovereign Digital Assets
 
-**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer with a strategic buyer-logic cluster layer above it, and direct domain brokerage.
+**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer with a strategic buyer-logic cluster layer above it, a strategic brief request channel for serious acquisition intent, and direct domain brokerage.
 
 ## What I build
 
@@ -49,6 +49,24 @@ statically (readable with JavaScript off), progressively enhanced by `js/categor
 cluster is missing required fields, references a domain absent from `data/asset-meanings.json`,
 double-assigns a domain to two primary clusters, leaves any asset without a primary cluster, or points
 `lead_asset` outside that cluster's own `primary_members`.
+
+### Strategic Brief Request Layer
+
+`strategic-brief.html` is the acquisition-intent layer above both of those: a "Request Strategic
+Brief" flow for buyers evaluating a single category artifact, a strategic cluster, or a broader
+relationship with the portfolio — deliberately not a generic contact form, with no pricing table,
+checkout, or "buy now" language anywhere on the page. The form (name, email, company/project, asset or
+cluster of interest, inquiry type, message) needs no backend: it submits nowhere, storing nothing —
+its native `action="mailto:agent@sohadot.com" method="GET" enctype="text/plain"` opens a plain-text
+email draft even with JavaScript disabled, and `js/strategic-brief.js` progressively enhances it by
+prefilling the asset/cluster field from `?asset=`, `?cluster=`, or `?type=` query parameters (used by
+the "Request Brief for This Asset" links on `category-artifacts.html` and the "Request Brief for This
+Cluster" links on `category-clusters.html`) and by building a cleaner structured `mailto:` link on
+submit. Inquiry-type options and the asset/cluster autocomplete list are sourced from
+`data/brief-request-options.json`, generated from `data/asset-meanings.json` and
+`data/category-clusters.json` so the same 50 assets and 8 clusters stay the single source of truth.
+Nothing typed into the form is sent, logged, or stored by Sohadot.com — only the user's own,
+deliberate act of sending the resulting email transmits anything.
 
 ## Principles
 

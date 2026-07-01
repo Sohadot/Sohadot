@@ -1,0 +1,89 @@
+{
+  "description": "Options referenced by strategic-brief.html: inquiry types, and the asset/cluster names offered as autocomplete suggestions for the asset_or_cluster_interest field. Sourced from data/asset-meanings.json and data/category-clusters.json — this file does not define new assets or clusters, it only lists existing ones for the form.",
+  "version": "1.0.0",
+  "updated": "2026-07-01",
+  "inquiry_types": [
+    {
+      "value": "single-asset-acquisition",
+      "label": "Single asset acquisition"
+    },
+    {
+      "value": "cluster-acquisition",
+      "label": "Cluster acquisition"
+    },
+    {
+      "value": "strategic-partnership",
+      "label": "Strategic partnership"
+    },
+    {
+      "value": "category-brief-request",
+      "label": "Category brief request"
+    },
+    {
+      "value": "other",
+      "label": "Other"
+    }
+  ],
+  "asset_options": [
+    "AGIBeget.com",
+    "AIDAtanaly.com",
+    "AIElectronicChips.com",
+    "ARTopSight.com",
+    "ASIBeget.com",
+    "ASILiaison.com",
+    "AccountCcy.com",
+    "Aliaise.com",
+    "Allenarly.com",
+    "Alwakile.com",
+    "Antithermic.com",
+    "Asavor.com",
+    "Bisulfid.com",
+    "Bytelco.com",
+    "Centralities.com",
+    "Codokey.com",
+    "DNCTA.com",
+    "Dactylograph.com",
+    "DriftAiry.com",
+    "EmberQuantum.com",
+    "EthLea.com",
+    "EuraPlan.com",
+    "FootAerial.com",
+    "FunnelPlugs.com",
+    "Gravimeters.com",
+    "IOCyclops.com",
+    "IOEDI.com",
+    "IOPace.com",
+    "Isotely.com",
+    "Ketonemia.com",
+    "Mesomere.com",
+    "MobileArtifacts.com",
+    "OpenRevolve.com",
+    "OrbitSSP.com",
+    "Orthoepical.com",
+    "Outmerchant.com",
+    "PayOTIS.com",
+    "Photoperceptive.com",
+    "Preimmunize.com",
+    "QuantumANN.com",
+    "RAGFull.com",
+    "RAGLarge.com",
+    "Reefier.com",
+    "Sciographic.com",
+    "ShovelsSale.com",
+    "Space-Based-Solar-Power.com",
+    "SuperSXO.com",
+    "ToAVR.com",
+    "Wokalae.com",
+    "YetFut.com"
+  ],
+  "cluster_options": [
+    "Compute Sovereignty & Post-AI Infrastructure",
+    "Enterprise Data, IO & Operational Intelligence",
+    "Merchant, Funnel & Commercial Control",
+    "Scientific, Clinical & Reference-Grade Terms",
+    "Spatial, VR, AR & Personal Mobility",
+    "Energy, Space & Sustainability Systems",
+    "Agency, Liaison & Delegation Systems",
+    "Cultural, Taste & Meaning Identity"
+  ]
+}
