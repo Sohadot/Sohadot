@@ -2,8 +2,9 @@
 """Trust & Acquisition Readiness Audit for the Sohadot acquisition path.
 
 Audits the complete path Home -> Portfolio / Category Artifacts / Category
-Clusters -> Strategic Brief for broken links, cheap-marketplace language,
-pricing-pressure flows, CTA routing, and sitemap/README currency.
+Clusters -> Strategic Brief -> Escrow Closing Protocol for broken links,
+cheap-marketplace language, pricing-pressure flows, CTA routing, and
+sitemap/README currency.
 
 This script does not add domain assets, expand the 50 Category Artifacts, or
 change canonical meanings — it only reads the existing static pages and data
@@ -27,6 +28,7 @@ CORE_HTML_FILES = [
     "category-artifacts.html",
     "category-clusters.html",
     "strategic-brief.html",
+    "escrow-closing.html",
 ]
 
 SITEMAP_PATH = REPO_ROOT / "sitemap.xml"
@@ -38,6 +40,7 @@ REQUIRED_SITEMAP_PATHS = [
     "/category-artifacts.html",
     "/category-clusters.html",
     "/strategic-brief.html",
+    "/escrow-closing.html",
 ]
 
 REQUIRED_README_MENTIONS = [
@@ -45,6 +48,7 @@ REQUIRED_README_MENTIONS = [
     "Category Cluster & Buyer Logic Layer",
     "Strategic Brief Request Layer",
     "Trust & Acquisition Readiness Audit",
+    "Seller-Approved Escrow Closing Protocol",
 ]
 
 # Fail the audit if any of these appear as primary CTA / sales language,
@@ -282,22 +286,45 @@ def check_cluster_ctas(html, errors):
 
 def check_cta_paths(pages, errors):
     index_hrefs = extract_hrefs(pages["index.html"])
-    for required in ("portfolio.html", "category-artifacts.html", "category-clusters.html", "strategic-brief.html"):
+    for required in (
+        "portfolio.html",
+        "category-artifacts.html",
+        "category-clusters.html",
+        "strategic-brief.html",
+        "escrow-closing.html",
+    ):
         if not any(urlsplit(h).path.lstrip("/") == required for h in index_hrefs):
             errors.append(f"index.html: missing a link to /{required} (Home must expose the acquisition path)")
 
     portfolio_hrefs = extract_hrefs(pages["portfolio.html"])
     if not any(urlsplit(h).path.endswith("strategic-brief.html") for h in portfolio_hrefs):
         errors.append("portfolio.html: missing a Strategic Brief CTA")
+    if not any(urlsplit(h).path.endswith("escrow-closing.html") for h in portfolio_hrefs):
+        errors.append("portfolio.html: missing an Escrow Closing Protocol link")
+
+    escrow_hrefs = extract_hrefs(pages["escrow-closing.html"])
+    if not any(urlsplit(h).path.endswith("strategic-brief.html") for h in escrow_hrefs):
+        errors.append(
+            "escrow-closing.html: missing a link back to strategic-brief.html "
+            "(Strategic Brief must remain the main inquiry path)"
+        )
+    if not any(
+        urlsplit(h).path.endswith("strategic-brief.html") and "type=escrow-closing" in h
+        for h in escrow_hrefs
+    ):
+        errors.append(
+            "escrow-closing.html: missing a 'Request Closing Review' CTA to "
+            "strategic-brief.html?type=escrow-closing"
+        )
 
     check_artifact_ctas(pages["category-artifacts.html"], errors)
     check_cluster_ctas(pages["category-clusters.html"], errors)
 
 
 def check_pricing_pressure(pages, errors):
-    brief_html = pages["strategic-brief.html"]
-    if re.search(r"<table\b", brief_html, re.IGNORECASE):
-        errors.append("strategic-brief.html: contains a <table> element — no pricing table is allowed here")
+    for name in ("strategic-brief.html", "escrow-closing.html"):
+        if re.search(r"<table\b", pages[name], re.IGNORECASE):
+            errors.append(f"{name}: contains a <table> element — no pricing table is allowed here")
 
     portfolio_html = pages["portfolio.html"]
     urgency_terms = ["limited time", "act now", "ends soon", "hurry", "only .* left", "selling fast"]
@@ -313,6 +340,7 @@ def check_strategic_distinction(pages, errors):
         "category-artifacts.html": ["canonical meaning", "buyer logic", "conceptual thesis"],
         "category-clusters.html": ["strategic thesis", "acquisition rationale", "buyer logic"],
         "strategic-brief.html": ["not a generic contact form", "acquisition-intent", "acquisition intent"],
+        "escrow-closing.html": ["seller approval", "seller-approved", "independent escrow"],
     }
     for name, needles in markers.items():
         html_lower = pages[name].lower()
