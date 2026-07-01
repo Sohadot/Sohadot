@@ -22,14 +22,17 @@ This repository is the source of [sohadot.com](https://sohadot.com), deployed vi
 ### Category Artifact Meaning Layer
 
 `category-artifacts.html` is a separate, static meaning layer alongside `portfolio.html`. Where the
-portfolio answers "what's for sale," this layer explains a curated set of domains as **category
+portfolio answers "what's for sale," this layer explains a curated set of 50 domains as **category
 artifacts** — objects with a canonical segmentation, a literal meaning, misreadings to actively avoid,
 a conceptual thesis, a one-line category claim, plausible commercial fields, and the buyer logic that
 makes each name legible. The data lives in `data/asset-meanings.json` (canonical records) and
 `data/acronym-glossary.json` (acronym expansions referenced across those records), is rendered
-statically for SEO and no-JS accessibility, progressively enhanced by `js/asset-meanings.js` (search
-and acronym tooltips only — no external JS libraries), and checked by
-`scripts/validate_asset_meanings.py` before it ships.
+statically for SEO and no-JS accessibility — every field is readable with JavaScript off —
+progressively enhanced by `js/asset-meanings.js` (search and acronym tooltips only — no external JS
+libraries), and checked by two validators before it ships: `scripts/validate_asset_meanings.py`
+(schema completeness, duplicate domains, valid TLDs) and `scripts/validate_protected_meanings.py`
+(a Canonical Meaning Lock that fails the build if a name's user-approved reading drifts back toward a
+plausible-but-wrong surface interpretation, or if a required canonical phrase goes missing).
 
 ## Principles
 
