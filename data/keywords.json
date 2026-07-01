@@ -1,9 +1,9 @@
 {
-  "month_label": "Monthly Domain Intelligence — June 2026",
-  "last_updated": "2026-06-01T13:34:55.167189Z",
-  "last_updated_human": "June 01, 2026 13:34 UTC",
+  "month_label": "Monthly Domain Intelligence — July 2026",
+  "last_updated": "2026-07-01T11:21:46.504755Z",
+  "last_updated_human": "July 01, 2026 11:21 UTC",
   "next_update_label": "Next monthly refresh",
-  "next_update_iso": "2026-07-01T08:00:00Z",
+  "next_update_iso": "2026-08-01T08:00:00Z",
   "sources": [
     "Internal keyword scoring model",
     "Commercial intent review",
