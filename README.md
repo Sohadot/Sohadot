@@ -68,6 +68,18 @@ submit. Inquiry-type options and the asset/cluster autocomplete list are sourced
 Nothing typed into the form is sent, logged, or stored by Sohadot.com — only the user's own,
 deliberate act of sending the resulting email transmits anything.
 
+### Trust & Acquisition Readiness Audit
+
+The full acquisition path — Home → Portfolio / Category Artifacts / Category Clusters → Strategic
+Brief — is checked as one connected system, not five independent pages. `scripts/audit_acquisition_readiness.py`
+verifies that every internal link and `category-artifacts.html#slug` / `category-clusters.html#cluster-id`
+anchor resolves, that every `?asset=` / `?cluster=` deep link on the Strategic Brief CTAs points to a
+real artifact or cluster, that no cheap-marketplace language ("buy now", "checkout", "cart", "clearance",
+"bargain", and similar) appears outside an explicit negation, that `strategic-brief.html` carries no
+pricing table or urgency pressure, and that `sitemap.xml` and this README stay current with the
+Category Artifact, Category Cluster, and Strategic Brief layers. Findings and the pass/fail result are
+recorded in `docs/TRUST_AND_ACQUISITION_READINESS_AUDIT.md`.
+
 ## Principles
 
 - Structure over hype — assets are classified, documented, and positioned, not just listed
