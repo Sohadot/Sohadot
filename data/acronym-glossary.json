@@ -1,0 +1,62 @@
+{
+  "description": "Canonical acronym expansions referenced by the Category Artifact Meaning Layer (data/asset-meanings.json). Each entry documents a fixed or candidate expansion, the domains that use it, and any misreading a buyer should avoid.",
+  "updated": "2026-07-01",
+  "terms": [
+    {
+      "acronym": "IO",
+      "expansion": "Input/Output",
+      "status": "fixed",
+      "definition": "The fundamental computing concept describing data flow into and out of a system, device, or process.",
+      "used_in": ["IOCyclops.com", "IOEDI.com", "IOPace.com"],
+      "caution": "Not 'Isle of...', not an Indian Ocean reference, not a two-letter place abbreviation."
+    },
+    {
+      "acronym": "EDI",
+      "expansion": "Electronic Data Interchange",
+      "status": "fixed",
+      "definition": "The standardized format for exchanging business documents — purchase orders, invoices, shipping notices — directly between organizations' computer systems.",
+      "used_in": ["IOEDI.com"],
+      "caution": "Not DEI (Diversity, Equity, Inclusion) despite the visual similarity."
+    },
+    {
+      "acronym": "AI",
+      "expansion": "Artificial Intelligence",
+      "status": "fixed",
+      "definition": "Computational systems that perform tasks associated with human intelligence: pattern recognition, inference, and decision-making.",
+      "used_in": ["AIDAtanaly.com"],
+      "caution": "In AIDAtanaly, AI is the first fused syllable, not a reference to the AIDA marketing funnel (Attention, Interest, Desire, Action)."
+    },
+    {
+      "acronym": "ANN",
+      "expansion": "Artificial Neural Network",
+      "status": "fixed",
+      "definition": "A machine learning architecture loosely modeled on biological neural networks, foundational to modern deep learning.",
+      "used_in": ["QuantumANN.com"],
+      "caution": "Not a given name; not an abbreviation for 'announcement.'"
+    },
+    {
+      "acronym": "AVR",
+      "expansion": "Audio/Video Receiver",
+      "status": "fixed",
+      "definition": "The primary reading for consumer electronics: the hub device that switches and amplifies audio/video signals in a home theater or AV integration setup.",
+      "used_in": ["ToAVR.com"],
+      "caution": "Secondary technical readings exist (Automatic Voltage Regulator; the AVR microcontroller architecture) — field selection determines which applies. Not a vehicle-repair abbreviation."
+    },
+    {
+      "acronym": "OTIS",
+      "expansion": "One-Time Instant Settlement",
+      "status": "candidate",
+      "definition": "A buyer-facing, proposed expansion for a payments-settlement product name — not a fixed industry standard acronym.",
+      "used_in": ["PayOTIS.com"],
+      "caution": "Not affiliated with the Otis Elevator Company or any mobility/elevator brand. Not a person's given name. The expansion is buyer-defined, not codified."
+    },
+    {
+      "acronym": "DNCTA",
+      "expansion": "Data Network Compliance & Trust Authority",
+      "status": "candidate",
+      "definition": "An illustrative institutional-style expansion showing the cadence the five-letter acronym can carry. The letters function as an authoritative shell before any single expansion is chosen.",
+      "used_in": ["DNCTA.com"],
+      "caution": "No existing regulator or ticker uses this initialism. Do not assume it means a specific Do-Not-Call registry without buyer definition — the expansion is intentionally open."
+    }
+  ]
+}

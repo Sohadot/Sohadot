@@ -1,6 +1,6 @@
 # Sohadot — Domain Intelligence & Sovereign Digital Assets
 
-**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, and direct domain brokerage.
+**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer, and direct domain brokerage.
 
 ## What I build
 
@@ -18,6 +18,18 @@ This repository is the source of [sohadot.com](https://sohadot.com), deployed vi
 - **`js/valuation-engine.js`** — client-side structured valuation logic (lexical legitimacy, commercial keywords, TLD fit, comparable sales)
 - **`data/*.json`** — valuation datasets, keyword intelligence, drop watchlists
 - **`scripts/*.py` + GitHub Actions** — automated pipelines that refresh drops weekly and keywords monthly
+
+### Category Artifact Meaning Layer
+
+`category-artifacts.html` is a separate, static meaning layer alongside `portfolio.html`. Where the
+portfolio answers "what's for sale," this layer explains a curated set of domains as **category
+artifacts** — objects with a canonical segmentation, a literal meaning, misreadings to actively avoid,
+a conceptual thesis, a one-line category claim, plausible commercial fields, and the buyer logic that
+makes each name legible. The data lives in `data/asset-meanings.json` (canonical records) and
+`data/acronym-glossary.json` (acronym expansions referenced across those records), is rendered
+statically for SEO and no-JS accessibility, progressively enhanced by `js/asset-meanings.js` (search
+and acronym tooltips only — no external JS libraries), and checked by
+`scripts/validate_asset_meanings.py` before it ships.
 
 ## Principles
 

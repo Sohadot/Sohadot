@@ -1,0 +1,447 @@
+{
+  "description": "Category Artifact Meaning Layer — canonical meaning records for selected Sohadot domains. Each record explains a domain as a category artifact: what it names, what it must not be misread as, what it claims about a category, and who it is built for. This dataset is the source of truth rendered in /category-artifacts.html and checked by scripts/validate_asset_meanings.py.",
+  "version": "1.0.0",
+  "updated": "2026-07-01",
+  "assets": [
+    {
+      "domain": "OpenRevolve.com",
+      "canonical_segmentation": "Open + Revolve",
+      "acronym_expansion": null,
+      "canonical_meaning": "\"Open\" signals accessibility and interoperability; \"Revolve\" signals rotation and cyclical renewal rather than linear depletion. Together they name a system where access is open and value keeps turning over instead of running out.",
+      "arabic_meaning": "دوران مفتوح: نظام وصول مفتوح تتجدد فيه الموارد وتدور بدل أن تنضب.",
+      "surface_misreadings_to_avoid": [
+        "Not a synonym for 'revolt' or 'revolution' — the root is rotation, not upheaval.",
+        "Not a literal 'revolving door' hospitality or retail reference.",
+        "Not a fintech-only 'revolving credit' term — the open/cyclical logic is broader than credit."
+      ],
+      "conceptual_thesis": "The artifact names a mechanism, not a mood: a system stays open to participants while its resources or access rights rotate rather than deplete linearly.",
+      "category_claim": "Category artifact for open, circular access-and-rotation systems.",
+      "possible_fields": [
+        "Circular economy and sustainability platforms",
+        "Revolving credit and fintech access products",
+        "Subscription or membership rotation models",
+        "Open-source governance with rotating leadership"
+      ],
+      "asset_type": "Conceptual Compound Brandable",
+      "buyer_logic": "Founders building circular-economy, rotating-credit, or open-membership platforms who need a name that encodes the mechanism itself, not just an upbeat adjective."
+    },
+    {
+      "domain": "IOCyclops.com",
+      "canonical_segmentation": "IO + Cyclops",
+      "acronym_expansion": "IO = Input/Output",
+      "canonical_meaning": "Pairs the foundational computing concept of Input/Output with Cyclops, the single all-seeing eye — a singular, centralized vantage point over data flowing in and out of a system.",
+      "arabic_meaning": "عين واحدة تراقب كل الدخل والخرج: نقطة مركزية موحّدة لرصد تدفق البيانات.",
+      "surface_misreadings_to_avoid": [
+        "Not a mythology or gaming-lore product — Cyclops here is a metaphor for a single vantage point, not a character brand.",
+        "Not a literal security-camera or surveillance hardware brand.",
+        "IO is Input/Output, not an abbreviation for a place name."
+      ],
+      "conceptual_thesis": "A single unifying point of observation over many I/O sources is treated as a category in itself: the value is in collapsing scattered inputs and outputs into one coherent view.",
+      "category_claim": "Category artifact for unified I/O observability and single-pane-of-glass data gateways.",
+      "possible_fields": [
+        "Observability and monitoring platforms",
+        "API gateways and unified data ingestion",
+        "IoT sensor fusion",
+        "Security operations centers (single-pane SOC tooling)"
+      ],
+      "asset_type": "Tech Acronym + Mythic Compound",
+      "buyer_logic": "Infrastructure or observability teams that want a memorable, single-vantage-point brand rather than a generic 'dashboard' name."
+    },
+    {
+      "domain": "IOEDI.com",
+      "canonical_segmentation": "IO + EDI",
+      "acronym_expansion": "IO = Input/Output; EDI = Electronic Data Interchange",
+      "canonical_meaning": "Fuses general system Input/Output with the enterprise-standard EDI, positioning the name as the connective layer between raw system I/O and structured inter-business document exchange — purchase orders, invoices, shipping notices.",
+      "arabic_meaning": "الجسر بين الدخل والخرج التقني وتبادل البيانات الإلكتروني بين الشركات.",
+      "surface_misreadings_to_avoid": [
+        "Not DEI (Diversity, Equity, Inclusion) despite the visual similarity.",
+        "Not a generic 'IO' gaming or app-store domain.",
+        "EDI here is the data-interchange standard, not a medical or unrelated homophonic meaning."
+      ],
+      "conceptual_thesis": "Modern EDI is increasingly delivered over APIs and generic I/O rails; the artifact names the bridge between legacy EDI infrastructure and modern system I/O.",
+      "category_claim": "Category artifact for EDI modernization and supply-chain data-interchange platforms.",
+      "possible_fields": [
+        "Supply chain and logistics EDI platforms",
+        "B2B integration middleware",
+        "Retail and manufacturing data exchange",
+        "API-to-EDI translation services"
+      ],
+      "asset_type": "Enterprise Acronym Compound",
+      "buyer_logic": "B2B integration or supply-chain technology vendors modernizing EDI infrastructure who want a name that states the category outright."
+    },
+    {
+      "domain": "IOPace.com",
+      "canonical_segmentation": "IO + Pace",
+      "acronym_expansion": "IO = Input/Output",
+      "canonical_meaning": "Names the rhythm or throughput of input-output cycles — the cadence at which a system moves data, not just whether it moves data at all.",
+      "arabic_meaning": "إيقاع تدفق البيانات: سرعة دورات الدخل والخرج داخل النظام.",
+      "surface_misreadings_to_avoid": [
+        "Not primarily a running-shoe or fitness-tracker brand.",
+        "Not an abbreviation for 'Iowa' — the IO prefix reads as Input/Output in this context.",
+        "Pace is not about loan or mortgage repayment pacing."
+      ],
+      "conceptual_thesis": "Throughput governance — regulating the rate of data or system I/O — is treated as its own product category rather than a footnote of infrastructure tooling.",
+      "category_claim": "Category artifact for I/O throughput and rate-governance systems.",
+      "possible_fields": [
+        "API rate limiting and throttling platforms",
+        "Data streaming and pipeline cadence tools",
+        "Performance and load-testing tools",
+        "DevOps workload pacing dashboards"
+      ],
+      "asset_type": "Tech Acronym + Word Compound",
+      "buyer_logic": "Infrastructure teams building rate limiters, streaming schedulers, or throughput dashboards who want the cadence itself named in the domain."
+    },
+    {
+      "domain": "AIDAtanaly.com",
+      "canonical_segmentation": "AI + DATA + (a)NALY(sis) — an overlapping portmanteau where shared letters fuse the three words into one token",
+      "acronym_expansion": "AI = Artificial Intelligence",
+      "canonical_meaning": "Reads, once unpacked, as 'AI Data Analysis' compressed into a single fused word — the letters of DATA and ANALYSIS overlap rather than simply concatenate, mirroring how AI and data analysis are increasingly one discipline rather than two.",
+      "arabic_meaning": "تحليل البيانات بالذكاء الاصطناعي: كلمة مندمجة تعكس اندماج الذكاء الاصطناعي وتحليل البيانات في تخصص واحد.",
+      "surface_misreadings_to_avoid": [
+        "Not a play on the AIDA marketing funnel model (Attention, Interest, Desire, Action) despite the surface letters.",
+        "Not a reference to Verdi's opera Aida.",
+        "Not a mistyped or malformed 'AI database' domain."
+      ],
+      "conceptual_thesis": "The fused, slightly-unreadable-at-first-glance spelling is the point: it demonstrates that AI and data analysis have compressed into a single working concept rather than two adjacent ones.",
+      "category_claim": "Category artifact for AI-powered data analytics platforms.",
+      "possible_fields": [
+        "AI analytics SaaS",
+        "Business intelligence copilots",
+        "Data science automation tools",
+        "Predictive analytics platforms"
+      ],
+      "asset_type": "AI Acronym Portmanteau",
+      "buyer_logic": "AI analytics startups that want a name that literally spells out their category once the reader decodes the overlap."
+    },
+    {
+      "domain": "ShovelsSale.com",
+      "canonical_segmentation": "Shovels + Sale",
+      "acronym_expansion": null,
+      "canonical_meaning": "Invokes the gold-rush adage of selling shovels rather than mining gold — profiting from enabling a boom rather than speculating inside it — with 'Sale' anchoring the name as a literal commerce play, not just a metaphor.",
+      "arabic_meaning": "بيع 'المعاول' لا التنقيب عن الذهب: الربح من تمكين الآخرين خلال الطفرة، لا المضاربة داخلها.",
+      "surface_misreadings_to_avoid": [
+        "Not a literal hardware-store or gardening-tool domain.",
+        "Not a clearance sale of physical shovels.",
+        "Not agricultural equipment retail."
+      ],
+      "conceptual_thesis": "The 'picks-and-shovels' investment thesis — sell the tools that enable a trend, not the trend itself — is named directly and used as the whole business model, not decoration.",
+      "category_claim": "Category artifact for picks-and-shovels infrastructure marketplaces.",
+      "possible_fields": [
+        "B2B infrastructure marketplaces",
+        "AI or crypto tooling and picks-and-shovels vendors",
+        "SaaS enablement platforms",
+        "Affiliate and reseller tool marketplaces"
+      ],
+      "asset_type": "Idiomatic Metaphor Compound",
+      "buyer_logic": "Infrastructure or tooling vendors who want to brand explicitly around the 'sell the shovels, not the gold' business model."
+    },
+    {
+      "domain": "Reefier.com",
+      "canonical_segmentation": "Reef + -ier",
+      "acronym_expansion": null,
+      "canonical_meaning": "A comparative of 'reef' — dense, symbiotic, resilient ecosystems — that also echoes 'reefer', the refrigerated cargo container used in cold-chain shipping. The primary reading leans on reef-like density and interdependence; the cold-chain echo is a secondary, useful resonance.",
+      "arabic_meaning": "أكثر كثافة كالشعاب المرجانية: نظام بيئي مترابط ومتين، مع صدى ثانوي لحاويات النقل المبرّد.",
+      "surface_misreadings_to_avoid": [
+        "Not a cannabis or 'reefer' slang brand — avoid drug-culture association entirely.",
+        "Not exclusively a marine-biology or diving-tourism site.",
+        "Not a direct name for a shipping-container manufacturer."
+      ],
+      "conceptual_thesis": "Ecosystem density itself — many parties interlocked the way reef organisms are — is the category being named, with cold-chain logistics available as a secondary, literal field.",
+      "category_claim": "Category artifact for ecosystem and marketplace platforms modeled on reef-like density and interdependence.",
+      "possible_fields": [
+        "Multi-sided marketplace platforms",
+        "Cold-chain and refrigerated logistics",
+        "Marine conservation and biotech",
+        "Ecosystem or network health-rating platforms"
+      ],
+      "asset_type": "Suffix-Extended Nature Brandable",
+      "buyer_logic": "Marketplace or logistics founders wanting an evocative, nature-rooted brandable with a deliberate dual resonance."
+    },
+    {
+      "domain": "Outmerchant.com",
+      "canonical_segmentation": "Out + Merchant",
+      "acronym_expansion": null,
+      "canonical_meaning": "The 'Out-' prefix signals surpassing — as in outperform, outsource, outsmart — combined with 'Merchant': to out-merchant is to out-compete as a seller, or to help merchants outperform their rivals.",
+      "arabic_meaning": "أن تتفوّق كتاجر: التفوق على المنافسين في الأداء التجاري والبيع.",
+      "surface_misreadings_to_avoid": [
+        "Not about outsourcing merchant services to a third party.",
+        "Not a literal 'outdoor merchant stalls' marketplace reading.",
+        "Not merchant banking specifically."
+      ],
+      "conceptual_thesis": "The name states a competitive outcome directly — making merchants outperform — rather than describing a feature set, which is the artifact's claim about the category.",
+      "category_claim": "Category artifact for merchant performance and competitive-commerce platforms.",
+      "possible_fields": [
+        "E-commerce analytics and conversion optimization",
+        "Merchant services and competitive payments tools",
+        "Marketplace seller enablement",
+        "Retail competitive intelligence"
+      ],
+      "asset_type": "Prefix + Role Compound",
+      "buyer_logic": "E-commerce tooling companies whose pitch is literally helping merchants outperform competitors."
+    },
+    {
+      "domain": "Codokey.com",
+      "canonical_segmentation": "Cod(e) + o + Key",
+      "acronym_expansion": null,
+      "canonical_meaning": "A blended compound of 'Code' and 'Key' — the access key to code, or a master key unlocking software systems — positioning around authentication, API keys, and license keys rather than code itself.",
+      "arabic_meaning": "المفتاح الذي يفتح الشيفرة: مفهوم يربط بين البرمجة ومفاتيح الوصول والترخيص.",
+      "surface_misreadings_to_avoid": [
+        "Not a literal locksmith or physical-key business.",
+        "Not related to Morse-code telegraph key hardware.",
+        "Not a gaming cheat-code aggregator site."
+      ],
+      "conceptual_thesis": "Access and authorization are named as the product, not code itself — the artifact claims the layer that sits between code and the people or systems permitted to use it.",
+      "category_claim": "Category artifact for developer authentication and code-access infrastructure.",
+      "possible_fields": [
+        "API key management platforms",
+        "Software licensing and DRM",
+        "Developer authentication tools",
+        "Code signing and security infrastructure"
+      ],
+      "asset_type": "Blended Compound Brandable",
+      "buyer_logic": "Developer-tools companies building key-management, licensing, or code-signing products who want the access mechanism in the name."
+    },
+    {
+      "domain": "EmberQuantum.com",
+      "canonical_segmentation": "Ember + Quantum",
+      "acronym_expansion": null,
+      "canonical_meaning": "'Ember' names a smoldering, latent, persistent spark — stored potential and resilience — fused with 'Quantum', the discrete unit at the heart of advanced physics and computing. Together they read as latent potential inside cutting-edge quantum technology.",
+      "arabic_meaning": "جذوة كامنة داخل عالم الكم: طاقة متقدة وصامدة في قلب الفيزياء والحوسبة الكمية.",
+      "surface_misreadings_to_avoid": [
+        "Not specifically about quantum-thermodynamics research.",
+        "Not a literal fireplace or heating-appliance product.",
+        "Not a cryptocurrency token branded 'Ember'."
+      ],
+      "conceptual_thesis": "Deep, cold technical fields need warm, human-facing names as often as clinical ones; the artifact claims the pairing of organic resilience with frontier physics as a brand category.",
+      "category_claim": "Category artifact for quantum-computing and advanced-physics ventures seeking an approachable, resilient identity.",
+      "possible_fields": [
+        "Quantum computing startups",
+        "Quantum software and algorithms",
+        "Deep-tech venture studios",
+        "Advanced materials and energy research"
+      ],
+      "asset_type": "Elemental + Scientific Compound",
+      "buyer_logic": "Quantum-computing or deep-tech founders who want warmth and resilience inside an otherwise sterile technical category."
+    },
+    {
+      "domain": "QuantumANN.com",
+      "canonical_segmentation": "Quantum + ANN",
+      "acronym_expansion": "ANN = Artificial Neural Network",
+      "canonical_meaning": "A direct fusion of quantum computing with artificial neural networks, naming the emerging field of quantum machine learning outright rather than gesturing at it.",
+      "arabic_meaning": "الشبكات العصبية الاصطناعية الكمية: مجال ناشئ يدمج الحوسبة الكمية بتعلّم الآلة.",
+      "surface_misreadings_to_avoid": [
+        "ANN is not a person's given name here.",
+        "Not an abbreviation for 'announcement.'",
+        "Not classical, non-quantum neural-network frameworks — the quantum layer is the point."
+      ],
+      "conceptual_thesis": "Some categories are best named literally rather than metaphorically; this artifact claims direct, technical naming as its own strength.",
+      "category_claim": "Category artifact for quantum machine learning and quantum neural-network platforms.",
+      "possible_fields": [
+        "Quantum machine-learning research",
+        "Quantum AI software frameworks",
+        "Quantum-computing startups (ML vertical)",
+        "Academic or research-lab branding"
+      ],
+      "asset_type": "Direct Technical Acronym Compound",
+      "buyer_logic": "Quantum-ML labs or startups wanting a literal, category-defining domain rather than an abstract brandable."
+    },
+    {
+      "domain": "DNCTA.com",
+      "canonical_segmentation": "D-N-C-T-A (pure five-letter acronym shell)",
+      "acronym_expansion": "Candidate: Data Network Compliance & Trust Authority (illustrative, not fixed)",
+      "canonical_meaning": "Reads with the compact, official cadence of a regulatory or compliance body — like FINRA or OSHA — without being tied to one real-world expansion. The acronym cadence itself is the product; the buyer supplies the specific meaning.",
+      "arabic_meaning": "هيئة بأحرف خمسة توحي بالرسمية والامتثال، قبل أن يُحدَّد معناها الدقيق من قِبل المشتري.",
+      "surface_misreadings_to_avoid": [
+        "Not an existing government agency — no real regulator currently uses this initialism.",
+        "Not a stock ticker.",
+        "Should not be assumed to mean a Do-Not-Call registry specifically without the buyer defining it that way."
+      ],
+      "conceptual_thesis": "The artifact demonstrates that institutional acronym cadence alone can carry authority before any expansion is chosen — the letters sound official first, get defined second.",
+      "category_claim": "Category artifact for compliance, registry, or authority-style institutions needing an official-sounding acronym shell.",
+      "possible_fields": [
+        "Regulatory compliance and registry platforms",
+        "Do-not-contact and consent-management services",
+        "Data governance and trust authorities",
+        "Certification or accreditation bodies"
+      ],
+      "asset_type": "Abstract Institutional Acronym",
+      "buyer_logic": "Compliance, registry, or certification ventures wanting an acronym that already sounds like an official authority before a single word is written."
+    },
+    {
+      "domain": "PayOTIS.com",
+      "canonical_segmentation": "Pay + OTIS",
+      "acronym_expansion": "OTIS = One-Time Instant Settlement (candidate, buyer-defined)",
+      "canonical_meaning": "Reads as 'Pay One-Time Instant Settlement' — a payments name that spells out the promise of instant, final, one-time settlement rather than implying it.",
+      "arabic_meaning": "الدفع بتسوية فورية لمرة واحدة: وعد صريح بإنجاز التسوية النهائية آنياً.",
+      "surface_misreadings_to_avoid": [
+        "Not affiliated with the Otis Elevator Company or any elevator/mobility brand.",
+        "Not a personal name 'Otis' payment app.",
+        "OTIS is not an abbreviation for a tax or insurance office in this context — the settlement reading governs."
+      ],
+      "conceptual_thesis": "Instant-settlement payment rails are named by literally stating the settlement promise inside the domain, rather than relying on a generic 'pay' brand.",
+      "category_claim": "Category artifact for instant and real-time payment-settlement infrastructure.",
+      "possible_fields": [
+        "Real-time payments infrastructure",
+        "Instant settlement and clearing networks",
+        "Fintech checkout and escrow",
+        "Cross-border instant payment rails"
+      ],
+      "asset_type": "Payments Acronym Compound",
+      "buyer_logic": "Fintech infrastructure companies building instant or one-time-settlement payment rails who want the mechanism named outright."
+    },
+    {
+      "domain": "ToAVR.com",
+      "canonical_segmentation": "To + AVR",
+      "acronym_expansion": "AVR = Audio/Video Receiver (primary); secondary readings include Automatic Voltage Regulator and the AVR microcontroller architecture",
+      "canonical_meaning": "The preposition 'To' turns a bare acronym into a directional gateway — 'to[wards] AVR' — positioning the domain as a portal or hub oriented toward AVR devices, control, or firmware, depending on which reading a buyer selects.",
+      "arabic_meaning": "بوابة نحو أجهزة أو أنظمة AVR: اسم يوجّه المستخدم مباشرة نحو الفئة التقنية المقصودة.",
+      "surface_misreadings_to_avoid": [
+        "Not necessarily Automatic Voltage Regulator hardware retail unless the buyer selects that field.",
+        "Not related to 'AVR' as an abbreviation for aftermarket vehicle repair.",
+        "Not a stock or financial ticker."
+      ],
+      "conceptual_thesis": "A short preposition can convert a bare acronym into a directional gateway name — useful for hub or aggregator products built around one specific technical standard.",
+      "category_claim": "Category artifact for AVR-oriented gateway and hub platforms.",
+      "possible_fields": [
+        "Home-theater and AV receiver control apps",
+        "Smart-home AV integration platforms",
+        "AVR microcontroller developer tools",
+        "Voltage-regulation hardware (electrical engineering)"
+      ],
+      "asset_type": "Directional Preposition + Acronym",
+      "buyer_logic": "Smart-home AV or embedded-electronics companies wanting a short, gateway-style name pointing directly at 'AVR.'"
+    },
+    {
+      "domain": "Mesomere.com",
+      "canonical_segmentation": "Meso (Greek: middle) + -mere (Greek: part/segment, as in telomere, centromere)",
+      "acronym_expansion": null,
+      "canonical_meaning": "A scientific-sounding compound meaning 'the middle part or segment' — patterned after real biological terms like telomere and centromere, but fully coined, so it can be claimed as a category rather than colliding with an existing textbook term.",
+      "arabic_meaning": "الجزء الأوسط: تسمية علمية الطابع تعني القطعة أو الطبقة الوسطى في نظام أو تركيب.",
+      "surface_misreadings_to_avoid": [
+        "Not an existing biological structure — unlike telomere or centromere, 'mesomere' has no fixed textbook meaning.",
+        "Not a pharmaceutical compound name already in use.",
+        "Not a geological strata term."
+      ],
+      "conceptual_thesis": "The artifact borrows the credibility of a biological suffix pattern to name 'the essential middle layer' of any system — infrastructure, biology, or process — without inheriting an existing definition.",
+      "category_claim": "Category artifact for middleware and core-layer platforms, and for biotech ventures naming an intermediate structure or compound.",
+      "possible_fields": [
+        "Middleware and core infrastructure platforms",
+        "Biotech and genomics research ventures",
+        "Data-pipeline middle-layer tools",
+        "Pharmaceutical compound branding"
+      ],
+      "asset_type": "Scientific Suffix Coinage",
+      "buyer_logic": "Biotech or infrastructure companies wanting a scientific-cadence, trademarkable coined term evoking 'the essential middle part.'"
+    },
+    {
+      "domain": "Isotely.com",
+      "canonical_segmentation": "Iso (Greek: equal/same) + -tely (echoing telos/purpose, and adverbial endings like 'remotely', 'completely')",
+      "acronym_expansion": null,
+      "canonical_meaning": "Blends 'iso-' (equal, uniform, isolated) with a purposeful-sounding '-tely' ending, reading as 'uniformly, toward a purpose' — a coined brandable suggesting standardized, goal-aligned outcomes.",
+      "arabic_meaning": "بشكل موحّد وموجَّه نحو هدف: اسم مبتكر يوحي بالتماثل والانتظام الموجَّه بغاية.",
+      "surface_misreadings_to_avoid": [
+        "Not a medical isotope or clinical-isolation product by default.",
+        "Not a typo-correction of 'isotope.'",
+        "Not automatically a remote-work SaaS just because of the '-tely' echo."
+      ],
+      "conceptual_thesis": "The prefix borrows scientific credibility (isolation, uniformity, equivalence) and fuses it with a purposeful suffix, naming ventures built around standardized, uniform outcomes rather than bespoke ones.",
+      "category_claim": "Category artifact for standardization and uniformity-focused platforms.",
+      "possible_fields": [
+        "Standardization and quality-assurance platforms",
+        "Isolation or containment technology (labs, cleanrooms)",
+        "Uniform process automation",
+        "Scientific instrumentation branding"
+      ],
+      "asset_type": "Prefix-Suffix Scientific Coinage",
+      "buyer_logic": "Standardization, QA, or lab-technology ventures wanting a clinical yet brandable coined name."
+    },
+    {
+      "domain": "Allenarly.com",
+      "canonical_segmentation": "Allen (as in the Allen key/wrench) + -arly (echoing 'early', 'clearly', 'similarly')",
+      "acronym_expansion": null,
+      "canonical_meaning": "'Allen' evokes the Allen key — a simple, universal hex tool defined by precision fit — combined with an adverbial '-arly' ending, coining the sense of 'in an Allen-like, precisely fitting manner.'",
+      "arabic_meaning": "بدقة التوافق: استعارة من مفتاح ألن السداسي لتشير إلى التطابق الدقيق بين قطعتين أو طرفين.",
+      "surface_misreadings_to_avoid": [
+        "Not a personal-name brand, e.g. a law firm styled 'Allen & Arly.'",
+        "Not exclusively hardware-store Allen-wrench retail.",
+        "Not a reference to a place named Allen."
+      ],
+      "conceptual_thesis": "The artifact coins an adverb-shaped brand from a tool reference, naming precision-fit matching — the right key for the right socket — as a category applicable well beyond hardware.",
+      "category_claim": "Category artifact for precision-fit and matching platforms.",
+      "possible_fields": [
+        "Hardware and fastener compatibility tools",
+        "Recruiting and talent-fit matching platforms",
+        "Access-control and key-management systems",
+        "Industrial parts marketplaces"
+      ],
+      "asset_type": "Tool-Reference Adverbial Coinage",
+      "buyer_logic": "Matching or fit-oriented platforms — recruiting, parts compatibility, or access systems — wanting a subtle tool metaphor rather than a literal one."
+    },
+    {
+      "domain": "MobileArtifacts.com",
+      "canonical_segmentation": "Mobile + Artifacts",
+      "acronym_expansion": null,
+      "canonical_meaning": "A literal, transparent compound: digital artifacts tied to mobile devices — evidence, build outputs, or data objects generated by or living on mobile systems.",
+      "arabic_meaning": "قطع رقمية خاصة بالأجهزة المحمولة: أدلة أو نواتج بناء أو كائنات بيانات مرتبطة بالتطبيقات والأجهزة المحمولة.",
+      "surface_misreadings_to_avoid": [
+        "Not physical museum artifacts that happen to be portable.",
+        "Not a moving-company or logistics 'mobile' reading.",
+        "Not blockchain NFT 'artifact' collectibles specifically, unless the buyer selects that field."
+      ],
+      "conceptual_thesis": "The name is denotative rather than metaphorical — it states its own category directly, which is itself the artifact's claim: mobile-device data and build artifacts.",
+      "category_claim": "Category artifact for mobile forensics, mobile CI/CD build-artifact storage, and mobile digital-evidence platforms.",
+      "possible_fields": [
+        "Mobile digital forensics",
+        "Mobile app CI/CD build-artifact storage",
+        "Mobile device management (MDM) evidence tools",
+        "Mobile-first digital asset management"
+      ],
+      "asset_type": "Direct Descriptive Compound",
+      "buyer_logic": "Mobile-forensics vendors, MDM providers, or mobile CI/CD tooling companies wanting a name that says exactly what it is."
+    },
+    {
+      "domain": "Bisulfid.com",
+      "canonical_segmentation": "Bi + sulfid(e) — a real chemical nomenclature root (bisulfide)",
+      "acronym_expansion": null,
+      "canonical_meaning": "Rooted in authentic chemistry — bisulfide compounds are central to biochemistry (disulfide bonds in proteins) and industrial chemistry (desulfurization, water treatment, mining). The domain reads as a genuine scientific term, not an invented brandable.",
+      "arabic_meaning": "مصطلح كيميائي حقيقي: البيسلفيد مركّب مرتبط بروابط الكبريت في الكيمياء الحيوية والصناعية.",
+      "surface_misreadings_to_avoid": [
+        "Not a misspelling to be 'corrected' to bisulfite — bisulfide is a chemically distinct, real compound.",
+        "Not a random invented brandable — it carries genuine molecular meaning.",
+        "Not a pharmaceutical brand name unless the buyer intends a specific compound-based product."
+      ],
+      "conceptual_thesis": "The artifact trades novelty for scientific legitimacy — its authority comes from real chemical nomenclature rather than coined wordplay.",
+      "category_claim": "Category artifact for chemical manufacturing, biotech, and industrial-process ventures trading on real molecular-term credibility.",
+      "possible_fields": [
+        "Industrial chemistry and desulfurization",
+        "Protein engineering and disulfide-bond biotech",
+        "Water-treatment chemical suppliers",
+        "Oil and gas processing chemicals"
+      ],
+      "asset_type": "Authentic Chemical Nomenclature",
+      "buyer_logic": "Chemical, biotech, or industrial-process companies wanting a name with genuine scientific grounding rather than an invented word."
+    },
+    {
+      "domain": "Aliaise.com",
+      "canonical_segmentation": "Alia(s) + -ise/-aise (verb-forming or French-adjective-style ending, as in 'familiarise' or 'Milanaise')",
+      "acronym_expansion": null,
+      "canonical_meaning": "Blends 'alias' — an alternate identity or reference pointer — with an elegant '-aise/-ise' ending, suggesting the act or state of being aliased: identity abstraction, reference remapping, or alternate naming carried with an unexpectedly refined cadence.",
+      "arabic_meaning": "حالة الاسم المستعار: إعادة توجيه الهوية أو المرجع بأسلوب أنيق يتجاوز المصطلح التقني الجاف.",
+      "surface_misreadings_to_avoid": [
+        "Not a French regional adjective like 'Milanaise' — there is no real geographic tie.",
+        "Not a misspelling of the given name 'Alyssa.'",
+        "Not a synonym for 'anonymize' — aliasing remaps a reference, it does not remove identity."
+      ],
+      "conceptual_thesis": "The artifact names identity-aliasing and reference-abstraction with a cadence that feels closer to a premium brand than a technical term, bridging infrastructure naming with elegant, proper-noun-like sound.",
+      "category_claim": "Category artifact for identity-aliasing and reference-abstraction systems.",
+      "possible_fields": [
+        "Identity and access aliasing (SSO, CNAME/DNS-style systems)",
+        "Privacy-preserving pseudonymity platforms",
+        "Premium naming and brand-alias consultancies",
+        "Data reference and pointer abstraction layers"
+      ],
+      "asset_type": "Elegant Technical Coinage",
+      "buyer_logic": "Identity-infrastructure or premium-branding ventures wanting a name that sounds like a proper noun but functions as a technical concept."
+    }
+  ]
+}
