@@ -1,6 +1,6 @@
 # Sohadot — Domain Intelligence & Sovereign Digital Assets
 
-**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer with a strategic buyer-logic cluster layer above it, a strategic brief request channel for serious acquisition intent, and direct domain brokerage.
+**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer with a strategic buyer-logic cluster layer above it, a strategic brief request channel for serious acquisition intent, a seller-approved escrow closing protocol, and direct domain brokerage.
 
 ## What I build
 
@@ -67,6 +67,29 @@ submit. Inquiry-type options and the asset/cluster autocomplete list are sourced
 `data/category-clusters.json` so the same 50 assets and 8 clusters stay the single source of truth.
 Nothing typed into the form is sent, logged, or stored by Sohadot.com — only the user's own,
 deliberate act of sending the resulting email transmits anything.
+
+### Seller-Approved Escrow Closing Protocol
+
+`escrow-closing.html` is a public trust page, not a transaction system: it explains that qualified
+Sohadot asset transactions may close through **independent escrow**, and only after **written
+agreement** and **seller approval** — never automatically from the website. Sohadot does not process
+direct payments on-site, does not offer public checkout, and this page carries no price list, no
+payment form, and no escrow API integration. The seven-step sequence (strategic brief → written terms
+→ seller eligibility confirmation → seller-approved escrow initiation → buyer funding → registrar
+transfer → fund release) is documented in full, alongside an explicit "what this protocol is not"
+section, in `docs/ESCROW_CLOSING_PROTOCOL.md`. `strategic-brief.html` and
+`data/brief-request-options.json` both carry an "Escrow closing after written agreement" inquiry type
+(`?type=escrow-closing`) for buyers or sellers who have already reached written terms and want a
+closing review — the Strategic Brief form remains the single inquiry path; escrow closing is never
+started from a public button. `scripts/validate_escrow_closing_protocol.py` fails the build if the
+public page loses any of its required boundary language, gains forbidden transaction-starting language
+("Buy Now", "Checkout", "Pay Now", "Purchase Instantly", "Start Transaction Now") without an explicit
+negation, or accumulates anything that looks like a hardcoded secret or API placeholder. A future
+**private** operator launcher — an internal console for creating an escrow transaction after written
+agreement and seller approval — is specified, but deliberately not implemented, in
+`docs/OPERATOR_ESCROW_LAUNCHER_SPEC.md`: it must never place API keys, escrow credentials, or private
+buyer data in this public repository, and must run as a private backend (e.g. a Cloudflare Worker or
+other server-side function) with secrets held only in environment variables.
 
 ### Trust & Acquisition Readiness Audit
 
