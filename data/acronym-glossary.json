@@ -1,0 +1,62 @@
+{
+  "description": "Canonical acronym expansions referenced by the Category Artifact Meaning Layer (data/asset-meanings.json). Each entry documents a fixed or candidate expansion, the domains that use it, and any misreading a buyer should avoid.",
+  "updated": "2026-07-01",
+  "terms": [
+    {
+      "acronym": "IO",
+      "expansion": "Input/Output",
+      "status": "fixed",
+      "definition": "The fundamental computing concept describing data flow into and out of a system, device, or process.",
+      "used_in": ["IOCyclops.com", "IOEDI.com", "IOPace.com"],
+      "caution": "Not 'Isle of...', not an Indian Ocean reference, not a two-letter place abbreviation."
+    },
+    {
+      "acronym": "EDI",
+      "expansion": "Electronic Data Interchange",
+      "status": "fixed",
+      "definition": "The standardized format for exchanging business documents — purchase orders, invoices, shipping notices — directly between organizations' computer systems.",
+      "used_in": ["IOEDI.com"],
+      "caution": "Not DEI (Diversity, Equity, Inclusion) despite the visual similarity."
+    },
+    {
+      "acronym": "AIDA",
+      "expansion": "Attention, Interest, Desire, Action",
+      "status": "fixed",
+      "definition": "The classic marketing funnel model. AIDAtanaly reads as AIDA + T + Analy — AIDA Transition Analytics — measuring the transition between funnel stages, not just occupancy within them.",
+      "used_in": ["AIDAtanaly.com"],
+      "caution": "The correct source acronym is this marketing funnel, not a fusion of the words Artificial, Intelligence, Data, and Analysis."
+    },
+    {
+      "acronym": "ANN",
+      "expansion": "Artificial Neural Network",
+      "status": "fixed",
+      "definition": "A machine learning architecture loosely modeled on biological neural networks, foundational to modern deep learning.",
+      "used_in": ["QuantumANN.com"],
+      "caution": "Not a given name; not an abbreviation for 'announcement.'"
+    },
+    {
+      "acronym": "VR",
+      "expansion": "Virtual Reality",
+      "status": "fixed",
+      "definition": "Computer-generated simulated environments. ToAVR segments as To + A + VR, read aloud as 'to a VR' — naming the transition into a virtual reality environment.",
+      "used_in": ["ToAVR.com"],
+      "caution": "The domain is not read as the three-letter acronym AVR (Audio/Video Receiver) — the correct segmentation splits the article 'A' from 'VR.'"
+    },
+    {
+      "acronym": "OT",
+      "expansion": "Operational Technology",
+      "status": "fixed",
+      "definition": "The hardware and software systems that monitor and control physical industrial processes and devices, as distinct from conventional IT.",
+      "used_in": ["PayOTIS.com"],
+      "caution": "PayOTIS segments as Pay + OT + IS, not Pay + OTIS as a single unit — do not read OTIS as a standalone acronym."
+    },
+    {
+      "acronym": "DNCTA",
+      "expansion": "Distal Nascent Chain Transcription Advanced",
+      "status": "fixed",
+      "definition": "A fixed technical expansion naming an advanced process concerned with the distal (downstream) end of a nascent (newly forming) chain during transcription — one word per letter.",
+      "used_in": ["DNCTA.com"],
+      "caution": "Not 'Call To Action' (CTA) despite those letters appearing inside the acronym. Not an existing government regulator or ticker. The expansion is fixed, not left open for buyer interpretation."
+    }
+  ]
+}
