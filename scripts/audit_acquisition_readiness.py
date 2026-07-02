@@ -27,6 +27,7 @@ CORE_HTML_FILES = [
     "portfolio.html",
     "category-artifacts.html",
     "category-clusters.html",
+    "conceptual-inventory.html",
     "strategic-brief.html",
     "escrow-closing.html",
 ]
@@ -39,6 +40,7 @@ CATEGORY_CLUSTERS_PATH = REPO_ROOT / "data" / "category-clusters.json"
 REQUIRED_SITEMAP_PATHS = [
     "/category-artifacts.html",
     "/category-clusters.html",
+    "/conceptual-inventory.html",
     "/strategic-brief.html",
     "/escrow-closing.html",
 ]
@@ -46,6 +48,7 @@ REQUIRED_SITEMAP_PATHS = [
 REQUIRED_README_MENTIONS = [
     "Category Artifact Meaning Layer",
     "Category Cluster & Buyer Logic Layer",
+    "Conceptual Inventory Ledger",
     "Strategic Brief Request Layer",
     "Trust & Acquisition Readiness Audit",
     "Seller-Approved Escrow Closing Protocol",
