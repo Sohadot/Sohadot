@@ -1,6 +1,6 @@
 # Sohadot — Domain Intelligence & Sovereign Digital Assets
 
-**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio (445+ names), monthly keyword intelligence, weekly drop watchlists, a category artifact meaning layer with a strategic buyer-logic cluster layer above it, a strategic brief request channel for serious acquisition intent, a seller-approved escrow closing protocol, and direct domain brokerage.
+**Live platform: [sohadot.com](https://sohadot.com)** — an independent domain intelligence platform combining structured valuation, a premium domain portfolio, monthly keyword intelligence, weekly drop watchlists, category artifact meaning layers, strategic buyer-logic clusters, strategic brief requests, seller-approved escrow closing for Sohadot-owned asset transactions after written agreement, and portfolio-level conceptual inventory.
 
 ## What I build
 
@@ -150,6 +150,15 @@ the pass/fail result are recorded in `docs/TRUST_AND_ACQUISITION_READINESS_AUDIT
 - Structure over hype — assets are classified, documented, and positioned, not just listed
 - Public methodology — the system that builds the assets is itself open and inspectable
 - Long-horizon value — built for durability and strategic legitimacy, not short-term noise
+
+### Service Boundary
+
+Sohadot does not operate as a third-party domain broker. The platform provides domain
+intelligence, asset positioning, portfolio analysis, strategic brief preparation, and direct
+inquiry paths for Sohadot-owned assets — plus seller-approved escrow closing for those assets,
+only after written agreement. Sohadot does not represent buyers or sellers, and does not
+negotiate or intermediate the sale of domains it does not own. `scripts/validate_service_boundary.py`
+enforces this boundary across the public site, README, and structured data.
 
 ## Contact
 

@@ -28,7 +28,10 @@ Positioning held constant throughout the page and this document:
 
 - Sohadot is not a marketplace.
 - Sohadot does not offer public checkout.
+- Sohadot does not operate as a third-party domain broker.
 - No asset can be purchased automatically from the website.
+- Escrow closing applies only to Sohadot-owned or Sohadot-controlled asset transactions — not to
+  domains Sohadot does not own or control.
 - Escrow closing is available only after written agreement between buyer and seller.
 - The seller initiates or approves the closing path.
 - The buyer funds escrow through an independent escrow provider.
