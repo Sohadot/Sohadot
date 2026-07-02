@@ -109,11 +109,34 @@ committed counts drift from any of the three source files, if a defined asset is
 ledger, if an undefined domain carries an invented meaning or fields, or if any domain is duplicated.
 See `docs/CONCEPTUAL_INVENTORY_LEDGER.md` for the full methodology.
 
+### Top 75 Meaning Lock Expansion Queue
+
+`top-75-queue.html` is a governed review queue, not a new meaning layer: 25 candidate domains,
+selected from the 396 domains still pending Canonical Meaning Lock, as the strongest candidates to
+review next on the path from 50 protected Category Artifacts toward a future 75. It is generated —
+not hand-maintained — by `scripts/generate_top_75_queue.py`, which holds a stable, manually curated
+candidate list (grouped by strategic direction: AI/agents/AGI/ASI, compute/chips/data/infrastructure,
+authentic scientific terms, commerce/merchant/revenue control, trust/identity/evidence,
+sustainability/energy, and Arabic/Amazigh/culturally rooted identity), re-validates every entry
+against `data/conceptual-inventory.json` and `data/asset-meanings.json`, and writes
+`data/top-75-meaning-lock-queue.json`. Every queue record carries `review_required: true`,
+`canonical_meaning_locked: false`, and `must_not_publish_as_definition: true` — none of the 25
+candidates is added to `data/asset-meanings.json` or `data/category-clusters.json`, none is marked
+`protected-category-artifact`, and none has an approved canonical meaning. The page states this
+twice, prominently: "Queue inclusion does not mean the canonical meaning is approved" and "No
+candidate becomes a Category Artifact until Canonical Meaning Lock is completed." It renders
+statically (readable with JavaScript off; all 25 candidates are already in the DOM), progressively
+enhanced by `js/top-75-queue.js` (search only), and checked by `scripts/validate_top_75_queue.py`,
+which fails the build if the queue does not contain exactly 25 records, if any selected domain is
+already protected or not actually pending, if any governance field drifts from its required value, or
+if the public page ever claims an approved or protected meaning for a queued candidate. See
+`docs/TOP_75_MEANING_LOCK_QUEUE.md` for the full methodology.
+
 ### Trust & Acquisition Readiness Audit
 
 The full acquisition path — Home → Portfolio / Category Artifacts / Category Clusters / Conceptual
-Inventory Ledger → Strategic Brief — is checked as one connected system, not five independent pages.
-`scripts/audit_acquisition_readiness.py`
+Inventory Ledger / Top 75 Meaning Lock Expansion Queue → Strategic Brief — is checked as one connected
+system, not independent pages. `scripts/audit_acquisition_readiness.py`
 verifies that every internal link and `category-artifacts.html#slug` / `category-clusters.html#cluster-id`
 anchor resolves, that every `?asset=` / `?cluster=` deep link on the Strategic Brief CTAs points to a
 real artifact or cluster, that no cheap-marketplace language ("buy now", "checkout", "cart", "clearance",
