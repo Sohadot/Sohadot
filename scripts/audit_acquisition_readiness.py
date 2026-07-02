@@ -16,6 +16,7 @@ violation prefixed "FAIL:" with the offending file and exits 1.
 """
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
@@ -55,6 +56,7 @@ REQUIRED_README_MENTIONS = [
     "Strategic Brief Request Layer",
     "Trust & Acquisition Readiness Audit",
     "Seller-Approved Escrow Closing Protocol",
+    "Service Boundary",
 ]
 
 # Fail the audit if any of these appear as primary CTA / sales language,
@@ -380,6 +382,34 @@ def check_sitemap(errors):
             errors.append(f"sitemap.xml: missing required entry '{required_path}'")
 
 
+def check_service_boundary(errors):
+    """Aligns with scripts/validate_service_boundary.py: Sohadot must not
+    present itself as a third-party domain brokerage service anywhere on the
+    public site, README, docs, or structured data. Runs the dedicated
+    validator and folds any failures into this audit's error list so a
+    brokerage-positioning regression fails the acquisition-readiness audit
+    too, not just a separately-run validator."""
+    validator_path = REPO_ROOT / "scripts" / "validate_service_boundary.py"
+    if not validator_path.exists():
+        errors.append("scripts/validate_service_boundary.py not found")
+        return
+    result = subprocess.run(
+        [sys.executable, str(validator_path)],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        for line in result.stdout.splitlines():
+            if line.startswith("FAIL:"):
+                errors.append(f"service boundary: {line[len('FAIL:'):].strip()}")
+        if not any(e.startswith("service boundary:") for e in errors):
+            errors.append(
+                "service boundary: scripts/validate_service_boundary.py failed with no FAIL: lines "
+                f"(stderr: {result.stderr.strip()[:200]})"
+            )
+
+
 def check_readme(errors):
     if not README_PATH.exists():
         errors.append(f"README.md not found at {README_PATH}")
@@ -418,6 +448,7 @@ def main():
     check_mobile_readability(pages, errors)
     check_sitemap(errors)
     check_readme(errors)
+    check_service_boundary(errors)
 
     if errors:
         fail(errors)
