@@ -28,6 +28,7 @@ CORE_HTML_FILES = [
     "category-artifacts.html",
     "category-clusters.html",
     "conceptual-inventory.html",
+    "top-75-queue.html",
     "strategic-brief.html",
     "escrow-closing.html",
 ]
@@ -41,6 +42,7 @@ REQUIRED_SITEMAP_PATHS = [
     "/category-artifacts.html",
     "/category-clusters.html",
     "/conceptual-inventory.html",
+    "/top-75-queue.html",
     "/strategic-brief.html",
     "/escrow-closing.html",
 ]
@@ -49,6 +51,7 @@ REQUIRED_README_MENTIONS = [
     "Category Artifact Meaning Layer",
     "Category Cluster & Buyer Logic Layer",
     "Conceptual Inventory Ledger",
+    "Top 75 Meaning Lock Expansion Queue",
     "Strategic Brief Request Layer",
     "Trust & Acquisition Readiness Audit",
     "Seller-Approved Escrow Closing Protocol",
@@ -342,6 +345,7 @@ def check_strategic_distinction(pages, errors):
         "portfolio.html": ["category-artifacts.html", "category-clusters.html"],
         "category-artifacts.html": ["canonical meaning", "buyer logic", "conceptual thesis"],
         "category-clusters.html": ["strategic thesis", "acquisition rationale", "buyer logic"],
+        "top-75-queue.html": ["review queue", "does not mean the canonical meaning is approved"],
         "strategic-brief.html": ["not a generic contact form", "acquisition-intent", "acquisition intent"],
         "escrow-closing.html": ["seller approval", "seller-approved", "independent escrow"],
     }
