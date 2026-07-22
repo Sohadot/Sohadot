@@ -4,14 +4,14 @@ Expansion Queue.
 
 This script builds a governed *review queue* of 25 candidate domains, drawn
 from the current Pending Canonical Meaning Lock set, that look like the
-strongest candidates to eventually join the 50 protected Category Artifacts.
+strongest candidates to eventually join the 51 protected Category Artifacts.
 
 It does NOT:
   - invent final canonical meanings for any domain,
   - mark any candidate as "protected-category-artifact",
   - add any candidate to data/asset-meanings.json or data/category-clusters.json,
   - change any existing canonical meaning,
-  - expand the 50 Category Artifacts.
+  - expand the 51 Category Artifacts.
 
 Every field on a queue record is explicitly a hypothesis pending human
 review: `suspected_conceptual_direction` is a directional guess, not a
@@ -20,7 +20,7 @@ locked meaning, and `canonical_meaning_locked` is always false.
 Sources (read-only):
   - data/conceptual-inventory.json -> pending-canonical-meaning-lock domain
     set, and the current total/defined/pending counts.
-  - data/asset-meanings.json       -> the 50 protected domains, used only to
+  - data/asset-meanings.json       -> the 51 protected domains, used only to
     confirm no candidate is already protected.
   - data/category-clusters.json    -> existing cluster names, used only to
     validate that `possible_cluster_target` references a real cluster or the
@@ -28,7 +28,7 @@ Sources (read-only):
 
 Candidate selection method
 ---------------------------
-An automated ranking over 396 pending domains cannot reliably tell a strong,
+An automated ranking over 395 pending domains cannot reliably tell a strong,
 defensible category-artifact candidate from a weak generic brandable — that
 judgment call (trademark risk, spelling defensibility, conceptual clarity)
 needs a human-legible rationale per domain, not just a score. So this script
@@ -649,7 +649,7 @@ def main():
         "description": (
             "Top 75 Meaning Lock Expansion Queue — a governed review queue of 25 candidate domains "
             "drawn from the current Pending Canonical Meaning Lock set (data/conceptual-inventory.json), "
-            "selected as the strongest candidates to eventually join the 50 protected Category "
+            "selected as the strongest candidates to eventually join the 51 protected Category "
             "Artifacts. This is NOT a new meaning layer: no domain here has an approved canonical "
             "meaning, none is marked protected-category-artifact, and none has been added to "
             "data/asset-meanings.json or data/category-clusters.json. Every record is a hypothesis "

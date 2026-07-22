@@ -6,7 +6,7 @@ Clusters -> Strategic Brief -> Escrow Closing Protocol for broken links,
 cheap-marketplace language, pricing-pressure flows, CTA routing, and
 sitemap/README currency.
 
-This script does not add domain assets, expand the 50 Category Artifacts, or
+This script does not add domain assets, expand the 51 Category Artifacts, or
 change canonical meanings — it only reads the existing static pages and data
 files and reports on them.
 
@@ -246,10 +246,10 @@ CLUSTER_ARTICLE_RE = re.compile(
 
 def check_artifact_ctas(html, errors):
     articles = ARTICLE_RE.findall(html)
-    if len(articles) != 50:
+    if len(articles) != 51:
         errors.append(
-            f"category-artifacts.html: expected 50 artifact articles, found {len(articles)} "
-            f"(this sprint must not expand or shrink the 50 Category Artifacts)"
+            f"category-artifacts.html: expected 51 artifact articles, found {len(articles)} "
+            f"(this sprint must not expand or shrink the 51 Category Artifacts)"
         )
 
     for match in ARTICLE_RE.finditer(html):

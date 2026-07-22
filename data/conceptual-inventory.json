@@ -1,10 +1,10 @@
 {
-  "description": "Portfolio Coverage & Conceptual Inventory Ledger — a portfolio-level coverage layer above the Category Artifact Meaning Layer (data/asset-meanings.json) and the Category Cluster & Buyer Logic Layer (data/category-clusters.json). It answers how many domains are in the Sohadot portfolio, how many carry a protected canonical meaning, which fields each defined asset is suitable for, and which domains remain pending Canonical Meaning Lock. It does not invent meanings for undefined domains and does not expand the 50 Category Artifacts. Rendered in /conceptual-inventory.html and checked by scripts/validate_conceptual_inventory.py.",
+  "description": "Portfolio Coverage & Conceptual Inventory Ledger — a portfolio-level coverage layer above the Category Artifact Meaning Layer (data/asset-meanings.json) and the Category Cluster & Buyer Logic Layer (data/category-clusters.json). It answers how many domains are in the Sohadot portfolio, how many carry a protected canonical meaning, which fields each defined asset is suitable for, and which domains remain pending Canonical Meaning Lock. It does not invent meanings for undefined domains and does not expand the 51 Category Artifacts. Rendered in /conceptual-inventory.html and checked by scripts/validate_conceptual_inventory.py.",
   "version": "1.0.0",
-  "generated_at": "2026-07-01T19:12:49Z",
+  "generated_at": "2026-07-22T16:13:36Z",
   "total_domains": 446,
-  "defined_assets_count": 50,
-  "pending_meaning_lock_count": 396,
+  "defined_assets_count": 51,
+  "pending_meaning_lock_count": 395,
   "cluster_count": 8,
   "records": [
     {
@@ -3499,12 +3499,18 @@
     },
     {
       "domain": "strangetexas.com",
-      "status": "pending-canonical-meaning-lock",
-      "has_canonical_meaning": false,
-      "canonical_meaning": null,
-      "possible_fields": [],
-      "primary_cluster": null,
-      "buyer_logic": null,
+      "status": "protected-category-artifact",
+      "has_canonical_meaning": true,
+      "canonical_meaning": "\"Strange\" names the uncanny, unexplained, and off-the-map — what resists easy explanation; \"Texas\" names not merely a state but a mythic, oversized place-identity. Together they name a coherent cultural territory: the strange side of Texas — its folklore, haunted and abandoned places, cryptids, unexplained phenomena, and the eerie edges of its landscape, history, and culture — owned as one legible domain rather than a scatter of oddities.",
+      "possible_fields": [
+        "Regional media, editorial, and storytelling brands",
+        "\"Strange / haunted places\" tourism and travel experiences",
+        "Folklore, paranormal, and cultural-heritage content",
+        "Podcast, streaming, and documentary properties",
+        "Community, events, and merchandise around Texas mystique"
+      ],
+      "primary_cluster": "Cultural, Taste & Meaning Identity",
+      "buyer_logic": "Cultural brands, food/taste ventures, Arabic/Amazigh identity platforms, semantic selection products, and culturally grounded AI brands — buyers for whom linguistic and cultural authenticity is the differentiator, not a footnote.",
       "strategic_brief_url": "/strategic-brief.html?asset=strangetexas.com&type=single-asset-acquisition"
     },
     {
