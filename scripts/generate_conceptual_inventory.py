@@ -14,7 +14,7 @@ Sources (read-only):
   - data/category-clusters.json -> primary cluster membership + buyer logic
 
 This script does not invent canonical meanings for undefined domains, does not
-expand the 50 Category Artifacts, and does not change any canonical meaning.
+expand the 51 Category Artifacts, and does not change any canonical meaning.
 Every domain not present in asset-meanings.json is recorded as pending Canonical
 Meaning Lock with a null canonical_meaning and an empty possible_fields list.
 
@@ -131,7 +131,7 @@ def main():
             "Sohadot portfolio, how many carry a protected canonical meaning, which "
             "fields each defined asset is suitable for, and which domains remain "
             "pending Canonical Meaning Lock. It does not invent meanings for undefined "
-            "domains and does not expand the 50 Category Artifacts. Rendered in "
+            "domains and does not expand the 51 Category Artifacts. Rendered in "
             "/conceptual-inventory.html and checked by scripts/validate_conceptual_inventory.py."
         ),
         "version": "1.0.0",

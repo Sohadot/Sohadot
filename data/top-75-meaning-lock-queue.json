@@ -1,10 +1,10 @@
 {
-  "description": "Top 75 Meaning Lock Expansion Queue — a governed review queue of 25 candidate domains drawn from the current Pending Canonical Meaning Lock set (data/conceptual-inventory.json), selected as the strongest candidates to eventually join the 50 protected Category Artifacts. This is NOT a new meaning layer: no domain here has an approved canonical meaning, none is marked protected-category-artifact, and none has been added to data/asset-meanings.json or data/category-clusters.json. Every record is a hypothesis pending human Canonical Meaning Lock review. Rendered in /top-75-queue.html and checked by scripts/validate_top_75_queue.py.",
+  "description": "Top 75 Meaning Lock Expansion Queue — a governed review queue of 25 candidate domains drawn from the current Pending Canonical Meaning Lock set (data/conceptual-inventory.json), selected as the strongest candidates to eventually join the 51 protected Category Artifacts. This is NOT a new meaning layer: no domain here has an approved canonical meaning, none is marked protected-category-artifact, and none has been added to data/asset-meanings.json or data/category-clusters.json. Every record is a hypothesis pending human Canonical Meaning Lock review. Rendered in /top-75-queue.html and checked by scripts/validate_top_75_queue.py.",
   "version": "1.0.0",
-  "generated_at": "2026-07-02T08:55:43Z",
+  "generated_at": "2026-07-22T16:13:36Z",
   "total_portfolio_domains": 446,
-  "protected_definitions_count": 50,
-  "pending_meaning_lock_count": 396,
+  "protected_definitions_count": 51,
+  "pending_meaning_lock_count": 395,
   "queue_count": 25,
   "target_after_approval": 75,
   "queue": [
