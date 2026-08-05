@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<meta name="theme-color" content="#0d224f"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sohadot.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Frameworks", "item": "https://sohadot.com/frameworks/" },
+    { "@type": "ListItem", "position": 3, "name": "Agent Aptness Framework (AAF 1.0)", "item": "https://sohadot.com/frameworks/agent-aptness/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://sohadot.com/frameworks/agent-aptness/#article",
+  "headline": "Agent Aptness Framework (AAF 1.0): A Task-Specific Framework for Evaluating Agent-Task Correspondence",
+  "name": "Agent Aptness Framework (AAF 1.0)",
+  "author": { "@type": "Person", "name": "Siham Jouhari", "affiliation": { "@type": "Organization", "name": "Sohadot.com", "url": "https://sohadot.com/" } },
+  "publisher": { "@type": "Organization", "name": "Sohadot.com" },
+  "datePublished": "2026-08-04",
+  "version": "1.0.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "identifier": "https://doi.org/10.5281/zenodo.21796950",
+  "sameAs": "https://doi.org/10.5281/zenodo.21796950",
+  "url": "https://sohadot.com/frameworks/agent-aptness/",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://sohadot.com/#website" }
+}
+</script>
+
+<title>Agent Aptness Framework (AAF 1.0) — Sohadot Published Frameworks</title>
+<meta name="description" content="Agent Aptness Framework (AAF 1.0): a task-specific framework for evaluating the correspondence between an agent and a defined assignment. Published as an open, DOI-registered technical note under CC BY 4.0."/>
+<link rel="canonical" href="https://sohadot.com/frameworks/agent-aptness/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Agent Aptness Framework (AAF 1.0) | Sohadot"/>
+<meta property="og:description" content="A task-specific framework for evaluating agent-task correspondence. Open technical note, CC BY 4.0, DOI 10.5281/zenodo.21796950."/>
+<meta property="og:url" content="https://sohadot.com/frameworks/agent-aptness/"/>
+<meta property="og:site_name" content="Sohadot.com"/>
+<meta property="og:image" content="https://sohadot.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Agent Aptness Framework (AAF 1.0) | Sohadot"/>
+<meta name="twitter:image" content="https://sohadot.com/assets/og-image.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080d1a;--surface:#101827;--surface2:#17223a;
+  --border:rgba(255,255,255,0.07);--accent:#3b82f6;--accent2:#60a5fa;
+  --gold:#f59e0b;--gold-bg:rgba(245,158,11,0.1);
+  --text:#f1f5f9;--muted:#94a3b8;--dim:#475569;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+header{text-align:center;padding:56px 20px 30px;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 55% at 50% -5%,rgba(59,130,246,0.2) 0%,transparent 70%);
+  pointer-events:none;}
+.back-link{display:inline-block;color:var(--accent2);text-decoration:none;font-size:.82rem;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px;opacity:.7;transition:opacity .2s;}
+.back-link:hover{opacity:1;}
+.eyebrow{color:var(--gold);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.6vw,3.2rem);font-weight:800;
+  background:linear-gradient(135deg,#fff 30%,var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:16px;line-height:1.15;max-width:820px;margin-left:auto;margin-right:auto;}
+.header-sub{color:var(--muted);font-size:1rem;max-width:680px;margin:0 auto 14px;line-height:1.75;}
+.thesis{color:var(--accent2);font-size:1.02rem;max-width:640px;margin:18px auto 0;line-height:1.6;font-style:italic;}
+
+.block{max-width:780px;margin:34px auto 0;padding:0 20px;}
+.block h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:14px;color:var(--text);}
+.block p{color:var(--muted);font-size:.95rem;line-height:1.85;margin-bottom:12px;}
+.block p:last-child{margin-bottom:0;}
+.block .def{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:14px;padding:20px 24px;color:var(--text);font-size:1.02rem;line-height:1.7;}
+
+.dim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px;}
+.dim{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+.dim .code{font-family:'Playfair Display',serif;font-weight:800;color:var(--accent2);font-size:.9rem;letter-spacing:.06em;}
+.dim .name{color:var(--text);font-weight:600;font-size:1rem;margin:4px 0 8px;}
+.dim .desc{color:var(--muted);font-size:.86rem;line-height:1.65;}
+
+.ladder{display:grid;gap:10px;margin-top:20px;}
+.rung{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;}
+.rung.top{border-color:rgba(59,130,246,.35);background:linear-gradient(145deg,var(--surface),rgba(59,130,246,.06));}
+.rung .lvl{font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:var(--accent2);text-align:center;}
+.rung .rung-body b{color:var(--text);font-size:.95rem;}
+.rung .rung-body span{display:block;color:var(--muted);font-size:.84rem;line-height:1.6;margin-top:2px;}
+
+.rule-note{max-width:780px;margin:22px auto 0;padding:20px 24px;background:var(--gold-bg);
+  border:1px solid rgba(245,158,11,.28);border-radius:14px;color:var(--text);font-size:.98rem;line-height:1.7;}
+.rule-note b{color:var(--gold);}
+
+.example{max-width:780px;margin:22px auto 0;padding:26px 24px;background:var(--surface);
+  border:1px solid var(--border);border-radius:18px;}
+.example .assign{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:6px;}
+.example .assign b{color:var(--text);}
+.example .critical{color:var(--gold);}
+.agents{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+.agent{border:1px solid var(--border);border-radius:14px;padding:16px 18px;background:var(--bg);}
+.agent.fit{border-color:rgba(59,130,246,.32);background:linear-gradient(145deg,var(--bg),rgba(59,130,246,.05));}
+.agent .a-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.agent .a-name{font-weight:700;color:var(--text);}
+.agent .a-class{font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em;
+  color:var(--muted);border:1px solid var(--border);white-space:nowrap;}
+.agent .a-class.misfit{color:var(--muted);}
+.agent .a-class.ok{color:var(--accent2);border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.08);}
+.scores{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:10px;}
+.sc{text-align:center;border:1px solid var(--border);border-radius:10px;padding:8px 2px;background:var(--surface);}
+.sc .k{display:block;color:var(--dim);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;}
+.sc .v{display:block;color:var(--text);font-weight:700;font-size:1.05rem;margin-top:3px;font-family:'Playfair Display',serif;}
+.sc.fail{border-color:rgba(148,163,184,.4);}
+.sc.fail .v{color:var(--muted);}
+.sc.key{border-color:rgba(59,130,246,.35);}
+.sc.key .v{color:var(--accent2);}
+.agent .a-note{color:var(--muted);font-size:.82rem;line-height:1.6;}
+.verdict{margin-top:18px;color:var(--text);font-size:1rem;line-height:1.6;}
+.verdict b{color:var(--accent2);}
+
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:20px;}
+.meta{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+.meta .l{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:6px;}
+.meta .val{font-size:.9rem;color:var(--text);line-height:1.5;}
+.meta .val a{color:var(--accent2);text-decoration:none;}
+.meta .val a:hover{text-decoration:underline;}
+
+.cite{max-width:780px;margin:22px auto 0;padding:22px 24px;background:var(--surface2);
+  border:1px solid var(--border);border-radius:16px;}
+.cite h2{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:12px;}
+.cite blockquote{color:var(--text);font-size:.9rem;line-height:1.75;background:var(--bg);
+  border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.cite blockquote a{color:var(--accent2);text-decoration:none;word-break:break-word;}
+
+.links-row{max-width:780px;margin:26px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+.btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04101f;
+  font-weight:700;text-decoration:none;padding:13px 26px;border-radius:12px;font-size:.92rem;
+  transition:transform .15s,box-shadow .15s;}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(59,130,246,.35);}
+.link-plain{color:var(--accent2);font-size:.9rem;text-decoration:none;}
+.link-plain:hover{text-decoration:underline;}
+
+.posture-note{max-width:780px;margin:30px auto 0;padding:18px 22px;background:rgba(255,255,255,.02);
+  border:1px dashed var(--border);border-radius:14px;color:var(--muted);font-size:.82rem;line-height:1.75;}
+.posture-note b{color:var(--text);}
+
+footer{text-align:center;padding:26px 20px;border-top:1px solid var(--border);margin-top:44px;
+  color:var(--dim);font-size:.8rem;line-height:1.8;}
+footer a{color:var(--accent2);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+@media(max-width:640px){
+  .agents{grid-template-columns:1fr;}
+  .block,.example,.cite,.rule-note{padding-left:18px;padding-right:18px;}
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a href="/frameworks/" class="back-link">← Published Frameworks</a>
+  <div class="eyebrow">Published Framework · DOI-registered · CC BY 4.0</div>
+  <h1>Agent Aptness Framework — AAF 1.0</h1>
+  <p class="header-sub">
+    A task-specific framework for evaluating the correspondence between an agent and a defined
+    assignment — turning a conceptual distinction into a documented, citable and applicable method.
+  </p>
+  <p class="thesis">Capability belongs to the agent. Aptness exists between the agent and the task.</p>
+</header>
+
+<section class="block">
+  <h2>The problem it addresses</h2>
+  <p>
+    The most capable agent can still be the wrong agent. Teams often select AI agents through broad
+    capability impressions rather than documented task fit — yet the operative question is narrower:
+    how well does this particular agent correspond to this particular task?
+  </p>
+  <p>
+    A broadly capable agent may be poorly matched to a specific assignment, while a narrower agent may
+    be the stronger choice when its skills, knowledge, tools, operating environment and reliability
+    evidence correspond more closely to the work. AAF makes that correspondence explicit and reviewable.
+  </p>
+</section>
+
+<section class="block">
+  <h2>Capability vs. aptness</h2>
+  <p>
+    Capability is a general property of the agent — what it can do. Aptness is relational — it exists
+    between a specific agent and a specific task, and it is conditional on the task's requirements,
+    operating environment and evidence threshold.
+  </p>
+  <div class="def">
+    <b>Agent Aptness</b> is the degree of correspondence between an agent's demonstrated
+    characteristics and the stated requirements of a particular task.
+  </div>
+</section>
+
+<section class="block">
+  <h2>The five dimensions</h2>
+  <p>AAF 1.0 evaluates correspondence across five dimensions, each scored with a short evidence note.</p>
+  <div class="dim-grid">
+    <div class="dim"><span class="code">S</span><div class="name">Skill correspondence</div><div class="desc">Do the agent's demonstrated functional skills align with the operations the task requires?</div></div>
+    <div class="dim"><span class="code">K</span><div class="name">Knowledge correspondence</div><div class="desc">Does the agent's domain knowledge align with the task's concepts, vocabulary and evidence?</div></div>
+    <div class="dim"><span class="code">T</span><div class="name">Tool compatibility</div><div class="desc">Can the agent reliably use the tools, interfaces and formats the task requires?</div></div>
+    <div class="dim"><span class="code">E</span><div class="name">Environment compatibility</div><div class="desc">Is the agent suited to the technical, temporal and operational environment of the work?</div></div>
+    <div class="dim"><span class="code">R</span><div class="name">Reliability evidence</div><div class="desc">Is there repeatable, relevant evidence of performance on comparable assignments?</div></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Fit classification — A0 to A5</h2>
+  <p>Every assessment resolves to one legible class, not a loose capability impression.</p>
+  <div class="ladder">
+    <div class="rung"><div class="lvl">A0</div><div class="rung-body"><b>Unassessed</b><span>Evidence is insufficient to determine task correspondence.</span></div></div>
+    <div class="rung"><div class="lvl">A1</div><div class="rung-body"><b>Misfit</b><span>One or more essential requirements are absent, contradicted or incompatible.</span></div></div>
+    <div class="rung"><div class="lvl">A2</div><div class="rung-body"><b>Limited Fit</b><span>Corresponds to part of the assignment but lacks material requirements.</span></div></div>
+    <div class="rung"><div class="lvl">A3</div><div class="rung-body"><b>Conditional Fit</b><span>Suitable only under stated tools, constraints or support conditions.</span></div></div>
+    <div class="rung"><div class="lvl">A4</div><div class="rung-body"><b>Operational Fit</b><span>Corresponds strongly within the defined operating environment.</span></div></div>
+    <div class="rung top"><div class="lvl">A5</div><div class="rung-body"><b>Demonstrated Fit</b><span>Strong, repeatable evidence across all essential dimensions.</span></div></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Critical requirements are non-compensable</h2>
+  <div class="rule-note">
+    A task may designate one or more requirements as <b>critical</b>. A failed critical requirement
+    cannot be compensated for by strength elsewhere: an agent that cannot use an essential tool should
+    not receive a high fit class merely because it performs strongly across the other dimensions.
+  </div>
+</section>
+
+<section class="block">
+  <h2>Worked example</h2>
+  <div class="example">
+    <p class="assign"><b>Assignment:</b> Review a technical document, verify its cited sources and produce an evidence-traceable summary.</p>
+    <p class="assign"><b class="critical">Critical requirement:</b> The agent must be able to access and verify the cited sources.</p>
+    <div class="agents">
+      <div class="agent">
+        <div class="a-head"><span class="a-name">Agent A</span><span class="a-class misfit">A1 · Misfit</span></div>
+        <div class="scores">
+          <div class="sc"><span class="k">S</span><span class="v">5</span></div>
+          <div class="sc"><span class="k">K</span><span class="v">5</span></div>
+          <div class="sc fail"><span class="k">T</span><span class="v">0</span></div>
+          <div class="sc"><span class="k">E</span><span class="v">5</span></div>
+          <div class="sc"><span class="k">R</span><span class="v">5</span></div>
+        </div>
+        <div class="a-note">Stronger than Agent B in four of five dimensions, yet cannot satisfy the critical tool requirement.</div>
+      </div>
+      <div class="agent fit">
+        <div class="a-head"><span class="a-name">Agent B</span><span class="a-class ok">A4 · Operational Fit</span></div>
+        <div class="scores">
+          <div class="sc"><span class="k">S</span><span class="v">4</span></div>
+          <div class="sc"><span class="k">K</span><span class="v">4</span></div>
+          <div class="sc key"><span class="k">T</span><span class="v">5</span></div>
+          <div class="sc"><span class="k">E</span><span class="v">4</span></div>
+          <div class="sc"><span class="k">R</span><span class="v">4</span></div>
+        </div>
+        <div class="a-note">Meets every critical requirement within the stated environment.</div>
+      </div>
+    </div>
+    <p class="verdict">A failed critical requirement <b>cannot be compensated for by strength elsewhere.</b></p>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Publication</h2>
+  <div class="meta-grid">
+    <div class="meta"><div class="l">Version</div><div class="val">1.0.0</div></div>
+    <div class="meta"><div class="l">Published</div><div class="val">2026-08-04</div></div>
+    <div class="meta"><div class="l">Type</div><div class="val">Citable technical note</div></div>
+    <div class="meta"><div class="l">License</div><div class="val"><a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></div></div>
+    <div class="meta"><div class="l">Author</div><div class="val">Siham Jouhari</div></div>
+    <div class="meta"><div class="l">Publisher</div><div class="val">Sohadot.com</div></div>
+    <div class="meta"><div class="l">DOI</div><div class="val"><a href="https://doi.org/10.5281/zenodo.21796950" rel="noopener" target="_blank">10.5281/zenodo.21796950</a></div></div>
+    <div class="meta"><div class="l">Conceptual interface</div><div class="val"><a href="https://aptyagent.com/" rel="noopener" target="_blank">AptyAgent.com</a></div></div>
+  </div>
+</section>
+
+<section class="cite">
+  <h2>Cite this framework</h2>
+  <blockquote>
+    Jouhari, Siham. (2026). <em>Agent Aptness Framework (AAF 1.0): A Task-Specific Framework for Evaluating Agent-Task Correspondence</em> (Version 1.0.0). Sohadot.com. <a href="https://doi.org/10.5281/zenodo.21796950">https://doi.org/10.5281/zenodo.21796950</a>
+  </blockquote>
+</section>
+
+<div class="links-row">
+  <a href="https://doi.org/10.5281/zenodo.21796950" class="btn" rel="noopener" target="_blank">View DOI record →</a>
+  <a href="https://aptyagent.com/" class="link-plain" rel="noopener" target="_blank">Explore AptyAgent.com →</a>
+  <a href="https://github.com/Sohadot/AptyAgent" class="link-plain" rel="noopener" target="_blank">Source &amp; deposit materials on GitHub →</a>
+</div>
+
+<div class="posture-note">
+  <p>
+    <b>Scope note:</b> AAF evaluates task correspondence. It does not grant representation authority,
+    assign permissions, approve actions for execution, or replace domain-specific safety evaluation.
+    The canonical citable object is the AAF 1.0 technical note deposited on Zenodo; AptyAgent.com is
+    its public conceptual interface and the GitHub repository holds the source and supplementary materials.
+  </p>
+</div>
+
+<footer>
+  © 2026 <a href="/">Sohadot.com</a> &nbsp;·&nbsp; Published framework · DOI-registered · CC BY 4.0 &nbsp;·&nbsp;
+  <a href="/frameworks/">Published Frameworks</a> &nbsp;·&nbsp;
+  <a href="/developed-assets.html">Developed Assets</a> &nbsp;·&nbsp;
+  <a href="/about.html">About</a>
+</footer>
+
+</body>
+</html>
