@@ -181,6 +181,10 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-
   background:var(--accent);color:#fff;text-decoration:none;font-weight:600;
   font-size:.82rem;transition:background .2s;margin-top:auto;letter-spacing:.02em;}
 .inquire-btn:hover{background:#2563eb;}
+.live-link{display:block;text-align:center;padding:8px;border-radius:9px;margin-bottom:8px;
+  border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:600;
+  font-size:.8rem;transition:background .2s,color .2s;letter-spacing:.02em;}
+.live-link:hover{background:var(--accent);color:#fff;}
 
 /* PAGINATION */
 .pagination{display:flex;justify-content:center;gap:7px;padding:0 20px 52px;flex-wrap:wrap;align-items:center;}
@@ -356,6 +360,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+<section style="max-width:1200px;margin:22px auto 0;padding:0 20px">
+    <div style="background:#fff;border:1px solid rgba(15,23,42,0.08);border-radius:22px;box-shadow:0 10px 30px rgba(17,24,39,0.06);padding:30px">
+      <div style="color:#2454d3;font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px">Live Reference Page</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;line-height:1.05;margin:0 0 12px;color:#142033">A portfolio name developed into a live, cited reference</h2>
+      <p style="color:#66758c;font-size:.93rem;line-height:1.95;margin:0">
+        <a href="https://allenarly.com/" rel="noopener" target="_blank" style="color:#2454d3;font-weight:600">allenarly.com</a>
+        — the Scots-law adverb <i>allenarly</i> (only, solely, exclusively; the word that marks where a grant stops),
+        recorded in Scottish conveyancing from 1703. The domain has been developed into a single-page reference with a
+        sourced provenance record and published structured data, and remains available for acquisition.
+      </p>
+    </div>
+  </section>
+
 <footer>
   © 2025 <a href="/">Sohadot.com</a> &nbsp;·&nbsp; All domains are available for acquisition &nbsp;·&nbsp;
   Questions? <a href="https://wa.me/+212668992259" target="_blank" rel="noopener noreferrer">📱 WhatsApp</a> &nbsp;·&nbsp;
@@ -397,7 +414,7 @@ const DOMAINS = [
   {domain:"aitrustway.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
   {domain:"aivisionux.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
   {domain:"aliaise.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:"Advanced Liaison — A smart intermediary. Elegant, premium brandable."},
-  {domain:"allenarly.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,note:"Rare authentic English word meaning exclusively/firstborn. Highly elite and niche."},
+  {domain:"allenarly.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:true,live:"https://allenarly.com/",note:"Scots-law adverb — only, solely, exclusively; the word that marks where a grant stops. Recorded from 1703. Developed into a live, cited reference page."},
   {domain:"allhintai.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
   {domain:"altissports.com",cats:["Sports / Gaming"],type:"Acronym + Word",premium:true,note:"Altis (sacred Olympic ground in ancient Greece) + Sports. Premium sports brand with deep heritage."},
   {domain:"alwakile.com",cats:["Arabic / Cultural"],type:"Brandable",premium:false,note:"Arabic word for Agent/Representative — Ideal for AI agents and business agencies."},
@@ -892,6 +909,9 @@ function renderCard(d) {
   ).join("");
   const noteHTML = d.note ? `<div class="note-box">${d.note}</div>` : "";
   const premBadge = d.premium ? `<div class="prem-badge">★ Premium</div>` : "";
+  const liveHTML = d.live
+    ? `<a href="${d.live}" class="live-link" target="_blank" rel="noopener">View live page →</a>`
+    : "";
 
   return `<div class="domain-card${d.premium ? " premium" : ""}">
     ${premBadge}
@@ -902,6 +922,7 @@ function renderCard(d) {
     <div class="tag-row">${tags}</div>
     <div class="type-pill">${d.type}</div>
     ${noteHTML}
+    ${liveHTML}
     <a href="${waMsg}" class="inquire-btn" target="_blank" rel="noopener noreferrer">Inquire →</a>
   </div>`;
 }
