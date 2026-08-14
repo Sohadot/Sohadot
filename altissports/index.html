@@ -34,14 +34,19 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Dataset",
+  "@type": "WebPage",
   "name": "AltisSports — Reference Infrastructure for Spatial Athletic Systems",
-  "description": "A governed knowledge and evidence infrastructure for spatial athletic systems across physical, virtual, distributed, human, machine, and hybrid environments: a reference architecture (AS3), a boundary-case corpus, a descriptive atlas, stable provenance-rich identifiers, machine-readable distributions, and hosted validation. ASR-001 is an unpublished Working Draft under controlled external-review preparation.",
   "url": "https://sohadot.com/altissports/",
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "creativeWorkStatus": "Reference infrastructure; ASR-001 unpublished Working Draft",
-  "isBasedOn": "https://github.com/Sohadot/AltisSports",
+  "description": "A governed public entry page for AltisSports: a knowledge and evidence infrastructure for spatial athletic systems — reference architecture (AS3), a boundary-case corpus, a descriptive atlas, stable provenance-rich identifiers, machine-readable distributions, and hosted validation. ASR-001 is an unpublished Working Draft under controlled external-review preparation.",
   "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "Sohadot.com", "url": "https://sohadot.com/" },
+  "about": {
+    "@type": "CreativeWork",
+    "name": "AltisSports",
+    "description": "A governed knowledge and evidence infrastructure for spatial athletic systems across physical, virtual, distributed, human, machine, and hybrid environments. It is a composite asset: reference architecture, corpus, descriptive atlas, identifiers, tooling, and governance. Licensing is declared per material, not as a single blanket license — see the repository and the machine-readable asset profile.",
+    "url": "https://github.com/Sohadot/AltisSports",
+    "creativeWorkStatus": "Reference infrastructure; ASR-001 unpublished Working Draft"
+  },
   "publisher": { "@type": "Organization", "name": "Sohadot", "url": "https://sohadot.com/" }
 }
 </script>
@@ -180,7 +185,7 @@ footer a:hover{text-decoration:underline;}
         <div class="exist"><h3>AS³ Reference Architecture</h3><p>A ten-layer inspection architecture for where a system enables performance, carries rules, senses, measures, officiates, and can lose integrity.</p></div>
         <div class="exist"><h3>Boundary Case Corpus</h3><p>Twenty stratified, evidence-linked cases (BC-001–BC-020) testing the category against ordinary, edge, support-system, automation, and computational cases.</p></div>
         <div class="exist"><h3>Descriptive Atlas</h3><p>Twenty records derived 1:1 from the corpus, preserving per-field claim class and status — a descriptive map, not a ranking.</p></div>
-        <div class="exist"><h3>Stable Identifiers</h3><p>Sixty-nine citation identifiers, each carrying claim class, license, temporal status, and a falsifiability reference.</p></div>
+        <div class="exist"><h3>Stable Identifiers</h3><p>Sixty-nine stable governed identifiers; 39 are currently registered as externally citable canonical objects. Each carries claim class, license, temporal status, and a falsifiability reference.</p></div>
         <div class="exist"><h3>Machine-Readable Distributions</h3><p>A deterministic query contract, per-record JSON distribution, and resolver indexes — fetchable object by object.</p></div>
         <div class="exist"><h3>ASR-001 Working Draft</h3><p>A candidate evidence-profile specification for documenting one bounded, versioned system configuration. Unpublished; provisional.</p></div>
         <div class="exist"><h3>Hosted Validation</h3><p>A fail-closed continuous-integration gate with reproducibility checks and negative controls over every layer above.</p></div>
@@ -212,7 +217,7 @@ footer a:hover{text-decoration:underline;}
     <h2><span class="num">04</span>Trust &amp; provenance</h2>
     <div class="card">
       <p class="lead" style="margin-bottom:18px;">
-        The reason to trust the material is <em>how</em> it is built, not an appeal to authority:
+        The basis for assessing the material is <em>how</em> it is built, not an appeal to authority:
       </p>
       <ul class="prov">
         <li><b>Claim classes</b> — documented fact, synthesis, attributed claim, and Altis interpretation are marked, never blended.</li>
@@ -271,7 +276,8 @@ footer a:hover{text-decoration:underline;}
         <a class="res" href="https://github.com/Sohadot/AltisSports/tree/main/atlas"><div class="r-name">Descriptive Atlas →</div><div class="r-desc">Records and machine-readable distribution.</div></a>
         <a class="res" href="https://github.com/Sohadot/AltisSports/blob/main/CITATION_REGISTRY_V0.1.json"><div class="r-name">Citation registry →</div><div class="r-desc">Stable identifiers with provenance and claim class.</div></a>
         <a class="res" href="https://github.com/Sohadot/AltisSports/blob/main/ATLAS_QUERY_GUIDE_V0.1.md"><div class="r-name">Query guide →</div><div class="r-desc">What can and cannot be queried, and how to read results.</div></a>
-        <a class="res" href="https://github.com/Sohadot/AltisSports/blob/main/DATASET_LICENSE.md"><div class="r-name">License →</div><div class="r-desc">CC BY 4.0 terms and their boundaries.</div></a>
+        <a class="res" href="https://github.com/Sohadot/AltisSports/blob/main/DATASET_LICENSE.md"><div class="r-name">License →</div><div class="r-desc">CC BY 4.0 terms and their boundaries, declared per material.</div></a>
+        <a class="res" href="https://github.com/Sohadot/AltisSports/blob/main/PUBLIC_ASSET_PROFILE.json"><div class="r-name">Machine-readable asset profile →</div><div class="r-desc">The governed JSON this page is projected from — status, identifiers, licensing, and review state.</div></a>
       </div>
       <div class="boundary">
         <b>Boundaries.</b> AltisSports is reference infrastructure. It is not a certification or
