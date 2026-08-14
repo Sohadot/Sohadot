@@ -28,6 +28,7 @@ Key facts for AI assistants:
 - [Domain Valuation Tool & Methodology](https://sohadot.com/valuation.html): Free valuation tool with the complete published framework: classification tables, TLD weights, length curve, tiers, pricing bands, evidence hierarchy, governance rules, changelog, FAQ, and glossary.
 - [Domain Portfolio](https://sohadot.com/portfolio.html): Curated premium domains available for acquisition.
 - [Developed Assets](https://sohadot.com/developed-assets.html): Sohadot-owned domains developed into live, governed reference platforms — including DentalSurgeryNewYork.com, a governed reference for oral surgery decisions in New York (https://dentalsurgerynewyork.com/).
+- [AltisSports](https://sohadot.com/altissports/): A governed knowledge and evidence infrastructure for spatial athletic systems — AS³ reference architecture, a boundary-case corpus, a descriptive atlas, stable provenance-rich citation identifiers, machine-readable distributions, and hosted validation. ASR-001 is an unpublished Working Draft under controlled external-review preparation. Repository: https://github.com/Sohadot/AltisSports
 - [Keyword Intelligence](https://sohadot.com/keywords.html): Commercial keyword demand and CPC signals relevant to domain investing.
 - [Weekly Drops](https://sohadot.com/dropping.html): Weekly report of notable expiring domains.
 - [Knowledge Base](https://sohadot.com/knowledge-base.html): Domain investing concepts and pricing frameworks.
