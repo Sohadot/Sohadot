@@ -74,10 +74,7 @@ def render_css() -> str:
 .sdn a{text-decoration:none;}
 .sdn ul{list-style:none;}
 .sdn-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;}
-.sdn-brand-mark{width:38px;height:38px;border-radius:12px;
-  background:linear-gradient(135deg,#0f2658 0%,#2454d3 100%);
-  box-shadow:0 8px 20px rgba(36,84,211,.18);display:flex;align-items:center;justify-content:center;
-  color:#fff;font-weight:700;font-size:.95rem;letter-spacing:.04em;}
+.sdn-brand-mark{height:40px;width:auto;display:block;}
 .sdn-brand-name{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:1.7rem;
   line-height:1;font-weight:700;color:var(--sdn-blue);letter-spacing:.01em;}
 .sdn-menu{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:6px;
@@ -245,7 +242,8 @@ def render_nav(nav: dict) -> str:
         f'<header class="sdn" id="sdn-header" role="banner">'
         f'<nav class="sdn-nav" aria-label="Primary">'
         f'<a class="sdn-brand" href="{esc(brand["href"])}" aria-label="{esc(brand["ariaLabel"])}">'
-        f'<span class="sdn-brand-mark" aria-hidden="true">S</span>'
+        f'<img class="sdn-brand-mark" src="/assets/brand/sohadot-mark.png" '
+        f'width="21" height="40" alt="Sohadot" decoding="async">'
         f'<span class="sdn-brand-name">{esc(brand["name"])}</span></a>'
         f'<input type="checkbox" id="sdn-menu-toggle" class="sdn-cb">'
         f'<label class="sdn-toggle" for="sdn-menu-toggle" '
