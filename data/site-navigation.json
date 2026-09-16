@@ -1,0 +1,82 @@
+{
+  "_comment": "Canonical source of truth for Sohadot primary navigation. Edit here, then run scripts/sync_navigation.py to inject the generated markup between <!-- SOHADOT:NAV:START --> and <!-- SOHADOT:NAV:END --> markers in every public HTML page. The final HTML contains the full navigation; the site works without runtime JavaScript.",
+  "brand": {
+    "href": "/",
+    "name": "Sohadot.com",
+    "ariaLabel": "Sohadot.com home"
+  },
+  "primary": [
+    {
+      "label": "Assets",
+      "href": "/portfolio.html",
+      "summary": "Owned names, governed concepts and developed digital assets.",
+      "groups": [
+        {
+          "title": "Explore",
+          "items": [
+            { "label": "Portfolio", "href": "/portfolio.html", "desc": "Owned domain inventory." },
+            { "label": "Developed Assets", "href": "/developed-assets.html", "desc": "Domains with active public development." }
+          ]
+        },
+        {
+          "title": "Portfolio Structure",
+          "items": [
+            { "label": "Conceptual Inventory", "href": "/conceptual-inventory.html", "desc": "Governed canonical meaning across the portfolio." },
+            { "label": "Category Artifacts", "href": "/category-artifacts.html", "desc": "Structured category expression around selected names." },
+            { "label": "Category Clusters", "href": "/category-clusters.html", "desc": "Related assets viewed as strategic groups." }
+          ]
+        },
+        {
+          "title": "Selected Developed Assets",
+          "assets": [
+            { "domain": "AptyAgent.com", "artifact": "Agent Aptness Framework", "href": "/frameworks/agent-aptness/" },
+            { "domain": "OUTBAKES.com", "artifact": "Performance baking masterbrand", "href": "/outbakes/" },
+            { "domain": "HygieneRoll.com", "artifact": "Hygiene replenishment surface", "href": "/hygieneroll/" },
+            { "domain": "AltisSports.com", "artifact": "Spatial athletic reference infrastructure", "href": "/altissports/" },
+            { "domain": "DentalSurgeryNewYork.com", "artifact": "Governed oral-surgery reference", "href": "https://dentalsurgerynewyork.com/", "external": true }
+          ],
+          "footerLink": { "label": "View all Developed Assets", "href": "/developed-assets.html" }
+        }
+      ]
+    },
+    {
+      "label": "Intelligence",
+      "href": "/valuation.html",
+      "summary": "Valuation, keyword intelligence and market signals.",
+      "groups": [
+        {
+          "title": "Tools",
+          "items": [
+            { "label": "Valuation", "href": "/valuation.html", "desc": "Structured domain-value analysis." },
+            { "label": "Keyword Intelligence", "href": "/keywords.html", "desc": "Naming and commercial language signals." },
+            { "label": "Drops", "href": "/dropping.html", "desc": "Curated opportunity and supply signals." }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Knowledge",
+      "href": "/knowledge-base.html",
+      "summary": "Knowledge Base, Domain Development and public conceptual work.",
+      "groups": [
+        {
+          "title": "Study the system",
+          "items": [
+            { "label": "Knowledge Base", "href": "/knowledge-base.html", "desc": "The full educational reference library." },
+            { "label": "Domain Development", "href": "/kb/domain-development.html", "desc": "How selected names develop into governed digital assets." },
+            { "label": "Market Education", "href": "/knowledge-base.html#market-education", "desc": "Valuation, pricing, comparable sales, naming quality." }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "About",
+      "href": "/about.html"
+    },
+    {
+      "label": "Strategic Inquiry",
+      "href": "/strategic-brief.html",
+      "cta": true
+    }
+  ]
+}

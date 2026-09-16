@@ -164,6 +164,119 @@ footer a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
+<!-- SOHADOT:NAV:START -->
+<style id="sdn-style">
+/* Sohadot global navigation — self-contained, scoped with .sdn- prefix. */
+.sdn{--sdn-ivory:#f6f2e9;--sdn-blue:#0f2658;--sdn-blue-2:#2454d3;--sdn-ink:#1f2a44;
+  --sdn-muted:#5b6478;--sdn-border:rgba(15,38,88,.14);--sdn-panel:#fffdf8;
+  position:sticky;top:0;z-index:200;background:rgba(246,242,233,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--sdn-border);font-family:'DM Sans','Segoe UI',system-ui,sans-serif;}
+.sdn *{box-sizing:border-box;}
+/* Defensive resets so host-page element selectors (e.g. generic nav{}) cannot leak in. */
+.sdn-nav{position:static;background:none;border:0;box-shadow:none;backdrop-filter:none;
+  -webkit-backdrop-filter:none;max-width:1200px;margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;gap:24px;}
+.sdn a{text-decoration:none;}
+.sdn ul{list-style:none;}
+.sdn-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;}
+.sdn-brand-mark{width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,#0f2658 0%,#2454d3 100%);
+  box-shadow:0 8px 20px rgba(36,84,211,.18);display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:.95rem;letter-spacing:.04em;}
+.sdn-brand-name{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:1.7rem;
+  line-height:1;font-weight:700;color:var(--sdn-blue);letter-spacing:.01em;}
+.sdn-menu{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:6px;
+  margin-left:auto;flex-wrap:wrap;}
+.sdn-item{position:relative;}
+.sdn-link,.sdn-summary{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sdn-muted);
+  text-decoration:none;padding:10px 12px;border-radius:10px;cursor:pointer;
+  background:none;border:0;transition:color .16s ease,background .16s ease;}
+.sdn-link:hover,.sdn-summary:hover,.sdn-link:focus-visible,.sdn-summary:focus-visible{color:var(--sdn-blue);}
+.sdn-details[open] > .sdn-summary{color:var(--sdn-blue);background:rgba(15,38,88,.06);}
+.sdn-summary{list-style:none;}
+.sdn-summary::-webkit-details-marker{display:none;}
+.sdn-caret{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg);margin-top:-3px;transition:transform .18s ease;opacity:.75;}
+.sdn-details[open] > .sdn-summary .sdn-caret{transform:rotate(-135deg);margin-top:3px;}
+.sdn-cta{display:inline-flex;align-items:center;font-size:.8rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;text-decoration:none;color:#fff;
+  padding:11px 18px;border-radius:12px;background:linear-gradient(135deg,var(--sdn-blue),var(--sdn-blue-2));
+  box-shadow:0 8px 20px rgba(36,84,211,.2);transition:transform .15s ease,box-shadow .15s ease;}
+.sdn-cta:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(36,84,211,.3);}
+.sdn-panel{background:var(--sdn-panel);border:1px solid var(--sdn-border);border-radius:16px;
+  box-shadow:0 24px 60px rgba(15,38,88,.16);padding:22px;}
+/* Desktop dropdown positioning */
+@media (min-width:961px){
+  .sdn-cb{display:none;}
+  .sdn-has-mega{position:static;}
+  .sdn-panel{position:absolute;top:calc(100% + 10px);right:0;left:auto;min-width:280px;}
+  .sdn-mega{width:min(760px,92vw);left:50%;right:auto;transform:translateX(-50%);}
+}
+.sdn-groups{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+.sdn-group-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--sdn-blue-2);margin:0 0 12px;}
+.sdn-group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.sdn-entry{display:block;text-decoration:none;color:var(--sdn-ink);border-radius:10px;
+  padding:8px 10px;transition:background .15s ease;}
+.sdn-entry:hover,.sdn-entry:focus-visible{background:rgba(15,38,88,.05);}
+.sdn-entry-label{display:block;font-weight:700;font-size:.92rem;color:var(--sdn-blue);}
+.sdn-entry-desc{display:block;font-size:.8rem;color:var(--sdn-muted);line-height:1.5;margin-top:2px;}
+.sdn-asset .sdn-entry-domain{display:block;font-weight:700;font-size:.95rem;color:var(--sdn-blue);}
+.sdn-asset .sdn-entry-artifact{display:block;font-size:.78rem;color:var(--sdn-muted);margin-top:1px;}
+.sdn-ext{font-size:.62rem;letter-spacing:.06em;color:var(--sdn-muted);vertical-align:super;}
+.sdn-viewall{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:700;
+  font-size:.82rem;color:var(--sdn-blue-2);text-decoration:none;}
+.sdn-viewall:hover{text-decoration:underline;}
+/* Mobile toggle — no-JS checkbox pattern + accordion */
+.sdn-cb{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0 0 0 0);margin:0;}
+.sdn-toggle{display:none;margin-left:auto;align-items:center;justify-content:center;
+  width:44px;height:44px;border:1px solid var(--sdn-border);border-radius:12px;background:var(--sdn-panel);
+  cursor:pointer;color:var(--sdn-blue);}
+.sdn-toggle span,.sdn-toggle span::before,.sdn-toggle span::after{content:'';display:block;width:20px;
+  height:2px;background:currentColor;border-radius:2px;position:relative;}
+.sdn-toggle span::before{position:absolute;top:-6px;}
+.sdn-toggle span::after{position:absolute;top:6px;}
+.sdn-cb:focus-visible + .sdn-toggle{outline:2px solid var(--sdn-blue-2);outline-offset:2px;}
+@media (max-width:960px){
+  .sdn-nav{flex-wrap:wrap;padding:12px 18px;}
+  .sdn-toggle{display:inline-flex;}
+  .sdn-menu{display:none;flex-direction:column;align-items:stretch;flex-basis:100%;width:100%;gap:2px;margin:10px 0 4px;}
+  .sdn-cb:checked ~ .sdn-menu{display:flex;}
+  .sdn-item{width:100%;}
+  .sdn-link,.sdn-summary{width:100%;justify-content:space-between;padding:14px 8px;font-size:.9rem;
+    border-bottom:1px solid var(--sdn-border);}
+  .sdn-cta{width:100%;justify-content:center;margin-top:10px;}
+  .sdn-panel{position:static;box-shadow:none;border:0;border-radius:0;padding:6px 8px 14px;
+    background:rgba(15,38,88,.03);}
+  .sdn-mega{width:100%;}
+  .sdn-groups{grid-template-columns:1fr;gap:16px;}
+}
+</style>
+<header class="sdn" id="sdn-header" role="banner"><nav class="sdn-nav" aria-label="Primary"><a class="sdn-brand" href="/" aria-label="Sohadot.com home"><span class="sdn-brand-mark" aria-hidden="true">S</span><span class="sdn-brand-name">Sohadot.com</span></a><input type="checkbox" id="sdn-menu-toggle" class="sdn-cb"><label class="sdn-toggle" for="sdn-menu-toggle" aria-label="Toggle navigation menu" title="Menu"><span></span></label><ul class="sdn-menu"><li class="sdn-item sdn-has-mega"><details class="sdn-details"><summary class="sdn-summary">Assets<span class="sdn-caret" aria-hidden="true"></span></summary><div class="sdn-panel sdn-mega"><div class="sdn-groups"><div class="sdn-group"><p class="sdn-group-title">Explore</p><ul><li><a class="sdn-entry" href="/portfolio.html"><span class="sdn-entry-label">Portfolio</span><span class="sdn-entry-desc">Owned domain inventory.</span></a></li><li><a class="sdn-entry" href="/developed-assets.html"><span class="sdn-entry-label">Developed Assets</span><span class="sdn-entry-desc">Domains with active public development.</span></a></li></ul></div><div class="sdn-group"><p class="sdn-group-title">Portfolio Structure</p><ul><li><a class="sdn-entry" href="/conceptual-inventory.html"><span class="sdn-entry-label">Conceptual Inventory</span><span class="sdn-entry-desc">Governed canonical meaning across the portfolio.</span></a></li><li><a class="sdn-entry" href="/category-artifacts.html"><span class="sdn-entry-label">Category Artifacts</span><span class="sdn-entry-desc">Structured category expression around selected names.</span></a></li><li><a class="sdn-entry" href="/category-clusters.html"><span class="sdn-entry-label">Category Clusters</span><span class="sdn-entry-desc">Related assets viewed as strategic groups.</span></a></li></ul></div><div class="sdn-group"><p class="sdn-group-title">Selected Developed Assets</p><ul><li><a class="sdn-entry sdn-asset" href="/frameworks/agent-aptness/"><span class="sdn-entry-domain">AptyAgent.com</span><span class="sdn-entry-artifact">Agent Aptness Framework</span></a></li><li><a class="sdn-entry sdn-asset" href="/outbakes/"><span class="sdn-entry-domain">OUTBAKES.com</span><span class="sdn-entry-artifact">Performance baking masterbrand</span></a></li><li><a class="sdn-entry sdn-asset" href="/hygieneroll/"><span class="sdn-entry-domain">HygieneRoll.com</span><span class="sdn-entry-artifact">Hygiene replenishment surface</span></a></li><li><a class="sdn-entry sdn-asset" href="/altissports/"><span class="sdn-entry-domain">AltisSports.com</span><span class="sdn-entry-artifact">Spatial athletic reference infrastructure</span></a></li><li><a class="sdn-entry sdn-asset" href="https://dentalsurgerynewyork.com/"><span class="sdn-entry-domain">DentalSurgeryNewYork.com <span class="sdn-ext">↗</span></span><span class="sdn-entry-artifact">Governed oral-surgery reference</span></a></li></ul><a class="sdn-viewall" href="/developed-assets.html">View all Developed Assets <span aria-hidden="true">→</span></a></div></div></div></details></li><li class="sdn-item"><details class="sdn-details"><summary class="sdn-summary">Intelligence<span class="sdn-caret" aria-hidden="true"></span></summary><div class="sdn-panel"><div class="sdn-groups"><div class="sdn-group"><p class="sdn-group-title">Tools</p><ul><li><a class="sdn-entry" href="/valuation.html"><span class="sdn-entry-label">Valuation</span><span class="sdn-entry-desc">Structured domain-value analysis.</span></a></li><li><a class="sdn-entry" href="/keywords.html"><span class="sdn-entry-label">Keyword Intelligence</span><span class="sdn-entry-desc">Naming and commercial language signals.</span></a></li><li><a class="sdn-entry" href="/dropping.html"><span class="sdn-entry-label">Drops</span><span class="sdn-entry-desc">Curated opportunity and supply signals.</span></a></li></ul></div></div></div></details></li><li class="sdn-item"><details class="sdn-details"><summary class="sdn-summary">Knowledge<span class="sdn-caret" aria-hidden="true"></span></summary><div class="sdn-panel"><div class="sdn-groups"><div class="sdn-group"><p class="sdn-group-title">Study the system</p><ul><li><a class="sdn-entry" href="/knowledge-base.html"><span class="sdn-entry-label">Knowledge Base</span><span class="sdn-entry-desc">The full educational reference library.</span></a></li><li><a class="sdn-entry" href="/kb/domain-development.html"><span class="sdn-entry-label">Domain Development</span><span class="sdn-entry-desc">How selected names develop into governed digital assets.</span></a></li><li><a class="sdn-entry" href="/knowledge-base.html#market-education"><span class="sdn-entry-label">Market Education</span><span class="sdn-entry-desc">Valuation, pricing, comparable sales, naming quality.</span></a></li></ul></div></div></div></details></li><li class="sdn-item"><a class="sdn-link" href="/about.html">About</a></li><li class="sdn-item"><a class="sdn-cta" href="/strategic-brief.html">Strategic Inquiry</a></li></ul></nav></header>
+<script>
+/* Progressive enhancement only — navigation is fully usable without this. */
+(function(){
+  var header=document.getElementById('sdn-header');
+  if(!header)return;
+  var cb=document.getElementById('sdn-menu-toggle');
+  var details=Array.prototype.slice.call(header.querySelectorAll('.sdn-details'));
+  function isDesktop(){return window.matchMedia('(min-width:961px)').matches;}
+  details.forEach(function(d){
+    d.addEventListener('toggle',function(){
+      if(d.open&&isDesktop()){details.forEach(function(o){if(o!==d)o.open=false;});}
+    });
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){details.forEach(function(d){d.open=false;});if(cb)cb.checked=false;}
+  });
+  document.addEventListener('click',function(e){
+    if(!header.contains(e.target)&&isDesktop()){details.forEach(function(d){d.open=false;});}
+  });
+})();
+</script>
+<!-- SOHADOT:NAV:END -->
 
 <header id="top">
   <a href="/frameworks/" class="back-link">← Published Frameworks</a>
