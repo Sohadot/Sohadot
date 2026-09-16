@@ -73,7 +73,10 @@ def render_css() -> str:
   display:flex;align-items:center;gap:24px;}
 .sdn a{text-decoration:none;}
 .sdn ul{list-style:none;}
-.sdn-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;}
+.sdn-brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0;}
+/* Optical size variant (assets/brand/sohadot-mark-header.png) — stroke-reinforced
+   for small-display clarity; sized by height so the tall mark supports, not
+   overpowers, the wordmark. The canonical master is used only in larger contexts. */
 .sdn-brand-mark{height:40px;width:auto;display:block;}
 .sdn-brand-name{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:1.7rem;
   line-height:1;font-weight:700;color:var(--sdn-blue);letter-spacing:.01em;}
@@ -132,6 +135,7 @@ def render_css() -> str:
 .sdn-cb:focus-visible + .sdn-toggle{outline:2px solid var(--sdn-blue-2);outline-offset:2px;}
 @media (max-width:960px){
   .sdn-nav{flex-wrap:wrap;padding:12px 18px;}
+  .sdn-brand-mark{height:37px;}
   .sdn-toggle{display:inline-flex;}
   .sdn-menu{display:none;flex-direction:column;align-items:stretch;flex-basis:100%;width:100%;gap:2px;margin:10px 0 4px;}
   .sdn-cb:checked ~ .sdn-menu{display:flex;}
@@ -242,7 +246,7 @@ def render_nav(nav: dict) -> str:
         f'<header class="sdn" id="sdn-header" role="banner">'
         f'<nav class="sdn-nav" aria-label="Primary">'
         f'<a class="sdn-brand" href="{esc(brand["href"])}" aria-label="{esc(brand["ariaLabel"])}">'
-        f'<img class="sdn-brand-mark" src="/assets/brand/sohadot-mark.png" '
+        f'<img class="sdn-brand-mark" src="/assets/brand/sohadot-mark-header.png" '
         f'width="21" height="40" alt="Sohadot" decoding="async">'
         f'<span class="sdn-brand-name">{esc(brand["name"])}</span></a>'
         f'<input type="checkbox" id="sdn-menu-toggle" class="sdn-cb">'
