@@ -109,3 +109,33 @@ structure before they could navigate it. Organizing the surfaces into gateways l
 the interface explain the hierarchy instead of decorating it, while preserving every
 existing route and keeping artifacts legibly attached to the domains that generated
 them.
+
+---
+
+## DEC-2026-09-16-03 — Sohadot Public Brand Mark and Social Preview Identity
+
+- **Status:** Accepted
+- **Date:** 2026-09-16
+
+### Decision
+
+Adopt the user-designed flat blue mark as Sohadot's primary public brand mark and
+build the public identity around it.
+
+1. **Primary public mark.** The user-designed flat blue mark is the primary public
+   mark. Its canonical asset is `assets/brand/sohadot-mark.png` (a transparent,
+   lossless master derived from the supplied source by background removal only).
+2. **Geometry preserved.** The mark's geometry is intentionally preserved — its
+   asymmetry and spontaneity are deliberate. It is not symmetrized, "cleaned up,"
+   or redrawn; the only processing is a technical background conversion.
+3. **Site identity.** The mark replaces the former generic "S" tile in the global
+   navigation, shown beside the "Sohadot.com" wordmark, and is the Organization
+   structured-data `logo`.
+4. **Social previews.** The default social preview carries the mark and the
+   Sohadot.com identity in the ivory/blue visual system; meaningful custom previews
+   (the Drops watchlist image) keep their informational value and carry the mark in
+   a restrained brand position.
+5. **Favicon deferred.** The full mark is not legible at 16px, so the existing
+   favicon is retained; a dedicated micro-mark derivative remains to be designed
+   rather than forcing a degraded raster conversion.
+6. **Public boundary.** No private brand strategy is recorded.
