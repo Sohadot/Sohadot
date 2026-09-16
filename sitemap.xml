@@ -175,6 +175,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://sohadot.com/kb/domain-development.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sohadot.com/kb/the-domain-is-the-coordinate.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sohadot.com/kb/meaning-before-building.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://sohadot.com/altissports/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
