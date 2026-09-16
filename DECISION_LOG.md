@@ -55,3 +55,57 @@ about domains as governed digital assets — one long argument in chapters — s
 the conceptual material reads as a coherent body of thought rather than
 disconnected articles, while remaining consistent with the framework already in
 place.
+
+---
+
+## DEC-2026-09-16-02 — Information Architecture and Gateway Consolidation
+
+- **Status:** Accepted
+- **Date:** 2026-09-16
+
+### Decision
+
+Reorganize the public interface around semantic gateways so the hierarchy is
+visible in the navigation itself, without removing any existing public route.
+
+1. **Gateway navigation.** Primary navigation is organized by semantic gateways —
+   **Assets · Intelligence · Knowledge · About · Strategic Inquiry** — replacing the
+   previous flat row of twelve peer-level links. Each former destination remains
+   public; it now lives inside a gateway rather than beside every other link.
+2. **Assets is a mega-menu.** Assets is grouped into Explore (Portfolio, Developed
+   Assets), Portfolio Structure (Conceptual Inventory, Category Artifacts, Category
+   Clusters), and a restrained set of Selected Developed Assets with a
+   "View all Developed Assets" link.
+3. **Artifacts stay attached to their domain.** Any framework, index, reference
+   system, or public artifact created from one domain remains semantically attached
+   to that domain. Agent Aptness is presented as **AptyAgent.com → Agent Aptness
+   Framework**, not as an independent Sohadot framework category. Frameworks is
+   removed as a primary navigation category (its content is asset-specific), while
+   the `/frameworks/` URLs are preserved for compatibility.
+4. **Developed Assets is the canonical index.** `developed-assets.html` is the
+   canonical index of publicly developed domains; navigation shows only a
+   representative subset and links out to the full index.
+5. **The architecture must scale.** Navigation must remain legible at 20, 50, or
+   100+ developed assets; the menu never lists them all.
+6. **URLs preserved.** Canonical URLs are preserved. Information architecture and
+   URL architecture are allowed to differ; breadcrumb context can differ from
+   physical file paths.
+7. **One static source of truth.** Navigation is generated from a single public
+   data source (`data/site-navigation.json`) and injected into each page between
+   explicit markers by a deterministic script (`scripts/sync_navigation.py`). The
+   final HTML contains the full navigation and works without runtime JavaScript; a
+   validator (`scripts/validate_navigation.py`) fails the build if any page drifts.
+8. **Mobile exposes the same hierarchy.** The previous mobile pattern that hid all
+   but one link is removed. Mobile uses an accessible disclosure/accordion pattern
+   (a no-JS checkbox toggle plus `<details>`/`<summary>` sub-menus) exposing the
+   same gateways and destinations, with visible keyboard focus states.
+
+### Rationale
+
+Sohadot had grown beyond the information architecture presenting it: assets,
+portfolio structure, intelligence tools, reference material, and developed assets
+all appeared as peer-level links, forcing visitors to understand the internal
+structure before they could navigate it. Organizing the surfaces into gateways lets
+the interface explain the hierarchy instead of decorating it, while preserving every
+existing route and keeping artifacts legibly attached to the domains that generated
+them.
