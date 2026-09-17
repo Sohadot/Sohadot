@@ -41,7 +41,7 @@ PAGES = [
     "how-to-buy.html", "strategic-brief.html", "top-75-queue.html",
     "escrow-closing.html", "allenarly.html", "frameworks/index.html",
     "frameworks/agent-aptness/index.html", "outbakes/index.html",
-    "hygieneroll/index.html", "altissports/index.html",
+    "hygieneroll/index.html", "altissports/index.html", "reefier/index.html",
     "san-jose-bundle/index.html", "automation-bundle/index.html",
     "privacy.html", "terms.html",
     "kb/domain-development.html", "kb/the-domain-is-the-coordinate.html",
