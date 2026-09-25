@@ -12,6 +12,8 @@ Sources (read-only):
   - portfolio.html            -> full public portfolio domain list (DOMAINS array)
   - data/asset-meanings.json  -> protected canonical meanings + possible_fields
   - data/category-clusters.json -> primary cluster membership + buyer logic
+  - data/bundle-only-assets.json -> bundle-only sale designations (no individual
+    strategic_brief_url is emitted for a bundle-only domain)
 
 This script does not invent canonical meanings for undefined domains, does not
 expand the 51 Category Artifacts, and does not change any canonical meaning.
@@ -34,6 +36,7 @@ OUTPUT_PATH = REPO_ROOT / "data" / "conceptual-inventory.json"
 
 DOMAIN_ENTRY_RE = re.compile(r'\{domain:"([^"]+)"')
 
+BUNDLE_ONLY_PATH = REPO_ROOT / "data" / "bundle-only-assets.json"
 
 def extract_portfolio_domains():
     """Extract every domain string from portfolio.html's DOMAINS array, in order."""
@@ -75,7 +78,33 @@ def load_clusters():
     return clusters, primary_cluster_of, buyer_logic_of
 
 
-def build_records(portfolio_domains, asset_meanings, primary_cluster_of, buyer_logic_of):
+def load_bundle_only():
+    """Map lowercased domain -> bundle-only designation from data/bundle-only-assets.json.
+
+    A bundle-only domain gets sale_mode/bundle_id/bundle_url and a null
+    strategic_brief_url, so no record advertises an individual acquisition
+    route. bundle_context is non-canonical set context: it is never written
+    into canonical_meaning and never promotes a domain to a Category Artifact.
+    """
+    if not BUNDLE_ONLY_PATH.exists():
+        return {}
+    raw = json.loads(BUNDLE_ONLY_PATH.read_text(encoding="utf-8"))
+    by_lower = {}
+    for bundle in raw.get("bundles", []):
+        context = bundle.get("bundle_context", {})
+        for domain in bundle.get("domains", []):
+            entry = {
+                "sale_mode": bundle["sale_mode"],
+                "bundle_id": bundle["bundle_id"],
+                "bundle_url": bundle["bundle_url"],
+            }
+            if domain in context:
+                entry["bundle_context"] = context[domain]
+            by_lower[domain.lower()] = entry
+    return by_lower
+
+
+def build_records(portfolio_domains, asset_meanings, primary_cluster_of, buyer_logic_of, bundle_only):
     records = []
     for domain in portfolio_domains:
         key = domain.lower()
@@ -107,6 +136,10 @@ def build_records(portfolio_domains, asset_meanings, primary_cluster_of, buyer_l
                     f"/strategic-brief.html?asset={domain}&type=single-asset-acquisition"
                 ),
             }
+        bundle = bundle_only.get(key)
+        if bundle:
+            record["strategic_brief_url"] = None
+            record.update(bundle)
         records.append(record)
     return records
 
@@ -116,7 +149,11 @@ def main():
     asset_meanings = load_asset_meanings()
     clusters, primary_cluster_of, buyer_logic_of = load_clusters()
 
-    records = build_records(portfolio_domains, asset_meanings, primary_cluster_of, buyer_logic_of)
+    bundle_only = load_bundle_only()
+
+    records = build_records(
+        portfolio_domains, asset_meanings, primary_cluster_of, buyer_logic_of, bundle_only
+    )
 
     total_domains = len(records)
     defined_assets_count = sum(1 for r in records if r["has_canonical_meaning"])

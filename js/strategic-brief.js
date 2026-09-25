@@ -10,11 +10,49 @@
  *   2. Builds a cleaner mailto: link (structured subject + body) on submit,
  *      for more consistent behavior across mail clients than the native
  *      enctype="text/plain" fallback.
+ *   3. Enforces bundle-only assets (mirrors data/bundle-only-assets.json,
+ *      checked by scripts/validate_bundle_only.py): a URL or brief naming
+ *      AITopSight.com, ARTopSight.com or VRTopSight.com never starts an
+ *      individual acquisition flow — the visitor is handed to the complete-set
+ *      page instead.
  * No data is sent, stored, or transmitted by this script — it only ever
  * constructs a mailto: URL and hands control to the user's own email app.
  */
 (function () {
   "use strict";
+
+  var BUNDLE_ONLY = {
+    bundleUrl: "/bundles/ai-ar-vr-sight/",
+    domains: ["AITopSight.com", "ARTopSight.com", "VRTopSight.com"],
+  };
+  var BUNDLE_ONLY_RE = /(^|[^a-z0-9])(ai|ar|vr)topsight(\.com)?([^a-z0-9]|$)/i;
+
+  function namesBundleOnlyAsset(value) {
+    return !!value && BUNDLE_ONLY_RE.test(value);
+  }
+
+  // Legacy or hand-built links whose asset, interest or cluster parameter
+  // names a bundle-only domain go to the complete-set page instead.
+  (function redirectBundleOnlyQuery() {
+    var params = new URLSearchParams(window.location.search);
+    var named = ["asset", "interest", "cluster"].some(function (key) {
+      return namesBundleOnlyAsset(params.get(key) || "");
+    });
+    if (named) window.location.replace(BUNDLE_ONLY.bundleUrl);
+  })();
+
+  function showBundleOnlyHandoff(status) {
+    if (!status) return;
+    status.textContent = BUNDLE_ONLY.domains.join(", ") +
+      " are offered only as one complete set, not as single-asset acquisitions. ";
+    var link = document.createElement("a");
+    link.href = BUNDLE_ONLY.bundleUrl;
+    link.textContent = "Continue to the complete AI–AR–VR Sight set →";
+    link.style.color = "inherit";
+    status.appendChild(link);
+    status.hidden = false;
+    link.focus();
+  }
 
   function getParam(name) {
     var params = new URLSearchParams(window.location.search);
@@ -111,14 +149,22 @@
     var form = document.getElementById("briefForm");
     var status = document.getElementById("briefStatus");
     if (!form) return;
+    var defaultStatus = status ? status.textContent : "";
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       if (typeof form.reportValidity === "function" && !form.reportValidity()) {
         return;
       }
+      if (namesBundleOnlyAsset(form.asset_or_cluster_interest.value)) {
+        showBundleOnlyHandoff(status);
+        return;
+      }
       var mailtoUrl = buildMailto(form);
-      if (status) status.hidden = false;
+      if (status) {
+        status.textContent = defaultStatus;
+        status.hidden = false;
+      }
       window.location.href = mailtoUrl;
     });
   }

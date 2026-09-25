@@ -132,6 +132,21 @@ already protected or not actually pending, if any governance field drifts from i
 if the public page ever claims an approved or protected meaning for a queued candidate. See
 `docs/TOP_75_MEANING_LOCK_QUEUE.md` for the full methodology.
 
+### Bundle-Only Sets
+
+Some Sohadot-owned domains are offered only as one complete set. `data/bundle-only-assets.json`
+records each set (`bundle_id`, `bundle_url`, `sale_mode: "bundle-only"`, member domains and the set's
+single public price); the first is the AI–AR–VR Sight Domain Set at
+[`/bundles/ai-ar-vr-sight/`](https://sohadot.com/bundles/ai-ar-vr-sight/) — AITopSight.com,
+ARTopSight.com and VRTopSight.com. Every commercial path for a member domain leads to its set page:
+its Category Artifact (if any) links only there, its Conceptual Inventory record carries the
+bundle designation and a null `strategic_brief_url`, its portfolio card shows a single "View
+Complete Set" action, and Strategic Brief links naming it hand the visitor to the set page. A
+bundle designation carries no Canonical Meaning. `scripts/validate_bundle_only.py` (with a
+`--self-test` mode) fails the build if any published HTML, JSON or JavaScript carries an individual
+acquisition route for a bundle-only domain — single-asset brief links, per-domain WhatsApp or mailto
+messages, per-domain inquiry CTAs, or machine-readable `strategic_brief_url` values.
+
 ### Trust & Acquisition Readiness Audit
 
 The full acquisition path — Home → Portfolio / Category Artifacts / Category Clusters / Conceptual

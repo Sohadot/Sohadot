@@ -392,6 +392,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/automation-bundle/" style="display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
       color:#04101f;font-weight:700;font-size:.85rem;padding:9px 20px;border-radius:9px;text-decoration:none;">View Bundle →</a>
   </div>
+  <div style="max-width:620px;margin:12px auto 0;padding:16px 20px;border:1px solid rgba(59,130,246,.28);
+    border-radius:14px;background:rgba(59,130,246,.06);text-align:left;">
+    <div style="font-weight:600;color:#fff;font-size:.98rem;margin-bottom:4px;">AI–AR–VR Sight Domain Set</div>
+    <div style="color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:12px;">
+      AITopSight.com, ARTopSight.com and VRTopSight.com — one coordinated .com naming architecture across AI, AR and VR. Offered only as one complete set.
+    </div>
+    <a href="/bundles/ai-ar-vr-sight/" style="display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#04101f;font-weight:700;font-size:.85rem;padding:9px 20px;border-radius:9px;text-decoration:none;">View Complete Set →</a>
+  </div>
   <div class="stats">
     <div class="stat"><div class="stat-num">446</div><div class="stat-lbl">Total Domains</div></div>
     <div class="stat"><div class="stat-num">62</div><div class="stat-lbl">Premium Picks</div></div>
@@ -532,7 +541,7 @@ const DOMAINS = [
   {domain:"airyagi.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
   {domain:"aisewup.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
   {domain:"aisightux.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
-  {domain:"aitopsight.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
+  {domain:"aitopsight.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,bundle:"/bundles/ai-ar-vr-sight/",note:"Offered only as part of the complete AITopSight.com + ARTopSight.com + VRTopSight.com set."},
   {domain:"aitrustpath.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:true,note:""},
   {domain:"aitrustway.com",cats:["AI / AGI / ASI"],type:"Brandable (Tech/AI)",premium:false,note:""},
   {domain:"aivisionux.com",cats:["AI / AGI / ASI"],type:"Acronym + Word",premium:false,note:""},
@@ -553,7 +562,7 @@ const DOMAINS = [
   {domain:"armyoptics.com",cats:["Brandable"],type:"Dictionary / Real Word",premium:false,note:""},
   {domain:"artaerial.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
   {domain:"artiststand.com",cats:["Brandable"],type:"Acronym + Word",premium:false,note:""},
-  {domain:"artopsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"artopsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,bundle:"/bundles/ai-ar-vr-sight/",note:"Offered only as part of the complete AITopSight.com + ARTopSight.com + VRTopSight.com set."},
   {domain:"asavor.com",cats:["Rare Words"],type:"Dictionary / Real Word",premium:false,note:""},
   {domain:"asibeget.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
   {domain:"asicta.com",cats:["AI / AGI / ASI", "Marketing / CTA"],type:"Tech Acronym Compound",premium:false,note:""},
@@ -890,7 +899,7 @@ const DOMAINS = [
   {domain:"vinocta.com",cats:["Food / Travel", "Marketing / CTA"],type:"Acronym + Word",premium:false,note:""},
   {domain:"vreditit.com",cats:["Brandable"],type:"Tech Acronym Compound",premium:false,note:""},
   {domain:"vrgoodsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
-  {domain:"vrtopsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,note:""},
+  {domain:"vrtopsight.com",cats:["AI / AGI / ASI"],type:"Tech Acronym Compound",premium:false,bundle:"/bundles/ai-ar-vr-sight/",note:"Offered only as part of the complete AITopSight.com + ARTopSight.com + VRTopSight.com set."},
   {domain:"wedgemounts.com",cats:["Logistics"],type:"Brandable (Tech/AI)",premium:false,note:""},
   {domain:"westvancouverlandscaping.com",cats:["Real Estate", "Geo / City"],type:"Geo Exact Match",premium:false,note:""},
   {domain:"wetrpa.com",cats:["Automation / RPA"],type:"Acronym + Word",premium:false,note:""},
@@ -1026,7 +1035,6 @@ function renderCard(d) {
   const sld = getSLD(d.domain);
   const tld = getTLD(d.domain);
   const tldDisplay = tld.replace(".", "").toUpperCase() || "COM";
-  const waMsg = `https://wa.me/+212668992259?text=Hello%2C+I'm+interested+in+acquiring+${encodeURIComponent(d.domain)}`;
   const tags = d.cats.slice(0, 2).map(c =>
     `<span class="tag tag-${TAG_CLASS[c] || 'default'}">${c.split(" /")[0]}</span>`
   ).join("");
@@ -1035,6 +1043,13 @@ function renderCard(d) {
   const liveHTML = d.page
     ? `<a href="${d.page}" class="live-link">View asset page →</a>`
     : (d.live ? `<a href="${d.live}" class="live-link" target="_blank" rel="noopener">View live page →</a>` : "");
+
+  // Bundle-only domains get a single set-level CTA: no per-domain WhatsApp
+  // message, asset page link, or inquiry button is generated for them.
+  const ctaHTML = d.bundle
+    ? `<a href="${d.bundle}" class="inquire-btn bundle-only-cta">View Complete Set →</a>`
+    : `${liveHTML}
+    <a href="https://wa.me/+212668992259?text=Hello%2C+I'm+interested+in+acquiring+${encodeURIComponent(d.domain)}" class="inquire-btn" target="_blank" rel="noopener noreferrer">Inquire →</a>`;
 
   return `<div class="domain-card${d.premium ? " premium" : ""}">
     ${premBadge}
@@ -1045,8 +1060,7 @@ function renderCard(d) {
     <div class="tag-row">${tags}</div>
     <div class="type-pill">${d.type}</div>
     ${noteHTML}
-    ${liveHTML}
-    <a href="${waMsg}" class="inquire-btn" target="_blank" rel="noopener noreferrer">Inquire →</a>
+    ${ctaHTML}
   </div>`;
 }
 
