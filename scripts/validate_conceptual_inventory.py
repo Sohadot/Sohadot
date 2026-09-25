@@ -172,6 +172,14 @@ def main():
         if not path.endswith("strategic-brief.html"):
             errors.append(f"conceptual-inventory.json: '{domain}' strategic_brief_url '{url}' does not point to strategic-brief.html")
 
+        bundle_url = record.get("bundle_url")
+        if bundle_url is not None:
+            bundle_path = REPO_ROOT / urlsplit(bundle_url).path.lstrip("/") / "index.html"
+            if not bundle_path.exists():
+                errors.append(f"conceptual-inventory.json: '{domain}' bundle_url '{bundle_url}' does not resolve to a page")
+        if record.get("bundle_description") is not None and is_defined:
+            errors.append(f"conceptual-inventory.json: protected asset '{domain}' must not carry a bundle_description")
+
     missing_defined = asset_domains - inventory_domain_set
     if missing_defined:
         errors.append(

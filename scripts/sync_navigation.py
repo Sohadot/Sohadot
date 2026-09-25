@@ -43,6 +43,7 @@ PAGES = [
     "frameworks/agent-aptness/index.html", "outbakes/index.html",
     "hygieneroll/index.html", "altissports/index.html", "reefier/index.html",
     "san-jose-bundle/index.html", "automation-bundle/index.html",
+    "bundles/ai-ar-vr-sight/index.html",
     "privacy.html", "terms.html",
     "kb/domain-development.html", "kb/the-domain-is-the-coordinate.html",
     "kb/meaning-before-building.html", "kb/how-domain-valuation-works.html",

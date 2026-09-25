@@ -139,3 +139,44 @@ build the public identity around it.
    favicon is retained; a dedicated micro-mark derivative remains to be designed
    rather than forcing a degraded raster conversion.
 6. **Public boundary.** No private brand strategy is recorded.
+
+---
+
+## DEC-2026-09-25-01 — AI–AR–VR Sight Domain Set (Bundle-Only Acquisition)
+
+- **Status:** Accepted
+- **Date:** 2026-09-25
+
+### Decision
+
+Publish one complete-set acquisition page for three Sohadot-owned compound
+.com domains, offered only together.
+
+1. **The set.** The set consists of exactly three Sohadot-owned domains:
+   **AITopSight.com**, **ARTopSight.com** and **VRTopSight.com**.
+2. **Bundle only.** The three domains are offered exclusively as one complete
+   set. They are not publicly offered separately, and no individual public
+   purchase path is created for any of them.
+3. **One public price.** The only public acquisition price is **USD 5,780** for
+   the complete three-domain set. No individual-domain price is published.
+4. **Canonical route.** The page lives at
+   `https://sohadot.com/bundles/ai-ar-vr-sight/` and is listed in `sitemap.xml`
+   and alongside the existing acquisition bundles on the homepage and portfolio.
+5. **Naming boundary.** Sohadot does not own `TopSight.com` and makes no claim
+   to it. "The AI–AR–VR Sight Architecture" is a descriptive heading, not a
+   claimed parent brand or trademark; the three compound domains are always
+   named explicitly.
+6. **Scope of the offer.** The offer covers the registration rights to the three
+   listed domain names only. No operating company, software product, traffic or
+   revenue is represented as part of it.
+7. **Meaning layer unchanged.** ARTopSight.com keeps its protected canonical
+   meaning verbatim. AITopSight.com and VRTopSight.com carry short public set
+   descriptions in the Conceptual Inventory Ledger and remain pending Canonical
+   Meaning Lock; the 51 Category Artifacts are not expanded.
+
+### Rationale
+
+The three names share one repeated structure across three adjacent interface
+layers — AI understands, AR places, VR rehearses — so their value to a buyer is
+as a coordinated naming system. Offering them only as one set keeps that
+structure intact and gives the page a single, unambiguous acquisition path.

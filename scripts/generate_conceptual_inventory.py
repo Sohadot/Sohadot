@@ -34,6 +34,30 @@ OUTPUT_PATH = REPO_ROOT / "data" / "conceptual-inventory.json"
 
 DOMAIN_ENTRY_RE = re.compile(r'\{domain:"([^"]+)"')
 
+# Domains offered only as part of a published complete-set page. The optional
+# bundle_description is the public set description shown on that page — it is
+# not a Canonical Meaning Lock and does not promote a domain to a Category
+# Artifact. Protected assets keep their canonical meaning unchanged.
+AI_AR_VR_SIGHT_URL = "/bundles/ai-ar-vr-sight/"
+BUNDLE_RECORDS = {
+    "aitopsight.com": {
+        "bundle_url": AI_AR_VR_SIGHT_URL,
+        "bundle_description": (
+            "AI whole-system sight: a compound name for artificial-intelligence products "
+            "that synthesize fragmented signals into a coherent operational view."
+        ),
+    },
+    "artopsight.com": {"bundle_url": AI_AR_VR_SIGHT_URL},
+    "vrtopsight.com": {
+        "bundle_url": AI_AR_VR_SIGHT_URL,
+        "bundle_description": (
+            "VR consequence sight: a compound name for virtual-reality products that "
+            "reconstruct scenarios, rehearse decisions and test outcomes before "
+            "real-world execution."
+        ),
+    },
+}
+
 
 def extract_portfolio_domains():
     """Extract every domain string from portfolio.html's DOMAINS array, in order."""
@@ -107,6 +131,7 @@ def build_records(portfolio_domains, asset_meanings, primary_cluster_of, buyer_l
                     f"/strategic-brief.html?asset={domain}&type=single-asset-acquisition"
                 ),
             }
+        record.update(BUNDLE_RECORDS.get(key, {}))
         records.append(record)
     return records
 
