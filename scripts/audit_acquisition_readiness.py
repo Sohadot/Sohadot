@@ -38,6 +38,7 @@ SITEMAP_PATH = REPO_ROOT / "sitemap.xml"
 README_PATH = REPO_ROOT / "README.md"
 ASSET_MEANINGS_PATH = REPO_ROOT / "data" / "asset-meanings.json"
 CATEGORY_CLUSTERS_PATH = REPO_ROOT / "data" / "category-clusters.json"
+BUNDLE_ONLY_PATH = REPO_ROOT / "data" / "bundle-only-assets.json"
 
 REQUIRED_SITEMAP_PATHS = [
     "/category-artifacts.html",
@@ -244,6 +245,18 @@ CLUSTER_ARTICLE_RE = re.compile(
 )
 
 
+def load_bundle_only_artifact_ids():
+    """Artifact id (e.g. 'artopsight-com') -> bundle_url, from data/bundle-only-assets.json."""
+    if not BUNDLE_ONLY_PATH.exists():
+        return {}
+    raw = json.loads(BUNDLE_ONLY_PATH.read_text(encoding="utf-8"))
+    ids = {}
+    for bundle in raw.get("bundles", []):
+        for domain in bundle.get("domains", []):
+            ids[domain.strip().lower().replace(".", "-")] = bundle["bundle_url"]
+    return ids
+
+
 def check_artifact_ctas(html, errors):
     articles = ARTICLE_RE.findall(html)
     if len(articles) != 51:
@@ -252,12 +265,29 @@ def check_artifact_ctas(html, errors):
             f"(this sprint must not expand or shrink the 51 Category Artifacts)"
         )
 
+    bundle_url_of = load_bundle_only_artifact_ids()
+
     for match in ARTICLE_RE.finditer(html):
         artifact_id = match.group(1)
         block = match.group(0)
         cta_matches = re.findall(
             r'href="/strategic-brief\.html\?asset=([^&"]+)&type=[^"]+"', block
         )
+        bundle_url = bundle_url_of.get(artifact_id)
+        if bundle_url:
+            # Bundle-only asset: no individual brief CTA; exactly one CTA to its set page.
+            if cta_matches:
+                errors.append(
+                    f"category-artifacts.html: artifact #{artifact_id} is bundle-only and must not "
+                    f"carry an individual 'Request Brief for This Asset' CTA"
+                )
+            bundle_ctas = re.findall(r'href="' + re.escape(bundle_url) + r'"', block)
+            if len(bundle_ctas) != 1:
+                errors.append(
+                    f"category-artifacts.html: bundle-only artifact #{artifact_id} must have exactly "
+                    f"one CTA to {bundle_url}, found {len(bundle_ctas)}"
+                )
+            continue
         if len(cta_matches) != 1:
             errors.append(
                 f"category-artifacts.html: artifact #{artifact_id} must have exactly one "

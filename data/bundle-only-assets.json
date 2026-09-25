@@ -1,0 +1,24 @@
+{
+  "description": "Bundle-only sale designations for Sohadot-owned domains. Each domain listed here is offered exclusively as part of the named complete set: no individual acquisition route (strategic-brief single-asset links, per-domain inquiry, WhatsApp or mailto messages) may be published for it. Read by scripts/generate_conceptual_inventory.py, scripts/audit_acquisition_readiness.py and enforced by scripts/validate_bundle_only.py. This file carries no Canonical Meaning and does not change the Category Artifact layer.",
+  "version": "1.0.0",
+  "updated": "2026-09-25",
+  "bundles": [
+    {
+      "bundle_id": "ai-ar-vr-sight",
+      "name": "AI–AR–VR Sight Domain Set",
+      "sale_mode": "bundle-only",
+      "bundle_url": "/bundles/ai-ar-vr-sight/",
+      "canonical_url": "https://sohadot.com/bundles/ai-ar-vr-sight/",
+      "public_price": "USD 5,780",
+      "domains": [
+        "AITopSight.com",
+        "ARTopSight.com",
+        "VRTopSight.com"
+      ],
+      "bundle_context": {
+        "AITopSight.com": "AI whole-system sight: a compound name for artificial-intelligence products that synthesize fragmented signals into a coherent operational view.",
+        "VRTopSight.com": "VR consequence sight: a compound name for virtual-reality products that reconstruct scenarios, rehearse decisions and test outcomes before real-world execution."
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "description": "Options referenced by strategic-brief.html: inquiry types, and the asset/cluster names offered as autocomplete suggestions for the asset_or_cluster_interest field. Sourced from data/asset-meanings.json and data/category-clusters.json — this file does not define new assets or clusters, it only lists existing ones for the form.",
+  "description": "Options referenced by strategic-brief.html: inquiry types, and the asset/cluster names offered as autocomplete suggestions for the asset_or_cluster_interest field. Sourced from data/asset-meanings.json and data/category-clusters.json — this file does not define new assets or clusters, it only lists existing ones for the form. Bundle-only domains (data/bundle-only-assets.json) are deliberately not offered as individual asset options.",
   "version": "1.1.0",
-  "updated": "2026-07-01",
+  "updated": "2026-09-25",
   "inquiry_types": [
     {
       "value": "single-asset-acquisition",
@@ -32,7 +32,6 @@
     "AGIBeget.com",
     "AIDAtanaly.com",
     "AIElectronicChips.com",
-    "ARTopSight.com",
     "ASIBeget.com",
     "ASILiaison.com",
     "AccountCcy.com",

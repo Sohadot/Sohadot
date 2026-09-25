@@ -170,9 +170,19 @@ Publish one complete-set acquisition page for three Sohadot-owned compound
    listed domain names only. No operating company, software product, traffic or
    revenue is represented as part of it.
 7. **Meaning layer unchanged.** ARTopSight.com keeps its protected canonical
-   meaning verbatim. AITopSight.com and VRTopSight.com carry short public set
-   descriptions in the Conceptual Inventory Ledger and remain pending Canonical
-   Meaning Lock; the 51 Category Artifacts are not expanded.
+   meaning verbatim. AITopSight.com and VRTopSight.com remain pending Canonical
+   Meaning Lock; their set descriptions are non-canonical `bundle_context`, never
+   shown as a Canonical Meaning. The 51 Category Artifacts are not expanded, and
+   inventory totals stay 446 domains / 51 defined / 395 pending.
+8. **Bundle only everywhere.** `data/bundle-only-assets.json` is the single
+   machine-readable source of the designation (`sale_mode: "bundle-only"`,
+   `bundle_id: "ai-ar-vr-sight"`, `bundle_url`). Every commercial path for the
+   three domains leads to the complete-set page: the ARTopSight.com Category
+   Artifact, the Conceptual Inventory records (no individual
+   `strategic_brief_url`), and the portfolio cards (no per-domain WhatsApp or
+   inquiry action). Strategic Brief links naming any of the three hand the
+   visitor to the set page. `scripts/validate_bundle_only.py` fails the build if
+   any published HTML, JSON or JavaScript regains an individual acquisition route.
 
 ### Rationale
 

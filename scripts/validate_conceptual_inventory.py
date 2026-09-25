@@ -22,6 +22,7 @@ PORTFOLIO_PATH = REPO_ROOT / "portfolio.html"
 ASSET_MEANINGS_PATH = REPO_ROOT / "data" / "asset-meanings.json"
 CATEGORY_CLUSTERS_PATH = REPO_ROOT / "data" / "category-clusters.json"
 INVENTORY_PATH = REPO_ROOT / "data" / "conceptual-inventory.json"
+BUNDLE_ONLY_PATH = REPO_ROOT / "data" / "bundle-only-assets.json"
 
 DOMAIN_ENTRY_RE = re.compile(r'\{domain:"([^"]+)"')
 
@@ -86,6 +87,12 @@ def main():
     }
 
     inventory = load_json(INVENTORY_PATH)
+
+    bundle_only = {}
+    if BUNDLE_ONLY_PATH.exists():
+        for bundle in load_json(BUNDLE_ONLY_PATH).get("bundles", []):
+            for member in bundle.get("domains", []):
+                bundle_only[member.strip().lower()] = bundle
 
     for field in (
         "total_domains",
@@ -168,17 +175,31 @@ def main():
             errors.append(f"conceptual-inventory.json: '{domain}' primary_cluster '{record['primary_cluster']}' not found in data/category-clusters.json")
 
         url = record["strategic_brief_url"]
-        path = urlsplit(url).path
-        if not path.endswith("strategic-brief.html"):
-            errors.append(f"conceptual-inventory.json: '{domain}' strategic_brief_url '{url}' does not point to strategic-brief.html")
-
-        bundle_url = record.get("bundle_url")
-        if bundle_url is not None:
-            bundle_path = REPO_ROOT / urlsplit(bundle_url).path.lstrip("/") / "index.html"
-            if not bundle_path.exists():
-                errors.append(f"conceptual-inventory.json: '{domain}' bundle_url '{bundle_url}' does not resolve to a page")
-        if record.get("bundle_description") is not None and is_defined:
-            errors.append(f"conceptual-inventory.json: protected asset '{domain}' must not carry a bundle_description")
+        bundle = bundle_only.get(key)
+        if bundle:
+            for field in ("sale_mode", "bundle_id", "bundle_url"):
+                if record.get(field) != bundle[field]:
+                    errors.append(
+                        f"conceptual-inventory.json: bundle-only '{domain}' has {field}="
+                        f"{record.get(field)!r}, expected {bundle[field]!r}"
+                    )
+            if url is not None:
+                errors.append(
+                    f"conceptual-inventory.json: bundle-only '{domain}' must not advertise an "
+                    f"individual strategic_brief_url (found '{url}')"
+                )
+            bundle_page = REPO_ROOT / bundle["bundle_url"].strip("/") / "index.html"
+            if not bundle_page.exists():
+                errors.append(f"conceptual-inventory.json: '{domain}' bundle_url '{bundle['bundle_url']}' does not resolve to a page")
+            if record.get("bundle_context") is not None and is_defined:
+                errors.append(f"conceptual-inventory.json: protected asset '{domain}' must not carry a bundle_context")
+        else:
+            for field in ("sale_mode", "bundle_id", "bundle_url", "bundle_context"):
+                if field in record:
+                    errors.append(f"conceptual-inventory.json: '{domain}' carries '{field}' but is not listed in data/bundle-only-assets.json")
+            path = urlsplit(url or "").path
+            if not path.endswith("strategic-brief.html"):
+                errors.append(f"conceptual-inventory.json: '{domain}' strategic_brief_url '{url}' does not point to strategic-brief.html")
 
     missing_defined = asset_domains - inventory_domain_set
     if missing_defined:
