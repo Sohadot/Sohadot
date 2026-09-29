@@ -1,17 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Geo-Commercial Domain Assets | Sohadot</title>
 <meta name="description" content="Sohadot geo-commercial domain assets: domain identities built around a commercial category and a geographic market."/>
-<meta name="robots" content="index,follow"/><link rel="canonical" href="https://sohadot.com/geo-domains/"/><link rel="icon" type="image/svg+xml" href="/favicon.svg"/><meta name="theme-color" content="#0a0d0f"/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://sohadot.com/geo-domains/"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<meta name="theme-color" content="#0d224f"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#090c0d;--surface:#111618;--text:#f2f1eb;--muted:#a6b0b2;--line:rgba(255,255,255,.09);--signal:#d7ff5c;--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}*{box-sizing:border-box}:focus-visible{outline:3px solid var(--signal);outline-offset:3px}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}.wrap{max-width:1020px;margin:0 auto;padding:0 22px}header{border-bottom:1px solid var(--line)}header .wrap{height:66px;display:flex;align-items:center;justify-content:space-between}.brand{font:700 1.45rem var(--serif);text-decoration:none;color:var(--text)}.brand span{color:var(--signal)}nav a{color:var(--muted);text-decoration:none;font-size:.82rem;margin-left:18px}.hero{padding:78px 0 42px}.eyebrow{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--signal);font-weight:800}h1{font:700 clamp(2.6rem,6vw,5rem)/.98 var(--serif);max-width:850px;margin:14px 0 20px}.lead{max-width:720px;color:var(--muted);font-size:1.05rem}.rule{height:1px;background:var(--line);margin-top:48px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:38px 0 70px}.card{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;transition:.16s ease}.card:hover{border-color:rgba(215,255,92,.4);transform:translateY(-1px)}.code{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--signal);font-weight:800}.card h2{font:700 2rem/1.05 var(--serif);margin:22px 0 10px}.card p{color:var(--muted);margin:0 0 20px}.go{color:var(--signal);font-weight:800}.empty{border:1px dashed var(--line);border-radius:18px;padding:26px;color:var(--muted);display:flex;align-items:center}footer{border-top:1px solid var(--line);padding:24px 0;color:#748084;font-size:.8rem}@media(max-width:650px){.wrap{padding:0 16px}.grid{grid-template-columns:minmax(0,1fr)}.card,.empty{min-width:0}.card h2{font-size:clamp(1.35rem,4.8vw,2rem);overflow-wrap:anywhere}nav a:first-child{display:none}}
+:root{
+  --bg:#080d1a;--surface:#101827;--surface2:#17223a;
+  --border:rgba(255,255,255,0.07);--accent:#3b82f6;--accent2:#60a5fa;
+  --gold:#f59e0b;--text:#f1f5f9;--muted:#94a3b8;--dim:#475569;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.7;min-height:100vh;}
+.page :focus-visible{outline:3px solid var(--accent2);outline-offset:3px;border-radius:6px;}
+.skip{position:absolute;left:-9999px;top:0;}
+.skip:focus{left:16px;top:84px;z-index:300;background:var(--gold);color:#1a1204;padding:10px 14px;border-radius:8px;font-weight:700;}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px;}
+.hero{position:relative;overflow:hidden;padding:52px 0 18px;}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 55% at 50% -5%,rgba(59,130,246,.2),transparent 70%);}
+.back-link{position:relative;margin:0 0 18px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;}
+.back-link a{color:var(--accent2);text-decoration:none;opacity:.85;}
+.back-link a:hover{opacity:1;text-decoration:underline;}
+.eyebrow{position:relative;color:var(--gold);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;}
+h1{position:relative;font-family:'Playfair Display',serif;font-size:clamp(2rem,4.6vw,3.2rem);font-weight:800;line-height:1.12;max-width:820px;margin:0 0 16px;color:#fff;}
+.lead{position:relative;max-width:720px;color:var(--muted);font-size:1.02rem;margin:0;}
+.rule{height:1px;background:var(--border);margin-top:40px;}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:32px 0 70px;}
+.card{display:block;min-width:0;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px;transition:border-color .16s ease,transform .16s ease;}
+.card:hover{border-color:rgba(59,130,246,.45);transform:translateY(-1px);}
+.code{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.card h2{font-family:'Playfair Display',serif;font-size:clamp(1.35rem,4.8vw,2rem);font-weight:700;line-height:1.1;margin:18px 0 10px;color:#fff;}
+.card p{color:var(--muted);margin:0 0 18px;font-size:.95rem;}
+.go{color:var(--accent2);font-weight:700;}
+.empty{min-width:0;border:1px dashed var(--border);border-radius:18px;padding:26px;color:var(--muted);display:flex;align-items:center;background:rgba(255,255,255,.02);}
+footer{border-top:1px solid var(--border);padding:26px 0 34px;color:var(--dim);font-size:.8rem;}
+footer a{color:var(--accent2);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+@media(max-width:650px){.wrap{padding:0 16px}.grid{grid-template-columns:minmax(0,1fr)}.hero{padding-top:36px}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="/">Soha<span>dot</span></a><nav><a href="/portfolio.html">Portfolio</a><a href="mailto:agent@sohadot.com">Contact</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><p class="eyebrow">Sohadot asset taxonomy · Geo domains</p><h1>Commercial categories anchored to geographic markets.</h1><p class="lead">This collection organizes Sohadot-owned domains whose core commercial meaning depends on the combination of a category and a place. Each asset receives its own concept-first acquisition surface.</p><div class="rule"></div><div class="grid"><a class="card" href="/geo-domains/equipment-new-york/"><span class="code">Equipment · New York</span><h2>EquipmentNewYork.com</h2><p>A commercial identity for equipment discovery, rental, supply, procurement or market infrastructure serving New York.</p><span class="go">View asset →</span></a><div class="empty">Additional geo-commercial assets can be organized in this collection without placing sale pages at the repository root.</div></div></div></section></main>
+<a class="skip" href="#main">Skip to content</a>
+<!-- SOHADOT:NAV:START -->
+<style id="sdn-style">
+/* Sohadot global navigation — self-contained, scoped with .sdn- prefix. */
+.sdn{--sdn-ivory:#f6f2e9;--sdn-blue:#0f2658;--sdn-blue-2:#2454d3;--sdn-ink:#1f2a44;
+  --sdn-muted:#5b6478;--sdn-border:rgba(15,38,88,.14);--sdn-panel:#fffdf8;
+  position:sticky;top:0;z-index:200;background:rgba(246,242,233,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--sdn-border);font-family:'DM Sans','Segoe UI',system-ui,sans-serif;}
+.sdn *{box-sizing:border-box;}
+/* Defensive resets so host-page element selectors (e.g. generic nav{}) cannot leak in. */
+.sdn-nav{position:static;background:none;border:0;box-shadow:none;backdrop-filter:none;
+  -webkit-backdrop-filter:none;max-width:1200px;margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;gap:24px;}
+.sdn a{text-decoration:none;}
+.sdn ul{list-style:none;}
+.sdn-brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0;}
+/* Optical size variant (assets/brand/sohadot-mark-header.png) — stroke-reinforced
+   for small-display clarity; sized by height so the tall mark supports, not
+   overpowers, the wordmark. The canonical master is used only in larger contexts. */
+.sdn-brand-mark{height:40px;width:auto;display:block;}
+.sdn-brand-name{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:1.7rem;
+  line-height:1;font-weight:700;color:var(--sdn-blue);letter-spacing:.01em;}
+.sdn-menu{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:6px;
+  margin-left:auto;flex-wrap:wrap;}
+.sdn-item{position:relative;}
+.sdn-link,.sdn-summary{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sdn-muted);
+  text-decoration:none;padding:10px 12px;border-radius:10px;cursor:pointer;
+  background:none;border:0;transition:color .16s ease,background .16s ease;}
+.sdn-link:hover,.sdn-summary:hover,.sdn-link:focus-visible,.sdn-summary:focus-visible{color:var(--sdn-blue);}
+.sdn-details[open] > .sdn-summary{color:var(--sdn-blue);background:rgba(15,38,88,.06);}
+.sdn-summary{list-style:none;}
+.sdn-summary::-webkit-details-marker{display:none;}
+.sdn-caret{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg);margin-top:-3px;transition:transform .18s ease;opacity:.75;}
+.sdn-details[open] > .sdn-summary .sdn-caret{transform:rotate(-135deg);margin-top:3px;}
+.sdn-cta{display:inline-flex;align-items:center;font-size:.8rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;text-decoration:none;color:#fff;
+  padding:11px 18px;border-radius:12px;background:linear-gradient(135deg,var(--sdn-blue),var(--sdn-blue-2));
+  box-shadow:0 8px 20px rgba(36,84,211,.2);transition:transform .15s ease,box-shadow .15s ease;}
+.sdn-cta:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(36,84,211,.3);}
+.sdn-panel{background:var(--sdn-panel);border:1px solid var(--sdn-border);border-radius:16px;
+  box-shadow:0 24px 60px rgba(15,38,88,.16);padding:22px;}
+/* Desktop dropdown positioning */
+@media (min-width:961px){
+  .sdn-cb{display:none;}
+  .sdn-has-mega{position:static;}
+  .sdn-panel{position:absolute;top:calc(100% + 10px);right:0;left:auto;min-width:280px;}
+  .sdn-mega{width:min(760px,92vw);left:50%;right:auto;transform:translateX(-50%);}
+}
+.sdn-groups{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+.sdn-group-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--sdn-blue-2);margin:0 0 12px;}
+.sdn-group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.sdn-entry{display:block;text-decoration:none;color:var(--sdn-ink);border-radius:10px;
+  padding:8px 10px;transition:background .15s ease;}
+.sdn-entry:hover,.sdn-entry:focus-visible{background:rgba(15,38,88,.05);}
+.sdn-entry-label{display:block;font-weight:700;font-size:.92rem;color:var(--sdn-blue);}
+.sdn-entry-desc{display:block;font-size:.8rem;color:var(--sdn-muted);line-height:1.5;margin-top:2px;}
+.sdn-asset .sdn-entry-domain{display:block;font-weight:700;font-size:.95rem;color:var(--sdn-blue);}
+.sdn-asset .sdn-entry-artifact{display:block;font-size:.78rem;color:var(--sdn-muted);margin-top:1px;}
+.sdn-ext{font-size:.62rem;letter-spacing:.06em;color:var(--sdn-muted);vertical-align:super;}
+.sdn-viewall{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:700;
+  font-size:.82rem;color:var(--sdn-blue-2);text-decoration:none;}
+.sdn-viewall:hover{text-decoration:underline;}
+/* Mobile toggle — no-JS checkbox pattern + accordion */
+.sdn-cb{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0 0 0 0);margin:0;}
+.sdn-toggle{display:none;margin-left:auto;align-items:center;justify-content:center;
+  width:44px;height:44px;border:1px solid var(--sdn-border);border-radius:12px;background:var(--sdn-panel);
+  cursor:pointer;color:var(--sdn-blue);}
+.sdn-toggle span,.sdn-toggle span::before,.sdn-toggle span::after{content:'';display:block;width:20px;
+  height:2px;background:currentColor;border-radius:2px;position:relative;}
+.sdn-toggle span::before{position:absolute;top:-6px;}
+.sdn-toggle span::after{position:absolute;top:6px;}
+.sdn-cb:focus-visible + .sdn-toggle{outline:2px solid var(--sdn-blue-2);outline-offset:2px;}
+@media (max-width:960px){
+  .sdn-nav{flex-wrap:wrap;padding:12px 18px;}
+  .sdn-brand-mark{height:37px;}
+  .sdn-toggle{display:inline-flex;}
+  .sdn-menu{display:none;flex-direction:column;align-items:stretch;flex-basis:100%;width:100%;gap:2px;margin:10px 0 4px;}
+  .sdn-cb:checked ~ .sdn-menu{display:flex;}
+  .sdn-item{width:100%;}
+  .sdn-link,.sdn-summary{width:100%;justify-content:space-between;padding:14px 8px;font-size:.9rem;
+    border-bottom:1px solid var(--sdn-border);}
+  .sdn-cta{width:100%;justify-content:center;margin-top:10px;}
+  .sdn-panel{position:static;box-shadow:none;border:0;border-radius:0;padding:6px 8px 14px;
+    background:rgba(15,38,88,.03);}
+  .sdn-mega{width:100%;}
+  .sdn-groups{grid-template-columns:1fr;gap:16px;}
+}
+</style>
+<header class="sdn" id="sdn-header" role="banner"><nav class="sdn-nav" aria-label="Primary"><a class="sdn-brand" href="/" aria-label="Sohadot.com home"><img class="sdn-brand-mark" src="/assets/brand/sohadot-mark-header.png" width="21" height="40" alt="Sohadot" decoding="async"><span class="sdn-brand-name">Sohadot.com</span></a><input type="checkbox" id="sdn-menu-toggle" class="sdn-cb"><label class="sdn-toggle" for="sdn-menu-toggle" aria-label="Toggle navigation menu" title="Menu"><span></span></label><ul class="sdn-menu"><li class="sdn-item sdn-has-mega"><details class="sdn-details"><summary class="sdn-summary">Assets<span class="sdn-caret" aria-hidden="true"></span></summary><div class="sdn-panel sdn-mega"><div class="sdn-groups"><div class="sdn-group"><p class="sdn-group-title">Explore</p><ul><li><a class="sdn-entry" href="/portfolio.html"><span class="sdn-entry-label">Portfolio</span><span class="sdn-entry-desc">Owned domain inventory.</span></a></li><li><a class="sdn-entry" href="/developed-assets.html"><span class="sdn-entry-label">Developed Assets</span><span class="sdn-entry-desc">Domains with active public development.</span></a></li></ul></div><div class="sdn-group"><p class="sdn-group-title">Portfolio Structure</p><ul><li><a class="sdn-entry" href="/conceptual-inventory.html"><span class="sdn-entry-label">Conceptual Inventory</span><span class="sdn-entry-desc">Governed canonical meaning across the portfolio.</span></a></li><li><a class="sdn-entry" href="/category-artifacts.html"><span class="sdn-entry-label">Category Artifacts</span><span class="sdn-entry-desc">Structured category expression around selected names.</span></a></li><li><a class="sdn-entry" href="/category-clusters.html"><span class="sdn-entry-label">Category Clusters</span><span class="sdn-entry-desc">Related assets viewed as strategic groups.</span></a></li></ul></div><div class="sdn-group"><p class="sdn-group-title">Selected Developed Assets</p><ul><li><a class="sdn-entry sdn-asset" href="/frameworks/agent-aptness/"><span class="sdn-entry-domain">AptyAgent.com</span><span class="sdn-entry-artifact">Agent Aptness Framework</span></a></li><li><a class="sdn-entry sdn-asset" href="/outbakes/"><span class="sdn-entry-domain">OUTBAKES.com</span><span class="sdn-entry-artifact">Performance baking masterbrand</span></a></li><li><a class="sdn-entry sdn-asset" href="/hygieneroll/"><span class="sdn-entry-domain">HygieneRoll.com</span><span class="sdn-entry-artifact">Hygiene replenishment surface</span></a></li><li><a class="sdn-entry sdn-asset" href="/altissports/"><span class="sdn-entry-domain">AltisSports.com</span><span class="sdn-entry-artifact">Spatial athletic reference infrastructure</span></a></li><li><a class="sdn-entry sdn-asset" href="https://dentalsurgerynewyork.com/"><span class="sdn-entry-domain">DentalSurgeryNewYork.com <span class="sdn-ext">↗</span></span><span class="sdn-entry-artifact">Governed oral-surgery reference</span></a></li></ul><a class="sdn-viewall" href="/developed-assets.html">View all Developed Assets <span aria-hidden="true">→</span></a></div></div></div></details></li><li class="sdn-item"><details class="sdn-details"><summary class="sdn-summary">Intelligence<span class="sdn-caret" aria-hidden="true"></span></summary><div class="sdn-panel"><div class="sdn-groups"><div class="sdn-group"><p class="sdn-group-title">Tools</p><ul><li><a class="sdn-entry" href="/valuation.html"><span class="sdn-entry-label">Valuation</span><span class="sdn-entry-desc">Structured domain-value analysis.</span></a></li><li><a class="sdn-entry" href="/keywords.html"><span class="sdn-entry-label">Keyword Intelligence</span><span class="sdn-entry-desc">Naming and commercial language signals.</span></a></li><li><a class="sdn-entry" href="/dropping.html"><span class="sdn-entry-label">Drops</span><span class="sdn-entry-desc">Curated opportunity and supply signals.</span></a></li></ul></div></div></div></details></li><li class="sdn-item"><details class="sdn-details"><summary class="sdn-summary">Knowledge<span class="sdn-caret" aria-hidden="true"></span></summary><div class="sdn-panel"><div class="sdn-groups"><div class="sdn-group"><p class="sdn-group-title">Study the system</p><ul><li><a class="sdn-entry" href="/knowledge-base.html"><span class="sdn-entry-label">Knowledge Base</span><span class="sdn-entry-desc">The full educational reference library.</span></a></li><li><a class="sdn-entry" href="/kb/domain-development.html"><span class="sdn-entry-label">Domain Development</span><span class="sdn-entry-desc">How selected names develop into governed digital assets.</span></a></li><li><a class="sdn-entry" href="/knowledge-base.html#market-education"><span class="sdn-entry-label">Market Education</span><span class="sdn-entry-desc">Valuation, pricing, comparable sales, naming quality.</span></a></li></ul></div></div></div></details></li><li class="sdn-item"><a class="sdn-link" href="/about.html">About</a></li><li class="sdn-item"><a class="sdn-cta" href="/strategic-brief.html">Strategic Inquiry</a></li></ul></nav></header>
+<script>
+/* Progressive enhancement only — navigation is fully usable without this. */
+(function(){
+  var header=document.getElementById('sdn-header');
+  if(!header)return;
+  var cb=document.getElementById('sdn-menu-toggle');
+  var details=Array.prototype.slice.call(header.querySelectorAll('.sdn-details'));
+  function isDesktop(){return window.matchMedia('(min-width:961px)').matches;}
+  details.forEach(function(d){
+    d.addEventListener('toggle',function(){
+      if(d.open&&isDesktop()){details.forEach(function(o){if(o!==d)o.open=false;});}
+    });
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){details.forEach(function(d){d.open=false;});if(cb)cb.checked=false;}
+  });
+  document.addEventListener('click',function(e){
+    if(!header.contains(e.target)&&isDesktop()){details.forEach(function(d){d.open=false;});}
+  });
+})();
+</script>
+<!-- SOHADOT:NAV:END -->
+<main id="main" class="page">
+<section class="hero">
+  <div class="wrap">
+    <p class="back-link"><a href="/">Sohadot</a> · <a href="/geo-domains/">Geo Domains</a></p>
+    <p class="eyebrow">Sohadot asset taxonomy · Geo domains</p>
+    <h1>Commercial categories anchored to geographic markets.</h1>
+    <p class="lead">This collection organizes Sohadot-owned domains whose core commercial meaning depends on the combination of a category and a place. Each asset receives its own concept-first acquisition surface.</p>
+    <div class="rule"></div>
+    <div class="grid">
+      <a class="card" href="/geo-domains/equipment-new-york/">
+        <span class="code">Equipment · New York</span>
+        <h2>EquipmentNewYork.com</h2>
+        <p>A commercial identity for equipment discovery, rental, supply, procurement or market infrastructure serving New York.</p>
+        <span class="go">View asset →</span>
+      </a>
+      <div class="empty">Additional geo-commercial assets can be organized in this collection without placing sale pages at the repository root.</div>
+    </div>
+  </div>
+</section>
+</main>
 <footer><div class="wrap">© 2026 Sohadot.com · Independent domain-asset system</div></footer>
 </body>
 </html>
