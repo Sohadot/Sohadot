@@ -10,7 +10,10 @@ validated against an independent holdout set, the public surfaces must:
      explain that it says nothing about price accuracy.
   3. Show an experimental-estimate disclosure where the price is shown.
   4. Publish a comparable-sales file whose content timestamp, content hash and
-     source-verification status are consistent with its data.
+     source-verification status are consistent with its data. No record-level
+     verification standard exists yet, so any status other than
+     "not_verified" (or any last_verified date) is rejected, whatever a
+     dataset-level date in the seed says.
 
 Usage: python3 scripts/validate_valuation_disclosures.py
 Exits 0 and prints PASS if valid, otherwise prints each violation prefixed
@@ -27,7 +30,6 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 UI_PATH = REPO_ROOT / "js" / "valuation-ui.js"
 VALUATION_PAGE = REPO_ROOT / "valuation.html"
 COMPS_PATH = REPO_ROOT / "data" / "valuation_comps.json"
-SEED_PATH = REPO_ROOT / "data" / "valuation_comps_seed.json"
 
 PROVENANCE_DISCLOSURE = (
     "Individual source provenance has not yet been independently verified "
@@ -109,9 +111,9 @@ def check_page(errors):
         errors.append("valuation.html: price-accuracy limitation missing from Scope and limitations")
 
 
-def check_comps(errors):
-    comps = json.loads(COMPS_PATH.read_text(encoding="utf-8"))
-    seed = json.loads(SEED_PATH.read_text(encoding="utf-8"))
+def check_comps(errors, comps=None):
+    if comps is None:
+        comps = json.loads(COMPS_PATH.read_text(encoding="utf-8"))
 
     for field in ("content_updated", "content_sha256", "generated_at", "source_verification", "methodology_version"):
         if field not in comps:
@@ -124,13 +126,18 @@ def check_comps(errors):
     if comps["last_updated"] != comps["content_updated"]:
         errors.append("valuation_comps.json: last_updated must mirror content_updated, not the build time")
 
-    verification = comps["source_verification"]
-    recorded = seed.get("last_source_verification")
-    if verification.get("last_verified") != (recorded or None):
-        errors.append("valuation_comps.json: last_verified must come only from a human-recorded seed value")
-    expected_status = "verified" if recorded else "not_verified"
-    if verification.get("status") != expected_status:
-        errors.append(f"valuation_comps.json: source_verification.status must be {expected_status!r}")
+    # Sprint 0 invariant: verification is earned per record, and no
+    # record-level verification standard has been approved yet.
+    verification = comps["source_verification"] or {}
+    if verification.get("status") != "not_verified":
+        errors.append(
+            "valuation_comps.json: source_verification.status must be 'not_verified' "
+            "until a record-level verification standard exists"
+        )
+    if verification.get("last_verified") is not None:
+        errors.append("valuation_comps.json: last_verified must be null until records are individually verified")
+    if PROVENANCE_DISCLOSURE not in (verification.get("note") or ""):
+        errors.append("valuation_comps.json: source_verification.note must carry the provenance disclosure")
 
 
 def main():

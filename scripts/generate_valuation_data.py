@@ -11,9 +11,11 @@ Timestamp fields are kept separate on purpose:
                        forward unchanged while the content hash is unchanged.
   generated_at         Last time this file was rewritten (content or metadata
                        change). Not a data-freshness claim.
-  source_verification  Status of independent source verification. Never set by
-                       this script from the clock: "not_verified" until a
-                       human records a verification date in the seed.
+  source_verification  Status of independent source verification. Always
+                       "not_verified" with last_verified null in the Sprint 0
+                       schema: verification must be earned record by record,
+                       and no record-level verification standard exists yet.
+                       Neither the clock nor a dataset-level date can set it.
   methodology_version  Valuation framework version the data is published for.
 
 `last_updated` / `last_updated_human` are kept for compatibility and mirror
@@ -96,12 +98,15 @@ def content_hash(sales):
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
-def source_verification(raw):
-    # A verification date is only ever a human-recorded value in the seed.
-    last_verified = raw.get("last_source_verification")
+def source_verification():
+    # Deliberately independent of the seed. A dataset-level date (for example
+    # a `last_source_verification` key) or the presence of source fields on
+    # some records does not prove that any transaction was independently
+    # verified. Verified or partially verified states need a per-record
+    # verification standard, which is Sprint 1 work.
     return {
-        "status": "verified" if last_verified else "not_verified",
-        "last_verified": last_verified or None,
+        "status": "not_verified",
+        "last_verified": None,
         "note": UNVERIFIED_NOTE,
     }
 
@@ -141,7 +146,7 @@ def build_payload(raw, previous, now, bootstrap_content_updated=None):
         "content_updated_basis": basis,
         "content_sha256": digest,
         "generated_at": None,
-        "source_verification": source_verification(raw),
+        "source_verification": source_verification(),
         "count": len(sales),
         "sales": sales
     }

@@ -277,3 +277,25 @@ Sprint 0A showed that the public copy claimed more than the evidence supports.
 Correcting the claims first, without touching the numbers, keeps the estimates
 reproducible for research and stops the site from implying a precision it has
 not earned.
+
+---
+
+## DEC-2026-10-08-03 — Verification Is Earned Per Record
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Amends:** DEC-2026-10-08-02, item 4
+
+### Decision
+
+A dataset-level date or the presence of source fields never makes the
+comparable-sales dataset "verified". Until Sprint 1 approves a per-record
+verification standard and the rules for rolling records up into a dataset
+status, the published status is always `not_verified` with `last_verified`
+null. The disclosure validator rejects any other value.
+
+### Rationale
+
+A single date cannot show which transactions were checked, or against what.
+Allowing it to set the dataset status would have let one seed edit present 45
+unsourced sales as verified.

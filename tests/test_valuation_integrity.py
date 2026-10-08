@@ -104,9 +104,6 @@ class GeneratorDeterminism(unittest.TestCase):
         self.assertEqual(payload["source_verification"]["status"], "not_verified")
         self.assertIsNone(payload["source_verification"]["last_verified"])
 
-        verified = dict(SEED, last_source_verification="2030-01-02")
-        payload = gen.build_payload(verified, None, T1)
-        self.assertEqual(payload["source_verification"]["last_verified"], "2030-01-02")
 
     def test_cli_twice_produces_byte_identical_file(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -125,6 +122,78 @@ class GeneratorDeterminism(unittest.TestCase):
             before = out_path.read_bytes()
             run_cli(ROOT / "data" / "valuation_comps_seed.json", out_path, "2099-01-01T00:00:00Z")
             self.assertEqual(before, out_path.read_bytes())
+
+
+PROVENANCE = {
+    "source_name": "Example Report",
+    "source_url": "https://example.invalid/sale",
+    "sale_date": "2025-03-01",
+    "price_status": "confirmed",
+    "venue": "marketplace",
+}
+
+
+class VerificationCannotBeInferred(unittest.TestCase):
+    """Verification is earned per record, never inferred from a timestamp."""
+
+    def assert_unverified(self, payload):
+        self.assertEqual(payload["source_verification"]["status"], "not_verified")
+        self.assertIsNone(payload["source_verification"]["last_verified"])
+        self.assertIn(disclosures.PROVENANCE_DISCLOSURE, payload["source_verification"]["note"])
+
+    def test_a_global_date_without_record_evidence(self):
+        seed = dict(copy.deepcopy(SEED), last_source_verification="2030-01-02")
+        self.assert_unverified(gen.build_payload(seed, None, T1))
+
+    def test_b_partial_provenance_does_not_verify_the_dataset(self):
+        seed = copy.deepcopy(SEED)
+        seed["sales"][0].update(PROVENANCE)
+        seed["last_source_verification"] = "2030-01-02"
+        self.assert_unverified(gen.build_payload(seed, None, T1))
+
+    def test_b2_full_provenance_fields_still_do_not_verify_in_sprint_0(self):
+        seed = copy.deepcopy(SEED)
+        for sale in seed["sales"]:
+            sale.update(PROVENANCE)
+        seed["last_source_verification"] = "2030-01-02"
+        self.assert_unverified(gen.build_payload(seed, None, T1))
+
+    def test_c_validator_rejects_a_claimed_verified_dataset(self):
+        payload = gen.build_payload(SEED, None, T1)
+        forged = copy.deepcopy(payload)
+        forged["source_verification"]["status"] = "verified"
+        forged["source_verification"]["last_verified"] = "2030-01-02"
+        errors = []
+        disclosures.check_comps(errors, forged)
+        joined = "\n".join(errors)
+        self.assertIn("must be 'not_verified'", joined)
+        self.assertIn("last_verified must be null", joined)
+
+        partial = copy.deepcopy(payload)
+        partial["source_verification"]["status"] = "partially_verified"
+        errors = []
+        disclosures.check_comps(errors, partial)
+        self.assertTrue(errors)
+
+        clean = []
+        disclosures.check_comps(clean, payload)
+        self.assertEqual(clean, [])
+
+    def test_d_published_dataset_is_unverified(self):
+        published = json.loads((ROOT / "data" / "valuation_comps.json").read_text(encoding="utf-8"))
+        self.assertEqual(published["count"], 45)
+        self.assert_unverified(published)
+
+    def test_e_global_date_does_not_cause_rewrites(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            seed_path, out_path = Path(tmp) / "seed.json", Path(tmp) / "out.json"
+            seed_path.write_text(json.dumps(SEED), encoding="utf-8")
+            run_cli(seed_path, out_path, "2030-01-06T08:00:00Z")
+            first = out_path.read_bytes()
+            seed_path.write_text(json.dumps(dict(SEED, last_source_verification="2030-01-02")), encoding="utf-8")
+            result = run_cli(seed_path, out_path, "2030-01-13T08:00:00Z")
+            self.assertEqual(first, out_path.read_bytes())
+            self.assertIn("not rewritten", result.stdout)
 
 
 class PublicDisclosures(unittest.TestCase):

@@ -345,3 +345,61 @@ describe these limits; they do not fix them.
 3. An independent holdout set is frozen before any methodology change.
 4. Any change to comps matching, classes or tags ships with a version bump, a
    new engine baseline, and before/after holdout metrics.
+
+---
+
+## Sprint 0B — Final hardening: verification cannot be inferred (2026-10-08)
+
+**Vulnerability.** In the Sprint 0B generator (commit `5371f7a`),
+`source_verification()` set `status: "verified"` and copied the date whenever
+the seed carried a non-empty top-level `last_source_verification`. The
+Sprint 0B section above describes this as "a human-recorded value". That
+mechanism is superseded by this note. On a synthetic seed with no record-level
+evidence, the old code returned `{"status": "verified", "last_verified":
+"2030-01-02"}`. The validator accepted this because it only checked that the
+output matched the seed key.
+
+**Why a dataset-level date proves nothing.** A single date says *when* someone
+says they checked, not *which* transactions were checked, against *what*
+source, or with *what* result. With 0 of 45 records carrying provenance, a
+"verified" dataset label would have claimed more assurance than any individual
+record supports. A source URL, venue or reported date on a record is not proof
+of verification either.
+
+**Correction.**
+- `generate_valuation_data.py`: `source_verification()` no longer reads the
+  seed. In the Sprint 0 schema it always returns `status: "not_verified"`,
+  `last_verified: null`, with the provenance disclosure note.
+- `validate_valuation_disclosures.py`: rejects any published status other than
+  `not_verified` (including `verified` and `partially_verified`). It also
+  rejects any non-null `last_verified` and a note missing the provenance
+  disclosure. It no longer derives the expected status from the seed.
+
+**Invariant now enforced.** Verification is earned at the record level, never
+inferred from a timestamp. No record-level verification standard exists yet,
+so the published dataset must be `not_verified` with `last_verified: null`.
+
+**Tests added** (`VerificationCannotBeInferred`, 6 tests):
+- (A) a global date with no record evidence stays unverified;
+- (B) one fully sourced record plus a global date stays unverified;
+- (B2) source fields on every record still do not verify in Sprint 0;
+- (C) the validator rejects forged `verified` and `partially_verified`
+  datasets and accepts the clean one;
+- (D) the published 45-record dataset is `not_verified` / `null`;
+- (E) adding a global date to the seed does not rewrite the output.
+
+Determinism (E) and numerical preservation (F) remain covered by the existing
+generator tests and the engine baseline test. The baseline was not modified.
+
+**Results.** 21/21 unit tests pass locally. The disclosure validator and all
+existing validators pass. The audit still reports 0 FAIL and 100 WARN, and
+`--strict` still exits 1. The backtest report is identical to the pre-0B run
+(LOO median abs. log10 error 1.925, within 10× 31.1%). The engine snapshot is
+byte-identical to the committed baseline. `data/valuation_comps.json` is
+unchanged.
+
+**Deferred to Sprint 1.** Full or partial verification needs an approved
+per-record standard (what counts as a primary source, who checked it, when,
+and with what outcome), an explicit per-record verification field, and
+acceptance rules for rolling records up into a dataset status. Until those
+exist, no code path can produce a verified dataset.
