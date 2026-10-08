@@ -24,6 +24,9 @@ jobs:
       - name: Generate valuation comps
         run: python scripts/generate_valuation_data.py
 
+      - name: Audit valuation evidence
+        run: python scripts/audit_valuation_evidence.py --quiet
+
       - name: Commit updated valuation data
         run: |
           git config user.name "github-actions[bot]"

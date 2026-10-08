@@ -190,3 +190,49 @@ The three names share one repeated structure across three adjacent interface
 layers — AI understands, AR places, VR rehearses — so their value to a buyer is
 as a coordinated naming system. Offering them only as one set keeps that
 structure intact and gives the page a single, unambiguous acquisition path.
+
+---
+
+## DEC-2026-10-08-01 — Free Valuation Services: Evidence & Accuracy First
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Implementation:** Sprint 0 — `docs/VALUATION_EVIDENCE_AUDIT.md`
+
+### Decision
+
+Develop Sohadot's free domain-intelligence services as a standalone programme,
+aimed at reliability and repeat professional use, not as a run-up to a paid
+subscription. Its first step is an audit of the evidence and accuracy behind the
+existing valuation, carried out before any new feature is built.
+
+1. **Order of work.** Sprint 0 — Evidence & Accuracy Audit; Sprint 1 —
+   Comparable Sales vNext; Sprint 2 — Linguistic & Category Intelligence;
+   Sprint 3 — Registration (RDAP) & Trademark Research; Sprint 4 — Research
+   Report & repeat-use experience.
+2. **Evidence before scale.** The comparable-sales set will not be expanded in
+   bulk, and no paid data API will be added, until every record has provenance
+   and accuracy is measured against an independent holdout set.
+3. **Bounded claims.** Results state their coverage, sources and as-of date. No
+   binary "trademark free / taken" verdict. An empty registry lookup is never
+   shown as "available to buy". The engine's own sales set is never presented
+   as evidence of its accuracy.
+4. **No unattended scraping of restricted sources.** Trademark research starts
+   from user-run links to official search services. WIPO's public database
+   terms do not allow automated queries.
+5. **Repository discipline.** GitHub remains the source of truth. Audits and
+   gates are reproducible scripts. No API keys or sensitive data go in the
+   public repository, and features that need live queries or private keys get
+   a security design before they are built.
+6. **No mass-generated valuation pages.** Growth comes from useful tools and
+   documented studies that other sites can cite, not from auto-indexed
+   thin pages.
+
+### Rationale
+
+The Sprint 0 audit found that no comparable sale carries a source, the weekly
+data refresh changes only its timestamp, and under leave-one-out testing the
+engine's retail midpoint is off by a median factor of about 84×. Adding
+features on top of that would multiply unverifiable output. Making the
+evidence verifiable is what would set Sohadot apart from tools that already
+show comps and extension status.
