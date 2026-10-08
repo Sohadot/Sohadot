@@ -191,7 +191,9 @@ def audit(strict_year=None):
         "stale_records": sum(
             1 for y in years if current_year - y > STALE_AFTER_YEARS
         ),
-        "generated_last_updated": generated.get("last_updated"),
+        "content_updated": generated.get("content_updated"),
+        "generated_at": generated.get("generated_at"),
+        "source_verification_status": (generated.get("source_verification") or {}).get("status"),
     }
     return fails, warns, stats
 

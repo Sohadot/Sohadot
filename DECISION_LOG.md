@@ -236,3 +236,44 @@ engine's retail midpoint is off by a median factor of about 84×. Adding
 features on top of that would multiply unverifiable output. Making the
 evidence verifiable is what would set Sohadot apart from tools that already
 show comps and extension status.
+
+---
+
+## DEC-2026-10-08-02 — Valuation Public Integrity Correction (Sprint 0B)
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Implementation:** Sprint 0B — see `docs/VALUATION_EVIDENCE_AUDIT.md`
+
+### Decision
+
+Until the comparable sales carry verified provenance and the estimates are
+validated against an independent holdout set, the valuation tool states its
+limits where users see its numbers, and changes nothing it computes.
+
+1. **Reported, not documented.** Public surfaces describe the comparable sales
+   as reported sales and say that individual source provenance has not yet been
+   independently verified. No surface may describe them as documented,
+   verified or confirmed, or overstate their number.
+2. **Experimental estimates.** Every result shows an experimental-estimate
+   disclosure directly above the prices. Estimates are never presented as
+   validated market prices or certified appraisals.
+3. **Classification confidence.** The confidence indicator is labelled and
+   explained as confidence in the name's linguistic classification, not in the
+   price.
+4. **Honest timestamps.** The comparable-sales file separates content-change
+   time, generation time, source-verification status and methodology version.
+   Unchanged evidence keeps its date and produces no commit. Automation never
+   records a verification date.
+5. **Engine frozen.** Scores, prices, classes, tags and comps matching are
+   unchanged. A test compares engine output against a recorded baseline.
+6. **Gates.** Structural evidence checks and disclosure checks are mandatory.
+   The provenance gate (`--strict`) stays visible but optional until Sprint 1
+   meets its evidentiary requirements.
+
+### Rationale
+
+Sprint 0A showed that the public copy claimed more than the evidence supports.
+Correcting the claims first, without touching the numbers, keeps the estimates
+reproducible for research and stops the site from implying a precision it has
+not earned.

@@ -20,6 +20,57 @@ function confidenceLabel(value) {
   return map[value] || value;
 }
 
+// Public evidence status of the comparable-sales dataset. Read from the
+// same file (and cache key) the engine loads; display only.
+const COMPS_URL = '/data/valuation_comps.json?v=2.5';
+let COMPS_STATUS = null;
+
+async function loadCompsStatus() {
+  if (COMPS_STATUS) return COMPS_STATUS;
+  try {
+    const data = await fetch(COMPS_URL).then(r => r.json());
+    COMPS_STATUS = {
+      count: data.count,
+      contentUpdated: data.content_updated || null,
+      verifiedOn: data.source_verification?.last_verified || null,
+      methodologyVersion: data.methodology_version || data.version || null
+    };
+  } catch (err) {
+    COMPS_STATUS = null;
+  }
+  return COMPS_STATUS;
+}
+
+function formatDate(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+}
+
+function renderEvidenceStatus(status) {
+  if (!status) return '';
+  const changed = formatDate(status.contentUpdated) || 'Not recorded';
+  const verified = formatDate(status.verifiedOn) || 'Not verified';
+  return `
+    <p class="estimate-notice-meta">
+      Comparable-sales dataset: ${escapeHtml(status.count)} reported sales ·
+      content last changed: ${escapeHtml(changed)} ·
+      source verification: ${escapeHtml(verified)} ·
+      methodology v${escapeHtml(status.methodologyVersion || '')}
+    </p>
+  `;
+}
+
+function renderEstimateNotice(status) {
+  return `
+    <div class="disclaimer estimate-notice" role="note" aria-label="Price estimate limitation">
+      <p><strong>Experimental valuation estimate.</strong> Price accuracy has not yet been independently validated. Comparable-sales coverage and source verification are under review.</p>
+      ${renderEvidenceStatus(status)}
+    </div>
+  `;
+}
+
 function escapeHtml(str) {
   return String(str)
     .replaceAll('&', '&amp;')
@@ -73,7 +124,10 @@ function renderComparables(comparables) {
   if (!comparables || !comparables.length) return '';
 
   return `
-    <div class="section-label">Comparable Sales</div>
+    <div class="section-label">Reported Comparable Sales</div>
+    <p class="comp-note">
+      Reported sale prices, shown for context. Individual source provenance has not yet been independently verified for every sales record, and a listed sale does not establish the value of another domain.
+    </p>
     <div class="comp-list">
       ${comparables.map(item => `
         <div class="comp-row">
@@ -119,7 +173,7 @@ function renderBulletList(items) {
   `;
 }
 
-function renderValuationResult(result) {
+function renderValuationResult(result, compsStatus) {
   const resultCard = document.getElementById('resultCard');
 
   resultCard.innerHTML = `
@@ -130,14 +184,19 @@ function renderValuationResult(result) {
       <div>
         <div class="result-name">${escapeHtml(result.sld)}<span class="tld-part">${escapeHtml(result.tld)}</span></div>
         <div style="margin-top:8px;color:var(--muted);font-size:.86rem;">
-          ${humanizeClassification(result.classification)} · Confidence: ${confidenceLabel(result.confidence)}
+          ${humanizeClassification(result.classification)} · Classification confidence: ${confidenceLabel(result.confidence)}
         </div>
+        <p class="confidence-note">
+          This indicator describes confidence in the name's linguistic classification, not the accuracy of the estimated market price.
+        </p>
       </div>
     </div>
 
     <div class="tier-badge tier-${result.score >= 85 ? 'ultra' : result.score >= 70 ? 'premium' : result.score >= 55 ? 'strong' : result.score >= 35 ? 'standard' : 'low'}">
       Score: ${escapeHtml(result.score)}/100
     </div>
+
+    ${renderEstimateNotice(compsStatus)}
 
     <div class="value-grid">
       <div class="value-box hl">
@@ -192,7 +251,7 @@ function renderValuationResult(result) {
     ${renderComparables(result.comparables)}
 
     <div class="disclaimer" style="margin-top:16px;">
-      <strong>Note:</strong> This is a structured directional estimate based on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and comparable public sales context. It is not a guaranteed sale price and not a certified appraisal.
+      <strong>Note:</strong> This is an experimental, structured directional estimate based on lexical legitimacy, commercial keyword logic, TLD quality, naming structure, and reported public sales context. Its price accuracy has not yet been independently validated. It is not a guaranteed sale price and not a certified appraisal.
     </div>
   `;
 
@@ -239,7 +298,10 @@ async function handleValuation() {
   showLoading();
 
   try {
-    const result = await evaluateDomain(value);
+    const [result, compsStatus] = await Promise.all([
+      evaluateDomain(value),
+      loadCompsStatus()
+    ]);
 
     hideLoading();
     button.disabled = false;
@@ -249,7 +311,7 @@ async function handleValuation() {
       return;
     }
 
-    renderValuationResult(result);
+    renderValuationResult(result, compsStatus);
     resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (err) {
     hideLoading();

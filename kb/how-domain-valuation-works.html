@@ -45,7 +45,7 @@
   "description": "Why flat appraisal scores fail, how a three-layer valuation architecture works — lexical classification, market weighting, and sales evidence — and why methodology transparency is the only real accuracy guarantee.",
   "url": "https://sohadot.com/kb/how-domain-valuation-works.html",
   "datePublished": "2026-06-12",
-  "dateModified": "2026-06-12",
+  "dateModified": "2026-10-08",
   "inLanguage": "en",
   "author": { "@id": "https://sohadot.com/#organization" },
   "publisher": { "@id": "https://sohadot.com/#organization" },
@@ -274,11 +274,13 @@
       <h2>Layer 3 — Evidence: what has the market actually paid?</h2>
       <p>
         Formula output is hypothesis; transactions are evidence. The final layer calibrates the model against
-        <a href="/kb/how-to-read-comparable-sales.html">comparable sales</a> under an evidence hierarchy: a documented
+        <a href="/kb/how-to-read-comparable-sales.html">comparable sales</a> under an evidence hierarchy: a reported
         prior sale of the exact domain anchors the estimate outright; a same-name sale on another extension carries
         half the weight; related sales (same class or shared keyword) contribute through their median, blended
-        geometrically so one famous outlier cannot inflate a thousand ordinary estimates. The
-        <a href="/data/valuation_comps.json">comps dataset itself is public</a> — every anchor can be inspected.
+        geometrically to limit the pull of any one famous outlier. The
+        <a href="/data/valuation_comps.json">comps dataset itself is public</a>, so every anchor can be inspected. Its
+        entries are reported sales: individual source provenance has not yet been independently verified for every
+        sales record, and the tool's price estimates are experimental until their accuracy is independently validated.
       </p>
 
       <div class="callout">

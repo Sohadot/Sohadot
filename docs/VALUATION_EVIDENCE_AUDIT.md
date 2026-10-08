@@ -235,3 +235,113 @@ Records with `price_status` of `undisclosed` or `estimated` never enter pricing.
 3. Rename the result-card label to "Classification confidence" (F9).
 
 Each is a public-surface change, so it is left for an explicit decision.
+
+---
+
+## Sprint 0B — Public integrity correction (implemented 2026-10-08)
+
+Sprint 0B applies the three interim recommendations above and closes Sprint 0.
+It changes what the site *says* about the valuation, and how the comps file
+records time. It does not change what the engine *computes*. The Sprint 0A
+findings and measurements above are kept unchanged as the historical record.
+
+### Public claims corrected
+
+| Surface | Before | After |
+| --- | --- | --- |
+| `valuation.html` methodology intro | "datasets are refreshed weekly" | Datasets are published as JSON. The comps file records when its content last changed, separately from build time, and carries the provenance disclosure |
+| `valuation.html` Step 6, FAQ (HTML + JSON-LD), changelog 2.2/2.3 | "documented" sale / "documented landmark sales" | "reported" sale / "reported landmark sales" (changelog 2.3 adds: provenance not independently verified) |
+| `valuation.html` Step 6, FAQ | median and geometric blend mean "one outlier sale cannot inflate the estimate" | They are *intended to limit* outlier influence. The text says these safeguards are partial (F6) |
+| `valuation.html` Scope and limitations | "directional estimates" | Experimental estimates, price accuracy not independently validated, a link to this audit, reported sales, and a listed sale does not establish another domain's value |
+| `valuation.html` changelog | — | October 2026 disclosure row, explicitly with no scoring change |
+| `kb/how-domain-valuation-works.html`, `kb/how-to-read-comparable-sales.html` | "documented" sale; "cannot inflate" / "no single outlier can distort" | "reported" sale; "limit the influence"; the provenance disclosure is attached to the dataset link |
+| `kb/keyword-strength-and-naming-terrain.html` | "as the public sales record shows" | "as reported public sales indicate" |
+| `llms.txt` | "Documented public domain sales"; "own documented sale" | "Reported public domain sales" + provenance disclosure; estimates labelled experimental |
+| `index.html`, `about.html`, `knowledge-base.html` stat cards | "300+ Public sales anchors / references / signals" | "45 Reported sales in the comps dataset". No source in the repository supported 300+. The published comps file holds 45 records |
+
+General market advice in the knowledge base is unchanged. For example, the line
+saying a documented prior sale is strong evidence still stands: it describes a
+standard to apply, not a claim about Sohadot's data.
+
+### Timestamp behaviour corrected
+
+`scripts/generate_valuation_data.py` now:
+
+- normalises the seed deterministically and hashes the normalised sales
+  (`content_sha256`);
+- carries `content_updated` forward unchanged while the hash is unchanged, and
+  leaves the file byte-identical, so the weekly workflow makes no commit;
+- advances `content_updated` only when the sales content changes;
+- writes `generated_at` only when the file is actually rewritten (a content or
+  metadata change). It is never presented as data freshness;
+- writes `source_verification` as `not_verified` / `last_verified: null`. A
+  verification date can come only from a human-recorded
+  `last_source_verification` value in the seed. Running the workflow never sets
+  one;
+- keeps `last_updated` / `last_updated_human` for compatibility, now mirroring
+  `content_updated`.
+
+**One-time bootstrap.** The previous file had only build timestamps, so its
+`last_updated` could not be reused as a content date. `content_updated` was set
+once to `2026-06-12T06:24:11Z`, the date of commit `f475400`, the last commit
+that modified `data/valuation_comps_seed.json` in GitHub history. The basis is
+recorded in `content_updated_basis`. It is a content date, not a verification
+date.
+
+### Result card
+
+- "Confidence: X" is now "Classification confidence: X". Below it is always-visible
+  text (no hover required): *"This indicator describes confidence in the name's
+  linguistic classification, not the accuracy of the estimated market price."*
+- Directly above the price grid is a `role="note"` box: *"Experimental valuation
+  estimate. Price accuracy has not yet been independently validated.
+  Comparable-sales coverage and source verification are under review."* It also
+  shows the dataset status: 45 reported sales · content last changed June 12,
+  2026 · source verification: Not verified · methodology v2.5.
+- The comps section is titled "Reported Comparable Sales". It states that
+  provenance is not independently verified and that a listed sale does not
+  establish another domain's value.
+- The closing note calls the estimate experimental and refers to "reported"
+  public sales.
+- `valuation-ui.js` cache key moved to `?v=2.5.1`. The engine and its data cache
+  key (`2.5`) are unchanged.
+
+### Deliberately unchanged
+
+Scoring formulas, pricing multipliers, lexical classification, comps matching,
+all 45 sale prices, classes and keyword tags, use-case logic,
+`js/valuation-engine.js` and `data/valuation_config.json`. The 19 class
+disagreements (F4) were **not** rewritten to match the classifier, which is not
+ground truth.
+
+### Tests executed (2026-10-08)
+
+| Check | Result |
+| --- | --- |
+| `python3 -m unittest discover -s tests -v` (15 tests: determinism, content vs build time, legacy bootstrap, verification status, disclosure validator incl. negative case, engine baseline, audit gates) | 15 passed |
+| `python3 scripts/validate_valuation_disclosures.py` (new) | PASS |
+| All existing `scripts/validate_*.py` validators | PASS |
+| `python3 scripts/audit_valuation_evidence.py --as-of-year 2026` | 0 FAIL, 100 WARN (unchanged from 0A) |
+| `... --strict` | exit 1, as intended (0/45 records with provenance) |
+| `node scripts/valuation_backtest.mjs` before vs after | JSON report identical. LOO median abs. log10 error still 1.925, within 10× still 31.1% |
+| Engine snapshot (45 seed domains + 15 probes; score, class, confidence, comps, pricing) | identical to the pre-change baseline |
+| Generator run twice on the published seed | second run: "unchanged … not rewritten"; file byte-identical |
+| Chromium render at 1366 px and 375 px (`zuno.com`) | notice above prices, labels visible without hover, no horizontal scroll, no console errors |
+| `git diff --check` | clean |
+
+### Remaining evidence gaps (unchanged by design)
+
+F1 (0/45 provenance), F3 (landmark skew and age), F4 (19 class disagreements),
+F5 (15 dead and 18 semantic tags), F6 (landmark comps reaching ordinary names),
+F7 (leave-one-out accuracy) and F8 (no holdout) all remain. The disclosures
+describe these limits; they do not fix them.
+
+### Sprint 1 readiness conditions
+
+1. Each of the 45 records is verified against a primary or reputable secondary
+   source, or removed or marked `reference_only`. No placeholder sources.
+2. The Sprint 1 evidence schema is adopted, and `audit_valuation_evidence.py
+   --strict` passes and becomes a mandatory gate.
+3. An independent holdout set is frozen before any methodology change.
+4. Any change to comps matching, classes or tags ships with a version bump, a
+   new engine baseline, and before/after holdout metrics.
