@@ -17,6 +17,21 @@
     "incorporated into any information retrieval system". The other wording
     quoted for those two was read once.
 
+## 0. What this map does and does not establish
+
+| This map records | This map does **not** decide |
+| --- | --- |
+| What each reviewed provider's own published terms, notices, robots.txt or API documents say about copying, scraping, databases and reuse of **its site or data** | Whether an individual sale fact (domain, price, date) is itself protected, under copyright, database rights or any other law |
+| Whether a provider offers a permission or licence route | Whether a fact learned from one provider can be used once it is confirmed independently, e.g. from the parties or a public record |
+| Sohadot's conservative operating classification for each provider | Whether a provider's terms bind Sohadot (browsewrap vs clickwrap), or which jurisdiction's law applies |
+
+- The classifications below describe **documented provider restrictions**.
+  They are not legal conclusions about sale facts in general.
+- The legal questions are open and assigned to counsel: D1a and D1b in
+  FIRST_500_PLAN.
+- Until counsel answers, Sohadot follows each provider's restrictions and
+  treats rights it has not documented as not established.
+
 ## 1. Discovery is not ingestion
 
 | Use | Meaning | Rights needed |
@@ -37,23 +52,23 @@ Rules carried over from Sprint 1A:
 | Code | Meaning |
 | --- | --- |
 | `BULK_PERMITTED` | Terms allow copying and reuse (e.g. US government records), subject to access rules |
-| `CITATION_ONLY` | Individual facts may be cited with attribution; bulk use not allowed or not addressed |
+| `CITATION_ONLY` | The provider's terms allow, or do not address, citing individual items with attribution; bulk use is restricted or not addressed |
 | `DISCOVERY_ONLY` | Use as leads; record nothing beyond a pointer without a reviewed primary source |
 | `NEEDS_PERMISSION` | Terms reserve reuse to written consent or a licence. Written permission is the contractually intended route. |
-| `PROHIBITED` | Terms forbid scraping, extraction or building a database without consent |
+| `PROHIBITED` | The provider's terms forbid scraping, extraction or building a database without consent |
 | `UNKNOWN` | Terms could not be read. Treated as `NEEDS_PERMISSION`. |
 
 ## 3. Marketplaces, auction venues and brokers (primary venue data)
 
 | Source | Public sold data | Sub-$100k coverage | Terms read | Key clause | Classification | Market side and biases |
 | --- | --- | --- | --- | --- | --- | --- |
-| Sedo | Weekly top-sales reports, mostly relayed by press. Newsroom has only aggregate annual reports. | Yes (weekly runners-up ~$5k–$50k) | Yes, Sedo general terms, version 01 March 2023 | ✔︎ prohibited uses include "competitor analysis … data mining or scraping using robots or in some other way". §6: database information is Sedo's property. | `PROHIBITED` for bulk; individual facts Sedo announces can be cited via press; written licence needed for more | Mixed, mostly retail. Only sales Sedo chooses to publish; NDA sales absent. Ownership may change (Ionos sale of its AdTech unit reported Nov. 2025). The "competitor analysis" wording is a specific risk for a valuation site. |
+| Sedo | Weekly top-sales reports, mostly relayed by press. Newsroom has only aggregate annual reports. | Yes (weekly runners-up ~$5k–$50k) | Yes, Sedo general terms, version 01 March 2023 | ✔︎ prohibited uses include "competitor analysis … data mining or scraping using robots or in some other way". §6: database information is Sedo's property. | `PROHIBITED` for bulk under Sedo's terms. The terms do not address citing an individual sale relayed by the press; that is a legal question (D1b). A written licence is needed for more. | Mixed, mostly retail. Only sales Sedo chooses to publish; NDA sales absent. Ownership may change (Ionos sale of its AdTech unit reported Nov. 2025). The "competitor analysis" wording is a specific risk for a valuation site. |
 | GoDaddy Auctions / Afternic (incl. Dan.com) | No public sold-results page or sold-data API found. The Auctions API covers bidding only. | Largest pool of completed sub-$100k sales, not published | No: godaddy.com returned 403; Afternic terms render only in JavaScript. A GoDaddy-family reseller copy of the UTOS was read: "You will not collect or harvest … any User Content … without their express prior written consent." | `UNKNOWN`, leaning `NEEDS_PERMISSION` | Auctions: wholesale. Afternic: retail. Auction results can include non-paying winners. |
 | GoDaddy investor filings (10-K, earnings) | Aggregate aftermarket revenue only | No per-sale data | SEC public records | — | Macro context only | n/a |
 | Dynadot | No public sold page; robots.txt disallows `/market/*` auction and listing paths | Unknown | Yes, version 2026-10-02 | ✔︎ content may not be "incorporated into any information retrieval system"; API data may not be incorporated "into other applications" | `PROHIBITED` | Mixed |
 | Atom (formerly Squadhelp) | No public sold page found | Unknown | Yes, last updated Nov. 4, 2025 | ✔︎ no "automated means (including bots, crawlers, or scrapers) to access or collect data from the Services without our written permission" | `NEEDS_PERMISSION` | Retail brandables. Atom sets list prices through its own review, and payment plans are reported (unverified). |
 | Flippa | "Recently sold" filter; price visibility without login unverified | Yes, small deals | Yes, last updated Nov. 6, 2025 | ✔︎ "You may also not create and/or publish your own database that features substantial parts of the Flippa Services … without our express written consent." | `NEEDS_PERMISSION` (database-right wording) | Mixed, small retail |
-| park.io | Home page shows recent sales with prices | Yes, mostly $99 to low thousands | Yes, last updated Mar. 13, 2017 | ✔︎ "no scraping" | `NEEDS_PERMISSION`; individual facts citable | Wholesale ccTLD drop-catch. $99 is often the fixed backorder price, not a market price. |
+| park.io | Home page shows recent sales with prices | Yes, mostly $99 to low thousands | Yes, last updated Mar. 13, 2017 | ✔︎ "no scraping" | `NEEDS_PERMISSION` under park.io's terms. Citing an individual sale is not addressed by its terms; legal question (D1b). | Wholesale ccTLD drop-catch. $99 is often the fixed backorder price, not a market price. |
 | Porkbun | No sold data visible | — | Partly; no data clause found | — | Not a source | — |
 | Escrow.com | No per-sale public data | — | Yes | — | Not a source (could carry seller-consented receipts, §6) | — |
 | Grit Brokerage | "Notable sales" list, mostly without prices | Few | Terms page not found | — | `CITATION_ONLY` at most | Retail, brokered; NDAs remove most prices |
@@ -81,8 +96,10 @@ Rules carried over from Sprint 1A:
 
 ## 5. What follows
 
-1. **Today, no source with substantial sub-$100k coverage permits bulk
-   ingestion for model calibration.**
+1. **Under its own published terms, no reviewed provider with substantial
+   sub-$100k coverage permits bulk ingestion for model calibration.** This
+   finding is about provider restrictions, not about whether sale facts are
+   legally protected (§0).
    - Every such source (DN Journal, NameBio, Sedo, Atom, Flippa, park.io,
      Dynadot, GoDaddy/Afternic) either requires written permission or a
      licence, or has terms that could not be read.
@@ -93,8 +110,9 @@ Rules carried over from Sprint 1A:
 3. **Lawful routes to volume:**
    - written permission or a data licence from a publisher or venue;
    - seller- and broker-consented submissions;
-   - a documented lawful basis, confirmed by counsel, for manually recording
-     individually announced facts. Volume by that route is modest, and Sedo's
+   - a documented lawful basis, if counsel can confirm one, for manually
+     recording individually announced facts. Whether such a basis exists, and
+     how it interacts with provider terms, is open (D1b). Volume by that route is modest, and Sedo's
      "competitor analysis" clause is a specific risk.
    - All three are owner decisions (see FIRST_500_PLAN).
 4. **Venue biases to model:**

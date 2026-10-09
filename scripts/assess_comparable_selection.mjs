@@ -392,6 +392,7 @@ async function main() {
     k: K,
     units: 'log10 ratios; 1.0 = 10x, 0.301 = 2x. Retail mid = geometric mean of the retail band.',
     selection_replica_matches_engine: true,
+    probe_corpus_note: 'SYNTHETIC probe names run through the real engine and the 45 published comps. Measures engine behaviour (how far comps move estimates), not accuracy; not externally validated.',
     probe_summary: summarizeProbes(rows),
     expansion_simulation: {
       warning: 'SYNTHETIC comps from an illustrative price distribution. Not evidence and not a forecast of real prices.',
@@ -410,18 +411,19 @@ async function main() {
     return;
   }
   const s = report.probe_summary;
-  console.log(`Comparable-selection assessment: engine v${report.engine_framework_version}, ${report.comps_count} comps, ${s.probes} probes`);
+  console.log(`Comparable-selection assessment: engine v${report.engine_framework_version}, ${report.comps_count} comps, ${s.probes} SYNTHETIC probes`);
+  console.log('  Behavioural findings on a synthetic probe corpus and simulated comps; not accuracy metrics.');
   console.log(`  probes using comps: ${s.share_with_comps}`);
   console.log(`  comp uplift (log10) when used: ${JSON.stringify(s.comp_uplift_log10_when_used)}`);
   console.log(`  probes moved >=10x by comps: ${s.share_uplift_over_10x}`);
   console.log(`  tie-breaker decides the 4-result cut: ${s.share_where_tie_breaker_decides_cut}`);
   console.log(`  price_asc vs v2.5 (log10): ${JSON.stringify(s.tie_breaker_sensitivity_log10.price_asc_vs_v25)}`);
   console.log(`  most used comps: ${s.most_used_comps.slice(0, 5).map(c => `${c.domain} ${c.share_of_probes}`).join(', ')}`);
-  console.log('Expansion simulation (synthetic):');
+  console.log('Expansion simulation (SIMULATED comps):');
   for (const r of report.expansion_simulation.results) {
     console.log(`  N=${r.synthetic_comps}: eligible median ${r.median_eligible_comps}, tie decides ${r.share_where_tie_breaker_decides_cut}, selected-vs-eligible median log10 ${JSON.stringify(r.selected_vs_eligible_median_log10)}`);
   }
-  console.log('Mixed expansion (45 real + synthetic ordinary sales):');
+  console.log('Mixed expansion (45 real + SIMULATED ordinary sales):');
   for (const r of report.mixed_expansion_simulation.results) console.log(`  +${r.synthetic_ordinary_sales_added}: ${JSON.stringify({ v25: r.v25_price_desc, tie_median: r.tie_median })}`);
   if (jsonOut) {
     fs.writeFileSync(path.resolve(jsonOut), JSON.stringify(report, null, 1) + '\n');

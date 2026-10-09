@@ -7,6 +7,7 @@
  "k": 4,
  "units": "log10 ratios; 1.0 = 10x, 0.301 = 2x. Retail mid = geometric mean of the retail band.",
  "selection_replica_matches_engine": true,
+ "probe_corpus_note": "SYNTHETIC probe names run through the real engine and the 45 published comps. Measures engine behaviour (how far comps move estimates), not accuracy; not externally validated.",
  "probe_summary": {
   "probes": 805,
   "share_with_comps": 0.916,

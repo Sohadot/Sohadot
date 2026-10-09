@@ -501,9 +501,13 @@ in the entries that cite them. They are not rewritten.
 
 ### Rationale
 
-- **Rights:** no source with substantial sub-$100k coverage permits bulk
-  reuse without permission, so expansion depends on permissions, not
-  collection effort.
-- **Engine:** the 45 published comps, mostly $1M+ landmarks, raise a typical
-  estimate about tenfold. A larger dataset helps only if both the pool and
-  the selection rule are fixed.
+- **Rights:** under their own published terms, no reviewed provider with
+  substantial sub-$100k coverage permits bulk reuse without permission, so
+  expansion depends on permissions, not collection effort. This is a finding
+  about provider restrictions. Whether individual sale facts are legally
+  protected is left open for counsel.
+- **Engine:** on a synthetic probe corpus, the 45 published comps (mostly
+  $1M+ landmarks) raise the median probe estimate about tenfold. This is a
+  behavioural finding, not an externally validated accuracy metric. Simulated
+  expansion shows that a larger dataset helps only if both the pool and the
+  selection rule are fixed.

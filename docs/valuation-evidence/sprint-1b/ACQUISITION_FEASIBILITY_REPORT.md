@@ -24,15 +24,21 @@
 1. **Discovery is easy.** Trade press lists thousands of ordinary sales a
    year: DN Journal alone shows about 170 sub-$10k sales per bi-weekly
    report.
-2. **Lawful bulk use is not available today.**
-   - Every source with substantial sub-$100k coverage reserves reuse to
-     written permission or a licence, or has terms that could not be read.
+2. **No provider's own terms permit bulk use today.**
+   - Every reviewed provider with substantial sub-$100k coverage reserves
+     reuse to written permission or a licence, or has terms that could not
+     be read.
      This covers DN Journal, NameBio, Sedo, Atom, Flippa, park.io, Dynadot
      and GoDaddy/Afternic.
    - The only clearly reusable sources, SEC filings and court orders, give
      tens of mostly large or bundled deals.
-3. **500 qualified transactions are feasible only through permission or a
-   licence.**
+3. **Under the documented provider restrictions, 500 qualified
+   transactions are feasible only through permission or a licence.**
+   - These are statements about the providers' published terms. Whether
+     individual sale facts are legally protected, and whether an
+     independently confirmed fact may be used, are separate legal questions
+     left open for counsel (D1a, D1b). The answers could widen Workstreams A
+     and F; they would not set aside a provider's terms that bind Sohadot.
    - One permission from DN Journal, or two or three venue permissions,
      could supply the first 500 with stratified coverage.
    - The holdout needs another 150 or more from independent source
@@ -54,27 +60,35 @@
 
 Detailed in `ENGINE_BIAS_BASELINE.md`.
 
-- **The comps set the estimate.**
+> **Synthetic probes and simulated data.** The figures below describe how
+> engine v2.5 behaves on a synthetic corpus of 805 probe names and on
+> simulated comps. They are behavioural findings about the selection rule.
+> They are **not accuracy metrics** and have not been validated against real
+> sales outside the 45 published comps. The only real-sale figures are the
+> leave-one-out results, which are internal to those 45 comps.
+
+- **The comps set the estimate (synthetic probe corpus).**
   - 91.6% of 805 probe names use comps.
-  - The median effect is about ×10.7.
+  - The median effect on a probe's estimate is about ×10.7.
   - 55.9% of names are moved up by 10× or more.
   - Median retail mid is $48,269 with comps and $4,343 without.
   - Cause: 28 of the 45 comps are $1M+ landmark sales, and dictionary or
     keyword names share a class with them.
-- **The 4-result limit and the price-descending tie-breaker.**
+- **The 4-result limit and the price-descending tie-breaker (probes, then
+  simulated comps).**
   - The tie-breaker decides the cut for 53.8% of probes today, with a small
     effect, because the pool is uniformly expensive.
   - In synthetic expansion the effect grows with dataset size: selected
     comps sit about ×2.2 above the eligible median at 500 comps, and about
     ×9 at 10,000.
   - A neutral tie-breaker stays near zero.
-- **Expansion alone does not fix it.**
+- **Expansion alone does not fix it (simulated ordinary sales).**
   - With synthetic ordinary sales added to the 45 comps, landmarks still
     fill 8–13% of selected comps under v2.5.
   - The typical estimate also drifts upward as the pool grows.
   - The pool (evidence- and rights-checked, landmarks kept as reference
     only) and the selection rule both need testing.
-- **Leave-one-out on the 45 comps:**
+- **Leave-one-out on the 45 published comps (real sales, internal only):**
   - landmarks underestimated by a median of about 160×;
   - the 8 sales under $10k overestimated by a median of about 2.7×.
 
@@ -83,7 +97,7 @@ Detailed in `ENGINE_BIAS_BASELINE.md`.
 Detailed in `SOURCE_ACQUISITION_AND_RIGHTS_MAP.md`; ten key clauses were
 re-checked against the live pages.
 
-| Source group | Discovery | Bulk use for calibration |
+| Source group | Discovery | Bulk use for calibration under the provider's own terms |
 | --- | --- | --- |
 | DN Journal | Yes (best index; names the venue per row) | Written consent required ("No … content of any kind may be copied … without expressed written consent") |
 | NameBio | Not consulted beyond the API terms | Paid licence plus written permission, even for a free product |

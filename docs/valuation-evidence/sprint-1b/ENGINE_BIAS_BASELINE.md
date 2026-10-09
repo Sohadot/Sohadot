@@ -11,10 +11,18 @@
 - **Units:** errors and effects are log10 ratios. 1.0 means 10×, 0.301 means 2×.
   "Retail mid" is the geometric mean of the engine's retail band.
 
-> The probes below are synthetic names chosen to exercise the engine. They are
-> not valuations of real assets. Sections 4 and 5 use **synthetic** comps from
-> a stated, illustrative price distribution. They show how the selection rule
-> behaves and are not evidence or forecasts of real prices.
+> **READ FIRST: synthetic probes and simulated data. Not accuracy metrics.**
+>
+> | Section | Data | What it can show |
+> | --- | --- | --- |
+> | §2 F1, F2 | **Synthetic probe corpus**: 805 generated names run through the real engine and the real 45 comps | How much the comps move the engine's output. Not whether any estimate is right. |
+> | §2 F3 | Real sales: leave-one-out on the 45 published comps | Internal error on those 45 sales only; not externally validated |
+> | §4, §5 | **Simulated comps** from an assumed price distribution | Direction and rough size of the tie-breaker effect as a dataset grows. Not real prices. |
+>
+> The "about 10×" comp effect is a probe-corpus finding about engine
+> behaviour. It is not an externally validated accuracy metric, and it does
+> not say how far v2.5 is from real market prices. The probes are generated
+> names, not valuations of real assets or real query traffic.
 
 ## 1. How v2.5 selects and uses comparables
 
@@ -41,7 +49,7 @@ the price tie-breaker often decides which comps are used.
 
 ## 2. Findings on the current 45 comps
 
-### F1. The comps dominate the output, and they are mostly landmark sales
+### F1. The comps dominate the output, and they are mostly landmark sales (synthetic probe corpus)
 
 - 28 of the 45 comps are sales of $1M or more.
 - 805 probe names were spread across common words, commercial keywords,
@@ -75,7 +83,7 @@ By probe group (median retail mid, with comps / without):
 - **Extensions:** the extension adds only 18 points, so .net, .org, .io and
   .co queries draw the same .com landmarks (median effect +0.97 to +1.06).
 
-### F2. The 4-result limit and the descending-price tie-breaker
+### F2. The 4-result limit and the descending-price tie-breaker (synthetic probe corpus)
 
 - **Frequency:** in 53.8% of probes the 4th place falls inside a group of
   comps with the same score, so the tie-breaker decides which comps are used.
@@ -91,7 +99,7 @@ By probe group (median retail mid, with comps / without):
   places, it always takes the most expensive tied comps. Sections 4 and 5
   show that this bias grows as the dataset grows.
 
-### F3. Leave-one-out accuracy on the 45 comps
+### F3. Leave-one-out accuracy on the 45 comps (real sales; internal, not externally validated)
 
 | Recorded price band | n | Median signed error | Median absolute error |
 | --- | --- | --- | --- |
@@ -134,7 +142,7 @@ four are chosen and what pool they come from:
   slots from the top of the price distribution (Sections 4 and 5).
 - The median of 4 values is sensitive to one or two outliers.
 
-## 4. Expansion simulation: tie-breaker bias grows with the dataset (synthetic)
+## 4. SIMULATED DATA: tie-breaker bias grows with the dataset
 
 - **Synthetic sales:** log-normal prices with a median of $2,500 and a log10
   standard deviation of 0.6. Classes, extensions and lengths are drawn from
@@ -158,10 +166,11 @@ four are chosen and what pool they come from:
 - A neutral tie-breaker keeps the selection representative at every size.
 - Reversing the tie-breaker only flips the bias.
 
-## 5. Mixed expansion: real comps plus synthetic ordinary sales
+## 5. SIMULATED DATA: real comps plus simulated ordinary sales
 
-- **Setup:** the 45 published comps stay in the pool and synthetic ordinary
-  sales are added (as in Section 4, using real commercial keywords).
+- **Setup:** the 45 published comps stay in the pool and **simulated**
+  ordinary sales are added (as in Section 4, using real commercial keywords).
+  The dollar figures in this table come from simulated prices.
 - **Engines:** the v2.5 engine and the same engine with a neutral
   tie-breaker, on the 805 probes.
 
