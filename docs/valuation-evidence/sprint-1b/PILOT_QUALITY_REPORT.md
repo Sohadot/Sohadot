@@ -51,6 +51,8 @@
 | FX_BASIS_MISSING (non-USD amount without a recorded conversion basis) | 1 |
 | MATERIAL_CONFLICT_UNRESOLVED (material conflict about the transaction itself) | 1 |
 | NO_REVIEWED_SOURCE (no directly reviewed source (leads or unsourced claims only)) | 20 |
+| PRICE_INVALID (sale price, original amount or USD amount missing, zero, negative, non-numeric or non-finite) | 21 |
+| PRICE_NOT_VERIFIABLE (price disclosure is not EXACT or ROUNDED) | 21 |
 | PRICE_TYPE_UNKNOWN (not yet classified (completed, agreed, reported, bid or asking)) | 20 |
 | RIGHTS_NOT_ESTABLISHED (storage or commercial-modelling right not established) | 49 |
 | SALE_DATE_UNKNOWN (no sale date stated by evidence (report dates and windows do not count)) | 49 |

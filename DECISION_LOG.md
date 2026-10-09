@@ -503,6 +503,10 @@ in the entries that cite them. They are not rewritten.
    - A report date or reporting window is never a sale date. Without a
      stated sale date, a record stays `SALE_DATE_UNKNOWN` and cannot become
      eligible.
+   - Only evidenced sale dates decide whether two reports are one sale or a
+     repeat sale. Otherwise the pair is ambiguous and needs review.
+   - Eligibility requires an exact or rounded disclosed price with valid,
+     positive and mutually consistent amount and currency fields.
 5. **No algorithm is selected yet.** The baseline shows that v2.5's
    price-descending tie-breaker biases selection upward as a dataset grows.
    Candidate methods are compared on development data only. No production

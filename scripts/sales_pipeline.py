@@ -30,6 +30,7 @@ Usage:
 
 import argparse
 import json
+import math
 import sys
 from collections import Counter
 from datetime import date
@@ -122,6 +123,9 @@ BLOCKERS = {
     "SCOPE_UNKNOWN": "not yet shown to be a single-domain sale",
     "SALE_DATE_UNKNOWN": "no sale date stated by evidence (report dates and windows do not count)",
     "FX_BASIS_MISSING": "non-USD amount without a recorded conversion basis",
+    "PRICE_NOT_VERIFIABLE": "price disclosure is not EXACT or ROUNDED",
+    "PRICE_INVALID": "sale price, original amount or USD amount missing, zero, negative, non-numeric or non-finite",
+    "PRICE_FIELDS_INCONSISTENT": "original amount or currency disagrees with the sale price, or the USD amount disagrees with a USD original",
     "RIGHTS_NOT_ESTABLISHED": "storage or commercial-modelling right not established",
     "UPSTREAM_RIGHTS_UNCONFIRMED": "rights granted by a secondary publisher; upstream venue or owner rights not confirmed",
     "DUPLICATE_UNRESOLVED": "possible duplicate or repeat sale needs review",
@@ -204,7 +208,23 @@ def pilot_records():
 
 # --- Duplicate, repeat-sale and bundle detection ------------------------------
 
+def _positive_number(x):
+    """A real, finite, positive number (bools and strings excluded)."""
+    return (isinstance(x, (int, float)) and not isinstance(x, bool)
+            and math.isfinite(x) and x > 0)
+
+
+def _evidenced_date(r):
+    """The sale date only when the evidence states it; otherwise None.
+    Dates with sale_date_basis NOT_ESTABLISHED never decide chronology."""
+    if r["pipeline"].get("sale_date_basis") == "EXPLICIT_IN_SOURCE" and r.get("sale_date_precision") != "UNKNOWN":
+        return r.get("sale_date")
+    return None
+
+
 def _days_apart(a, b):
+    if a is None or b is None:
+        return None
     da, db = reg.parse_partial_date(a), reg.parse_partial_date(b)
     if da is None or db is None:
         return None
@@ -223,8 +243,10 @@ def classify_pair(a, b):
     """Relationship between two records of the same normalised domain."""
     pa, pb = a["pipeline"], b["pipeline"]
     amt_a, amt_b = pa["amount_usd"], pb["amount_usd"]
-    days = _days_apart(a["sale_date"], b["sale_date"])
-    same_amount = (amt_a is not None and amt_b is not None
+    # Only evidenced sale dates can separate or merge transactions. Without
+    # them, a related pair stays AMBIGUOUS for a reviewer.
+    days = _days_apart(_evidenced_date(a), _evidenced_date(b))
+    same_amount = (_positive_number(amt_a) and _positive_number(amt_b)
                    and abs(amt_a - amt_b) <= DUP_AMOUNT_TOLERANCE * max(amt_a, amt_b))
     if days is not None and days >= REPEAT_MIN_DAYS:
         return "REPEAT_SALE"
@@ -249,7 +271,7 @@ def find_bundle_suspects(records):
     """Different domains citing the same passage with the same amount."""
     seen = {}
     for r in records:
-        if r["source_url"] and r["document_locator"] and r["pipeline"]["amount_usd"] is not None:
+        if r["source_url"] and r["document_locator"] and _positive_number(r["pipeline"]["amount_usd"]):
             key = (r["source_url"], r["document_locator"], round(r["pipeline"]["amount_usd"]))
             seen.setdefault(key, []).append(r)
     suspects = set()
@@ -263,6 +285,27 @@ def find_bundle_suspects(records):
 
 def _granted(rights, key):
     return rights[key]["status"] in reg.GRANTED
+
+
+VERIFIABLE_DISCLOSURE = {"EXACT", "ROUNDED"}
+
+
+def price_integrity_blockers(t):
+    """Fail-closed checks on the numbers an eligible record would carry."""
+    p = t["pipeline"]
+    out = []
+    if t["price_disclosure_status"] not in VERIFIABLE_DISCLOSURE:
+        out.append("PRICE_NOT_VERIFIABLE")
+    amounts = (t.get("sale_price"), p.get("original_amount"), p.get("amount_usd"))
+    if not all(_positive_number(a) for a in amounts):
+        out.append("PRICE_INVALID")
+        return out
+    sale, original, usd = amounts
+    currency, original_currency = t.get("currency"), p.get("original_currency")
+    if (original != sale or original_currency != currency or original_currency not in reg.CURRENCIES
+            or (original_currency == "USD" and usd != original)):
+        out.append("PRICE_FIELDS_INCONSISTENT")
+    return out
 
 
 def completion_evidence_ok(ev):
@@ -330,6 +373,8 @@ def assess(record, unresolved_dupes=frozenset(), bundle_suspects=frozenset()):
         blockers.append("SALE_DATE_UNKNOWN")
     if p["original_amount"] is not None and p["original_currency"] != "USD" and not p["fx_basis"]:
         blockers.append("FX_BASIS_MISSING")
+    if not ({"PRICE_NOT_DISCLOSED", "IMPRECISE_PRICE", "NOT_A_COMPLETED_SALE"} & set(rejections)):
+        blockers.extend(price_integrity_blockers(t))
     if not (_granted(t["rights"], "storage") and _granted(t["rights"], "commercial_modelling")):
         if "RIGHTS_NOT_PERMITTED" not in rejections:
             blockers.append("RIGHTS_NOT_ESTABLISHED")
@@ -459,6 +504,8 @@ def validate(records, errors):
 def price_band(usd):
     if usd is None:
         return "unknown"
+    if not _positive_number(usd):
+        return "invalid"
     for name, upper in PRICE_BANDS:
         if usd < upper:
             return name
@@ -472,7 +519,7 @@ def independence_summary(records):
     from several venues that all reach Sohadot through one publisher share
     that publisher's selection, errors and rights. Both shares are reported.
     """
-    pool = [r for r in records if r["evidence_status"] in ("VERIFIED", "REPORTED") and r["pipeline"]["amount_usd"] is not None]
+    pool = [r for r in records if r["evidence_status"] in ("VERIFIED", "REPORTED") and _positive_number(r["pipeline"]["amount_usd"])]
     if not pool:
         return {"records": 0, "max_family_share": None, "max_relay_share": None, "unknown_origin_share": None}
     fam = Counter(r["pipeline"]["source_family"] or "none" for r in pool)

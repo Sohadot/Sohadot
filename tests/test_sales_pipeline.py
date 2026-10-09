@@ -221,6 +221,100 @@ class RightsProvenance(unittest.TestCase):
         self.assertEqual(ind["max_relay_share"], 1.0)
 
 
+class PriceIntegrity(unittest.TestCase):
+    """An eligible record needs a valid, coherent, positive numeric price."""
+
+    def state(self, r):
+        p = assessed(r)["SOH-TX-900001"]["pipeline"]
+        return p["state"], p["blockers"]
+
+    def assert_blocked(self, r, blocker):
+        state, blockers = self.state(r)
+        self.assertNotEqual(state, "ELIGIBLE")
+        self.assertIn(blocker, blockers)
+
+    def test_missing_price(self):
+        self.assert_blocked(record(sale_price=None, original_amount=None, amount_usd=None), "PRICE_INVALID")
+
+    def test_zero_and_negative_prices(self):
+        for bad in (0, -4200, 0.0):
+            self.assert_blocked(record(sale_price=bad, original_amount=bad, amount_usd=bad), "PRICE_INVALID")
+
+    def test_non_finite_and_non_numeric_prices(self):
+        for bad in (float("nan"), float("inf"), "4200", True):
+            self.assert_blocked(record(sale_price=bad, original_amount=bad, amount_usd=bad), "PRICE_INVALID")
+
+    def test_usd_amount_must_be_positive(self):
+        self.assert_blocked(record(amount_usd=0), "PRICE_INVALID")
+        self.assert_blocked(record(amount_usd=None), "PRICE_INVALID")
+
+    def test_original_amount_must_match_sale_price(self):
+        self.assert_blocked(record(original_amount=5000), "PRICE_FIELDS_INCONSISTENT")
+
+    def test_original_currency_must_match_currency(self):
+        self.assert_blocked(record(original_currency="EUR"), "PRICE_FIELDS_INCONSISTENT")
+        self.assert_blocked(record(currency="XYZ", original_currency="XYZ", fx_basis="fixture rate"),
+                            "PRICE_FIELDS_INCONSISTENT")
+
+    def test_usd_original_must_equal_usd_amount(self):
+        self.assert_blocked(record(amount_usd=4300), "PRICE_FIELDS_INCONSISTENT")
+
+    def test_disclosure_must_be_exact_or_rounded(self):
+        for status in ("UNKNOWN", "STATED_SUBJECT_TO_ADJUSTMENT"):
+            self.assert_blocked(record(price_disclosure_status=status), "PRICE_NOT_VERIFIABLE")
+        self.assertEqual(self.state(record(price_disclosure_status="ROUNDED"))[0], "ELIGIBLE")
+
+    def test_non_usd_needs_positive_usd_and_fx_basis(self):
+        r = record(currency="EUR", original_currency="EUR", amount_usd=4500, fx_basis=None)
+        self.assert_blocked(r, "FX_BASIS_MISSING")
+        r = record(currency="EUR", original_currency="EUR", amount_usd=-1, fx_basis="ECB reference rate")
+        self.assert_blocked(r, "PRICE_INVALID")
+
+    def test_report_survives_invalid_amounts(self):
+        rows = [record("SOH-TX-900001", "a-one.com", float("nan"), original_amount=float("nan"), amount_usd=float("nan")),
+                record("SOH-TX-900002", "a-two.com", "x", original_amount="x", amount_usd="x")]
+        q = sp.quality_report(sp.assess_all(rows), {"record_count": None})
+        self.assertEqual(q["funnel"]["calibration_eligible"], 0)
+        self.assertEqual(q["price_band_all_priced"].get("invalid"), 2)
+
+    def test_invalid_price_cannot_be_declared_eligible(self):
+        r = sp.assess_all([record(sale_price=0, original_amount=0, amount_usd=0)])[0]
+        r["pipeline"].update(state="ELIGIBLE", blockers=[])
+        self.assertTrue(any("evidence supports SOURCE_REVIEWED" in e for e in sp.validate([r], [])))
+
+
+class Chronology(unittest.TestCase):
+    """Dates not established by evidence cannot decide duplicate or repeat relationships."""
+
+    def pair(self, basis_a, basis_b, amount_b, date_b):
+        a = record("SOH-TX-900001", "same.com", 3000, "2019-06-01", sale_date_basis=basis_a)
+        b = record("SOH-TX-900002", "same.com", amount_b, date_b, sale_date_basis=basis_b)
+        return a, b
+
+    def test_unverified_dates_cannot_establish_repeat_sale(self):
+        a, b = self.pair("NOT_ESTABLISHED", "NOT_ESTABLISHED", 9000, "2024-02-10")
+        self.assertEqual(sp.find_relationships([a, b])[0][2], "AMBIGUOUS")
+        out = assessed(a, b)
+        self.assertTrue(all("DUPLICATE_UNRESOLVED" in r["pipeline"]["blockers"] for r in out.values()))
+
+    def test_one_unverified_date_is_not_enough(self):
+        a, b = self.pair("EXPLICIT_IN_SOURCE", "NOT_ESTABLISHED", 9000, "2024-02-10")
+        self.assertEqual(sp.find_relationships([a, b])[0][2], "AMBIGUOUS")
+
+    def test_unverified_dates_cannot_establish_duplicate(self):
+        a, b = self.pair("NOT_ESTABLISHED", "NOT_ESTABLISHED", 3000, "2019-06-10")
+        self.assertEqual(sp.find_relationships([a, b])[0][2], "AMBIGUOUS")
+
+    def test_evidenced_dates_still_classify(self):
+        a, b = self.pair("EXPLICIT_IN_SOURCE", "EXPLICIT_IN_SOURCE", 9000, "2024-02-10")
+        self.assertEqual(sp.find_relationships([a, b])[0][2], "REPEAT_SALE")
+        a, b = self.pair("EXPLICIT_IN_SOURCE", "EXPLICIT_IN_SOURCE", 3000, "2019-06-10")
+        self.assertEqual(sp.find_relationships([a, b])[0][2], "DUPLICATE_REPORT")
+
+    def test_pilot_relationships_are_all_ambiguous(self):
+        self.assertEqual({k for _, _, k in sp.find_relationships(sp.pilot_records())}, {"AMBIGUOUS"})
+
+
 class Duplicates(unittest.TestCase):
     def test_duplicate_reports_block_until_resolved(self):
         a = record("SOH-TX-900001", "dupe.com", 5000, "2025-03-14")

@@ -37,7 +37,7 @@ DISCOVERED ──► SOURCE_REVIEWED ──► ELIGIBLE ──► CALIBRATION_AD
 | --- | --- | --- |
 | `DISCOVERED` | A lead or unsourced claim | No directly reviewed source |
 | `SOURCE_REVIEWED` | Evidence reviewed, but at least one blocker remains | Reviewed source (Registry v1 §3); no rejection reason |
-| `ELIGIBLE` | Meets every calibration condition | Reviewed; `COMPLETED_SALE` **with explicit completion evidence**; single domain; exact or rounded price; a sale date **stated by the evidence** (not a report date or window); cash or unknown consideration; USD amount or a recorded FX basis; storage and modelling rights granted **by a party able to grant them** (§3.3); no unresolved duplicate, conflict or bundle suspicion |
+| `ELIGIBLE` | Meets every calibration condition | Reviewed; `COMPLETED_SALE` **with explicit completion evidence**; single domain; an `EXACT` or `ROUNDED` disclosed price with valid, coherent amounts (§3.4); a sale date **stated by the evidence** (not a report date or window); cash or unknown consideration; USD amount or a recorded FX basis; storage and modelling rights granted **by a party able to grant them** (§3.3); no unresolved duplicate, conflict or bundle suspicion |
 | `CALIBRATION_ADMITTED` | In a named calibration batch | `ELIGIBLE`, plus a second review and an admission record (batch, approver, decision reference). **Closed** (`ADMISSION_OPEN = False`). |
 | `HOLDOUT_RESERVED` | Set aside for the independent holdout | `ELIGIBLE`, selected under the holdout protocol, stored only in the private manifest. Never in this repository. |
 | `REJECTED` | Not a usable comparable | At least one rejection reason |
@@ -67,6 +67,9 @@ arrives. A reserved holdout record never returns to calibration.
 | `SCOPE_UNKNOWN` | Not shown to be a single-domain sale |
 | `SALE_DATE_UNKNOWN` | No sale date stated by the evidence (`sale_date_basis` is not `EXPLICIT_IN_SOURCE`). A report date or reporting window never satisfies it. |
 | `FX_BASIS_MISSING` | Non-USD amount with no conversion basis |
+| `PRICE_NOT_VERIFIABLE` | Price disclosure is not `EXACT` or `ROUNDED` (for example `UNKNOWN` or `STATED_SUBJECT_TO_ADJUSTMENT`) |
+| `PRICE_INVALID` | Sale price, original amount or USD amount missing, zero, negative, non-numeric or non-finite |
+| `PRICE_FIELDS_INCONSISTENT` | Original amount differs from the sale price; original currency differs from the currency or is not a recognised code; or a USD original differs from the USD amount |
 | `RIGHTS_NOT_ESTABLISHED` | Storage or modelling right unknown |
 | `UPSTREAM_RIGHTS_UNCONFIRMED` | Rights granted by a secondary publisher (or with no named grantor), without confirmation that rights originating with the venue or other upstream owner are covered |
 | `DUPLICATE_UNRESOLVED` | Same domain as another record, relationship not yet resolved |
@@ -150,12 +153,28 @@ Confirmation may come from the publisher's own warranty of upstream rights,
 or from the upstream owner directly. Either way it is recorded as a
 reference before the record can clear.
 
+### 3.4 Price integrity
+
+An eligible record carries an `EXACT` or `ROUNDED` disclosed price, and:
+- `sale_price`, `pipeline.original_amount` and `pipeline.amount_usd` are
+  real, finite, positive numbers (booleans and strings are refused);
+- the original amount equals the sale price;
+- the original currency equals the record currency and is a recognised
+  code;
+- a USD original equals the USD amount;
+- a non-USD original has a recorded `fx_basis`.
+
+Any failure blocks eligibility. Duplicate, bundle and coverage checks skip
+invalid amounts rather than computing with them. The report shows them as
+an `invalid` price band.
+
 ## 4. Detection rules
 
 | Case | Rule (same normalised domain unless stated) |
 | --- | --- |
-| Duplicate report | Amounts within 2% and sale dates within 60 days. One record keeps the transaction; the other becomes `DUPLICATE_REPORT`, and its source is kept as an additional source. |
-| Repeat sale | Sale dates at least 180 days apart, or at least 2 calendar years apart at year precision. Linked through `repeat_sale_of`. |
+| Chronology basis | Only sale dates with `sale_date_basis: EXPLICIT_IN_SOURCE` decide duplicate or repeat relationships. If either record's date is `NOT_ESTABLISHED`, the pair is `AMBIGUOUS` and both records are blocked until a reviewer links them. |
+| Duplicate report | Amounts within 2% and evidenced sale dates within 60 days. One record keeps the transaction; the other becomes `DUPLICATE_REPORT`, and its source is kept as an additional source. |
+| Repeat sale | Evidenced sale dates at least 180 days apart, or at least 2 calendar years apart at year precision. Linked through `repeat_sale_of`. |
 | Ambiguous | Anything else, including adjacent years at year precision (a late report of one sale) and records with an unknown date. Blocks both records until a reviewer links them. |
 | Bundle suspicion | Different domains citing the same source passage with the same amount |
 | Asking prices, bids, agreements | Venue listings, "make offer" and "buy now" prices, and auction bids are `ASKING_PRICE` or `AUCTION_BID`. Auction results are `AUCTION_RESULT_UNCONFIRMED` until the venue or a party confirms payment, and `AUCTION_RESULT_UNPAID` if the winner defaults. "Agreed to sell", "in escrow" and "pending" are `ANNOUNCED_AGREEMENT`. |
