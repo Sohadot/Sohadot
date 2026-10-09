@@ -309,10 +309,12 @@ unsourced sales as verified.
 
 ### Decision
 
-1. sohadot.com publishes only the files listed in
-   `deploy/pages-manifest.json`, built into `_site/` by
-   `scripts/build_pages_artifact.py`. The whole repository is no longer
-   uploaded.
+1. sohadot.com publishes only the exact files listed in
+   `deploy/pages-manifest.json` (an approved inventory of pages, site files,
+   assets, JavaScript and runtime data, with no publish globs), built into
+   `_site/` by `scripts/build_pages_artifact.py`. The whole repository is no
+   longer uploaded. Generator inputs that no page fetches (the four seed or
+   candidate files under `data/`) are not published.
 2. Every tracked file must be classified as published or excluded. The build
    fails on unclassified files, missing required files, excluded paths in the
    artifact, link regressions and broken sitemap URLs.

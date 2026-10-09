@@ -1,23 +1,33 @@
 # GitHub Pages publication
 
-`deploy/pages-manifest.json` is the explicit list of what sohadot.com
-publishes. The deploy workflow (`.github/workflows/static.yml`) runs
-`scripts/build_pages_artifact.py`, which:
+`deploy/pages-manifest.json` is the explicit, approved inventory of what
+sohadot.com publishes. It lists exact paths, with no publish globs:
 
-1. copies only `publish` files and `publish_exceptions` into `_site/`;
-2. fails if any tracked file is unclassified, if a required file is missing,
-   if an excluded path appears in the artifact, if a local link or sitemap
-   URL that worked in the old whole-repository deployment would break, or if
-   an exception is no longer linked from a published page;
-3. uploads `_site/` instead of the whole repository.
+| List | Contents |
+| --- | --- |
+| `pages` | Every public HTML route |
+| `site_files` | CNAME, `.nojekyll`, robots, sitemap, `llms.txt`, favicon, verification files, security.txt |
+| `assets`, `javascript` | Images and scripts the pages load |
+| `runtime_data` | Data files the pages fetch at runtime or reference as public data (`llms.txt`, KB links) |
+| `publish_exceptions` | 11 repository files under `docs/` and `scripts/` that public pages link to on sohadot.com. Each must remain linked. |
 
-`publish_exceptions` are individual repository files (some `docs/*.md` and
-`scripts/*.py`) that public pages link to on sohadot.com. They stay published
-so those links keep working. Linking to the GitHub copies instead would
-remove them, but that changes public pages and needs a separate decision.
+Everything else is matched by `exclude`. The four generator inputs
+(`valuation_comps_seed.json`, `keywords_seed.json`, `drops_candidates.csv`,
+`site-navigation.json`) are excluded: no page fetches them, and the site
+serves their generated outputs.
 
-**Adding a page or directory:** add it to `publish` in the same pull request.
-The build fails until every tracked file is classified.
+The deploy workflow (`.github/workflows/static.yml`) runs
+`scripts/build_pages_artifact.py`, which builds `_site/` and fails on:
+- an unclassified tracked file (a new page, asset or data file must be added
+  to the inventory deliberately);
+- a pattern instead of an exact path;
+- a file listed twice, or listed and excluded at once;
+- a missing required file;
+- an excluded path in the artifact;
+- a byte-parity mismatch;
+- a local link or sitemap URL that worked in the old whole-repository
+  deployment but would break;
+- an exception no page links to any more.
 
 **Privacy:** excluding a file from the Pages artifact keeps it off
 sohadot.com only. The GitHub repository is public, so anything private must

@@ -6,9 +6,11 @@ scripts, tests, internal documentation and research files alongside the site.
 This script copies only the files the manifest marks for publication into an
 output directory (default `_site/`) and checks the result:
 
-  1. classification: every tracked file matches exactly one of `publish` or
-     `exclude`. A new, unclassified file fails the build until it is
-     deliberately classified;
+  1. classification: publication is an explicit inventory of exact paths
+     (pages, site files, assets, JavaScript, runtime data, and linked
+     exceptions); there are no publish globs. Every tracked file must be
+     listed or excluded. A new, unclassified file fails the build until it
+     is deliberately classified;
   2. required files (CNAME, index, 404, sitemap, ...) are present;
   3. byte parity: every published file is identical to the committed file;
   4. links: every local reference in published HTML, CSS, JS, JSON-LD and
@@ -64,23 +66,58 @@ def matches(path, pattern):
     return fnmatch.fnmatchcase(path, pattern)
 
 
+PUBLISH_LISTS = ("pages", "site_files", "assets", "javascript", "runtime_data")
+
+
+def publish_inventory(manifest):
+    """Explicit list of files to publish. There are deliberately no globs."""
+    inventory = {}
+    for key in PUBLISH_LISTS:
+        for path in manifest.get(key, []):
+            inventory.setdefault(path, []).append(key)
+    for path in manifest.get("publish_exceptions", {}):
+        inventory.setdefault(path, []).append("publish_exceptions")
+    return inventory
+
+
+def check_manifest(manifest, files):
+    problems = []
+    inventory = publish_inventory(manifest)
+    tracked = set(files)
+    for path, lists in sorted(inventory.items()):
+        if len(lists) > 1:
+            problems.append(f"{path}: listed more than once ({', '.join(lists)})")
+        if path not in tracked:
+            problems.append(f"{path}: listed for publication but not a tracked file")
+        if any(ch in path for ch in "*?["):
+            problems.append(f"{path}: publication entries must be exact paths, not patterns")
+    for path in manifest.get("pages", []):
+        if not path.endswith(".html"):
+            problems.append(f"{path}: 'pages' may only list .html files")
+    for path in manifest.get("runtime_data", []):
+        if not path.startswith("data/"):
+            problems.append(f"{path}: 'runtime_data' may only list files under data/")
+    for path in manifest.get("publish_exceptions", {}):
+        if not any(matches(path, p) for p in manifest["exclude"]):
+            problems.append(f"{path}: publish exception is not inside an excluded area; list it normally")
+    return problems
+
+
 def classify(files, manifest):
     published, excluded, problems = [], [], []
+    inventory = publish_inventory(manifest)
     exceptions = manifest.get("publish_exceptions", {})
     for path in files:
-        if path in exceptions:
-            published.append(path)
-            continue
-        pub = [p for p in manifest["publish"] if matches(path, p)]
+        listed = path in inventory
         exc = [p for p in manifest["exclude"] if matches(path, p)]
-        if pub and exc:
-            problems.append(f"{path}: matches both publish {pub} and exclude {exc}")
-        elif pub:
+        if listed and exc and path not in exceptions:
+            problems.append(f"{path}: listed for publication but also matches exclude {exc}")
+        elif listed:
             published.append(path)
         elif exc:
             excluded.append(path)
         else:
-            problems.append(f"{path}: not classified in deploy/pages-manifest.json (add it to publish or exclude)")
+            problems.append(f"{path}: not classified in deploy/pages-manifest.json (list it for publication or exclude it)")
     return published, excluded, problems
 
 
@@ -180,7 +217,7 @@ def build(out_dir, report_path=None, manifest=None, files=None, source_root=None
     files = files if files is not None else tracked_files()
     source_root = Path(source_root) if source_root else REPO_ROOT
     published, excluded, problems = classify(files, manifest)
-    fails = list(problems)
+    fails = check_manifest(manifest, files) + list(problems)
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
