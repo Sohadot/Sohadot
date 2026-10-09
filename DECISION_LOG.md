@@ -190,3 +190,112 @@ The three names share one repeated structure across three adjacent interface
 layers — AI understands, AR places, VR rehearses — so their value to a buyer is
 as a coordinated naming system. Offering them only as one set keeps that
 structure intact and gives the page a single, unambiguous acquisition path.
+
+---
+
+## DEC-2026-10-08-01 — Free Valuation Services: Evidence & Accuracy First
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Implementation:** Sprint 0 — `docs/VALUATION_EVIDENCE_AUDIT.md`
+
+### Decision
+
+Develop Sohadot's free domain-intelligence services as a standalone programme,
+aimed at reliability and repeat professional use, not as a run-up to a paid
+subscription. Its first step is an audit of the evidence and accuracy behind the
+existing valuation, carried out before any new feature is built.
+
+1. **Order of work.** Sprint 0 — Evidence & Accuracy Audit; Sprint 1 —
+   Comparable Sales vNext; Sprint 2 — Linguistic & Category Intelligence;
+   Sprint 3 — Registration (RDAP) & Trademark Research; Sprint 4 — Research
+   Report & repeat-use experience.
+2. **Evidence before scale.** The comparable-sales set will not be expanded in
+   bulk, and no paid data API will be added, until every record has provenance
+   and accuracy is measured against an independent holdout set.
+3. **Bounded claims.** Results state their coverage, sources and as-of date. No
+   binary "trademark free / taken" verdict. An empty registry lookup is never
+   shown as "available to buy". The engine's own sales set is never presented
+   as evidence of its accuracy.
+4. **No unattended scraping of restricted sources.** Trademark research starts
+   from user-run links to official search services. WIPO's public database
+   terms do not allow automated queries.
+5. **Repository discipline.** GitHub remains the source of truth. Audits and
+   gates are reproducible scripts. No API keys or sensitive data go in the
+   public repository, and features that need live queries or private keys get
+   a security design before they are built.
+6. **No mass-generated valuation pages.** Growth comes from useful tools and
+   documented studies that other sites can cite, not from auto-indexed
+   thin pages.
+
+### Rationale
+
+The Sprint 0 audit found that no comparable sale carries a source, the weekly
+data refresh changes only its timestamp, and under leave-one-out testing the
+engine's retail midpoint is off by a median factor of about 84×. Adding
+features on top of that would multiply unverifiable output. Making the
+evidence verifiable is what would set Sohadot apart from tools that already
+show comps and extension status.
+
+---
+
+## DEC-2026-10-08-02 — Valuation Public Integrity Correction (Sprint 0B)
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Implementation:** Sprint 0B — see `docs/VALUATION_EVIDENCE_AUDIT.md`
+
+### Decision
+
+Until the comparable sales carry verified provenance and the estimates are
+validated against an independent holdout set, the valuation tool states its
+limits where users see its numbers, and changes nothing it computes.
+
+1. **Reported, not documented.** Public surfaces describe the comparable sales
+   as reported sales and say that individual source provenance has not yet been
+   independently verified. No surface may describe them as documented,
+   verified or confirmed, or overstate their number.
+2. **Experimental estimates.** Every result shows an experimental-estimate
+   disclosure directly above the prices. Estimates are never presented as
+   validated market prices or certified appraisals.
+3. **Classification confidence.** The confidence indicator is labelled and
+   explained as confidence in the name's linguistic classification, not in the
+   price.
+4. **Honest timestamps.** The comparable-sales file separates content-change
+   time, generation time, source-verification status and methodology version.
+   Unchanged evidence keeps its date and produces no commit. Automation never
+   records a verification date.
+5. **Engine frozen.** Scores, prices, classes, tags and comps matching are
+   unchanged. A test compares engine output against a recorded baseline.
+6. **Gates.** Structural evidence checks and disclosure checks are mandatory.
+   The provenance gate (`--strict`) stays visible but optional until Sprint 1
+   meets its evidentiary requirements.
+
+### Rationale
+
+Sprint 0A showed that the public copy claimed more than the evidence supports.
+Correcting the claims first, without touching the numbers, keeps the estimates
+reproducible for research and stops the site from implying a precision it has
+not earned.
+
+---
+
+## DEC-2026-10-08-03 — Verification Is Earned Per Record
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Amends:** DEC-2026-10-08-02, item 4
+
+### Decision
+
+A dataset-level date or the presence of source fields never makes the
+comparable-sales dataset "verified". Until Sprint 1 approves a per-record
+verification standard and the rules for rolling records up into a dataset
+status, the published status is always `not_verified` with `last_verified`
+null. The disclosure validator rejects any other value.
+
+### Rationale
+
+A single date cannot show which transactions were checked, or against what.
+Allowing it to set the dataset status would have let one seed edit present 45
+unsourced sales as verified.

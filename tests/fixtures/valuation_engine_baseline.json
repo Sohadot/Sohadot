@@ -1,0 +1,1548 @@
+{
+  "ai.com": {
+    "score": 95,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "ai"
+    ],
+    "comparables": [
+      "ai.com",
+      "chat.com",
+      "sex.com",
+      "gpt.com"
+    ],
+    "pricing": {
+      "midpoint": 5500000,
+      "wholesaleLow": 3850000,
+      "wholesaleHigh": 7150000,
+      "retailLow": 9900000,
+      "retailHigh": 15400000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "artificial intelligence",
+      "agent tools",
+      "automation",
+      "copilots",
+      "model platforms"
+    ]
+  },
+  "gpt.com": {
+    "score": 91,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "gpt"
+    ],
+    "comparables": [
+      "gpt.com",
+      "sex.com",
+      "chat.com",
+      "ai.com"
+    ],
+    "pricing": {
+      "midpoint": 1000000,
+      "wholesaleLow": 700000,
+      "wholesaleHigh": 1300000,
+      "retailLow": 1800000,
+      "retailHigh": 2800000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "artificial intelligence",
+      "agent tools",
+      "automation",
+      "copilots",
+      "model platforms"
+    ]
+  },
+  "agents.ai": {
+    "score": 80,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "agent",
+      "agents"
+    ],
+    "comparables": [
+      "agents.ai",
+      "data.ai",
+      "crypto.com",
+      "hotels.com"
+    ],
+    "pricing": {
+      "midpoint": 200000,
+      "wholesaleLow": 140000,
+      "wholesaleHigh": 260000,
+      "retailLow": 360000,
+      "retailHigh": 560000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "artificial intelligence",
+      "agent tools",
+      "automation",
+      "copilots",
+      "model platforms"
+    ]
+  },
+  "data.ai": {
+    "score": 83,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "data"
+    ],
+    "comparables": [
+      "data.ai",
+      "agents.ai",
+      "chat.com",
+      "fund.com"
+    ],
+    "pricing": {
+      "midpoint": 250000,
+      "wholesaleLow": 175000,
+      "wholesaleHigh": 325000,
+      "retailLow": 450000,
+      "retailHigh": 700000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "software",
+      "saas",
+      "developer tools",
+      "data infrastructure",
+      "cloud"
+    ]
+  },
+  "wallet.com": {
+    "score": 81,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "wallet"
+    ],
+    "comparables": [
+      "wallet.com",
+      "crypto.com",
+      "hotels.com",
+      "slots.com"
+    ],
+    "pricing": {
+      "midpoint": 750000,
+      "wholesaleLow": 525000,
+      "wholesaleHigh": 975000,
+      "retailLow": 1350000,
+      "retailHigh": 2100000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "fintech",
+      "payments",
+      "wealth management",
+      "credit",
+      "banking",
+      "financial tools"
+    ]
+  },
+  "trading.com": {
+    "score": 80,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "trading"
+    ],
+    "comparables": [
+      "trading.com",
+      "clothes.com",
+      "internet.com",
+      "crypto.com"
+    ],
+    "pricing": {
+      "midpoint": 1500000,
+      "wholesaleLow": 1050000,
+      "wholesaleHigh": 1950000,
+      "retailLow": 2700000,
+      "retailHigh": 4200000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "fintech",
+      "payments",
+      "wealth management",
+      "credit",
+      "banking",
+      "financial tools"
+    ]
+  },
+  "wealthlogic.com": {
+    "score": 73,
+    "classification": "commercial_keyword",
+    "confidence": "medium_high",
+    "keywordHits": [
+      "wealth"
+    ],
+    "comparables": [
+      "wealthlogic.com",
+      "privatejet.com",
+      "weatherpulse.com",
+      "insurance.com"
+    ],
+    "pricing": {
+      "midpoint": 12000,
+      "wholesaleLow": 8400,
+      "wholesaleHigh": 15600,
+      "retailLow": 21600,
+      "retailHigh": 33600,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "fintech",
+      "payments",
+      "wealth management",
+      "credit",
+      "banking",
+      "financial tools"
+    ]
+  },
+  "stackscan.com": {
+    "score": 55,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "stackscan.com",
+      "nightrocket.com",
+      "gogenie.com",
+      "upfolio.com"
+    ],
+    "pricing": {
+      "midpoint": 1355.5,
+      "wholesaleLow": 948.85,
+      "wholesaleHigh": 1762.15,
+      "retailLow": 2439.9,
+      "retailHigh": 3795.4,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "weatherpulse.com": {
+    "score": 51,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "weatherpulse.com",
+      "nightrocket.com",
+      "fusionflare.com",
+      "gogenie.com"
+    ],
+    "pricing": {
+      "midpoint": 1303.5,
+      "wholesaleLow": 912.45,
+      "wholesaleHigh": 1694.55,
+      "retailLow": 2346.3,
+      "retailHigh": 3649.8,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "fusionflare.com": {
+    "score": 51,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "fusionflare.com",
+      "nightrocket.com",
+      "gogenie.com",
+      "upfolio.com"
+    ],
+    "pricing": {
+      "midpoint": 536.5,
+      "wholesaleLow": 375.55,
+      "wholesaleHigh": 697.45,
+      "retailLow": 965.7,
+      "retailHigh": 1502.2,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "gogenie.com": {
+    "score": 58,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "gogenie.com",
+      "upfolio.com",
+      "aluren.com",
+      "360.com"
+    ],
+    "pricing": {
+      "midpoint": 1200,
+      "wholesaleLow": 840,
+      "wholesaleHigh": 1560,
+      "retailLow": 2160,
+      "retailHigh": 3360,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "nightrocket.com": {
+    "score": 51,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "nightrocket.com",
+      "fusionflare.com",
+      "gogenie.com",
+      "upfolio.com"
+    ],
+    "pricing": {
+      "midpoint": 1487,
+      "wholesaleLow": 1040.9,
+      "wholesaleHigh": 1933.1,
+      "retailLow": 2676.6,
+      "retailHigh": 4163.6,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "upfolio.com": {
+    "score": 58,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "upfolio.com",
+      "gogenie.com",
+      "aluren.com",
+      "360.com"
+    ],
+    "pricing": {
+      "midpoint": 838,
+      "wholesaleLow": 586.6,
+      "wholesaleHigh": 1089.4,
+      "retailLow": 1508.4,
+      "retailHigh": 2346.4,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "aluren.com": {
+    "score": 59,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "aluren.com",
+      "gogenie.com",
+      "upfolio.com",
+      "360.com"
+    ],
+    "pricing": {
+      "midpoint": 762,
+      "wholesaleLow": 533.4,
+      "wholesaleHigh": 990.6,
+      "retailLow": 1371.6,
+      "retailHigh": 2133.6,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "sojourner.com": {
+    "score": 66,
+    "classification": "rare_dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "sojourner.com"
+    ],
+    "pricing": {
+      "midpoint": 5375,
+      "wholesaleLow": 3762.5,
+      "wholesaleHigh": 6987.5,
+      "retailLow": 9675,
+      "retailHigh": 15050,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "heritage brands",
+      "niche storytelling",
+      "premium identity",
+      "cultural products",
+      "studios",
+      "media"
+    ]
+  },
+  "veritas.com": {
+    "score": 69,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "veritas.com",
+      "diamond.com",
+      "whisky.com",
+      "voice.com"
+    ],
+    "pricing": {
+      "midpoint": 47500,
+      "wholesaleLow": 33250,
+      "wholesaleHigh": 61750,
+      "retailLow": 85500,
+      "retailHigh": 133000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "lumen.com": {
+    "score": 73,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "lumen.com",
+      "voice.com",
+      "candy.com",
+      "beer.com"
+    ],
+    "pricing": {
+      "midpoint": 125000,
+      "wholesaleLow": 87500,
+      "wholesaleHigh": 162500,
+      "retailLow": 225000,
+      "retailHigh": 350000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "echo.com": {
+    "score": 77,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "echo.com",
+      "beer.com",
+      "nova.com",
+      "voice.com"
+    ],
+    "pricing": {
+      "midpoint": 350000,
+      "wholesaleLow": 245000,
+      "wholesaleHigh": 455000,
+      "retailLow": 630000,
+      "retailHigh": 980000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "nova.com": {
+    "score": 77,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "nova.com",
+      "beer.com",
+      "echo.com",
+      "voice.com"
+    ],
+    "pricing": {
+      "midpoint": 400000,
+      "wholesaleLow": 280000,
+      "wholesaleHigh": 520000,
+      "retailLow": 720000,
+      "retailHigh": 1120000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "emma.com": {
+    "score": 68,
+    "classification": "personal_name",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "emma.com",
+      "alex.ai"
+    ],
+    "pricing": {
+      "midpoint": 25000,
+      "wholesaleLow": 17500,
+      "wholesaleHigh": 32500,
+      "retailLow": 45000,
+      "retailHigh": 70000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "personal brand",
+      "portfolio site",
+      "professional identity"
+    ]
+  },
+  "alex.ai": {
+    "score": 73,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "alex.ai",
+      "beer.com",
+      "nova.com",
+      "echo.com"
+    ],
+    "pricing": {
+      "midpoint": 4500,
+      "wholesaleLow": 3150,
+      "wholesaleHigh": 5850,
+      "retailLow": 8100,
+      "retailHigh": 12600,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "insurance.com": {
+    "score": 77,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "insurance"
+    ],
+    "comparables": [
+      "insurance.com",
+      "medicare.com",
+      "stackscan.com",
+      "privatejet.com"
+    ],
+    "pricing": {
+      "midpoint": 17800000,
+      "wholesaleLow": 12460000,
+      "wholesaleHigh": 23140000,
+      "retailLow": 32040000,
+      "retailHigh": 49840000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "vacationrentals.com": {
+    "score": 20,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [
+      "vacationrentals.com"
+    ],
+    "pricing": {
+      "midpoint": 17500000,
+      "wholesaleLow": 12250000,
+      "wholesaleHigh": 22750000,
+      "retailLow": 31500000,
+      "retailHigh": 49000000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "privatejet.com": {
+    "score": 54,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "privatejet.com",
+      "nightrocket.com",
+      "fusionflare.com",
+      "gogenie.com"
+    ],
+    "pricing": {
+      "midpoint": 15090000,
+      "wholesaleLow": 10563000,
+      "wholesaleHigh": 19617000,
+      "retailLow": 27162000,
+      "retailHigh": 42252000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "voice.com": {
+    "score": 83,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "voice"
+    ],
+    "comparables": [
+      "voice.com",
+      "slots.com",
+      "chat.com",
+      "crypto.com"
+    ],
+    "pricing": {
+      "midpoint": 15000000,
+      "wholesaleLow": 10500000,
+      "wholesaleHigh": 19500000,
+      "retailLow": 27000000,
+      "retailHigh": 42000000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "internet.com": {
+    "score": 68,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "internet.com",
+      "diamond.com",
+      "veritas.com",
+      "whisky.com"
+    ],
+    "pricing": {
+      "midpoint": 9000000,
+      "wholesaleLow": 6300000,
+      "wholesaleHigh": 11700000,
+      "retailLow": 16200000,
+      "retailHigh": 25200000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "360.com": {
+    "score": 38,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [
+      "360.com"
+    ],
+    "pricing": {
+      "midpoint": 8500000,
+      "wholesaleLow": 5950000,
+      "wholesaleHigh": 11050000,
+      "retailLow": 15300000,
+      "retailHigh": 23800000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "chat.com": {
+    "score": 87,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "chat"
+    ],
+    "comparables": [
+      "chat.com",
+      "fund.com",
+      "porn.com",
+      "toys.com"
+    ],
+    "pricing": {
+      "midpoint": 7750000,
+      "wholesaleLow": 5425000,
+      "wholesaleHigh": 10075000,
+      "retailLow": 13950000,
+      "retailHigh": 21700000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "sex.com": {
+    "score": 38,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [
+      "sex.com"
+    ],
+    "pricing": {
+      "midpoint": 6500000,
+      "wholesaleLow": 4550000,
+      "wholesaleHigh": 8450000,
+      "retailLow": 11700000,
+      "retailHigh": 18200000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "crypto.com": {
+    "score": 81,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "crypto"
+    ],
+    "comparables": [
+      "crypto.com",
+      "hotels.com",
+      "wallet.com",
+      "slots.com"
+    ],
+    "pricing": {
+      "midpoint": 6000000,
+      "wholesaleLow": 4200000,
+      "wholesaleHigh": 7800000,
+      "retailLow": 10800000,
+      "retailHigh": 16800000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "hotels.com": {
+    "score": 84,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "hotel",
+      "hotels"
+    ],
+    "comparables": [
+      "hotels.com",
+      "crypto.com",
+      "wallet.com",
+      "slots.com"
+    ],
+    "pricing": {
+      "midpoint": 5500000,
+      "wholesaleLow": 3850000,
+      "wholesaleHigh": 7150000,
+      "retailLow": 9900000,
+      "retailHigh": 15400000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "hospitality",
+      "travel tools",
+      "destination brands",
+      "tourism"
+    ]
+  },
+  "fund.com": {
+    "score": 87,
+    "classification": "commercial_keyword",
+    "confidence": "high",
+    "keywordHits": [
+      "fund"
+    ],
+    "comparables": [
+      "fund.com",
+      "chat.com",
+      "porn.com",
+      "toys.com"
+    ],
+    "pricing": {
+      "midpoint": 4995000,
+      "wholesaleLow": 3496500,
+      "wholesaleHigh": 6493500,
+      "retailLow": 8991000,
+      "retailHigh": 13986000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "porn.com": {
+    "score": 65,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "porn.com",
+      "360.com",
+      "fb.com",
+      "aluren.com"
+    ],
+    "pricing": {
+      "midpoint": 4750000,
+      "wholesaleLow": 3325000,
+      "wholesaleHigh": 6175000,
+      "retailLow": 8550000,
+      "retailHigh": 13300000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "fb.com": {
+    "score": 42,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [
+      "fb.com"
+    ],
+    "pricing": {
+      "midpoint": 4250000,
+      "wholesaleLow": 2975000,
+      "wholesaleHigh": 5525000,
+      "retailLow": 7650000,
+      "retailHigh": 11900000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "we.com": {
+    "score": 42,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [
+      "we.com"
+    ],
+    "pricing": {
+      "midpoint": 4000000,
+      "wholesaleLow": 2800000,
+      "wholesaleHigh": 5200000,
+      "retailLow": 7200000,
+      "retailHigh": 11200000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "business.com": {
+    "score": 68,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "business.com",
+      "diamond.com",
+      "veritas.com",
+      "whisky.com"
+    ],
+    "pricing": {
+      "midpoint": 3750000,
+      "wholesaleLow": 2625000,
+      "wholesaleHigh": 4875000,
+      "retailLow": 6750000,
+      "retailHigh": 10500000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "diamond.com": {
+    "score": 69,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "diamond.com",
+      "veritas.com",
+      "whisky.com",
+      "voice.com"
+    ],
+    "pricing": {
+      "midpoint": 3750000,
+      "wholesaleLow": 2625000,
+      "wholesaleHigh": 4875000,
+      "retailLow": 6750000,
+      "retailHigh": 10500000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "beer.com": {
+    "score": 77,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "beer.com",
+      "nova.com",
+      "echo.com",
+      "voice.com"
+    ],
+    "pricing": {
+      "midpoint": 3500000,
+      "wholesaleLow": 2450000,
+      "wholesaleHigh": 4550000,
+      "retailLow": 6300000,
+      "retailHigh": 9800000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "z.com": {
+    "score": 22,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [
+      "z.com"
+    ],
+    "pricing": {
+      "midpoint": 3400000,
+      "wholesaleLow": 2380000,
+      "wholesaleHigh": 4420000,
+      "retailLow": 6120000,
+      "retailHigh": 9520000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": []
+  },
+  "slots.com": {
+    "score": 73,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "slots.com",
+      "voice.com",
+      "candy.com",
+      "lumen.com"
+    ],
+    "pricing": {
+      "midpoint": 2750000,
+      "wholesaleLow": 1925000,
+      "wholesaleHigh": 3575000,
+      "retailLow": 4950000,
+      "retailHigh": 7700000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "toys.com": {
+    "score": 77,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "toys.com",
+      "beer.com",
+      "nova.com",
+      "echo.com"
+    ],
+    "pricing": {
+      "midpoint": 2550000,
+      "wholesaleLow": 1785000,
+      "wholesaleHigh": 3315000,
+      "retailLow": 4590000,
+      "retailHigh": 7140000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "clothes.com": {
+    "score": 69,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "clothes.com",
+      "diamond.com",
+      "veritas.com",
+      "whisky.com"
+    ],
+    "pricing": {
+      "midpoint": 2450000,
+      "wholesaleLow": 1715000,
+      "wholesaleHigh": 3185000,
+      "retailLow": 4410000,
+      "retailHigh": 6860000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "medicare.com": {
+    "score": 68,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "medicare.com",
+      "diamond.com",
+      "veritas.com",
+      "whisky.com"
+    ],
+    "pricing": {
+      "midpoint": 2400000,
+      "wholesaleLow": 1680000,
+      "wholesaleHigh": 3120000,
+      "retailLow": 4320000,
+      "retailHigh": 6720000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "whisky.com": {
+    "score": 69,
+    "classification": "rare_dictionary_word",
+    "confidence": "medium_high",
+    "keywordHits": [],
+    "comparables": [
+      "whisky.com",
+      "sojourner.com"
+    ],
+    "pricing": {
+      "midpoint": 1550000,
+      "wholesaleLow": 1085000,
+      "wholesaleHigh": 2015000,
+      "retailLow": 2790000,
+      "retailHigh": 4340000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "heritage brands",
+      "niche storytelling",
+      "premium identity",
+      "cultural products",
+      "studios",
+      "media"
+    ]
+  },
+  "candy.com": {
+    "score": 73,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "candy.com",
+      "voice.com",
+      "lumen.com",
+      "beer.com"
+    ],
+    "pricing": {
+      "midpoint": 1500000,
+      "wholesaleLow": 1050000,
+      "wholesaleHigh": 1950000,
+      "retailLow": 2700000,
+      "retailHigh": 4200000,
+      "anchoredToOwnSale": true
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "zuno.com": {
+    "score": 65,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "360.com",
+      "fb.com",
+      "aluren.com",
+      "z.com"
+    ],
+    "pricing": {
+      "midpoint": 18286.53,
+      "wholesaleLow": 12434.84,
+      "wholesaleHigh": 24503.95,
+      "retailLow": 40230.37,
+      "retailHigh": 98747.27
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "kavorin.com": {
+    "score": 58,
+    "classification": "brandable",
+    "confidence": "medium",
+    "keywordHits": [],
+    "comparables": [
+      "gogenie.com",
+      "upfolio.com",
+      "aluren.com",
+      "360.com"
+    ],
+    "pricing": {
+      "midpoint": 1458.76,
+      "wholesaleLow": 991.96,
+      "wholesaleHigh": 1954.74,
+      "retailLow": 3209.27,
+      "retailHigh": 7877.31
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "travelnook.com": {
+    "score": 76,
+    "classification": "commercial_keyword",
+    "confidence": "medium_high",
+    "keywordHits": [
+      "travel"
+    ],
+    "comparables": [
+      "privatejet.com",
+      "hotels.com",
+      "vacationrentals.com",
+      "insurance.com"
+    ],
+    "pricing": {
+      "midpoint": 30729.08,
+      "wholesaleLow": 20895.77,
+      "wholesaleHigh": 41176.96,
+      "retailLow": 67603.97,
+      "retailHigh": 165937.01
+    },
+    "useCases": [
+      "hospitality",
+      "travel tools",
+      "destination brands",
+      "tourism"
+    ]
+  },
+  "shopvault.com": {
+    "score": 77,
+    "classification": "commercial_keyword",
+    "confidence": "medium_high",
+    "keywordHits": [
+      "shop"
+    ],
+    "comparables": [
+      "clothes.com",
+      "toys.com",
+      "insurance.com",
+      "stackscan.com"
+    ],
+    "pricing": {
+      "midpoint": 17637.35,
+      "wholesaleLow": 11993.4,
+      "wholesaleHigh": 23634.04,
+      "retailLow": 38802.16,
+      "retailHigh": 95241.67
+    },
+    "useCases": []
+  },
+  "healthpilot.io": {
+    "score": 67,
+    "classification": "commercial_keyword",
+    "confidence": "medium_high",
+    "keywordHits": [
+      "health"
+    ],
+    "comparables": [
+      "medicare.com",
+      "wealthlogic.com",
+      "privatejet.com",
+      "weatherpulse.com"
+    ],
+    "pricing": {
+      "midpoint": 12215.09,
+      "wholesaleLow": 8306.26,
+      "wholesaleHigh": 16368.22,
+      "retailLow": 26873.2,
+      "retailHigh": 65961.49
+    },
+    "useCases": [
+      "healthtech",
+      "wellness",
+      "therapy",
+      "diagnostics",
+      "care software"
+    ]
+  },
+  "aibrief.ai": {
+    "score": 76,
+    "classification": "commercial_keyword",
+    "confidence": "medium_high",
+    "keywordHits": [
+      "ai"
+    ],
+    "comparables": [
+      "agents.ai",
+      "data.ai",
+      "chat.com",
+      "ai.com"
+    ],
+    "pricing": {
+      "midpoint": 17563.4,
+      "wholesaleLow": 11943.11,
+      "wholesaleHigh": 23534.96,
+      "retailLow": 38639.48,
+      "retailHigh": 94842.36
+    },
+    "useCases": [
+      "artificial intelligence",
+      "agent tools",
+      "automation",
+      "copilots",
+      "model platforms"
+    ]
+  },
+  "river.com": {
+    "score": 73,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "voice.com",
+      "candy.com",
+      "lumen.com",
+      "beer.com"
+    ],
+    "pricing": {
+      "midpoint": 17130.28,
+      "wholesaleLow": 11648.59,
+      "wholesaleHigh": 22954.58,
+      "retailLow": 37686.62,
+      "retailHigh": 92503.52
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "vacances.fr": {
+    "score": 54,
+    "classification": "rare_dictionary_word",
+    "confidence": "medium_high",
+    "keywordHits": [],
+    "comparables": [
+      "sojourner.com"
+    ],
+    "pricing": {
+      "midpoint": 1923.42,
+      "wholesaleLow": 1307.93,
+      "wholesaleHigh": 2577.38,
+      "retailLow": 4231.52,
+      "retailHigh": 10386.47
+    },
+    "useCases": [
+      "heritage brands",
+      "niche storytelling",
+      "premium identity",
+      "cultural products",
+      "studios",
+      "media"
+    ]
+  },
+  "dactylograph.com": {
+    "score": 62,
+    "classification": "rare_dictionary_word",
+    "confidence": "medium_high",
+    "keywordHits": [],
+    "comparables": [
+      "sojourner.com"
+    ],
+    "pricing": {
+      "midpoint": 2486.92,
+      "wholesaleLow": 1691.1,
+      "wholesaleHigh": 3332.47,
+      "retailLow": 5471.22,
+      "retailHigh": 13429.35
+    },
+    "useCases": [
+      "heritage brands",
+      "niche storytelling",
+      "premium identity",
+      "cultural products",
+      "studios",
+      "media"
+    ]
+  },
+  "emma.net": {
+    "score": 56,
+    "classification": "personal_name",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "emma.com",
+      "alex.ai"
+    ],
+    "pricing": {
+      "midpoint": 7049.82,
+      "wholesaleLow": 4793.88,
+      "wholesaleHigh": 9446.76,
+      "retailLow": 15509.61,
+      "retailHigh": 38069.04
+    },
+    "useCases": [
+      "personal brand",
+      "portfolio site",
+      "professional identity"
+    ]
+  },
+  "xqz.com": {
+    "score": 38,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [],
+    "pricing": {
+      "midpoint": 944,
+      "wholesaleLow": 472,
+      "wholesaleHigh": 1038.4,
+      "retailLow": 1132.8,
+      "retailHigh": 1888
+    },
+    "useCases": []
+  },
+  "bestcheapaitools.net": {
+    "score": 9,
+    "classification": "random_low_quality",
+    "confidence": "low",
+    "keywordHits": [],
+    "comparables": [],
+    "pricing": {
+      "midpoint": 242,
+      "wholesaleLow": 121,
+      "wholesaleHigh": 266.2,
+      "retailLow": 290.4,
+      "retailHigh": 484
+    },
+    "useCases": []
+  },
+  "payify.co": {
+    "score": 72,
+    "classification": "commercial_keyword",
+    "confidence": "medium_high",
+    "keywordHits": [
+      "pay"
+    ],
+    "comparables": [
+      "crypto.com",
+      "hotels.com",
+      "wallet.com",
+      "agents.ai"
+    ],
+    "pricing": {
+      "midpoint": 16468.26,
+      "wholesaleLow": 11198.42,
+      "wholesaleHigh": 22067.47,
+      "retailLow": 36230.18,
+      "retailHigh": 88928.61
+    },
+    "useCases": [
+      "fintech",
+      "payments",
+      "wealth management",
+      "credit",
+      "banking",
+      "financial tools"
+    ]
+  },
+  "brain.io": {
+    "score": 66,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "voice.com",
+      "candy.com",
+      "lumen.com",
+      "beer.com"
+    ],
+    "pricing": {
+      "midpoint": 15066.56,
+      "wholesaleLow": 10245.26,
+      "wholesaleHigh": 20189.19,
+      "retailLow": 33146.43,
+      "retailHigh": 81359.41
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  },
+  "example.org": {
+    "score": 59,
+    "classification": "dictionary_word",
+    "confidence": "high",
+    "keywordHits": [],
+    "comparables": [
+      "diamond.com",
+      "veritas.com",
+      "whisky.com",
+      "voice.com"
+    ],
+    "pricing": {
+      "midpoint": 13609.67,
+      "wholesaleLow": 9254.57,
+      "wholesaleHigh": 18236.95,
+      "retailLow": 29941.27,
+      "retailHigh": 73492.2
+    },
+    "useCases": [
+      "studios",
+      "media",
+      "design",
+      "editorial",
+      "luxury branding",
+      "software"
+    ]
+  }
+}

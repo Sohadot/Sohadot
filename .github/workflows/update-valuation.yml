@@ -24,6 +24,14 @@ jobs:
       - name: Generate valuation comps
         run: python scripts/generate_valuation_data.py
 
+      # Structural defects fail the run. Provenance gaps stay visible as
+      # warnings; --strict becomes mandatory only after Sprint 1.
+      - name: Audit valuation evidence
+        run: python scripts/audit_valuation_evidence.py --quiet
+
+      - name: Validate valuation disclosures
+        run: python scripts/validate_valuation_disclosures.py
+
       - name: Commit updated valuation data
         run: |
           git config user.name "github-actions[bot]"

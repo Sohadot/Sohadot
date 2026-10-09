@@ -1,7 +1,17 @@
 {
   "version": "2.5",
-  "last_updated": "2026-10-05T16:42:07.191824Z",
-  "last_updated_human": "October 05, 2026 16:42 UTC",
+  "methodology_version": "2.5",
+  "last_updated": "2026-06-12T06:24:11Z",
+  "last_updated_human": "June 12, 2026 06:24 UTC",
+  "content_updated": "2026-06-12T06:24:11Z",
+  "content_updated_basis": "repository history: last commit modifying data/valuation_comps_seed.json (f475400)",
+  "content_sha256": "6f5c9ffffc6df0073747ee3f441924fa46f8d5651eb0a37eefa372a89beddc99",
+  "generated_at": "2026-10-08T22:15:28Z",
+  "source_verification": {
+    "status": "not_verified",
+    "last_verified": null,
+    "note": "Reported sales. Individual source provenance has not yet been independently verified for every sales record."
+  },
   "count": 45,
   "sales": [
     {

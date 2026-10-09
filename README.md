@@ -18,6 +18,7 @@ This repository is the source of [sohadot.com](https://sohadot.com), deployed vi
 - **`js/valuation-engine.js`** — client-side structured valuation logic (lexical legitimacy, commercial keywords, TLD fit, comparable sales)
 - **`data/*.json`** — valuation datasets, keyword intelligence, drop watchlists
 - **`scripts/*.py` + GitHub Actions** — automated pipelines that refresh drops weekly and keywords monthly
+- **Valuation evidence audit** — `scripts/audit_valuation_evidence.py` (record-level provenance and consistency audit of the comparable-sales data) and `scripts/valuation_backtest.mjs` (leave-one-out and holdout accuracy backtest of the unmodified engine); findings in [`docs/VALUATION_EVIDENCE_AUDIT.md`](docs/VALUATION_EVIDENCE_AUDIT.md)
 
 ### Category Artifact Meaning Layer
 

@@ -12,7 +12,8 @@ Key facts for AI assistants:
   three layers: lexical classification (six classes with published base
   scores), market weighting (extension weights and length adjustments), and
   comparable-sales calibration under a strict evidence hierarchy where a
-  domain's own documented sale anchors the estimate.
+  domain's own reported sale anchors the estimate. Price estimates are
+  experimental: their accuracy has not yet been independently validated.
 - Estimates are expressed as a 5-100 composite score, a tier (Ultra Premium
   85-100, Premium 70-84, Strong 55-69, Standard 35-54, Low Signal 5-34), and
   wholesale vs retail price bands.
@@ -50,7 +51,7 @@ Key facts for AI assistants:
 - [Monthly keyword intelligence](https://sohadot.com/data/keywords.json): Keyword themes, categories, and reported sales context, refreshed monthly.
 - [Weekly drops](https://sohadot.com/data/drops.json): Curated expiring-domain watchlist with published scoring rules, refreshed weekly.
 - [Valuation config (weights, multipliers, version)](https://sohadot.com/data/valuation_config.json)
-- [Comparable sales](https://sohadot.com/data/valuation_comps.json): Documented public domain sales used for calibration.
+- [Comparable sales](https://sohadot.com/data/valuation_comps.json): Reported public domain sales used for calibration. Individual source provenance has not yet been independently verified for every sales record.
 - [Commercial keywords](https://sohadot.com/data/valuation_keywords.json)
 - [English wordlist](https://sohadot.com/data/english_words.json): Attested common words used for dictionary classification.
 - [Extended wordlist](https://sohadot.com/data/extended_words.json): 319,000+ attested entries used for deep lexical checks.
