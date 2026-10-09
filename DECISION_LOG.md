@@ -469,3 +469,59 @@ publishing only what the site needs.
 
 Earlier snapshots are preserved in the Git history at the commits above and
 in the entries that cite them. They are not rewritten.
+
+---
+
+## DEC-2026-10-09-05 — Sprint 1B Comparable-Sales Expansion: Research Foundation
+
+- **Status:** Proposed (research only; production use not authorised)
+- **Date:** 2026-10-09
+- **Implementation:** `docs/valuation-evidence/sprint-1b/`, `scripts/sales_pipeline.py`,
+  `scripts/assess_comparable_selection.mjs`, `research/valuation-evidence/sprint-1b/`
+
+### Decision
+
+1. **Discovery is not ingestion.** A source may be used to find sales only
+   within its terms. Bulk storage or modelling of a source's data requires
+   permission, a licence or a documented lawful basis, recorded per record.
+   Unknown rights block calibration.
+2. **Computed pipeline states.** Comparable sales move through DISCOVERED,
+   SOURCE_REVIEWED, ELIGIBLE, CALIBRATION_ADMITTED, REJECTED and
+   HOLDOUT_RESERVED. States are computed from the evidence. Admission stays
+   closed until the owner opens it, and holdout records are never stored in
+   the public repository.
+3. **Storage follows rights.** Records licensed for storage and modelling
+   but not redistribution are kept in private storage, never in this public
+   repository. A secondary publisher's permission does not establish rights
+   that originate with a venue or other upstream owner; those must be
+   confirmed.
+4. **Completion and dates are evidenced, not inferred.**
+   - A stated price is never evidence that a sale closed. `COMPLETED_SALE`
+     requires an explicit completion-evidence basis. Announced agreements,
+     reported prices and unconfirmed auction results are blocked; bids,
+     asking prices and unpaid results are rejected.
+   - A report date or reporting window is never a sale date. Without a
+     stated sale date, a record stays `SALE_DATE_UNKNOWN` and cannot become
+     eligible.
+   - Only evidenced sale dates decide whether two reports are one sale or a
+     repeat sale. Otherwise the pair is ambiguous and needs review.
+   - Eligibility requires an exact or rounded disclosed price with valid,
+     positive and mutually consistent amount and currency fields.
+5. **No algorithm is selected yet.** The baseline shows that v2.5's
+   price-descending tie-breaker biases selection upward as a dataset grows.
+   Candidate methods are compared on development data only. No production
+   method is chosen before the independent holdout is frozen and evaluated
+   under explicit approval.
+
+### Rationale
+
+- **Rights:** under their own published terms, no reviewed provider with
+  substantial sub-$100k coverage permits bulk reuse without permission, so
+  expansion depends on permissions, not collection effort. This is a finding
+  about provider restrictions. Whether individual sale facts are legally
+  protected is left open for counsel.
+- **Engine:** on a synthetic probe corpus, the 45 published comps (mostly
+  $1M+ landmarks) raise the median probe estimate about tenfold. This is a
+  behavioural finding, not an externally validated accuracy metric. Simulated
+  expansion shows that a larger dataset helps only if both the pool and the
+  selection rule are fixed.
