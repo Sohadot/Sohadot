@@ -1,0 +1,11 @@
+{
+  "protocol_version": "holdout-protocol/v1",
+  "protocol_document": "docs/valuation-evidence/INDEPENDENT_HOLDOUT_PROTOCOL.md",
+  "status": "NOT_READY",
+  "reason": "No independently sourced transactions have been selected, acquired under usable rights, or frozen. The 45 comps-seed records are calibration material and are not eligible as a holdout.",
+  "frozen_at": null,
+  "manifest_sha256": null,
+  "record_count": null,
+  "storage_location": null,
+  "storage_requirement": "Holdout records are stored outside this public repository; only this status file and the protocol are public."
+}

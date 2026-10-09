@@ -11,6 +11,8 @@ on:
       - "*.html"
       - "scripts/*valuation*"
       - "tests/**"
+      - "research/**"
+      - "docs/valuation-evidence/**"
       - ".github/workflows/valuation-integrity.yml"
   workflow_dispatch:
 
@@ -42,6 +44,12 @@ jobs:
 
       - name: Disclosure validation
         run: python scripts/validate_valuation_disclosures.py
+
+      - name: Evidence registry validation (research only)
+        run: python scripts/validate_evidence_registry.py
+
+      - name: Seed investigation matrix up to date
+        run: python scripts/render_seed_investigation.py --check
 
       - name: Accuracy backtest (reported, not gated)
         run: node scripts/valuation_backtest.mjs

@@ -19,6 +19,7 @@ This repository is the source of [sohadot.com](https://sohadot.com), deployed vi
 - **`data/*.json`** — valuation datasets, keyword intelligence, drop watchlists
 - **`scripts/*.py` + GitHub Actions** — automated pipelines that refresh drops weekly and keywords monthly
 - **Valuation evidence audit** — `scripts/audit_valuation_evidence.py` (record-level provenance and consistency audit of the comparable-sales data) and `scripts/valuation_backtest.mjs` (leave-one-out and holdout accuracy backtest of the unmodified engine); findings in [`docs/VALUATION_EVIDENCE_AUDIT.md`](docs/VALUATION_EVIDENCE_AUDIT.md)
+- **Transaction evidence registry (research only)** — `research/valuation-evidence/` and `scripts/validate_evidence_registry.py`; standard, seed-45 investigation, rights matrix and holdout protocol in [`docs/valuation-evidence/`](docs/valuation-evidence/). Not used by the production engine.
 
 ### Category Artifact Meaning Layer
 

@@ -299,3 +299,40 @@ null. The disclosure validator rejects any other value.
 A single date cannot show which transactions were checked, or against what.
 Allowing it to set the dataset status would have let one seed edit present 45
 unsourced sales as verified.
+
+---
+
+## DEC-2026-10-09-01 — Transaction Evidence Registry and Holdout Protocol (Sprint 1A)
+
+- **Status:** Accepted for research use; production use not authorised
+- **Date:** 2026-10-09
+- **Implementation:** Sprint 1A — `docs/valuation-evidence/`, `research/valuation-evidence/`
+
+### Decision
+
+1. **Transactions, not names.** Comparable-sales evidence is recorded per
+   transaction with a stable `SOH-TX-` identifier. Repeat sales of a domain
+   are separate records.
+2. **Evidence status is earned per record.** `VERIFIED` requires a reviewed
+   primary document and a recorded basis. A URL or a search summary never
+   verifies. The registry asserts no dataset-level verification, which
+   extends DEC-2026-10-08-03.
+3. **Evidence, rights and role are independent.** Rights are recorded with
+   their basis. Analytical roles are assigned by review and never derived
+   from evidence status. Landmark sales are reference material, not
+   calibration data.
+4. **Research isolation.** The registry is research material. The
+   production engine, published comps and public pages are unchanged, and
+   the validator rejects any production reference to the research files.
+5. **Holdout first, privately.** No methodology change before an
+   independent holdout is frozen under `holdout-protocol/v1`. Holdout
+   records are never committed to the public repository. Status:
+   `NOT_READY`.
+
+### Rationale
+
+The investigation of the 45 published comps found 5 sales verifiable from
+primary documents, 18 with no traceable evidence, 4 with price or date
+conflicts, and 3 that were business acquisitions rather than domain sales.
+A registry that separates what the market demonstrated from what was merely
+repeated is the precondition for any credible calibration.

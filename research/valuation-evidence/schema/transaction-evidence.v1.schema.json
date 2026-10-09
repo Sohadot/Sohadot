@@ -1,0 +1,381 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sohadot.com/research/valuation-evidence/schema/transaction-evidence.v1.schema.json",
+  "title": "Sohadot Transaction Evidence Registry v1",
+  "description": "Structural schema. Cross-field evidence, rights, role and dataset rules are enforced by scripts/validate_evidence_registry.py and documented in docs/valuation-evidence/TRANSACTION_EVIDENCE_REGISTRY_V1.md.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "registry_version",
+    "as_of",
+    "dataset_status",
+    "transaction_count",
+    "status_counts",
+    "role_counts",
+    "content_sha256",
+    "transactions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "transaction-evidence/v1"
+    },
+    "registry_version": {
+      "type": "string"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "dataset_status": {
+      "const": "RESEARCH_ONLY_NOT_FOR_PRODUCTION"
+    },
+    "description": {
+      "type": "string"
+    },
+    "transaction_count": {
+      "type": "integer"
+    },
+    "status_counts": {
+      "type": "object"
+    },
+    "role_counts": {
+      "type": "object"
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "transaction_id",
+          "domain",
+          "sale_price",
+          "currency",
+          "sale_date",
+          "sale_date_precision",
+          "report_date",
+          "venue",
+          "transaction_type",
+          "consideration_type",
+          "market_side",
+          "source_name",
+          "source_url",
+          "source_type",
+          "source_access_method",
+          "source_accessed_at",
+          "additional_sources",
+          "price_disclosure_status",
+          "price_claims",
+          "conflicts",
+          "evidence_status",
+          "verification_basis",
+          "verified_at",
+          "rights_status",
+          "rights_basis",
+          "rights_license",
+          "calibration_role",
+          "notes"
+        ],
+        "properties": {
+          "transaction_id": {
+            "type": "string",
+            "pattern": "^SOH-TX-\\d{6}$",
+            "description": "Stable identifier; never reused or renumbered."
+          },
+          "domain": {
+            "type": "string",
+            "description": "Lower-case domain name."
+          },
+          "sale_price": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "exclusiveMinimum": 0,
+            "description": "In `currency`. Null when undisclosed or unknown; claims go in price_claims."
+          },
+          "currency": {
+            "enum": [
+              "AUD",
+              "CAD",
+              "CHF",
+              "CNY",
+              "EUR",
+              "GBP",
+              "JPY",
+              "USD"
+            ]
+          },
+          "sale_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "ISO date at the stated precision (YYYY, YYYY-MM or YYYY-MM-DD)."
+          },
+          "sale_date_precision": {
+            "enum": [
+              "DAY",
+              "MONTH",
+              "UNKNOWN",
+              "YEAR"
+            ]
+          },
+          "report_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "When the sale was first publicly reported (partial ISO date)."
+          },
+          "venue": {
+            "enum": [
+              "AUCTION",
+              "BANKRUPTCY_SALE",
+              "BROKER",
+              "CORPORATE_TRANSACTION",
+              "MARKETPLACE",
+              "PRIVATE",
+              "UNKNOWN"
+            ]
+          },
+          "transaction_type": {
+            "enum": [
+              "BUSINESS_ASSETS",
+              "DOMAIN_ONLY",
+              "DOMAIN_PLUS_ASSETS",
+              "MULTIPLE_DOMAINS",
+              "UNKNOWN",
+              "WEBSITE_BUSINESS"
+            ]
+          },
+          "consideration_type": {
+            "enum": [
+              "CASH",
+              "CASH_AND_NOTE",
+              "CASH_AND_OTHER",
+              "CASH_AND_STOCK",
+              "CRYPTOCURRENCY",
+              "STOCK",
+              "STRUCTURED",
+              "UNKNOWN"
+            ]
+          },
+          "market_side": {
+            "enum": [
+              "END_USER_ACQUISITION",
+              "INVESTOR_TRADE",
+              "UNKNOWN"
+            ]
+          },
+          "source_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_type": {
+            "enum": [
+              "AGGREGATOR_DATABASE",
+              "COURT_RECORD",
+              "GENERAL_NEWS",
+              "MARKETPLACE_RECORD",
+              "NONE",
+              "PARTY_ANNOUNCEMENT",
+              "REGULATORY_FILING",
+              "TERTIARY_REFERENCE",
+              "TRADE_PUBLICATION"
+            ]
+          },
+          "source_access_method": {
+            "enum": [
+              "DOCUMENT_REVIEWED",
+              "NOT_ACCESSED",
+              "SEARCH_INDEX_ONLY"
+            ]
+          },
+          "source_accessed_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "additional_sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source_name",
+                "source_url",
+                "source_type",
+                "source_access_method",
+                "source_accessed_at"
+              ],
+              "properties": {
+                "source_name": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string",
+                  "pattern": "^https://"
+                },
+                "source_type": {
+                  "enum": [
+                    "AGGREGATOR_DATABASE",
+                    "COURT_RECORD",
+                    "GENERAL_NEWS",
+                    "MARKETPLACE_RECORD",
+                    "NONE",
+                    "PARTY_ANNOUNCEMENT",
+                    "REGULATORY_FILING",
+                    "TERTIARY_REFERENCE",
+                    "TRADE_PUBLICATION"
+                  ]
+                },
+                "source_access_method": {
+                  "enum": [
+                    "DOCUMENT_REVIEWED",
+                    "NOT_ACCESSED",
+                    "SEARCH_INDEX_ONLY"
+                  ]
+                },
+                "source_accessed_at": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "price_disclosure_status": {
+            "enum": [
+              "APPROXIMATE",
+              "EXACT",
+              "LOWER_BOUND",
+              "ROUNDED",
+              "STATED_SUBJECT_TO_ADJUSTMENT",
+              "UNDISCLOSED",
+              "UNKNOWN"
+            ]
+          },
+          "price_claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "amount",
+                "currency",
+                "source",
+                "qualifier"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "integer"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "qualifier": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "conflicts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "field",
+                "description",
+                "material"
+              ],
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "boolean"
+                },
+                "resolution": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "evidence_status": {
+            "enum": [
+              "DISPUTED",
+              "REPORTED",
+              "UNVERIFIED",
+              "VERIFIED"
+            ]
+          },
+          "verification_basis": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verified_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rights_status": {
+            "enum": [
+              "LICENSED_REUSE",
+              "PERMISSION_REQUIRED",
+              "PUBLIC_RECORD",
+              "PUBLIC_VIEW_CITATION_ONLY",
+              "RESTRICTED_OR_UNKNOWN"
+            ]
+          },
+          "rights_basis": {
+            "type": "string"
+          },
+          "rights_license": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "calibration_role": {
+            "enum": [
+              "CALIBRATION_CANDIDATE",
+              "EXCLUDED",
+              "HOLDOUT_CANDIDATE",
+              "REFERENCE_ONLY",
+              "UNDETERMINED"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
