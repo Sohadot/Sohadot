@@ -186,6 +186,13 @@ class VerifiedProvenance(unittest.TestCase):
         self.assert_rejected("checked_quote", checked_quote=None)
         self.assert_rejected("document_sha256", document_sha256="abc")
 
+    def test_quotations_stay_short(self):
+        self.assert_rejected("keep quotations short", checked_quote="example-alpha.com sold for $25,000. " + "x" * 300)
+        r = json.loads(reg.REGISTRY_PATH.read_text())
+        for t in r["transactions"]:
+            for s in ([t] if t["checked_quote"] else []) + t["additional_sources"]:
+                self.assertLessEqual(len(s["checked_quote"]), reg.MAX_QUOTE_CHARS, t["transaction_id"])
+
     def test_unchecked_tool_extraction_is_not_review(self):
         self.assert_rejected("not checked against the source text", review_method="TOOL_EXTRACT_UNCHECKED")
         self.assert_rejected("not checked against the source text", review_method="NONE")

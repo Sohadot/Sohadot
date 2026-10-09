@@ -67,3 +67,17 @@ against the raw text. The registry records 45 such passages.
 5. Any paid source needs explicit owner approval first.
 6. Automated retrieval only where terms allow. EDGAR asks for a contact in the
    user agent: use an organisational role address, never a personal one.
+
+## Basis for keeping research records in the public repository
+
+This section is separate from the four use rights above (DEC-2026-10-09-04).
+
+| Question | Position |
+| --- | --- |
+| Why public? | So that every evidence claim can be checked against its source by anyone. |
+| What is kept? | Facts with attribution and a link, a document locator, a SHA-256 of the reviewed document, and at most one short verbatim quotation per source. Quotations are 300 characters or fewer, enforced by the validator. |
+| What is never kept? | Full article text, images, compiled sales charts, third-party database extracts, private holdout records. |
+| Is it served on sohadot.com? | No, once the filtered Pages deployment is merged. It stays readable on GitHub. |
+| Does it grant use rights? | No. Keeping a record here for verification is not permission to store, model, calibrate or redistribute it commercially. Those rights remain `NOT_ESTABLISHED` per record. |
+| Corrections and removal | A quotation is replaced by its locator on a source owner's request, and the record's status is re-assessed. |
+| Legal status | Operational policy, not legal advice. Owner confirmation with counsel is recommended. |

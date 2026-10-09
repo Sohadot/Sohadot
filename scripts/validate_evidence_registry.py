@@ -64,6 +64,8 @@ DATASET_STATUS = "RESEARCH_ONLY_NOT_FOR_PRODUCTION"
 HOLDOUT_PROTOCOL_VERSION = "holdout-protocol/v1"
 MANIFEST_KIND = "sohadot-holdout-manifest"
 HOLDOUT_MIN_RECORDS = 150
+# Short quotations only: enough to locate and check a fact (DEC-2026-10-09-04).
+MAX_QUOTE_CHARS = 300
 HOLDOUT_MAX_SOURCE_SHARE = 0.25
 
 ENUMS = {
@@ -246,6 +248,8 @@ def check_source(src, where, errors, principal=False):
         errors.append(f"{where}: document_locator must identify the passage (e.g. note, section, headline)")
     if len(str(src.get("checked_quote") or "")) < 20:
         errors.append(f"{where}: checked_quote required (verbatim text checked against the source)")
+    elif len(str(src.get("checked_quote"))) > MAX_QUOTE_CHARS:
+        errors.append(f"{where}: checked_quote longer than {MAX_QUOTE_CHARS} characters; keep quotations short")
     if not SHA_RE.match(str(src.get("document_sha256") or "")):
         errors.append(f"{where}: document_sha256 must be the SHA-256 of the reviewed document")
 

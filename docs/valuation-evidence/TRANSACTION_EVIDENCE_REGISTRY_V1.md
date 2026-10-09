@@ -49,7 +49,7 @@ been read directly. The validator requires:
 | `source_url` | Non-empty `https://` URL |
 | `source_accessed_at` | ISO date |
 | `document_locator` | Note, section, headline or paragraph that holds the statement |
-| `checked_quote` | Verbatim text, checked against the retrieved document |
+| `checked_quote` | Verbatim text, checked against the retrieved document; at most 300 characters (DEC-2026-10-09-04) |
 | `document_sha256` | SHA-256 of the bytes retrieved at review time. Web pages change, so the hash identifies what was reviewed; it does not guarantee a later fetch matches. |
 
 **Leads.** Search-index summaries and unread pointers are stored only in
