@@ -81,6 +81,8 @@ ENUMS = {
                                 "UNDISCLOSED", "UNKNOWN"},
     "evidence_status": {"VERIFIED", "REPORTED", "DISPUTED", "UNVERIFIED"},
     "calibration_role": {"CALIBRATION_CANDIDATE", "HOLDOUT_CANDIDATE", "REFERENCE_ONLY", "EXCLUDED", "UNDETERMINED"},
+    "attesting_party": {"BUYER", "SELLER", "BROKER", "VENUE", "COURT", "NONE"},
+    "settlement_evidence": {"REGULATED_FILING_OR_COURT_RECORD", "PARTY_ATTESTATION_ONLY", "NOT_ESTABLISHED"},
 }
 RIGHTS_KEYS = ("citation", "storage", "commercial_modelling", "redistribution")
 RIGHTS_STATUS = {"PERMITTED", "PERMITTED_WITH_CONDITIONS", "NOT_PERMITTED", "NOT_ESTABLISHED"}
@@ -94,7 +96,7 @@ FIELDS = [
     "source_name", "source_url", "source_type", "source_access_method", "source_accessed_at", "review_method",
     "document_locator", "checked_quote", "document_sha256", "additional_sources", "leads",
     "price_disclosure_status", "price_claims", "conflicts", "valuation_caveats", "evidence_status",
-    "verification_basis", "verified_at", "rights", "calibration_role", "notes",
+    "verification_basis", "verified_at", "attesting_party", "settlement_evidence", "rights", "calibration_role", "notes",
 ]
 SOURCE_FIELDS = ["source_name", "source_url", "source_type", "published_date", "source_access_method",
                  "source_accessed_at", "review_method", "document_locator", "checked_quote", "document_sha256"]
@@ -150,6 +152,16 @@ HOLDOUT_CONTROLS = {
     "backtest_second_level_overlap_check": "NOT_IMPLEMENTED",
     "pages_artifact_excludes_research_files": "NOT_IMPLEMENTED",
 }
+
+def readiness_gate(controls=None):
+    """FROZEN is permitted only when every protocol control is implemented.
+
+    Every listed control is mandatory for an independent holdout; none can be
+    waived by editing the status file."""
+    controls = HOLDOUT_CONTROLS if controls is None else controls
+    blocking = sorted(k for k, v in controls.items() if v != "ENFORCED")
+    return {"frozen_permitted": not blocking, "blocking_controls": blocking}
+
 
 # Production files that must never read the research registry.
 PRODUCTION_FILES = ["js/valuation-engine.js", "js/valuation-ui.js", "scripts/generate_valuation_data.py", "valuation.html"]
@@ -365,10 +377,26 @@ def check_transaction(t, errors, as_of):
             reasons.append("checked_quote must name the domain and state a figure")
         if material:
             reasons.append("material conflicts are unresolved")
+        # Say who vouches for the transaction. A party's own announcement is
+        # an attestation, not independently confirmed settlement.
+        settlement, party = t["settlement_evidence"], t["attesting_party"]
+        if stype in {"REGULATORY_FILING", "COURT_RECORD"}:
+            if settlement != "REGULATED_FILING_OR_COURT_RECORD" or party not in {"BUYER", "SELLER", "COURT"}:
+                reasons.append("a filing or court record needs settlement_evidence REGULATED_FILING_OR_COURT_RECORD "
+                               "and attesting_party BUYER, SELLER or COURT")
+        else:
+            if settlement != "PARTY_ATTESTATION_ONLY" or party not in {"BUYER", "SELLER", "BROKER", "VENUE"}:
+                reasons.append("a party announcement or marketplace record is PARTY_ATTESTATION_ONLY "
+                               "with attesting_party BUYER, SELLER, BROKER or VENUE")
+            elif "attest" not in str(t["verification_basis"] or "").lower():
+                reasons.append("verification_basis must state that the evidence is a party attestation")
         if reasons:
             errors.append(f"{where}: unsupported VERIFIED claim ({'; '.join(reasons)})")
-    elif t["verified_at"] is not None:
-        errors.append(f"{where}: verified_at set on a {status} record")
+    else:
+        if t["verified_at"] is not None:
+            errors.append(f"{where}: verified_at set on a {status} record")
+        if t["settlement_evidence"] != "NOT_ESTABLISHED" or t["attesting_party"] != "NONE":
+            errors.append(f"{where}: only VERIFIED records carry settlement_evidence and attesting_party")
     if status in {"REPORTED", "DISPUTED"} and stype not in REPORTABLE_SOURCE_TYPES:
         errors.append(f"{where}: {status} requires a reviewed source of a reportable class, not {stype}")
     if status == "DISPUTED" and not material:
@@ -533,6 +561,9 @@ def check_holdout(status, registry, errors, manifest=None, manifest_path=None, s
         errors.append(f"holdout: protocol_version must be {HOLDOUT_PROTOCOL_VERSION!r}")
     if status.get("controls") != HOLDOUT_CONTROLS:
         errors.append("holdout: 'controls' must match the controls implemented by this validator exactly")
+    gate = readiness_gate()
+    if status.get("readiness_gate") != gate:
+        errors.append(f"holdout: readiness_gate must be {gate!r} (computed from the implemented controls)")
 
     if state == "NOT_READY":
         for key in ("frozen_at", "manifest_sha256", "record_count", "storage_location"):
@@ -555,6 +586,9 @@ def check_holdout(status, registry, errors, manifest=None, manifest_path=None, s
     if len(storage) < 10 or re.search(r"https?://|/|\\", storage):
         errors.append("holdout: storage_location must describe private storage, not a URL or path")
 
+    if not gate["frozen_permitted"]:
+        errors.append("holdout: FROZEN is not permitted while mandatory controls are NOT_IMPLEMENTED: "
+                      + ", ".join(gate["blocking_controls"]))
     if manifest is None:
         errors.append("holdout: FROZEN cannot be accepted without verifying the private manifest "
                       "(run with --holdout-manifest); refusing (fail-closed)")

@@ -69,13 +69,15 @@ def verified_fixture(tid="SOH-TX-900001", domain="example-alpha.com", sale_date=
         "price_disclosure_status": "EXACT", "price_claims": [], "conflicts": [], "valuation_caveats": [],
         "evidence_status": "VERIFIED", "verified_at": "2026-10-01",
         "verification_basis": "Fixture: filing note, read in raw text, states the domain was purchased for $25,000 in cash.",
+        "attesting_party": "BUYER", "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
         "rights": rights(), "calibration_role": "REFERENCE_ONLY", "notes": "Synthetic fixture.",
     }
 
 
 def reported_fixture(**overrides):
     t = verified_fixture()
-    t.update(source_type="TRADE_PUBLICATION", evidence_status="REPORTED", verified_at=None, verification_basis=None)
+    t.update(source_type="TRADE_PUBLICATION", evidence_status="REPORTED", verified_at=None, verification_basis=None,
+             attesting_party="NONE", settlement_evidence="NOT_ESTABLISHED")
     t["rights"]["citation"] = {"status": "PERMITTED_WITH_CONDITIONS", "basis_type": "PUBLIC_FACT_CITATION",
                                "basis": "Fixture: facts cited with attribution only.", "reference": None}
     t.update(overrides)
@@ -87,6 +89,7 @@ def unverified_fixture(**overrides):
     t.update(source_name=None, source_url=None, source_type="NONE", source_access_method="NOT_ACCESSED",
              source_accessed_at=None, review_method="NONE", document_locator=None, checked_quote=None,
              document_sha256=None, evidence_status="UNVERIFIED", verified_at=None, verification_basis=None,
+             attesting_party="NONE", settlement_evidence="NOT_ESTABLISHED",
              sale_price=None, price_disclosure_status="UNKNOWN", calibration_role="UNDETERMINED")
     t.update(overrides)
     return t
@@ -193,6 +196,23 @@ class VerifiedProvenance(unittest.TestCase):
     def test_quote_must_name_domain_and_figure(self):
         self.assert_rejected("checked_quote must name the domain",
                              checked_quote="Trust me, the price is right and it was a good deal overall.")
+
+    def test_party_announcement_is_attestation_not_settlement(self):
+        base = dict(source_type="PARTY_ANNOUNCEMENT", attesting_party="BROKER", settlement_evidence="PARTY_ATTESTATION_ONLY",
+                    verification_basis="Broker attestation, not independently confirmed settlement: release states the price.")
+        t = verified_fixture()
+        t.update(base)
+        self.assertEqual(errors_for(t), [])
+        t = verified_fixture()
+        t.update(base, settlement_evidence="REGULATED_FILING_OR_COURT_RECORD")
+        self.assertIn("PARTY_ATTESTATION_ONLY", joined(errors_for(t)))
+        t = verified_fixture()
+        t.update(base, verification_basis="Release states the price and the buyer, which we read in raw text.")
+        self.assertIn("must state that the evidence is a party attestation", joined(errors_for(t)))
+        t = verified_fixture()
+        t.update(attesting_party="BROKER")
+        self.assertIn("REGULATED_FILING_OR_COURT_RECORD", joined(errors_for(t)))
+        self.assertIn("only VERIFIED records carry", joined(errors_for(reported_fixture(attesting_party="BROKER"))))
 
     def test_a_url_alone_never_verifies(self):
         self.assert_rejected("not primary evidence", source_type="TRADE_PUBLICATION")
@@ -354,7 +374,8 @@ def manifest_of(records):
 def frozen_status(manifest, **changes):
     s = {"protocol_version": reg.HOLDOUT_PROTOCOL_VERSION, "status": "FROZEN", "frozen_at": "2026-10-01",
          "manifest_sha256": reg.content_hash(manifest), "record_count": len(manifest["transactions"]),
-         "storage_location": "Private encrypted store held by the evaluator (fixture)", "controls": reg.HOLDOUT_CONTROLS}
+         "storage_location": "Private encrypted store held by the evaluator (fixture)", "controls": reg.HOLDOUT_CONTROLS,
+         "readiness_gate": reg.readiness_gate()}
     s.update(changes)
     return s
 
@@ -371,8 +392,32 @@ class HoldoutFailClosed(unittest.TestCase):
         reg.check_holdout(status, self.registry, errors, manifest, path, self.seed, self.comps, AS_OF)
         return joined(errors)
 
-    def test_valid_private_manifest_passes(self):
-        self.assertEqual(self.run_check(frozen_status(self.manifest), self.manifest), "")
+    def all_enforced(self):
+        return {k: "ENFORCED" for k in reg.HOLDOUT_CONTROLS}
+
+    def test_valid_manifest_still_blocked_by_readiness_gate(self):
+        text = self.run_check(frozen_status(self.manifest), self.manifest)
+        self.assertIn("FROZEN is not permitted while mandatory controls are NOT_IMPLEMENTED", text)
+        for control in reg.readiness_gate()["blocking_controls"]:
+            self.assertIn(control, text)
+
+    def test_valid_private_manifest_passes_once_all_controls_exist(self):
+        original = reg.HOLDOUT_CONTROLS
+        reg.HOLDOUT_CONTROLS = self.all_enforced()
+        try:
+            status = frozen_status(self.manifest, controls=reg.HOLDOUT_CONTROLS, readiness_gate=reg.readiness_gate())
+            self.assertEqual(self.run_check(status, self.manifest), "")
+        finally:
+            reg.HOLDOUT_CONTROLS = original
+
+    def test_readiness_gate_cannot_be_edited_open(self):
+        status = json.loads(reg.HOLDOUT_STATUS_PATH.read_text())
+        self.assertFalse(status["readiness_gate"]["frozen_permitted"])
+        forged = copy.deepcopy(status)
+        forged["readiness_gate"] = {"frozen_permitted": True, "blocking_controls": []}
+        self.assertIn("readiness_gate must be", self.run_check(forged))
+        self.assertEqual(reg.readiness_gate({"a": "ENFORCED", "b": "NOT_IMPLEMENTED"}),
+                         {"frozen_permitted": False, "blocking_controls": ["b"]})
 
     def test_frozen_without_manifest_fails_closed(self):
         self.assertIn("fail-closed", self.run_check(frozen_status(self.manifest)))
@@ -491,6 +536,22 @@ class PublishedResearchFiles(unittest.TestCase):
         self.assertEqual((t["transaction_type"], t["price_scope"], t["bundle"]["domain_count"]), ("MULTIPLE_DOMAINS", "BUNDLE_TOTAL", 24))
         self.assertEqual(t["calibration_role"], "EXCLUDED")
         self.assertIn("f10q0309a1_fund.htm", t["source_url"])
+
+    def test_sex_com_2010_is_a_broker_attested_bundle(self):
+        r = json.loads(reg.REGISTRY_PATH.read_text())
+        t = next(t for t in r["transactions"] if t["domain"] == "sex.com" and t["sale_price"] == 13000000)
+        self.assertEqual((t["transaction_type"], t["price_scope"], t["sale_date"]), ("DOMAIN_PLUS_ASSETS", "BUNDLE_TOTAL", "2010-11-17"))
+        self.assertEqual((t["attesting_party"], t["settlement_evidence"]), ("BROKER", "PARTY_ATTESTATION_ONLY"))
+        self.assertIn("trademarks", " ".join(t["bundle"]["other_assets"]))
+        self.assertNotEqual(t["calibration_role"], "CALIBRATION_CANDIDATE")
+
+    def test_ai_com_is_broker_attested_and_excluded(self):
+        r = json.loads(reg.REGISTRY_PATH.read_text())
+        t = next(t for t in r["transactions"] if t["domain"] == "ai.com" and t["evidence_status"] == "VERIFIED")
+        self.assertEqual((t["attesting_party"], t["settlement_evidence"], t["calibration_role"]), ("BROKER", "PARTY_ATTESTATION_ONLY", "EXCLUDED"))
+        self.assertEqual((t["sale_date"], t["sale_date_precision"], t["consideration_type"]), ("2025", "YEAR", "CRYPTOCURRENCY"))
+        self.assertTrue(t["verification_basis"].startswith("Broker attestation, not independently confirmed settlement"))
+        self.assertTrue(any("closing date is unknown" in c for c in t["valuation_caveats"]))
 
     def test_insurance_com_stays_a_business_acquisition(self):
         r = json.loads(reg.REGISTRY_PATH.read_text())

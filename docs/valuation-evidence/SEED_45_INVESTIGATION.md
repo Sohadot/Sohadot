@@ -5,7 +5,7 @@
 - **As of:** 2026-10-09
 - **Seed file:** `data/valuation_comps_seed.json` (unchanged by Sprint 1A)
 - **Method:** Web search (2026-10-09) to locate candidate sources for each seed sale; every source used as evidence was then fetched and its quoted passage checked against the raw document text, with a SHA-256 of the retrieved bytes recorded. Search-index summaries are recorded only as leads. No paid databases, APIs or automated scraping of restricted services were used.
-- **Registry:** `research/valuation-evidence/registry/transactions.v1.json` (49 transactions, content hash `12ee299bf97e…`)
+- **Registry:** `research/valuation-evidence/registry/transactions.v1.json` (49 transactions, content hash `aaa46a3b33ce…`)
 
 ## Totals
 
@@ -13,8 +13,8 @@ Transactions in the registry (one seed record can map to several transactions, f
 
 | Evidence status | Transactions |
 | --- | --- |
-| VERIFIED | 7 |
-| REPORTED | 21 |
+| VERIFIED | 8 |
+| REPORTED | 20 |
 | DISPUTED | 1 |
 | UNVERIFIED | 20 |
 
@@ -22,24 +22,24 @@ Transactions in the registry (one seed record can map to several transactions, f
 | --- | --- |
 | CALIBRATION_CANDIDATE | 0 |
 | HOLDOUT_CANDIDATE | 0 |
-| REFERENCE_ONLY | 18 |
-| EXCLUDED | 11 |
+| REFERENCE_ONLY | 17 |
+| EXCLUDED | 12 |
 | UNDETERMINED | 20 |
 
 Seed records by strongest evidence for any linked transaction:
 
 | Strongest evidence | Seed records |
 | --- | --- |
-| VERIFIED | 7 |
-| REPORTED | 19 |
+| VERIFIED | 8 |
+| REPORTED | 18 |
 | DISPUTED | 0 |
 | UNVERIFIED | 19 |
 
 | Agreement between seed record and evidence | Seed records |
 | --- | --- |
 | NO_EVIDENCE_FOUND | 18 |
-| CONSISTENT | 16 |
-| NOT_A_DOMAIN_ONLY_SALE | 6 |
+| CONSISTENT | 15 |
+| NOT_A_DOMAIN_ONLY_SALE | 7 |
 | PRICE_NOT_DISCLOSED | 2 |
 | DATE_CONFLICT | 1 |
 | PRICE_AND_DATE_CONFLICT | 1 |
@@ -49,7 +49,7 @@ Seed records by strongest evidence for any linked transaction:
 
 | # | Seed record | Transactions (status · price · date) | Agreement | Recommended role | Principal reviewed source |
 | --- | --- | --- | --- | --- | --- |
-| 1 | ai.com — $11,000,000 (2023) | SOH-TX-000001: UNVERIFIED · — (unknown) · date unknown<br>SOH-TX-000002: VERIFIED · $70,000,000 (rounded) · 2025 | PRICE_AND_DATE_CONFLICT | UNDETERMINED (2023 claim); REFERENCE_ONLY (2025 sale) | [GetYourDomain.com press release (PR Newswire)](https://tools.prnewswire.com/en-us/live/20823/release/20260209EN83172) |
+| 1 | ai.com — $11,000,000 (2023) | SOH-TX-000001: UNVERIFIED · — (unknown) · date unknown<br>SOH-TX-000002: VERIFIED · $70,000,000 (rounded) · 2025 | PRICE_AND_DATE_CONFLICT | UNDETERMINED (2023 claim); EXCLUDED from calibration (2025 sale, broker-attested, crypto consideration) | [GetYourDomain.com press release (PR Newswire)](https://tools.prnewswire.com/en-us/live/20823/release/20260209EN83172) |
 | 2 | gpt.com — $2,000,000 (2023) | SOH-TX-000003: UNVERIFIED · — (undisclosed) · date unknown | PRICE_NOT_DISCLOSED | EXCLUDED (no disclosed price) | None located |
 | 3 | agents.ai — $400,000 (2023) | SOH-TX-000004: REPORTED · $125,000 (exact) · 2023 | PRICE_CONFLICT | UNDETERMINED | [DN Journal (The Lowdown)](https://www.dnjournal.com/archive/lowdown/2023/dailyposts/0713.htm) |
 | 4 | data.ai — $500,000 (2022) | SOH-TX-000005: UNVERIFIED · — (unknown) · date unknown | NO_EVIDENCE_FOUND | UNDETERMINED | None located |
@@ -77,7 +77,7 @@ Seed records by strongest evidence for any linked transaction:
 | 26 | internet.com — $18,000,000 (2009) | SOH-TX-000027: VERIFIED · $18,000,000 (stated_subject_to_adjustment, business total) · 2009-11-30 | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [WebMediaBrands Inc. Form 8-K Ex. 99.1](https://www.sec.gov/Archives/edgar/data/1083712/000101968709004323/webmedia_8k-ex9901.htm) |
 | 27 | 360.com — $17,000,000 (2015) | SOH-TX-000028: REPORTED · $17,000,000 (rounded) · 2015-02 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://www.dnjournal.com/archive/domainsales/2015/20150211.htm) |
 | 28 | chat.com — $15,500,000 (2023) | SOH-TX-000029: REPORTED · $15,500,000 (rounded) · 2023<br>SOH-TX-000030: REPORTED · — (undisclosed) · 2024 | CONSISTENT | REFERENCE_ONLY (2023); EXCLUDED (2024) | [DN Journal (The Lowdown)](https://dnjournal.com/archive/lowdown/2024/dailyposts/0416.htm) |
-| 29 | sex.com — $13,000,000 (2010) | SOH-TX-000031: REPORTED · $13,000,000 (exact) · 2010-10<br>SOH-TX-000032: DISPUTED · — (unknown) · date unknown | CONSISTENT | REFERENCE_ONLY (2010) | [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/) |
+| 29 | sex.com — $13,000,000 (2010) | SOH-TX-000031: VERIFIED · $13,000,000 (rounded, bundle total) · 2010-11-17<br>SOH-TX-000032: DISPUTED · — (unknown) · date unknown | NOT_A_DOMAIN_ONLY_SALE | REFERENCE_ONLY (2010); EXCLUDED (2006) | [Sedo press release (newsroom)](https://sedo.com/us/about-us/news-press/newsroom/new-guinness-world-record-at-sedo/) |
 | 30 | crypto.com — $12,000,000 (2018) | SOH-TX-000033: REPORTED · — (undisclosed) · 2018 | PRICE_NOT_DISCLOSED | EXCLUDED | [DomainInvesting](https://domaininvesting.com/cheddar-report-monaco-paid-12-million-for-crypto-com/) |
 | 31 | hotels.com — $11,000,000 (2001) | SOH-TX-000034: REPORTED · $11,000,000 (approximate) · 2001 | CONSISTENT | REFERENCE_ONLY | [DomainInvesting (quoting BBC)](https://domaininvesting.com/bbc-hotels-com-domain-name-originally-bought-for-11-million/) |
 | 32 | fund.com — $9,990,000 (2008) | SOH-TX-000035: VERIFIED · $9,999,950 (exact, bundle total) · 2007<br>SOH-TX-000036: REPORTED · — (undisclosed) · date unknown | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [Fund.com Inc. Form 10-Q/A (quarter ended March 31, 2009)](https://www.sec.gov/Archives/edgar/data/1335795/000121390009003495/f10q0309a1_fund.htm) |
@@ -99,20 +99,21 @@ Seed records by strongest evidence for any linked transaction:
 
 ### 1. ai.com
 
-- **Findings:** No reviewed source supports an $11M sale in 2023. A separate later sale (closed 2025, announced February 2026, $70M stated by the broker) is verified from the broker's release.
+- **Findings:** No reviewed source supports an $11M sale in 2023. A separate later sale (closed in 2025, exact date unknown; announced February 2026; $70M stated by the broker) is VERIFIED on broker attestation only; settlement is not independently confirmed.
 - **Price/date conflicts:** Seed $11M/2023 matches no reviewed transaction; the documented sale is $70M (2025).
 - **Transaction type:** 2025 sale: domain-only; consideration in cryptocurrency.
 - **Rights:** Citation only; storage and modelling rights not established.
 - **Remaining work:** Search for a primary 2023 transfer record if one exists.
 - **SOH-TX-000001** (UNVERIFIED, unknown): No reviewed source states a 2023 sale price. 2023 coverage reported only that AI.com redirected to ChatGPT. The $11M figure appears only in an unattributed search summary and in the Sohadot seed. Absence of a reviewed report does not prove no 2023 transaction occurred.
   - Lead (search index only, not evidence): [Kowatek blog](https://blog.kowatek.com/?p=16030): 2023 report that AI.com redirected to ChatGPT; no price observed.
-- **SOH-TX-000002** (VERIFIED, single domain): Sale of AI.com to Crypto.com CEO Kris Marszalek, brokered by GetYourDomain.com. A strategic landmark sale.
+- **SOH-TX-000002** (VERIFIED, single domain): Sale of AI.com to Crypto.com CEO Kris Marszalek, attested by broker GetYourDomain.com. Excluded from calibration (cryptocurrency consideration, strategic landmark); kept for reference context.
   - Reviewed source: [GetYourDomain.com press release (PR Newswire)](https://tools.prnewswire.com/en-us/live/20823/release/20260209EN83172), Release headline and dateline 'NEW YORK, Feb. 9, 2026 /PRNewswire/'. Checked quote: “GetYourDomain.com Brokers the $70 Million Sale of AI.com, the Largest Domain Name Transaction in History”
   - Also reviewed: [Domain Name Wire](https://domainnamewire.com/2026/02/06/ai-com-domain-name-sold-70-million/), Article 'AI.com domain name sold for record-breaking $70 million', paragraph 1
   - Also reviewed: [DN Journal (The Lowdown)](https://dnjournal.com/archive/lowdown/2026/posts/0206-2.htm), Post 'AI.com Sold for $70 Million in Biggest Domain Name Sale Ever Recorded', paragraph 1
-  - Verification basis: Broker of record's own release (PR Newswire, Feb. 9, 2026), read in raw text, states a $70 million sale of AI.com to Kris Marszalek, seller Arsyan Ismail. The release states neither the closing date nor the form of payment; the 2025 year and the cryptocurrency payment come from Domain Name Wire quoting the broker (Feb. 6, 2026).
+  - Verification basis: Broker attestation, not independently confirmed settlement: the broker of record's own release (GetYourDomain.com via PR Newswire, Feb. 9, 2026), read in raw text, states a $70 million sale of AI.com to Kris Marszalek (seller Arsyan Ismail). No buyer, seller, registry or regulatory record of the settlement was reviewed. The release states neither the closing date nor the form of payment; the 2025 year and cryptocurrency payment come from Domain Name Wire quoting the broker (Feb. 6, 2026).
+  - Valuation caveat: Evidence is the broker's attestation; settlement has not been independently confirmed.
   - Valuation caveat: The price is the broker's statement of the USD value of cryptocurrency consideration.
-  - Valuation caveat: Closing date not disclosed; DN Journal says 'last spring' (2025); an April 2025 date appears only in secondary reports.
+  - Valuation caveat: The precise closing date is unknown: the release gives none, DN Journal says 'last spring' (2025), and an April 2025 date appears only in unreviewed secondary reports.
   - Valuation caveat: First public reports (Feb. 6, 2026) predate the release (Feb. 9, 2026).
   - Lead (search index only, not evidence): [TechRadar](https://techradar.com/pro/biggest-ever-website-domain-deal-sees-ai-com-bought-by-crypto-com-founder): Reports an April 2025 sale date; not confirmed by reviewed sources.
 
@@ -393,18 +394,26 @@ Seed records by strongest evidence for any linked transaction:
 
 ### 29. sex.com
 
-- **Findings:** 2010 agreed sale reported at $13M (court approval not reviewed). The earlier Escom purchase is disputed in price and date.
-- **Price/date conflicts:** None found.
-- **Transaction type:** Domain-only; court-supervised.
+- **Findings:** Completed November 17, 2010 for $13M cash per the broker's own release (Sedo); court approval reported October 27-28, 2010. The sale included a couple of related trademarks, so the price is a bundle total. The earlier Escom purchase is disputed in price, date and consideration.
+- **Price/date conflicts:** Price matches; scope differs: the seed treats $13M as a domain-only price, but the sale included related trademarks.
+- **Transaction type:** Resolved: domain plus related trademarks, court-supervised.
 - **Rights:** Citation only.
-- **Remaining work:** Review the bankruptcy court approval order.
-- **SOH-TX-000031** (REPORTED, single domain): Sale by bankrupt Escom LLC to Clover Holdings, chosen from 12 bidders per court documents cited by The Register.
-  - Reviewed source: [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/), Article 'Sex.com sells for $13m' (Kevin Murphy, 20 Oct 2010), paragraphs 1-2. Checked quote: “The storied domain name sex.com is set to be sold for $13m, The Register has learned. Bankrupt Escom LLC sex.com's current owner, has sealed a deal to hand over the domain to a company called Clover Holdings Ltd”
-  - Valuation caveat: Reported as an agreed sale filed in bankruptcy court; court approval and completion were not reviewed.
+- **Remaining work:** Review the bankruptcy court approval order and any filing allocating the price between domain and trademarks.
+- **SOH-TX-000031** (VERIFIED, bundle total): Bankruptcy sale by Escom LLC to Clover Holdings, brokered by Sedo; agreed October 2010, approved by the court late October, completed November 17, 2010 per the broker.
+  - Reviewed source: [Sedo press release (newsroom)](https://sedo.com/us/about-us/news-press/newsroom/new-guinness-world-record-at-sedo/), Release 'New Guinness World Record at Sedo!' (02/22/2011), paragraph 1. Checked quote: “Sex.com was sold for $13 million on November 17, 2010.”
+  - Also reviewed: [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/), Article 'Sex.com sells for $13m' (20 Oct 2010), paragraphs 1 and 4
+  - Also reviewed: [The Register](https://www.theregister.com/2010/10/28/sx_dot_com_sale/), Article 'Sex.com sellers roll eyes at $13m price tag' (28 Oct 2010), paragraph 1
+  - Also reviewed: [TheDomains](https://www.thedomains.com/2010/11/17/sex-com-sale-for-13m-completes-previous-purchase-price-was-11-5-million), Post 'Sex.com Sale For $13M Completes; Previous Purchase Price Was $11.5 Million' (November 17, 2010), paragraph 1
+  - Also reviewed: [DN Journal](https://dnjournal.com/archive/domainsales/2010/20101124.htm), Weekly sales report 'Sedo Completes Biggest Domain Sale Ever Reported as Sex.com Closes at $13 Million', paragraph 1
+  - Verification basis: Broker attestation, not independently confirmed settlement: Sedo, broker of record, states in its own release (read in raw text) that Sex.com was sold for $13 million on November 17, 2010; TheDomains (Nov. 17, 2010) reports Sedo's release announcing completion for $13 million cash. Court approval by Judge Geraldine Mund was reported by The Register (Oct. 28, 2010); the court order itself was not reviewed. The Register (Oct. 20, 2010), citing court documents, reports that the sale included a couple of trademarks, so the $13 million is not attributed to the domain alone.
+  - Valuation caveat: The consideration covered the domain and a couple of related trademarks; no allocation to the domain is disclosed.
+  - Valuation caveat: Completion is attested by the broker; the court approval order and settlement records were not reviewed.
+  - Valuation caveat: Court-supervised sale out of bankruptcy; the Register reports a $1 million deposit with the remaining $12 million due within a fortnight.
 - **SOH-TX-000032** (DISPUTED, single domain): Escom's earlier purchase. Not in the seed; recorded because repeat sales are separate transactions.
   - Reviewed source: [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/), Article 'Sex.com sells for $13m', paragraph 3. Checked quote: “Escom purchased the domain from its previous owner in 2006. The price then was variously reported as being between $12m and $14m”
   - Also reviewed: [DN Journal (May 2007 sales report)](https://dnjournal.com/archive/domainsales/2007/domainsales05-22-07.htm), Porn.com sale report, paragraph 1
-  - Lead (search index only, not evidence): [Wikipedia (tertiary)](https://en.wikipedia.org/wiki/Sex.com): Cites a Sedo statement of $11.5M; not reviewed.
+  - Also reviewed: [DN Journal](https://dnjournal.com/archive/domainsales/2010/20101124.htm), Weekly sales report on the Sex.com sale, paragraph 1
+  - Valuation caveat: Consideration reportedly mixed cash and equity, so no single cash price is established.
 
 ### 30. crypto.com
 

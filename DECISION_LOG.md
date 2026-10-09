@@ -372,3 +372,10 @@ repeated is the precondition for any credible calibration.
 The independent review found that search-only summaries, an unenforced
 holdout protocol and a single rights field could each overstate the evidence.
 Direct review also corrected candy.com, which a search summary had misread.
+
+**Addendum (second review, same day).**
+- VERIFIED records now state who vouches for them: `attesting_party`
+  and `settlement_evidence`. A party's own announcement is recorded as
+  `PARTY_ATTESTATION_ONLY`, never as confirmed settlement.
+- The holdout `readiness_gate` forbids FROZEN while any control is
+  NOT_IMPLEMENTED.

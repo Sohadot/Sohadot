@@ -84,6 +84,13 @@ indicative only.
    manifest declares `"kind": "sohadot-holdout-manifest"` and is hashed as
    canonical JSON (sorted keys, compact separators).
 
+**Readiness gate.** `FROZEN` is permitted only when every control in §9 is
+`ENFORCED`. The status file carries a `readiness_gate` computed from those
+controls (`frozen_permitted`, `blocking_controls`), and the validator
+rejects any edited value. While any control is `NOT_IMPLEMENTED`, a `FROZEN`
+status fails even with a valid private manifest. Today `frozen_permitted` is
+`false`, with 7 blocking controls, and the status remains `NOT_READY`.
+
 **Fail-closed verification.** A `FROZEN` status is never accepted on its own.
 The validator fails unless it is run with `--holdout-manifest <private path>`
 and the manifest:

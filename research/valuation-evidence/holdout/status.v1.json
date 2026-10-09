@@ -30,5 +30,18 @@
     "backtest_second_level_overlap_check": "NOT_IMPLEMENTED",
     "pages_artifact_excludes_research_files": "NOT_IMPLEMENTED"
   },
-  "controls_note": "ENFORCED controls run in scripts/validate_evidence_registry.py. NOT_IMPLEMENTED controls are protocol requirements without code yet; they must be implemented before any FROZEN status is relied on for those properties."
+  "controls_note": "ENFORCED controls run in scripts/validate_evidence_registry.py. NOT_IMPLEMENTED controls are protocol requirements without code yet; they must be implemented before any FROZEN status is relied on for those properties.",
+  "readiness_gate": {
+    "frozen_permitted": false,
+    "blocking_controls": [
+      "aggregate_only_access_for_developers",
+      "backtest_second_level_overlap_check",
+      "chronological_split",
+      "evaluation_budget_and_logging",
+      "independent_naming_class_labels",
+      "pages_artifact_excludes_research_files",
+      "stratum_minimums"
+    ]
+  },
+  "readiness_note": "FROZEN is permitted only when every control is ENFORCED. While any control is NOT_IMPLEMENTED the validator rejects FROZEN even with a valid private manifest. Status remains NOT_READY."
 }

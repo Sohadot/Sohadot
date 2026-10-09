@@ -17,8 +17,8 @@
       "price_date_conflicts": "Seed $11M/2023 matches no reviewed transaction; the documented sale is $70M (2025).",
       "transaction_type_uncertainty": "2025 sale: domain-only; consideration in cryptocurrency.",
       "rights_uncertainty": "Citation only; storage and modelling rights not established.",
-      "recommended_role": "UNDETERMINED (2023 claim); REFERENCE_ONLY (2025 sale)",
-      "findings": "No reviewed source supports an $11M sale in 2023. A separate later sale (closed 2025, announced February 2026, $70M stated by the broker) is verified from the broker's release.",
+      "recommended_role": "UNDETERMINED (2023 claim); EXCLUDED from calibration (2025 sale, broker-attested, crypto consideration)",
+      "findings": "No reviewed source supports an $11M sale in 2023. A separate later sale (closed in 2025, exact date unknown; announced February 2026; $70M stated by the broker) is VERIFIED on broker attestation only; settlement is not independently confirmed.",
       "remaining_work": "Search for a primary 2023 transfer record if one exists."
     },
     {
@@ -463,13 +463,13 @@
         "SOH-TX-000032"
       ],
       "evidence_found": true,
-      "seed_agreement": "CONSISTENT",
-      "price_date_conflicts": "",
-      "transaction_type_uncertainty": "Domain-only; court-supervised.",
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "Price matches; scope differs: the seed treats $13M as a domain-only price, but the sale included related trademarks.",
+      "transaction_type_uncertainty": "Resolved: domain plus related trademarks, court-supervised.",
       "rights_uncertainty": "Citation only.",
-      "recommended_role": "REFERENCE_ONLY (2010)",
-      "findings": "2010 agreed sale reported at $13M (court approval not reviewed). The earlier Escom purchase is disputed in price and date.",
-      "remaining_work": "Review the bankruptcy court approval order."
+      "recommended_role": "REFERENCE_ONLY (2010); EXCLUDED (2006)",
+      "findings": "Completed November 17, 2010 for $13M cash per the broker's own release (Sedo); court approval reported October 27-28, 2010. The sale included a couple of related trademarks, so the price is a bundle total. The earlier Escom purchase is disputed in price, date and consideration.",
+      "remaining_work": "Review the bankruptcy court approval order and any filing allocating the price between domain and trademarks."
     },
     {
       "seed_domain": "crypto.com",

@@ -2,7 +2,7 @@
 
 - **Sprint:** 1A, Comparable Sales Evidence Registry & Independent Holdout Foundation
 - **Baseline:** `main` at `262b875` (PR #44 merged)
-- **Date:** 2026-10-09 (revised the same day after the independent review)
+- **Date:** 2026-10-09 (revised twice the same day after independent reviews)
 - **Production impact:** none. The engine, published comps, public pages and
   engine baseline are unchanged.
 
@@ -11,7 +11,7 @@
 | Deliverable | Location |
 | --- | --- |
 | Transaction Evidence Registry v1 (standard) | `docs/valuation-evidence/TRANSACTION_EVIDENCE_REGISTRY_V1.md` |
-| Registry data (49 transactions, version 1.1.0) | `research/valuation-evidence/registry/transactions.v1.json` |
+| Registry data (49 transactions, version 1.2.0) | `research/valuation-evidence/registry/transactions.v1.json` |
 | Structural JSON Schema | `research/valuation-evidence/schema/transaction-evidence.v1.schema.json` |
 | Seed-45 investigation (data and generated matrix) | `research/valuation-evidence/investigations/seed-45.v1.json`, `docs/valuation-evidence/SEED_45_INVESTIGATION.md` |
 | Source Reliability & Data Rights Matrix | `docs/valuation-evidence/SOURCE_RELIABILITY_AND_RIGHTS_MATRIX.md` |
@@ -24,9 +24,9 @@
 **Method.**
 1. A web search per seed sale located candidate sources.
 2. Every source used as evidence was then fetched and its quoted passage
-   checked against the raw document text. The registry records 40 such
+   checked against the raw document text. The registry records 45 such
    passages, each with a locator and a SHA-256 of the retrieved bytes.
-3. Search summaries are kept only as leads (13 recorded).
+3. Search summaries are kept only as leads (12 recorded).
 
 No paid sources, APIs or scraping of restricted services were used.
 
@@ -34,19 +34,19 @@ No paid sources, APIs or scraping of restricted services were used.
 
 | Evidence status | Count | Role | Count |
 | --- | --- | --- | --- |
-| VERIFIED | 7 | CALIBRATION_CANDIDATE | 0 |
-| REPORTED | 21 | HOLDOUT_CANDIDATE | 0 |
-| DISPUTED | 1 | REFERENCE_ONLY | 18 |
-| UNVERIFIED | 20 | EXCLUDED | 11 |
+| VERIFIED | 8 | CALIBRATION_CANDIDATE | 0 |
+| REPORTED | 20 | HOLDOUT_CANDIDATE | 0 |
+| DISPUTED | 1 | REFERENCE_ONLY | 17 |
+| UNVERIFIED | 20 | EXCLUDED | 12 |
 | | | UNDETERMINED | 20 |
 
 **The 45 seed records against the reviewed evidence:**
 
 | Result | Records |
 | --- | --- |
-| Consistent | 16 |
+| Consistent | 15 |
 | No evidence found | 18 |
-| Not a domain-only sale | 6 |
+| Not a domain-only sale | 7 |
 | Price or date conflict | 3 |
 | Price never disclosed | 2 |
 
@@ -57,6 +57,7 @@ No paid sources, APIs or scraping of restricted services were used.
   - fund.com (24 domains and a trademark)
   - fb.com ("a couple of domain names")
   - diamond.com (domain plus associated IP)
+  - sex.com 2010 (domain plus related trademarks)
 - **Price or date conflicts:**
   - ai.com: no reviewed support for $11M/2023; the documented sale is $70M,
     closed in 2025.
@@ -74,10 +75,13 @@ No paid sources, APIs or scraping of restricted services were used.
 | insurance.com | Website business, $33.0M cash + $2.6M note, 2010-07 | QuinStreet 10-K |
 | internet.com | Business assets, $18M subject to adjustment, 2009-11-30 | WebMediaBrands 8-K |
 | fund.com | Bundle of 24 domains and one trademark, $9,999,950 in total, 2007. No amount attributed to fund.com, and its economic value stays disputed. | Fund.com Inc. 10-Q/A |
-| ai.com | $70M, 2025. Caveats: the broker's own statement, the USD value of crypto consideration, closing date undisclosed. | Broker of record's release (PR Newswire, 2026-02-09) |
+| ai.com | $70M, 2025 (exact closing date unknown). **Broker attestation, not independently confirmed settlement.** Crypto consideration; EXCLUDED from calibration. | Broker of record's release (PR Newswire, 2026-02-09) |
+| sex.com | $13M cash for the domain plus a couple of related trademarks, completed 2010-11-17 (bundle total, unallocated). **Broker attestation**; court approval reported, order not reviewed. REFERENCE_ONLY. | Sedo's release; The Register (2010-10-20, 2010-10-28); TheDomains; DN Journal |
 
-**Disputed:** sex.com's earlier purchase. The Register gives $12M–$14M in
-2006; DN Journal gives about $12M in cash and stock in January 2005.
+**Disputed:** sex.com's earlier purchase. Figures and dates conflict: $11.5M
+(Sedo, via DN Journal), $12M–$14M in 2006 (The Register), and about $12M in
+cash and stock in January 2005 (DN Journal). Gary Kremen said the deal mixed
+cash and equity.
 
 ## 3. What this means for the published comps
 
@@ -90,7 +94,7 @@ No paid sources, APIs or scraping of restricted services were used.
    - slots.com's year;
    - agents.ai's price;
    - ai.com, which matches no reviewed transaction;
-   - six non-domain-only transactions shown as single-domain sales;
+   - seven non-domain-only transactions shown as single-domain sales;
    - two undisclosed prices shown as facts.
 
    None was changed in Sprint 1A. Correcting or retiring them is a Sprint 1B
@@ -111,6 +115,8 @@ No paid sources, APIs or scraping of restricted services were used.
 
 ## 5. Holdout readiness: NOT_READY
 
+- **Readiness gate:** `frozen_permitted: false` while any control is
+  NOT_IMPLEMENTED. FROZEN is rejected even with a valid private manifest.
 - **Enforced (13 controls):** fail-closed FROZEN validation (no FROZEN status
   is accepted without the private manifest), hash, record count of at least
   150, eligibility, source concentration, and overlap with the registry,
@@ -145,8 +151,14 @@ No paid sources, APIs or scraping of restricted services were used.
   date 2005 vs 2006.
 - **Bundles:** fb.com and diamond.com are now recorded as bundles, matching
   their sources' wording.
-- **ai.com 2025:** now VERIFIED from the broker of record's release, with
-  caveats.
+- **ai.com 2025:** now VERIFIED from the broker of record's release, as
+  broker attestation only (second review). It is EXCLUDED from calibration
+  and its exact closing date is recorded as unknown.
+- **sex.com 2010 (second review):** recorded as domain plus a couple of
+  related trademarks (The Register, 2010-10-20). Completion is attested by
+  Sedo's own release (sold November 17, 2010); court approval was reported
+  2010-10-28. The record is now a VERIFIED bundle on broker attestation, and
+  REFERENCE_ONLY.
 - **hotels.com:** the "2001 vs 2002" date conflict came only from search
   results. It was dropped because the reviewed source says 2001.
 
@@ -158,17 +170,19 @@ No paid sources, APIs or scraping of restricted services were used.
    for storage and modelling. Alternatively, keep the dataset citation-only.
 3. **Private holdout storage and evaluator access.**
 4. **Second reviewer:** who confirms evidence and rights before calibration.
-5. **ai.com 2025:** the standard treats a broker of record's own release as
-   primary evidence. Confirm this is acceptable, or require independent
-   corroboration of the price.
+5. **Broker attestations (ai.com 2025, sex.com 2010):** both are VERIFIED
+   on the broker of record's own release, labelled
+   `PARTY_ATTESTATION_ONLY`. Confirm this is acceptable, or require
+   independent settlement evidence before VERIFIED.
 6. **Website and business acquisitions:** whether they are ever shown
    publicly, even as context.
 
 ## 8. Unresolved questions
 
 - Where did the 18 unsupported seed figures come from, and under what terms?
-- Did the bankruptcy court approve the 2010 sex.com sale? The order has not
-  been reviewed.
+- What does the bankruptcy court's approval order for the 2010 sex.com
+  sale say about allocating the price between the domain and the trademarks?
+  The order has not been reviewed.
 - What was the true date and price of Escom's earlier sex.com purchase?
 - Did the privatejet.com cash-and-stock deal close, and at what value?
 - Do Qihoo 360's (360.com) or Odimo's (diamond.com) filings disclose the

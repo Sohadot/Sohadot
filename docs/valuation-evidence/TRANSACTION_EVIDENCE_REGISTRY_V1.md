@@ -1,7 +1,7 @@
 # Transaction Evidence Registry v1
 
 - **Status:** Research standard (Sprint 1A, revised after independent review). Not used by the production valuation engine.
-- **Schema version:** `transaction-evidence/v1` (registry data version 1.1.0)
+- **Schema version:** `transaction-evidence/v1` (registry data version 1.2.0)
 - **Files:**
   - `research/valuation-evidence/registry/transactions.v1.json`: the registry
   - `research/valuation-evidence/schema/transaction-evidence.v1.schema.json`: structural JSON Schema
@@ -77,6 +77,20 @@ says nothing about whether the price is a good comparable.
 | **REPORTED** | Reviewed principal source of a reportable class: primary, `TRADE_PUBLICATION` or `GENERAL_NEWS`. Never `TERTIARY_REFERENCE`, `AGGREGATOR_DATABASE` or a search summary. No material conflict. |
 | **DISPUTED** | Reviewed source, plus at least one **material** conflict about the transaction itself (price, date or consideration). |
 | **UNVERIFIED** | No reviewed principal source. Leads may be listed. |
+
+**Who vouches for a VERIFIED record.** Every `VERIFIED` record states
+`attesting_party` and `settlement_evidence`:
+
+| Principal source | `settlement_evidence` | `attesting_party` |
+| --- | --- | --- |
+| Regulatory filing or court record | `REGULATED_FILING_OR_COURT_RECORD` | `BUYER`, `SELLER` or `COURT` |
+| Party announcement or marketplace record | `PARTY_ATTESTATION_ONLY` | `BUYER`, `SELLER`, `BROKER` or `VENUE` |
+
+- A party's own announcement is an **attestation, not independently confirmed
+  settlement**. Its `verification_basis` must say so.
+- Non-`VERIFIED` records carry `NONE` / `NOT_ESTABLISHED`.
+- Examples: ai.com (2025) and sex.com (2010) are `VERIFIED` on broker
+  attestation only.
 
 **Conflicts vs valuation caveats.**
 - `conflicts` are contradictions about the transaction itself.

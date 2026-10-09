@@ -39,7 +39,7 @@ reference before any record can become a calibration candidate.
 ## Sources reviewed in Sprint 1A
 
 Every source below was fetched on 2026-10-09 and its quoted passage checked
-against the raw text. The registry records 40 such passages.
+against the raw text. The registry records 45 such passages.
 
 | Source | Tier | Used for |
 | --- | --- | --- |
@@ -49,7 +49,8 @@ against the raw text. The registry records 40 such passages.
 | QuinStreet 10-K (FY2011) | A | insurance.com (VERIFIED: website business) |
 | WebMediaBrands 8-K Ex. 99.1 (2009) | A | internet.com (VERIFIED: business assets) |
 | Fund.com Inc. 10-Q/A (Q1 2009), 8-K Ex. 99(a) (2008), 10-K (FY2009) | A | fund.com (VERIFIED: 24-domain and trademark bundle) |
-| GetYourDomain.com release on PR Newswire (Feb. 9, 2026) | B | ai.com 2025 (VERIFIED, with caveats) |
+| GetYourDomain.com release on PR Newswire (Feb. 9, 2026) | B | ai.com 2025 (VERIFIED on broker attestation only) |
+| Sedo newsroom release (Feb. 22, 2011) | B | sex.com 2010 (VERIFIED on broker attestation only; domain plus trademarks) |
 | DN Journal, Domain Name Wire, DomainInvesting, TheDomains | C | 16 REPORTED records and corroboration |
 | The Register, TechCrunch, InformationWeek, Fortune, heise, Entrepreneur | C | REPORTED records and corroboration |
 

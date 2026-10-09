@@ -1,24 +1,24 @@
 {
   "schema_version": "transaction-evidence/v1",
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "as_of": "2026-10-09",
   "dataset_status": "RESEARCH_ONLY_NOT_FOR_PRODUCTION",
   "description": "Sprint 1A research registry of individual domain-sale transactions and their evidence. Not used by the production valuation engine. Evidence status is assessed per transaction from sources read directly and checked against their raw text; search-index summaries are kept only as leads. No dataset-level status is asserted.",
   "transaction_count": 49,
   "status_counts": {
     "DISPUTED": 1,
-    "REPORTED": 21,
+    "REPORTED": 20,
     "UNVERIFIED": 20,
-    "VERIFIED": 7
+    "VERIFIED": 8
   },
   "role_counts": {
     "CALIBRATION_CANDIDATE": 0,
-    "EXCLUDED": 11,
+    "EXCLUDED": 12,
     "HOLDOUT_CANDIDATE": 0,
-    "REFERENCE_ONLY": 18,
+    "REFERENCE_ONLY": 17,
     "UNDETERMINED": 20
   },
-  "content_sha256": "12ee299bf97e66f298757146ab9572f77528e579c8d8cb1a3a348dd258539c0a",
+  "content_sha256": "aaa46a3b33ce796bf09354a79cf1c6819e0922a13e4013a6da8a9cf3fa22118c",
   "transactions": [
     {
       "transaction_id": "SOH-TX-000001",
@@ -68,6 +68,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -159,13 +161,16 @@
       "price_claims": [],
       "conflicts": [],
       "valuation_caveats": [
+        "Evidence is the broker's attestation; settlement has not been independently confirmed.",
         "The price is the broker's statement of the USD value of cryptocurrency consideration.",
-        "Closing date not disclosed; DN Journal says 'last spring' (2025); an April 2025 date appears only in secondary reports.",
+        "The precise closing date is unknown: the release gives none, DN Journal says 'last spring' (2025), and an April 2025 date appears only in unreviewed secondary reports.",
         "First public reports (Feb. 6, 2026) predate the release (Feb. 9, 2026)."
       ],
       "evidence_status": "VERIFIED",
-      "verification_basis": "Broker of record's own release (PR Newswire, Feb. 9, 2026), read in raw text, states a $70 million sale of AI.com to Kris Marszalek, seller Arsyan Ismail. The release states neither the closing date nor the form of payment; the 2025 year and the cryptocurrency payment come from Domain Name Wire quoting the broker (Feb. 6, 2026).",
+      "verification_basis": "Broker attestation, not independently confirmed settlement: the broker of record's own release (GetYourDomain.com via PR Newswire, Feb. 9, 2026), read in raw text, states a $70 million sale of AI.com to Kris Marszalek (seller Arsyan Ismail). No buyer, seller, registry or regulatory record of the settlement was reviewed. The release states neither the closing date nor the form of payment; the 2025 year and cryptocurrency payment come from Domain Name Wire quoting the broker (Feb. 6, 2026).",
       "verified_at": "2026-10-09",
+      "attesting_party": "BROKER",
+      "settlement_evidence": "PARTY_ATTESTATION_ONLY",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -192,8 +197,8 @@
           "reference": null
         }
       },
-      "calibration_role": "REFERENCE_ONLY",
-      "notes": "Sale of AI.com to Crypto.com CEO Kris Marszalek, brokered by GetYourDomain.com. A strategic landmark sale."
+      "calibration_role": "EXCLUDED",
+      "notes": "Sale of AI.com to Crypto.com CEO Kris Marszalek, attested by broker GetYourDomain.com. Excluded from calibration (cryptocurrency consideration, strategic landmark); kept for reference context."
     },
     {
       "transaction_id": "SOH-TX-000003",
@@ -235,6 +240,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -311,6 +318,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -388,6 +397,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -457,6 +468,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -526,6 +539,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -595,6 +610,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -664,6 +681,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -733,6 +752,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -802,6 +823,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -871,6 +894,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -940,6 +965,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1009,6 +1036,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1078,6 +1107,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1147,6 +1178,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1216,6 +1249,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1285,6 +1320,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1354,6 +1391,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1423,6 +1462,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1500,6 +1541,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1569,6 +1612,8 @@
       "evidence_status": "UNVERIFIED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "NOT_ESTABLISHED",
@@ -1648,6 +1693,8 @@
       "evidence_status": "VERIFIED",
       "verification_basis": "QuinStreet FY2011 10-K, MD&A, read in raw text: website-business acquisition for $33.0M cash plus a $2.6M promissory note (total $35.6M, rounded components). Verifies a website-business acquisition, not a domain-only sale.",
       "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -1719,6 +1766,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -1783,6 +1832,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -1859,6 +1910,8 @@
       "evidence_status": "VERIFIED",
       "verification_basis": "Seller's 10-Q Note 12 and 8-K Ex. 99.1, both read in raw text: Voice.com sold for $30.0M in cash on May 30, 2019, facilitated by GoDaddy; Block.one named as the subsequent user.",
       "verified_at": "2026-10-09",
+      "attesting_party": "SELLER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -1930,6 +1983,8 @@
       "evidence_status": "VERIFIED",
       "verification_basis": "WebMediaBrands' 8-K Ex. 99.1, read in raw text: sale of the assets of the Internet.com business to QuinStreet for $18M, subject to post-closing adjustments. Verifies a business-asset sale, not a domain sale.",
       "verified_at": "2026-10-09",
+      "attesting_party": "SELLER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2001,6 +2056,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2064,6 +2121,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2140,6 +2199,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2174,35 +2235,94 @@
       "domain": "sex.com",
       "sale_price": 13000000,
       "currency": "USD",
-      "price_scope": "SINGLE_DOMAIN",
-      "bundle": null,
-      "sale_date": "2010-10",
-      "sale_date_precision": "MONTH",
-      "report_date": "2010-10-20",
+      "price_scope": "BUNDLE_TOTAL",
+      "bundle": {
+        "domain_count": 1,
+        "other_assets": [
+          "a couple of trademarks related to the domain (per The Register, citing bankruptcy court documents)"
+        ],
+        "allocation": "NOT_ALLOCATED"
+      },
+      "sale_date": "2010-11-17",
+      "sale_date_precision": "DAY",
+      "report_date": "2011-02-22",
       "venue": "BANKRUPTCY_SALE",
-      "transaction_type": "DOMAIN_ONLY",
-      "consideration_type": "UNKNOWN",
+      "transaction_type": "DOMAIN_PLUS_ASSETS",
+      "consideration_type": "CASH",
       "market_side": "UNKNOWN",
-      "source_name": "The Register",
-      "source_url": "https://www.theregister.com/2010/10/20/domain_name_sale/",
-      "source_type": "GENERAL_NEWS",
+      "source_name": "Sedo press release (newsroom)",
+      "source_url": "https://sedo.com/us/about-us/news-press/newsroom/new-guinness-world-record-at-sedo/",
+      "source_type": "PARTY_ANNOUNCEMENT",
       "source_access_method": "DOCUMENT_REVIEWED",
       "source_accessed_at": "2026-10-09",
       "review_method": "RAW_TEXT_CHECKED",
-      "document_locator": "Article 'Sex.com sells for $13m' (Kevin Murphy, 20 Oct 2010), paragraphs 1-2",
-      "checked_quote": "The storied domain name sex.com is set to be sold for $13m, The Register has learned. Bankrupt Escom LLC sex.com's current owner, has sealed a deal to hand over the domain to a company called Clover Holdings Ltd",
-      "document_sha256": "e8151e7c170c2a38ba31b23d8464dec8a7ea2a592c0866d1f2decdd8b4fa814a",
-      "additional_sources": [],
+      "document_locator": "Release 'New Guinness World Record at Sedo!' (02/22/2011), paragraph 1",
+      "checked_quote": "Sex.com was sold for $13 million on November 17, 2010.",
+      "document_sha256": "164e1234df33d9b1b195f70f4636cdcf9de72045c565595ec1a2e2d2e9396676",
+      "additional_sources": [
+        {
+          "source_name": "The Register",
+          "source_url": "https://www.theregister.com/2010/10/20/domain_name_sale/",
+          "source_type": "GENERAL_NEWS",
+          "published_date": "2010-10-20",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'Sex.com sells for $13m' (20 Oct 2010), paragraphs 1 and 4",
+          "checked_quote": "The sale includes a couple of trademarks related to the domain. The negotiations were handled by Sedo.com, a domain name auction company.",
+          "document_sha256": "e8151e7c170c2a38ba31b23d8464dec8a7ea2a592c0866d1f2decdd8b4fa814a"
+        },
+        {
+          "source_name": "The Register",
+          "source_url": "https://www.theregister.com/2010/10/28/sx_dot_com_sale/",
+          "source_type": "GENERAL_NEWS",
+          "published_date": "2010-10-28",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'Sex.com sellers roll eyes at $13m price tag' (28 Oct 2010), paragraph 1",
+          "checked_quote": "will go ahead after being given formal approval by Judge Geraldine Mund in Los Angeles on Wednesday.",
+          "document_sha256": "0d9554850b6c0382201e014897ccf86a9a367038c9be61f5c4e2569630cf6040"
+        },
+        {
+          "source_name": "TheDomains",
+          "source_url": "https://www.thedomains.com/2010/11/17/sex-com-sale-for-13m-completes-previous-purchase-price-was-11-5-million",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-11-17",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Post 'Sex.com Sale For $13M Completes; Previous Purchase Price Was $11.5 Million' (November 17, 2010), paragraph 1",
+          "checked_quote": "Sedo.com just put out a press release announcing the completion of the sale the domain name Sex.com for $13 Million Dollars cash.",
+          "document_sha256": "77b9d4ea54562fe743ce28c226a61ad4674227443c806314fe7e323de905d5f1"
+        },
+        {
+          "source_name": "DN Journal",
+          "source_url": "https://dnjournal.com/archive/domainsales/2010/20101124.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-11-24",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Weekly sales report 'Sedo Completes Biggest Domain Sale Ever Reported as Sex.com Closes at $13 Million', paragraph 1",
+          "checked_quote": "Sex.com has officially changed hands for $13 million in the largest cash domain sale ever reported.",
+          "document_sha256": "fb339e22b1191cdfcf34c99d1f25dec2412a439c466742ee6cb3e95399e85c7d"
+        }
+      ],
       "leads": [],
-      "price_disclosure_status": "EXACT",
+      "price_disclosure_status": "ROUNDED",
       "price_claims": [],
       "conflicts": [],
       "valuation_caveats": [
-        "Reported as an agreed sale filed in bankruptcy court; court approval and completion were not reviewed."
+        "The consideration covered the domain and a couple of related trademarks; no allocation to the domain is disclosed.",
+        "Completion is attested by the broker; the court approval order and settlement records were not reviewed.",
+        "Court-supervised sale out of bankruptcy; the Register reports a $1 million deposit with the remaining $12 million due within a fortnight."
       ],
-      "evidence_status": "REPORTED",
-      "verification_basis": null,
-      "verified_at": null,
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Broker attestation, not independently confirmed settlement: Sedo, broker of record, states in its own release (read in raw text) that Sex.com was sold for $13 million on November 17, 2010; TheDomains (Nov. 17, 2010) reports Sedo's release announcing completion for $13 million cash. Court approval by Judge Geraldine Mund was reported by The Register (Oct. 28, 2010); the court order itself was not reviewed. The Register (Oct. 20, 2010), citing court documents, reports that the sale included a couple of trademarks, so the $13 million is not attributed to the domain alone.",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BROKER",
+      "settlement_evidence": "PARTY_ATTESTATION_ONLY",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2230,7 +2350,7 @@
         }
       },
       "calibration_role": "REFERENCE_ONLY",
-      "notes": "Sale by bankrupt Escom LLC to Clover Holdings, chosen from 12 bidders per court documents cited by The Register."
+      "notes": "Bankruptcy sale by Escom LLC to Clover Holdings, brokered by Sedo; agreed October 2010, approved by the court late October, completed November 17, 2010 per the broker."
     },
     {
       "transaction_id": "SOH-TX-000032",
@@ -2267,17 +2387,21 @@
           "document_locator": "Porn.com sale report, paragraph 1",
           "checked_quote": "second largest domain sale overall after Sex.com (which reportedly sold for approximately $12 million in cash and stock in January 2005)",
           "document_sha256": "6e193868ef746d6ba94aa15b9e1ecb70563caed2164a7b4175feee8302c9a36d"
-        }
-      ],
-      "leads": [
+        },
         {
-          "source_name": "Wikipedia (tertiary)",
-          "source_url": "https://en.wikipedia.org/wiki/Sex.com",
-          "source_type": "TERTIARY_REFERENCE",
-          "observed_at": "2026-10-09",
-          "note": "Cites a Sedo statement of $11.5M; not reviewed."
+          "source_name": "DN Journal",
+          "source_url": "https://dnjournal.com/archive/domainsales/2010/20101124.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-11-24",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Weekly sales report on the Sex.com sale, paragraph 1",
+          "checked_quote": "Sedo said Escom had paid $11.5 million for the domain in 2006. However that deal involved both cash and equity according to Gary Kremen",
+          "document_sha256": "fb339e22b1191cdfcf34c99d1f25dec2412a439c466742ee6cb3e95399e85c7d"
         }
       ],
+      "leads": [],
       "price_disclosure_status": "UNKNOWN",
       "price_claims": [
         {
@@ -2293,12 +2417,19 @@
           "date": "2006",
           "source": "The Register (2010), upper end of reported range",
           "qualifier": "REPORTED_RANGE"
+        },
+        {
+          "amount": 11500000,
+          "currency": "USD",
+          "date": "2006",
+          "source": "Sedo (2010), as reported by DN Journal",
+          "qualifier": "REPORTED"
         }
       ],
       "conflicts": [
         {
           "field": "sale_price",
-          "description": "Reported between $12M and $14M (The Register) and about $12M in cash and stock (DN Journal).",
+          "description": "Reported as $11.5M (Sedo, via DN Journal), $12M-$14M (The Register) and about $12M in cash and stock (DN Journal 2007); Gary Kremen said the deal involved cash and equity.",
           "material": true,
           "resolution": "Unresolved."
         },
@@ -2309,10 +2440,14 @@
           "resolution": "Unresolved."
         }
       ],
-      "valuation_caveats": [],
+      "valuation_caveats": [
+        "Consideration reportedly mixed cash and equity, so no single cash price is established."
+      ],
       "evidence_status": "DISPUTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2399,6 +2534,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2462,6 +2599,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2566,6 +2705,8 @@
       "evidence_status": "VERIFIED",
       "verification_basis": "Buyer's amended Q1 2009 10-Q, Note 3, read in raw text: in 2007 the company acquired 24 domain names including fund.com and one trademark for a total of $9,999,950. Verifies a bundle purchase. It does not establish fund.com's own price.",
       "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2629,6 +2770,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2692,6 +2835,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2772,6 +2917,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2835,6 +2982,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2896,6 +3045,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -2965,6 +3116,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3036,6 +3189,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3105,6 +3260,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3179,6 +3336,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3240,6 +3399,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3301,6 +3462,8 @@
       "evidence_status": "VERIFIED",
       "verification_basis": "Buyer's financial statements in Amazon's 424B3, read in raw text: Clothes.com acquired from Idealab in May 2008; entire $4.9M purchase price assigned to the domain; intangible-asset table lists Clothes.com at 4,864 (thousands of dollars).",
       "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3364,6 +3527,8 @@
       "evidence_status": "VERIFIED",
       "verification_basis": "Buyer's Q1 2014 10-Q, read in raw text: Medicare.com purchased March 31, 2014 for $4.8M ($4.5M cash plus $0.3M of receivables from the owner settled at completion).",
       "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3438,6 +3603,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",
@@ -3515,6 +3682,8 @@
       "evidence_status": "REPORTED",
       "verification_basis": null,
       "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
       "rights": {
         "citation": {
           "status": "PERMITTED_WITH_CONDITIONS",

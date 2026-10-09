@@ -82,6 +82,8 @@
           "evidence_status",
           "verification_basis",
           "verified_at",
+          "attesting_party",
+          "settlement_evidence",
           "rights",
           "calibration_role",
           "notes"
@@ -450,6 +452,25 @@
               "string",
               "null"
             ]
+          },
+          "attesting_party": {
+            "enum": [
+              "BROKER",
+              "BUYER",
+              "COURT",
+              "NONE",
+              "SELLER",
+              "VENUE"
+            ],
+            "description": "Who vouches for the transaction in the principal source. NONE unless VERIFIED."
+          },
+          "settlement_evidence": {
+            "enum": [
+              "NOT_ESTABLISHED",
+              "PARTY_ATTESTATION_ONLY",
+              "REGULATED_FILING_OR_COURT_RECORD"
+            ],
+            "description": "REGULATED_FILING_OR_COURT_RECORD for filings and court records; PARTY_ATTESTATION_ONLY for a party's own announcement (not independently confirmed settlement); NOT_ESTABLISHED unless VERIFIED."
           },
           "rights": {
             "type": "object",
