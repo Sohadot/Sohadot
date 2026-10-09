@@ -4,8 +4,8 @@
 
 - **As of:** 2026-10-09
 - **Seed file:** `data/valuation_comps_seed.json` (unchanged by Sprint 1A)
-- **Method:** Web search (2026-10-09) for each seed sale, then direct review of primary documents (SEC EDGAR filings) where they existed. No paid databases, APIs or automated scraping of restricted services were used. Search-result summaries are recorded as SEARCH_INDEX_ONLY access.
-- **Registry:** `research/valuation-evidence/registry/transactions.v1.json` (49 transactions, content hash `3ed231c34438…`)
+- **Method:** Web search (2026-10-09) to locate candidate sources for each seed sale; every source used as evidence was then fetched and its quoted passage checked against the raw document text, with a SHA-256 of the retrieved bytes recorded. Search-index summaries are recorded only as leads. No paid databases, APIs or automated scraping of restricted services were used.
+- **Registry:** `research/valuation-evidence/registry/transactions.v1.json` (49 transactions, content hash `12ee299bf97e…`)
 
 ## Totals
 
@@ -13,9 +13,9 @@ Transactions in the registry (one seed record can map to several transactions, f
 
 | Evidence status | Transactions |
 | --- | --- |
-| VERIFIED | 5 |
-| REPORTED | 20 |
-| DISPUTED | 4 |
+| VERIFIED | 7 |
+| REPORTED | 21 |
+| DISPUTED | 1 |
 | UNVERIFIED | 20 |
 
 | Analytical role | Transactions |
@@ -30,26 +30,26 @@ Seed records by strongest evidence for any linked transaction:
 
 | Strongest evidence | Seed records |
 | --- | --- |
-| VERIFIED | 5 |
+| VERIFIED | 7 |
 | REPORTED | 19 |
-| DISPUTED | 2 |
+| DISPUTED | 0 |
 | UNVERIFIED | 19 |
 
 | Agreement between seed record and evidence | Seed records |
 | --- | --- |
-| CONSISTENT | 18 |
 | NO_EVIDENCE_FOUND | 18 |
-| NOT_A_DOMAIN_ONLY_SALE | 3 |
-| PRICE_AND_DATE_CONFLICT | 2 |
+| CONSISTENT | 16 |
+| NOT_A_DOMAIN_ONLY_SALE | 6 |
 | PRICE_NOT_DISCLOSED | 2 |
 | DATE_CONFLICT | 1 |
+| PRICE_AND_DATE_CONFLICT | 1 |
 | PRICE_CONFLICT | 1 |
 
 ## Matrix
 
-| # | Seed record | Transactions (status · price · date) | Agreement | Recommended role | Principal source |
+| # | Seed record | Transactions (status · price · date) | Agreement | Recommended role | Principal reviewed source |
 | --- | --- | --- | --- | --- | --- |
-| 1 | ai.com — $11,000,000 (2023) | SOH-TX-000001: UNVERIFIED · — (unknown) · date unknown<br>SOH-TX-000002: REPORTED · $70,000,000 (approximate) · 2025 | PRICE_AND_DATE_CONFLICT | UNDETERMINED (2023 claim); REFERENCE_ONLY (2025 sale) | [GetYourDomain.com press release (syndicated copy)](https://www.bolsamania.com/nota-de-prensa_print/mercados/getyourdomaincom-brokers-the-70-million-sale-of-aicom-the-largest-domain-name-transaction-in-history--21635681.html) |
+| 1 | ai.com — $11,000,000 (2023) | SOH-TX-000001: UNVERIFIED · — (unknown) · date unknown<br>SOH-TX-000002: VERIFIED · $70,000,000 (rounded) · 2025 | PRICE_AND_DATE_CONFLICT | UNDETERMINED (2023 claim); REFERENCE_ONLY (2025 sale) | [GetYourDomain.com press release (PR Newswire)](https://tools.prnewswire.com/en-us/live/20823/release/20260209EN83172) |
 | 2 | gpt.com — $2,000,000 (2023) | SOH-TX-000003: UNVERIFIED · — (undisclosed) · date unknown | PRICE_NOT_DISCLOSED | EXCLUDED (no disclosed price) | None located |
 | 3 | agents.ai — $400,000 (2023) | SOH-TX-000004: REPORTED · $125,000 (exact) · 2023 | PRICE_CONFLICT | UNDETERMINED | [DN Journal (The Lowdown)](https://www.dnjournal.com/archive/lowdown/2023/dailyposts/0713.htm) |
 | 4 | data.ai — $500,000 (2022) | SOH-TX-000005: UNVERIFIED · — (unknown) · date unknown | NO_EVIDENCE_FOUND | UNDETERMINED | None located |
@@ -70,345 +70,407 @@ Seed records by strongest evidence for any linked transaction:
 | 19 | nova.com — $800,000 (2018) | SOH-TX-000020: UNVERIFIED · — (unknown) · date unknown | NO_EVIDENCE_FOUND | UNDETERMINED | None located |
 | 20 | emma.com — $50,000 (2019) | SOH-TX-000021: UNVERIFIED · — (unknown) · date unknown | NO_EVIDENCE_FOUND | UNDETERMINED | None located |
 | 21 | alex.ai — $9,000 (2024) | SOH-TX-000022: UNVERIFIED · — (unknown) · date unknown | NO_EVIDENCE_FOUND | UNDETERMINED | None located |
-| 22 | insurance.com — $35,600,000 (2010) | SOH-TX-000023: VERIFIED · $35,600,000 (rounded) · 2010-07 | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [QuinStreet, Inc. Form 10-K (fiscal 2011)](https://www.sec.gov/Archives/edgar/data/0001117297/000095012311081083/f59231e10vk.htm) |
-| 23 | vacationrentals.com — $35,000,000 (2007) | SOH-TX-000024: REPORTED · $35,000,000 (approximate) · 2007 | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [DomainInvesting (HomeAway CEO quote)](https://domaininvesting.com/homeaway-ceo-on-vacationsrental-com/) |
-| 24 | privatejet.com — $30,180,000 (2012) | SOH-TX-000025: REPORTED · $30,180,000 (exact) · 2012-02 | CONSISTENT | EXCLUDED (non-cash consideration of unknown value) | [TheDomains (buyer press release)](https://www.thedomains.com/2012/02/21/privatejet-com-sold-for-30-million-in-what-maybe-the-highest-priced-pure-domain-sale-ever/) |
-| 25 | voice.com — $30,000,000 (2019) | SOH-TX-000026: VERIFIED · $30,000,000 (exact) · 2019-05-30 | CONSISTENT | REFERENCE_ONLY | [MicroStrategy Inc. Form 10-Q (Q3 2019), Note 12](https://www.sec.gov/Archives/edgar/data/1050446/000156459019038406/mstr-10q_20190930.htm) |
-| 26 | internet.com — $18,000,000 (2009) | SOH-TX-000027: VERIFIED · $18,000,000 (stated_subject_to_adjustment) · 2009-11-30 | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [WebMediaBrands Inc. Form 8-K Ex. 99.1](https://www.sec.gov/Archives/edgar/data/1083712/000101968709004323/webmedia_8k-ex9901.htm) |
-| 27 | 360.com — $17,000,000 (2015) | SOH-TX-000028: REPORTED · $17,000,000 (approximate) · 2015-02 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://www.dnjournal.com/archive/domainsales/2015/20150211.htm) |
-| 28 | chat.com — $15,500,000 (2023) | SOH-TX-000029: REPORTED · $15,500,000 (exact) · 2023<br>SOH-TX-000030: REPORTED · — (undisclosed) · 2024 | CONSISTENT | REFERENCE_ONLY (2023); EXCLUDED (2024, undisclosed) | [DN Journal (The Lowdown)](https://dnjournal.com/archive/lowdown/2024/dailyposts/0416.htm) |
-| 29 | sex.com — $13,000,000 (2010) | SOH-TX-000031: REPORTED · $13,000,000 (exact) · 2010-10<br>SOH-TX-000032: DISPUTED · — (unknown) · 2006 | CONSISTENT | REFERENCE_ONLY (2010) | [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/) |
-| 30 | crypto.com — $12,000,000 (2018) | SOH-TX-000033: DISPUTED · — (undisclosed) · 2018 | PRICE_NOT_DISCLOSED | EXCLUDED | [DomainInvesting (Cheddar report)](https://domaininvesting.com/cheddar-report-monaco-paid-12-million-for-crypto-com/) |
-| 31 | hotels.com — $11,000,000 (2001) | SOH-TX-000034: REPORTED · $11,000,000 (approximate) · 2001 | CONSISTENT | REFERENCE_ONLY | [DomainInvesting (BBC interview with Hotels.com president)](https://domaininvesting.com/bbc-hotels-com-domain-name-originally-bought-for-11-million/) |
-| 32 | fund.com — $9,990,000 (2008) | SOH-TX-000035: DISPUTED · $9,999,950 (exact) · 2007<br>SOH-TX-000036: REPORTED · — (undisclosed) · 2019 | PRICE_AND_DATE_CONFLICT | EXCLUDED | [Fund.com Inc. (Eastern Services Holdings) Form 8-K Ex. 99(a)](https://www.sec.gov/Archives/edgar/data/1335795/000121390008000113/f8k011108ex99a_eastern.htm) |
+| 22 | insurance.com — $35,600,000 (2010) | SOH-TX-000023: VERIFIED · $35,600,000 (rounded, business total) · 2010-07 | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [QuinStreet, Inc. Form 10-K (fiscal 2011)](https://www.sec.gov/Archives/edgar/data/1117297/000095012311081083/f59231e10vk.htm) |
+| 23 | vacationrentals.com — $35,000,000 (2007) | SOH-TX-000024: REPORTED · $35,000,000 (approximate, business total) · date unknown | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [DomainInvesting](https://domaininvesting.com/homeaway-ceo-on-vacationsrental-com/) |
+| 24 | privatejet.com — $30,180,000 (2012) | SOH-TX-000025: REPORTED · $30,180,000 (exact) · 2012-02 | CONSISTENT | EXCLUDED (non-cash consideration of unknown value) | [TheDomains (quoting the buyer's press release)](https://www.thedomains.com/2012/02/21/privatejet-com-sold-for-30-million-in-what-maybe-the-highest-priced-pure-domain-sale-ever/) |
+| 25 | voice.com — $30,000,000 (2019) | SOH-TX-000026: VERIFIED · $30,000,000 (exact) · 2019-05-30 | CONSISTENT | REFERENCE_ONLY | [MicroStrategy Inc. Form 10-Q (Q3 2019)](https://www.sec.gov/Archives/edgar/data/1050446/000156459019038406/mstr-10q_20190930.htm) |
+| 26 | internet.com — $18,000,000 (2009) | SOH-TX-000027: VERIFIED · $18,000,000 (stated_subject_to_adjustment, business total) · 2009-11-30 | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [WebMediaBrands Inc. Form 8-K Ex. 99.1](https://www.sec.gov/Archives/edgar/data/1083712/000101968709004323/webmedia_8k-ex9901.htm) |
+| 27 | 360.com — $17,000,000 (2015) | SOH-TX-000028: REPORTED · $17,000,000 (rounded) · 2015-02 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://www.dnjournal.com/archive/domainsales/2015/20150211.htm) |
+| 28 | chat.com — $15,500,000 (2023) | SOH-TX-000029: REPORTED · $15,500,000 (rounded) · 2023<br>SOH-TX-000030: REPORTED · — (undisclosed) · 2024 | CONSISTENT | REFERENCE_ONLY (2023); EXCLUDED (2024) | [DN Journal (The Lowdown)](https://dnjournal.com/archive/lowdown/2024/dailyposts/0416.htm) |
+| 29 | sex.com — $13,000,000 (2010) | SOH-TX-000031: REPORTED · $13,000,000 (exact) · 2010-10<br>SOH-TX-000032: DISPUTED · — (unknown) · date unknown | CONSISTENT | REFERENCE_ONLY (2010) | [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/) |
+| 30 | crypto.com — $12,000,000 (2018) | SOH-TX-000033: REPORTED · — (undisclosed) · 2018 | PRICE_NOT_DISCLOSED | EXCLUDED | [DomainInvesting](https://domaininvesting.com/cheddar-report-monaco-paid-12-million-for-crypto-com/) |
+| 31 | hotels.com — $11,000,000 (2001) | SOH-TX-000034: REPORTED · $11,000,000 (approximate) · 2001 | CONSISTENT | REFERENCE_ONLY | [DomainInvesting (quoting BBC)](https://domaininvesting.com/bbc-hotels-com-domain-name-originally-bought-for-11-million/) |
+| 32 | fund.com — $9,990,000 (2008) | SOH-TX-000035: VERIFIED · $9,999,950 (exact, bundle total) · 2007<br>SOH-TX-000036: REPORTED · — (undisclosed) · date unknown | NOT_A_DOMAIN_ONLY_SALE | EXCLUDED | [Fund.com Inc. Form 10-Q/A (quarter ended March 31, 2009)](https://www.sec.gov/Archives/edgar/data/1335795/000121390009003495/f10q0309a1_fund.htm) |
 | 33 | porn.com — $9,500,000 (2007) | SOH-TX-000037: REPORTED · $9,500,000 (lower_bound) · 2007-05 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://dnjournal.com/archive/domainsales/2007/domainsales05-22-07.htm) |
-| 34 | fb.com — $8,500,000 (2010) | SOH-TX-000038: REPORTED · $8,500,000 (approximate) · 2010 | CONSISTENT | REFERENCE_ONLY | [TechCrunch](https://techcrunch.com/2011/01/11/facebook-paid-farm-bureau-8-5-million-to-acquire-fb-com) |
-| 35 | we.com — $8,000,000 (2015) | SOH-TX-000039: REPORTED · $8,000,000 (exact) · 2015-06 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://dnjournal.com/archive/domainsales/2016/20160127.htm) |
-| 36 | business.com — $7,500,000 (1999) | SOH-TX-000040: REPORTED · $7,500,000 (exact) · 1999 | CONSISTENT | REFERENCE_ONLY | [The Register](https://www.theregister.com/1999/12/02/big_bucks_url/) |
-| 37 | diamond.com — $7,500,000 (2006) | SOH-TX-000041: REPORTED · $7,500,000 (exact) · 2006-05 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://www.dnjournal.com/archive/domainsales/2006/domainsales05_23_06.htm) |
-| 38 | beer.com — $7,000,000 (2004) | SOH-TX-000042: REPORTED · $7,000,000 (approximate) · 2004 | CONSISTENT | REFERENCE_ONLY | [Entrepreneur (citing DN Journal)](https://www.entrepreneur.com/article/219521) |
-| 39 | z.com — $6,800,000 (2014) | SOH-TX-000043: REPORTED · JPY 800,000,000 (exact) · 2014-11 | CONSISTENT | REFERENCE_ONLY | [Domain Name Wire](https://domainnamewire.com/2014/11/21/wow-nissan-sells-z-com-domain-name-to-gmo-for-6-8-million/) |
-| 40 | slots.com — $5,500,000 (2013) | SOH-TX-000044: REPORTED · $5,500,000 (exact) · 2010-05 | DATE_CONFLICT | REFERENCE_ONLY | [Domain Name Wire](https://domainnamewire.com/2010/05/13/jackpot-slots-com-domain-name-sells-for-5-5-million/) |
-| 41 | toys.com — $5,100,000 (2009) | SOH-TX-000045: REPORTED · $5,100,000 (exact) · 2009-02-27 | CONSISTENT | REFERENCE_ONLY | [Domain Name Wire (court approval)](https://domainnamewire.com/2009/03/04/court-approves-toyscom-sale/) |
+| 34 | fb.com — $8,500,000 (2010) | SOH-TX-000038: REPORTED · $8,500,000 (rounded, bundle total) · 2010 | NOT_A_DOMAIN_ONLY_SALE | REFERENCE_ONLY | [TechCrunch (quoting Reuters)](https://techcrunch.com/2011/01/11/facebook-paid-farm-bureau-8-5-million-to-acquire-fb-com/) |
+| 35 | we.com — $8,000,000 (2015) | SOH-TX-000039: REPORTED · $8,000,000 (rounded) · 2015-06 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://dnjournal.com/archive/domainsales/2016/20160127.htm) |
+| 36 | business.com — $7,500,000 (1999) | SOH-TX-000040: REPORTED · $7,500,000 (rounded) · 1999-12-01 | CONSISTENT | REFERENCE_ONLY | [The Register](https://www.theregister.com/1999/12/02/big_bucks_url/) |
+| 37 | diamond.com — $7,500,000 (2006) | SOH-TX-000041: REPORTED · $7,500,000 (rounded, bundle total) · 2006-05 | NOT_A_DOMAIN_ONLY_SALE | REFERENCE_ONLY | [DN Journal](https://www.dnjournal.com/archive/domainsales/2006/domainsales05_23_06.htm) |
+| 38 | beer.com — $7,000,000 (2004) | SOH-TX-000042: REPORTED · $7,000,000 (rounded) · 2004 | CONSISTENT | REFERENCE_ONLY | [Entrepreneur (citing DN Journal)](https://www.entrepreneur.com/article/219521) |
+| 39 | z.com — $6,800,000 (2014) | SOH-TX-000043: REPORTED · JPY 800,000,000 (rounded) · 2014-11 | CONSISTENT | REFERENCE_ONLY | [Domain Name Wire](https://domainnamewire.com/2014/11/21/wow-nissan-sells-z-com-domain-name-to-gmo-for-6-8-million/) |
+| 40 | slots.com — $5,500,000 (2013) | SOH-TX-000044: REPORTED · $5,500,000 (rounded) · 2010-05 | DATE_CONFLICT | REFERENCE_ONLY | [Domain Name Wire](https://domainnamewire.com/2010/05/13/jackpot-slots-com-domain-name-sells-for-5-5-million/) |
+| 41 | toys.com — $5,100,000 (2009) | SOH-TX-000045: REPORTED · $5,100,000 (rounded) · 2009 | CONSISTENT | REFERENCE_ONLY | [Domain Name Wire](https://domainnamewire.com/2009/03/04/court-approves-toyscom-sale/) |
 | 42 | clothes.com — $4,900,000 (2008) | SOH-TX-000046: VERIFIED · $4,864,000 (exact) · 2008-05 | CONSISTENT | REFERENCE_ONLY | [Amazon.com Form 424B3 (2009), Zappos.com consolidated financial statements](https://www.sec.gov/Archives/edgar/data/1018724/000119312509199231/d424b3.htm) |
-| 43 | medicare.com — $4,800,000 (2014) | SOH-TX-000047: VERIFIED · $4,800,000 (rounded) · 2014-03-31 | CONSISTENT | REFERENCE_ONLY | [eHealth, Inc. Form 10-Q (Q1 2014)](https://www.sec.gov/Archives/edgar/data/0001333493/000133349314000043/ehth-20140331x10q.htm) |
-| 44 | whisky.com — $3,100,000 (2014) | SOH-TX-000048: REPORTED · $3,100,000 (exact) · 2014-01 | CONSISTENT | REFERENCE_ONLY | [Domain Name Wire](https://domainnamewire.com/2014/02/27/whisky-com-domain-name-sells-for-3-1-million/) |
-| 45 | candy.com — $3,000,000 (2009) | SOH-TX-000049: DISPUTED · $3,000,000 (exact) · 2009-06 | CONSISTENT | EXCLUDED | [Domain Name Wire](https://domainnamewire.com/2009/06/03/3m-candycom-sale-gives-domain-name-industry-a-boost/) |
+| 43 | medicare.com — $4,800,000 (2014) | SOH-TX-000047: VERIFIED · $4,800,000 (rounded) · 2014-03-31 | CONSISTENT | REFERENCE_ONLY | [eHealth, Inc. Form 10-Q (Q1 2014)](https://www.sec.gov/Archives/edgar/data/1333493/000133349314000043/ehth-20140331x10q.htm) |
+| 44 | whisky.com — $3,100,000 (2014) | SOH-TX-000048: REPORTED · $3,100,000 (rounded) · 2014-01-01 | CONSISTENT | REFERENCE_ONLY | [DN Journal](https://dnjournal.com/cover/2014/february.htm) |
+| 45 | candy.com — $3,000,000 (2009) | SOH-TX-000049: REPORTED · $3,000,000 (exact) · 2009-06 | CONSISTENT | EXCLUDED (non-cash component) | [Domain Name Wire](https://domainnamewire.com/2009/06/03/3m-candycom-sale-gives-domain-name-industry-a-boost/) |
 
 ## Record notes
 
 ### 1. ai.com
 
-- **Findings:** No support found for an $11M sale in 2023. A separate, later sale (2025, reported $70M in crypto) is well reported. The seed record does not match any documented transaction.
-- **Price/date conflicts:** Seed $11M/2023 vs reported $70M/2025 (different transaction); the 2023 figure is unsupported.
-- **Transaction type:** 2025 sale: domain-only per reports; consideration in crypto.
-- **Rights:** Press reports: citation only.
-- **Remaining work:** Search for any primary 2023 transfer record; review the 2026 broker release directly.
-- **SOH-TX-000001:** 2023 coverage reported AI.com redirecting to ChatGPT. A search summary mentioned an 'alleged $11 million' figure with no attributable source. No buyer, seller or broker statement of a 2023 price was found.
-- **SOH-TX-000002:** Broker GetYourDomain.com announced the sale to Crypto.com CEO Kris Marszalek. Reports put the sale in April 2025 and the disclosure in February 2026. Paid in cryptocurrency, so the USD figure is a valuation of the consideration. The press release was seen only through search results and a syndicated copy, not reviewed directly.
+- **Findings:** No reviewed source supports an $11M sale in 2023. A separate later sale (closed 2025, announced February 2026, $70M stated by the broker) is verified from the broker's release.
+- **Price/date conflicts:** Seed $11M/2023 matches no reviewed transaction; the documented sale is $70M (2025).
+- **Transaction type:** 2025 sale: domain-only; consideration in cryptocurrency.
+- **Rights:** Citation only; storage and modelling rights not established.
+- **Remaining work:** Search for a primary 2023 transfer record if one exists.
+- **SOH-TX-000001** (UNVERIFIED, unknown): No reviewed source states a 2023 sale price. 2023 coverage reported only that AI.com redirected to ChatGPT. The $11M figure appears only in an unattributed search summary and in the Sohadot seed. Absence of a reviewed report does not prove no 2023 transaction occurred.
+  - Lead (search index only, not evidence): [Kowatek blog](https://blog.kowatek.com/?p=16030): 2023 report that AI.com redirected to ChatGPT; no price observed.
+- **SOH-TX-000002** (VERIFIED, single domain): Sale of AI.com to Crypto.com CEO Kris Marszalek, brokered by GetYourDomain.com. A strategic landmark sale.
+  - Reviewed source: [GetYourDomain.com press release (PR Newswire)](https://tools.prnewswire.com/en-us/live/20823/release/20260209EN83172), Release headline and dateline 'NEW YORK, Feb. 9, 2026 /PRNewswire/'. Checked quote: “GetYourDomain.com Brokers the $70 Million Sale of AI.com, the Largest Domain Name Transaction in History”
+  - Also reviewed: [Domain Name Wire](https://domainnamewire.com/2026/02/06/ai-com-domain-name-sold-70-million/), Article 'AI.com domain name sold for record-breaking $70 million', paragraph 1
+  - Also reviewed: [DN Journal (The Lowdown)](https://dnjournal.com/archive/lowdown/2026/posts/0206-2.htm), Post 'AI.com Sold for $70 Million in Biggest Domain Name Sale Ever Recorded', paragraph 1
+  - Verification basis: Broker of record's own release (PR Newswire, Feb. 9, 2026), read in raw text, states a $70 million sale of AI.com to Kris Marszalek, seller Arsyan Ismail. The release states neither the closing date nor the form of payment; the 2025 year and the cryptocurrency payment come from Domain Name Wire quoting the broker (Feb. 6, 2026).
+  - Valuation caveat: The price is the broker's statement of the USD value of cryptocurrency consideration.
+  - Valuation caveat: Closing date not disclosed; DN Journal says 'last spring' (2025); an April 2025 date appears only in secondary reports.
+  - Valuation caveat: First public reports (Feb. 6, 2026) predate the release (Feb. 9, 2026).
+  - Lead (search index only, not evidence): [TechRadar](https://techradar.com/pro/biggest-ever-website-domain-deal-sees-ai-com-bought-by-crypto-com-founder): Reports an April 2025 sale date; not confirmed by reviewed sources.
 
 ### 2. gpt.com
 
-- **Findings:** Ownership change to OpenAI is suggested but not reputably reported; no price was ever disclosed. The seed figure has no traceable source.
+- **Findings:** No reviewed report of a sale or price. The seed figure has no traceable source.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Unknown.
 - **Rights:** Unknown.
-- **Remaining work:** Check reputable trade press for an acquisition report; if none, retire the price.
-- **SOH-TX-000003:** Reports that GPT.com moved to OpenAI's registrar (MarkMonitor) came only from a low-quality page. No price disclosed by any party. No reputable report located.
+- **Remaining work:** Look for a reputable acquisition report; otherwise retire the price.
+- **SOH-TX-000003** (UNVERIFIED, unknown): No reputable report reviewed. A low-quality page reported an ownership change to OpenAI's registrar; no party disclosed a price.
 
 ### 3. agents.ai
 
-- **Findings:** Reported price is $125,000, not $400,000.
+- **Findings:** Reported price is $125,000 (DN Journal, July 13, 2023), not $400,000.
 - **Price/date conflicts:** Seed $400,000 vs reported $125,000.
-- **Transaction type:** Domain-only not confirmed.
-- **Rights:** Citation only.
-- **Remaining work:** Review the DN Journal post directly; confirm whether the deal was domain-only.
-- **SOH-TX-000004:** DN Journal reported B21 Capital acquired Agents.ai for $125,000, then the largest reported .ai sale. The seed's $400,000 has no traceable source.
+- **Transaction type:** Described as a domain acquisition.
+- **Rights:** Citation only; storage and modelling rights not established.
+- **Remaining work:** Confirm the venue and that no later sale at $400,000 exists.
+- **SOH-TX-000004** (REPORTED, single domain): DN Journal reports B21 Capital acquired Agents.ai for $125,000. The seed's $400,000 has no traceable source.
+  - Reviewed source: [DN Journal (The Lowdown)](https://www.dnjournal.com/archive/lowdown/2023/dailyposts/0713.htm), Post 'Agents.ai Changes Hands for $125,000 ...' (Posted July 13, 2023), paragraph 1. Checked quote: “B21 Capital has acquired the Agents.ai domain name for $125,000 in the biggest publicly reported .AI domain sale to date.”
 
 ### 4. data.ai
 
-- **Findings:** App Annie rebranded to data.ai in February 2022. No report of the domain's acquisition price was found.
+- **Findings:** App Annie rebranded to data.ai in February 2022. No reviewed report gives the domain's acquisition price.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000005:** App Annie rebranded to data.ai in February 2022. No report of the domain's acquisition price was found.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000005** (UNVERIFIED, unknown): App Annie rebranded to data.ai in February 2022. No reviewed report gives the domain's acquisition price.
+  - Lead (search index only, not evidence): [TLD Investors](https://tldinvestors.com/2022/02/app-annie-rebrands-to-data-ai.html): Rebrand context; no price observed.
 
 ### 5. wallet.com
 
-- **Findings:** No report of a Wallet.com sale was found; results covered only other wallet-keyword domains.
+- **Findings:** No reviewed report of a Wallet.com sale.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000006:** No report of a Wallet.com sale was found; results covered only other wallet-keyword domains.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000006** (UNVERIFIED, unknown): No reviewed report of a Wallet.com sale.
 
 ### 6. trading.com
 
-- **Findings:** No report of a Trading.com sale was found.
+- **Findings:** No reviewed report of a Trading.com sale.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000007:** No report of a Trading.com sale was found.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000007** (UNVERIFIED, unknown): No reviewed report of a Trading.com sale.
 
 ### 7. wealthlogic.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000008:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000008** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 8. stackscan.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000009:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000009** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 9. weatherpulse.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000010:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000010** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 10. fusionflare.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000011:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000011** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 11. gogenie.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000012:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000012** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 12. nightrocket.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000013:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000013** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 13. upfolio.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000014:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000014** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 14. aluren.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000015:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000015** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 15. sojourner.com
 
-- **Findings:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Findings:** No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000016:** No public report of this sale was found by web search. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000016** (UNVERIFIED, unknown): No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).
 
 ### 16. veritas.com
 
-- **Findings:** No report of a Veritas.com domain sale was found; results concerned the Veritas Technologies corporate sale.
+- **Findings:** No reviewed report of a Veritas.com domain sale.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000017:** No report of a Veritas.com domain sale was found; results concerned the Veritas Technologies corporate sale.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000017** (UNVERIFIED, unknown): No reviewed report of a Veritas.com domain sale.
 
 ### 17. lumen.com
 
-- **Findings:** CenturyLink rebranded as Lumen in 2020. No report of a lumen.com acquisition price was found.
+- **Findings:** CenturyLink rebranded as Lumen in 2020. No reviewed report gives a lumen.com acquisition price.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000018:** CenturyLink rebranded as Lumen in 2020. No report of a lumen.com acquisition price was found.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000018** (UNVERIFIED, unknown): CenturyLink rebranded as Lumen in 2020. No reviewed report gives a lumen.com acquisition price.
 
 ### 18. echo.com
 
-- **Findings:** No report of an Echo.com sale was found.
+- **Findings:** No reviewed report of an Echo.com sale.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000019:** No report of an Echo.com sale was found.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000019** (UNVERIFIED, unknown): No reviewed report of an Echo.com sale.
 
 ### 19. nova.com
 
-- **Findings:** No report of a Nova.com sale was found. A 2014 auction reportedly drew a $60,000 bid that did not meet reserve; no sale followed in the results.
+- **Findings:** No reviewed report of a Nova.com sale. Search summaries mention a 2014 auction bid that did not meet reserve (not reviewed).
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000020:** No report of a Nova.com sale was found. A 2014 auction reportedly drew a $60,000 bid that did not meet reserve; no sale followed in the results.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000020** (UNVERIFIED, unknown): No reviewed report of a Nova.com sale. Search summaries mention a 2014 auction bid that did not meet reserve (not reviewed).
 
 ### 20. emma.com
 
-- **Findings:** No sale found. Contrary indicator: 2018-2019 reporting on a trademark dispute says MicroStrategy owned Emma.com and had offered it for $3 million, which is hard to reconcile with a $50,000 sale in 2019.
-- **Price/date conflicts:** Indirect: ownership and asking-price reports conflict with the seed's $50,000 sale in 2019.
-- **Transaction type:** Unknown: no transaction record located.
+- **Findings:** No sale found. Contrary indicator (lead, not reviewed): 2018-2019 coverage of a trademark dispute reports MicroStrategy owned Emma.com and offered it for $3 million.
+- **Price/date conflicts:** Indirect, from an unreviewed lead: reported ownership and asking price sit uneasily with a $50,000 sale in 2019.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000021:** No sale found. Contrary indicator: 2018-2019 reporting on a trademark dispute says MicroStrategy owned Emma.com and had offered it for $3 million, which is hard to reconcile with a $50,000 sale in 2019.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000021** (UNVERIFIED, unknown): No sale found. Contrary indicator (lead, not reviewed): 2018-2019 coverage of a trademark dispute reports MicroStrategy owned Emma.com and offered it for $3 million.
+  - Lead (search index only, not evidence): [NamePros blog](https://thenamepros.com/blog/top-6-domains-owned-by-microstrategy.1110933/): Indicates MicroStrategy ownership; not reviewed.
 
 ### 21. alex.ai
 
-- **Findings:** No report of an Alex.ai sale was found.
+- **Findings:** No reviewed report of an Alex.ai sale.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unknown: no transaction record located.
+- **Transaction type:** Unknown: no reviewed transaction record.
 - **Rights:** Unknown: the original source of the seed figure is not recorded.
-- **Remaining work:** Search NameBio-style sales records only under permitted terms; ask the original data provider; otherwise retire the record.
-- **SOH-TX-000022:** No report of an Alex.ai sale was found.
+- **Remaining work:** Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure.
+- **SOH-TX-000022** (UNVERIFIED, unknown): No reviewed report of an Alex.ai sale.
 
 ### 22. insurance.com
 
-- **Findings:** Price and date verified from a primary filing, but the transaction was a website-business acquisition.
-- **Price/date conflicts:** Early $36.5M report superseded by the filing ($35.6M).
-- **Transaction type:** Resolved: website business, not domain-only.
-- **Rights:** SEC filing: public record, cite with link.
-- **Remaining work:** None for verification. A decision is needed on whether website-business acquisitions are ever shown as context.
-- **SOH-TX-000023:** Website-business acquisition, so not a domain-only comparable. The headline $35.6M is $33.0M cash plus a $2.6M note.
-  - Verification basis: Primary document reviewed: QuinStreet FY2011 10-K, MD&A 'Acquisitions in Fiscal Year 2011': "In July 2010, we acquired the website business Insurance.com from Insurance.com Group, Inc., ... in exchange for $33.0 million in cash and the issuance of a $2.6 million non-interest-bearing, unsecured promissory note". Verifies a website-business acquisition, not a domain-only sale.
+- **Findings:** Verified from the buyer's 10-K as a website-business acquisition ($33.0M cash + $2.6M note).
+- **Price/date conflicts:** None found.
+- **Transaction type:** Resolved: website business.
+- **Rights:** SEC filing: citation; storage and modelling rights not established.
+- **Remaining work:** None for verification.
+- **SOH-TX-000023** (VERIFIED, business total): Website-business acquisition, not a domain-only comparable.
+  - Reviewed source: [QuinStreet, Inc. Form 10-K (fiscal 2011)](https://www.sec.gov/Archives/edgar/data/1117297/000095012311081083/f59231e10vk.htm), Item 7 MD&A, 'Acquisitions in Fiscal Year 2011'. Checked quote: “In July 2010, we acquired the website business Insurance.com from Insurance.com Group, Inc., an Ohio-based online insurance business, in exchange for $33.0 million in cash and the issuance of a $2.6 million non-interest-bearing, unsecured promissory note”
+  - Verification basis: QuinStreet FY2011 10-K, MD&A, read in raw text: website-business acquisition for $33.0M cash plus a $2.6M promissory note (total $35.6M, rounded components). Verifies a website-business acquisition, not a domain-only sale.
+  - Valuation caveat: The consideration bought an operating website business; no amount is allocated to the domain name.
+  - Valuation caveat: Accounting treatment is a business acquisition (cash plus note), kept separate from domain-only sales.
+  - Lead (search index only, not evidence): [DomainInvesting](https://domaininvesting.com/quinstreet-paid-356-million-for-insurance-com): Not reviewed.
+  - Lead (search index only, not evidence): [TheDomains](https://thedomains.com/2010/08/09/a-new-domain-name-record-insurance-com-36-5-million-dollars): Early $36.5M report; not reviewed.
 
 ### 23. vacationrentals.com
 
-- **Findings:** Reported, approximate, and a business acquisition.
+- **Findings:** Reported (CEO account) as about $35M for an operating website business; year not stated in the reviewed source.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Business acquisition.
 - **Rights:** Citation only.
-- **Remaining work:** Look for HomeAway S-1 disclosure of the purchase price.
-- **SOH-TX-000024:** HomeAway acquired VacationRentals.com, an operating competitor, for about $35M. The CEO said the aim was to keep it from Expedia. A business acquisition, not a domain sale. No filing reviewed.
+- **Remaining work:** Review HomeAway's S-1 for the acquisition price and date.
+- **SOH-TX-000024** (REPORTED, business total): HomeAway's CEO said the purchase cost $35M. The reviewed article does not state the year; 2007 comes from an unreviewed lead.
+  - Reviewed source: [DomainInvesting](https://domaininvesting.com/homeaway-ceo-on-vacationsrental-com/), Post 'HomeAway CEO: VacationRentals.com Domain Name Bought for $35 Million' (Elliot Silver, August 13, 2013). Checked quote: “HomeAway CEO: VacationRentals.com Domain Name Bought for $35 Million”
+  - Valuation caveat: VacationRentals.com was an operating website; the CEO's account frames the purchase as defensive ('so Expedia couldn't have that url').
+  - Lead (search index only, not evidence): [VentureBeat](https://venturebeat.com/business/google-ventures-homeaway): Dates the acquisition to 2007; not reviewed.
 
 ### 24. privatejet.com
 
-- **Findings:** Headline figure matches the buyer's announcement, but much of it was stock of uncertain value and closing is unconfirmed.
+- **Findings:** Headline matches the buyer's announcement; consideration largely stock of uncertain value.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Domain-only; consideration largely stock.
+- **Transaction type:** Domain-only; cash and stock.
 - **Rights:** Citation only.
-- **Remaining work:** Look for any later filing by the buyer confirming closing.
-- **SOH-TX-000025:** Announced by buyer Nations Luxury Transportation as $30.18M in cash and stock. Closing and the stock's value were never independently confirmed.
+- **Remaining work:** Locate the original release and any evidence of closing.
+- **SOH-TX-000025** (REPORTED, single domain): Announced by buyer Nations Luxury Transportation; text reviewed via TheDomains' quotation of the release.
+  - Reviewed source: [TheDomains (quoting the buyer's press release)](https://www.thedomains.com/2012/02/21/privatejet-com-sold-for-30-million-in-what-maybe-the-highest-priced-pure-domain-sale-ever/), Post 'PrivateJet.com Sold For $30 Million ...', quoted press release. Checked quote: “Nations has acquired the domain name http://www.PrivateJet.com , from privately held Don’t Look Media.com, a leading intellectual property holding company, for $30.18 million in cash and stock.”
+  - Valuation caveat: Paid partly in stock of a little-known buyer; the stock's value and the closing were never independently confirmed.
+  - Valuation caveat: Reader comments on the source cite DN Journal charts showing a $30,000 sale of the domain in 2005 (not reviewed).
 
 ### 25. voice.com
 
-- **Findings:** Verified from the seller's SEC filing and press release.
+- **Findings:** Verified from the seller's SEC filings.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Resolved: domain-only, cash.
-- **Rights:** SEC filing: public record.
+- **Rights:** SEC filing: citation; storage and modelling rights not established.
 - **Remaining work:** None.
-- **SOH-TX-000026:** Domain-only cash sale by MicroStrategy to Block.one, facilitated by GoDaddy.
-  - Verification basis: Primary documents reviewed. 10-Q Note 12: "On May 30, 2019, the Company completed the sale of its Voice.com domain name for consideration of $30.0 million in cash". 8-K Ex. 99.1 (June 18, 2019): sold "for $30 million in cash in a transaction facilitated by GoDaddy". Seller-side statements; the buyer (Block.one) is named in the release as the subsequent user. GoDaddy's commission was paid separately and not disclosed.
+- **SOH-TX-000026** (VERIFIED, single domain): Domain-only cash sale by MicroStrategy to Block.one.
+  - Reviewed source: [MicroStrategy Inc. Form 10-Q (Q3 2019)](https://www.sec.gov/Archives/edgar/data/1050446/000156459019038406/mstr-10q_20190930.htm), Notes to Consolidated Financial Statements, Note 12 'Sale of Domain Name'. Checked quote: “On May 30, 2019, the Company completed the sale of its Voice.com domain name for consideration of $ 30.0 million in cash”
+  - Also reviewed: [MicroStrategy press release, Form 8-K Ex. 99.1](https://www.sec.gov/Archives/edgar/data/1050446/000119312519175320/d724928dex991.htm), Exhibit 99.1, paragraph 1
+  - Verification basis: Seller's 10-Q Note 12 and 8-K Ex. 99.1, both read in raw text: Voice.com sold for $30.0M in cash on May 30, 2019, facilitated by GoDaddy; Block.one named as the subsequent user.
+  - Valuation caveat: GoDaddy's commission was paid separately and not disclosed.
 
 ### 26. internet.com
 
-- **Findings:** Verified as an $18M business-asset sale, not a domain sale.
+- **Findings:** Verified as an $18M business-asset sale.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Resolved: business assets.
-- **Rights:** SEC filing: public record.
+- **Rights:** SEC filing: citation only.
 - **Remaining work:** None.
-- **SOH-TX-000027:** Sale of the Internet.com business and its brands. Commonly but wrongly listed as a domain sale.
-  - Verification basis: Primary document reviewed: WebMediaBrands press release filed as 8-K Ex. 99.1 (Nov 30, 2009): "completed the previously announced sale of the assets of the Internet.com business to QuinStreet, Inc. ... for $18 million, subject to certain post-closing adjustments". Verifies a business-asset sale (a network of sites and brands), not a domain sale.
+- **SOH-TX-000027** (VERIFIED, business total): Commonly but wrongly listed as a domain sale.
+  - Reviewed source: [WebMediaBrands Inc. Form 8-K Ex. 99.1](https://www.sec.gov/Archives/edgar/data/1083712/000101968709004323/webmedia_8k-ex9901.htm), Exhibit 99.1 press release, paragraph 1. Checked quote: “completed the previously announced sale of the assets of the Internet.com business to QuinStreet, Inc. (“QuinStreet”) for $18 million, subject to certain post-closing adjustments”
+  - Verification basis: WebMediaBrands' 8-K Ex. 99.1, read in raw text: sale of the assets of the Internet.com business to QuinStreet for $18M, subject to post-closing adjustments. Verifies a business-asset sale, not a domain sale.
+  - Valuation caveat: Price covers a network of sites and brands; no amount is allocated to the domain.
+  - Lead (search index only, not evidence): [DomainInvesting](https://domaininvesting.com/internet-com-related-assets-sold-for-18-million/): Not reviewed.
 
 ### 27. 360.com
 
-- **Findings:** Reported, approximate, not officially confirmed.
+- **Findings:** Reported via anonymous sources; not officially confirmed.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Domain-only per reports.
+- **Transaction type:** Domain-only.
 - **Rights:** Citation only.
-- **Remaining work:** Check Qihoo 360 annual report (Form 20-F) for a disclosed domain purchase.
-- **SOH-TX-000028:** Qihoo 360 bought 360.com from Vodafone in February 2015. Chinese media cited anonymous Qihoo sources for about $17M, and a broker cited a Vodafone source for the same figure. No official confirmation.
+- **Remaining work:** Check Qihoo 360's Form 20-F for a disclosed purchase.
+- **SOH-TX-000028** (REPORTED, single domain): WHOIS moved from Vodafone to Qihoo in February 2015.
+  - Reviewed source: [DN Journal](https://www.dnjournal.com/archive/domainsales/2015/20150211.htm), Weekly sales report (February 2015), passage on 360.com. Checked quote: “today several Chinese media outlets including TechWeb.cn , citing anonymous sources at Qihoo, said the company paid $17 million”
+  - Valuation caveat: Price attributed to anonymous Qihoo sources via Chinese media; not officially confirmed by buyer or seller.
+  - Lead (search index only, not evidence): [TheDomains](https://www.thedomains.com/2015/02/05/seekingalpha-com-covers-qihoo-purchase-of-360-com): Not reviewed.
 
 ### 28. chat.com
 
-- **Findings:** The seed figure matches Shah's 2023 purchase. A second transaction (sale to OpenAI, 2024, undisclosed price) is recorded separately.
-- **Price/date conflicts:** None found.
-- **Transaction type:** Domain-only.
-- **Rights:** Citation only.
-- **Remaining work:** Review Shah's own statement directly.
-- **SOH-TX-000029:** Dharmesh Shah's purchase in 2023. He first said '$15 million+'; DN Journal later reported the price confirmed at $15.5M. The buyer's own statement was not reviewed directly.
-- **SOH-TX-000030:** Shah sold Chat.com to OpenAI. The price was not disclosed; Shah said he was paid partly in OpenAI shares and received more than he paid. A repeat sale of the same domain.
-
-### 29. sex.com
-
-- **Findings:** The 2010 bankruptcy sale is reported at $13M. The 2006 purchase price is disputed and recorded separately.
-- **Price/date conflicts:** None found.
-- **Transaction type:** Domain-only; court-supervised sale.
-- **Rights:** Citation only.
-- **Remaining work:** Review the bankruptcy court docket for the approval order.
-- **SOH-TX-000031:** Sale by bankrupt owner Escom LLC to Clover Holdings, brokered by Sedo, subject to bankruptcy court approval. The court record was not reviewed and the approval outcome was not confirmed in this research.
-- **SOH-TX-000032:** The earlier sale to Escom (2006). Not in the seed; recorded because repeat sales of a domain must be separate transactions.
-
-### 30. crypto.com
-
-- **Findings:** The transaction is real but its price was never disclosed; $12M is one of several estimates.
-- **Price/date conflicts:** Estimates $5M-$12M; none confirmed.
-- **Transaction type:** Domain-only.
-- **Rights:** Citation only.
-- **Remaining work:** None likely; keep excluded unless a party discloses the price.
-- **SOH-TX-000033:** Monaco (now Crypto.com) bought the domain from cryptographer Matt Blaze in 2018. No party disclosed the price.
-
-### 31. hotels.com
-
-- **Findings:** Approximate figure recalled by an executive; year 2001 or 2002.
-- **Price/date conflicts:** None found.
-- **Transaction type:** Domain-only per reports.
-- **Rights:** Citation only.
-- **Remaining work:** Check Hotel Reservations Network SEC filings (2001-2002).
-- **SOH-TX-000034:** Hotel Reservations Network bought the name and later renamed itself Hotels.com. The president recalled 'around $11m' in an interview; no filing reviewed.
-
-### 32. fund.com
-
-- **Findings:** Filing shows $9,999,950 for the domain plus other IP (agreement 2007, closing reported January 2008). The figure is widely disputed. The seed rounds it to $9.99M and dates it 2008.
-- **Price/date conflicts:** Seed $9,990,000 vs filing $9,999,950; disputed substance.
-- **Transaction type:** Domain plus other IP.
-- **Rights:** SEC filing: public record.
-- **Remaining work:** None useful; keep excluded.
-- **SOH-TX-000035:** Filing reviewed: "The Company acquired the domain name 'fund.com' and other intangible assets related to intellectual property and trademarks for a total cost of $9,999,950." Bundled with other IP, and its legitimacy as a market price is disputed.
-- **SOH-TX-000036:** Later sale via Media Options; price undisclosed. A repeat sale of the same domain.
-
-### 33. porn.com
-
-- **Findings:** Reported as a lower bound (more than $9.5M).
+- **Findings:** Seed matches Shah's 2023 purchase ($15.5M net, broker-confirmed). The 2024 sale to OpenAI (price undisclosed) is a separate transaction.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
 - **Remaining work:** None.
-- **SOH-TX-000037:** Broker Moniker announced the sale to MXN Ltd for 'more than $9.5 million'; the buyer said 'over $9 million'. Exact price not disclosed.
+- **SOH-TX-000029** (REPORTED, single domain): Dharmesh Shah's 2023 purchase; price confirmed by the sellers' broker Andrew Miller to DN Journal.
+  - Reviewed source: [DN Journal (The Lowdown)](https://dnjournal.com/archive/lowdown/2024/dailyposts/0416.htm), Post 'Price Paid for Chat.com Last Year Confirmed to Be $15.5 Million ...'. Checked quote: “Andrew was able to share that the price of the domain was $15.5 million net for the name plus escrow and related costs.”
+  - Valuation caveat: $15.5M is net for the name; escrow and related costs were additional.
+- **SOH-TX-000030** (REPORTED, single domain): Repeat sale: Shah to OpenAI. Shah announced an undisclosed-buyer sale earlier in 2024; OpenAI confirmed as buyer in November 2024.
+  - Reviewed source: [Fortune](https://fortune.com/2024/11/07/sam-altman-15-million-dollar-url-chat-com/), Article on Sam Altman and chat.com, paragraphs on Shah's sale. Checked quote: “Following Altman’s tweet, Shah confirmed that OpenAI had purchased the domain name, which he said he had bought for $15.5 million.”
+  - Also reviewed: [heise online](https://www.heise.de/news/OpenAI-hat-Chat-com-gekauft-10008295.html), Article 'OpenAI has bought Chat.com', standfirst
+  - Valuation caveat: Price undisclosed; Fortune reports Shah implied he likely took OpenAI shares as payment.
+
+### 29. sex.com
+
+- **Findings:** 2010 agreed sale reported at $13M (court approval not reviewed). The earlier Escom purchase is disputed in price and date.
+- **Price/date conflicts:** None found.
+- **Transaction type:** Domain-only; court-supervised.
+- **Rights:** Citation only.
+- **Remaining work:** Review the bankruptcy court approval order.
+- **SOH-TX-000031** (REPORTED, single domain): Sale by bankrupt Escom LLC to Clover Holdings, chosen from 12 bidders per court documents cited by The Register.
+  - Reviewed source: [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/), Article 'Sex.com sells for $13m' (Kevin Murphy, 20 Oct 2010), paragraphs 1-2. Checked quote: “The storied domain name sex.com is set to be sold for $13m, The Register has learned. Bankrupt Escom LLC sex.com's current owner, has sealed a deal to hand over the domain to a company called Clover Holdings Ltd”
+  - Valuation caveat: Reported as an agreed sale filed in bankruptcy court; court approval and completion were not reviewed.
+- **SOH-TX-000032** (DISPUTED, single domain): Escom's earlier purchase. Not in the seed; recorded because repeat sales are separate transactions.
+  - Reviewed source: [The Register](https://www.theregister.com/2010/10/20/domain_name_sale/), Article 'Sex.com sells for $13m', paragraph 3. Checked quote: “Escom purchased the domain from its previous owner in 2006. The price then was variously reported as being between $12m and $14m”
+  - Also reviewed: [DN Journal (May 2007 sales report)](https://dnjournal.com/archive/domainsales/2007/domainsales05-22-07.htm), Porn.com sale report, paragraph 1
+  - Lead (search index only, not evidence): [Wikipedia (tertiary)](https://en.wikipedia.org/wiki/Sex.com): Cites a Sedo statement of $11.5M; not reviewed.
+
+### 30. crypto.com
+
+- **Findings:** Transaction reported; the $12M price is unconfirmed by the parties.
+- **Price/date conflicts:** Seed states an undisclosed price as fact.
+- **Transaction type:** Domain-only.
+- **Rights:** Citation only.
+- **Remaining work:** None likely.
+- **SOH-TX-000033** (REPORTED, single domain): Monaco (now Crypto.com) acquired the domain from Matt Blaze in 2018. Transaction reported; price undisclosed.
+  - Reviewed source: [DomainInvesting](https://domaininvesting.com/cheddar-report-monaco-paid-12-million-for-crypto-com/), Post 'Cheddar Report: Monaco Paid $12 Million for Crypto.com' (Elliot Silver, July 9, 2018). Checked quote: “As far as I am aware, this $12 million figure is still unconfirmed by the parties involved in the deal”
+  - Valuation caveat: No party disclosed the price; $12M is an unconfirmed media report and other estimates range lower.
+  - Lead (search index only, not evidence): [Wikipedia (tertiary)](https://en.wikipedia.org/wiki/Crypto.com): Gives a $5-10M estimate attributed to domain sellers; not reviewed.
+
+### 31. hotels.com
+
+- **Findings:** Approximate figure recalled by an executive.
+- **Price/date conflicts:** None found.
+- **Transaction type:** Domain-only per report.
+- **Rights:** Citation only.
+- **Remaining work:** Check Hotel Reservations Network SEC filings (2001-2002).
+- **SOH-TX-000034** (REPORTED, single domain): Hotel Reservations Network bought the name and later renamed itself Hotels.com.
+  - Reviewed source: [DomainInvesting (quoting BBC)](https://domaininvesting.com/bbc-hotels-com-domain-name-originally-bought-for-11-million/), Post 'BBC: Hotels.com Domain Name Originally Bought for $11 Million' (Elliot Silver, November 2, 2012), quoted BBC passage. Checked quote: “In 2001 the company purchased the name Hotels.com for around $11m and at the time this was thought to be “a crazy sum of money”.”
+  - Valuation caveat: Approximate figure recalled by the company's president in a 2012 interview; the post notes he seemed unsure of the exact price.
+
+### 32. fund.com
+
+- **Findings:** The SEC-documented transaction is a 2007 purchase of 24 domain names and one trademark for $9,999,950 in total; no part is allocated to fund.com. The seed treats it as a single-domain $9.99M sale in 2008.
+- **Price/date conflicts:** Seed $9,990,000 (2008, single domain) vs filing: $9,999,950 total for a 24-domain + trademark bundle acquired in 2007.
+- **Transaction type:** Resolved: multi-domain bundle with a trademark.
+- **Rights:** SEC filing: citation only.
+- **Remaining work:** None; keep excluded.
+- **SOH-TX-000035** (VERIFIED, bundle total): Documented bundle transaction; the economic value of fund.com alone is undetermined and disputed.
+  - Reviewed source: [Fund.com Inc. Form 10-Q/A (quarter ended March 31, 2009)](https://www.sec.gov/Archives/edgar/data/1335795/000121390009003495/f10q0309a1_fund.htm), Notes to the Consolidated Financial Statements, Note 3 'Intangible Asset'. Checked quote: “During 2007, the Company acquired 24 domain names including “fund.com” and one trademark for a total cost of $9,999,950.”
+  - Also reviewed: [Fund.com Inc. (Eastern Services Holdings) Form 8-K Ex. 99(a)](https://www.sec.gov/Archives/edgar/data/1335795/000121390008000113/f8k011108ex99a_eastern.htm), Exhibit 99(a), 'Intellectual Property Asset'
+  - Also reviewed: [Fund.com Inc. Form 10-K (fiscal 2009)](https://www.sec.gov/Archives/edgar/data/1335795/000121390010001617/f10k2009_fund.htm), Notes, Note 3 'Intangible Asset'
+  - Verification basis: Buyer's amended Q1 2009 10-Q, Note 3, read in raw text: in 2007 the company acquired 24 domain names including fund.com and one trademark for a total of $9,999,950. Verifies a bundle purchase. It does not establish fund.com's own price.
+  - Valuation caveat: The $9,999,950 bought 24 domain names and one trademark; no allocation to fund.com is disclosed, so the total must not be attributed to fund.com.
+  - Valuation caveat: Trade press widely reported the figure as a ~$10M fund.com sale and questioned whether it reflected an arm's-length market price (economic valuation disputed).
+  - Valuation caveat: The buyer recorded a $1,794,500 impairment on these intangibles at December 31, 2009.
+  - Lead (search index only, not evidence): [DN Journal (March 2008)](https://dnjournal.com/archive/domainsales/2008/domainsales03-18-08.htm): Trade-press coverage attributing ~$10M to fund.com alone; not reviewed.
+- **SOH-TX-000036** (REPORTED, single domain): Later domain-only sale via Media Options; the transfer was observed by January 2, 2019, so the exact sale date is unknown.
+  - Reviewed source: [DomainInvesting](https://domaininvesting.com/fund-com-sold-via-media-options/), Post 'Fund.com Sold via Media Options' (Elliot Silver, January 11, 2019). Checked quote: “Andrew publicly confirmed that Media Options brokered the sale of Fund.com, in a tweet”
+  - Valuation caveat: Price undisclosed; the reported asking price was $2.5M.
+
+### 33. porn.com
+
+- **Findings:** Reported as a lower bound.
+- **Price/date conflicts:** None found.
+- **Transaction type:** Domain-only.
+- **Rights:** Citation only.
+- **Remaining work:** None.
+- **SOH-TX-000037** (REPORTED, single domain): Broker-announced all-cash sale to MXN Ltd.
+  - Reviewed source: [DN Journal](https://dnjournal.com/archive/domainsales/2007/domainsales05-22-07.htm), Report 'Porn.com Sells for More Than $9.5 Million ...', paragraph 1. Checked quote: “Moniker.com announced today (May 15) that it has brokered the sale of Porn.com to MXN Limited for more than $9.5 million .”
+  - Valuation caveat: Exact price not disclosed: the broker said 'more than $9.5 million'; the buyer said 'over $9 million'.
 
 ### 34. fb.com
 
-- **Findings:** Figure comes from the seller's statement about 'a couple of domain names'; may not be fb.com alone.
+- **Findings:** The $8.5M was for 'a couple of domain names'; no amount is attributed to fb.com alone.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Possibly a multi-domain sale.
+- **Transaction type:** Multi-domain sale; components unknown.
 - **Rights:** Citation only.
-- **Remaining work:** Check Farm Bureau annual reports or Form 990 for the disclosure.
-- **SOH-TX-000038:** Facebook announced the purchase from the American Farm Bureau Federation in November 2010 without a price. In January 2011, Farm Bureau officials said they earned $8.5M selling 'a couple of domain names' without naming the buyer, so the figure may cover more than fb.com.
+- **Remaining work:** Check Farm Bureau annual reports or Form 990.
+- **SOH-TX-000038** (REPORTED, bundle total): Facebook announced the acquisition of fb.com from the American Farm Bureau Federation on November 15, 2010, without a price.
+  - Reviewed source: [TechCrunch (quoting Reuters)](https://techcrunch.com/2011/01/11/facebook-paid-farm-bureau-8-5-million-to-acquire-fb-com/), Article 'Facebook Paid Farm Bureau $8.5 Million To Acquire Fb.com' (January 11, 2011), quoted Reuters passage. Checked quote: “At their annual meeting in Atlanta, Farm Bureau officials on Tuesday said the organization earned $8.5 million by selling a couple of domain names”
+  - Also reviewed: [InformationWeek](https://www.informationweek.com/it-sectors/facebook-paid-8-5-million-for-fb-com), Article 'Facebook Paid $8.5 Million For FB.com' (January 12, 2011)
+  - Valuation caveat: The seller described $8.5M as earned from 'a couple of domain names' without naming the buyer; it is not attributable to fb.com alone.
 
 ### 35. we.com
 
@@ -417,96 +479,117 @@ Seed records by strongest evidence for any linked transaction:
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
 - **Remaining work:** None.
-- **SOH-TX-000039:** Private sale; DN Journal confirmed the $8M figure through an unnamed source in January 2016. Buyer not confirmed.
+- **SOH-TX-000039** (REPORTED, single domain): Private sale reported in June 2015; price confirmed by DN Journal in January 2016.
+  - Reviewed source: [DN Journal](https://dnjournal.com/archive/domainsales/2016/20160127.htm), Weekly sales report (January 27, 2016), introduction. Checked quote: “In August James Iles wrote in a NamePros post that the domain was sold for $8 million . We were unable to independently verify that at the time, but at NamesCon I connected with an unimpeachable source who confirmed”
+  - Valuation caveat: Confirmed through an unnamed source; buyer not named in the reviewed source.
 
 ### 36. business.com
 
-- **Findings:** Widely reported.
+- **Findings:** Reported at the time.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
 - **Remaining work:** None.
-- **SOH-TX-000040:** Marc Ostrofsky sold the name to eCompanies in late 1999.
+- **SOH-TX-000040** (REPORTED, single domain): Marc Ostrofsky sold business.com to eCompanies (sale date taken as the day before the article).
+  - Reviewed source: [The Register](https://www.theregister.com/1999/12/02/big_bucks_url/), Article (Linda Harrison, 2 Dec 1999), paragraph 1. Checked quote: “Yesterday Ostrofsky sold the URL for a cool $7.5 million (£4.6 million), making it the universe's most expensive virtual address.”
 
 ### 37. diamond.com
 
-- **Findings:** Reported; domain plus IP.
+- **Findings:** Reported $7.5M for the domain plus associated intellectual property.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Domain plus related IP.
+- **Transaction type:** Domain plus associated IP.
 - **Rights:** Citation only.
 - **Remaining work:** Review Odimo Inc. SEC filings (2006).
-- **SOH-TX-000041:** Ice.com bought the domain and related intellectual property from Odimo Inc.; inventory was paid for separately ($2M). Odimo was a public company, so a filing may exist (not reviewed).
+- **SOH-TX-000041** (REPORTED, bundle total): Odimo Inc. was a public company; its filings may disclose the sale (not reviewed).
+  - Reviewed source: [DN Journal](https://www.dnjournal.com/archive/domainsales/2006/domainsales05_23_06.htm), Weekly sales report (May 2006), lead story. Checked quote: “Ice.com bought the domain from Odimo Inc. and both parties agreed that the $7.5 million was for the domain name and associated intellectual property only.”
+  - Valuation caveat: Price covers the domain and associated intellectual property; inventory ($2M) was paid separately.
 
 ### 38. beer.com
 
-- **Findings:** Reported; approximate; deal scope unclear.
+- **Findings:** Reported only in a list-style article citing DN Journal; scope unclear.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Unclear whether an operating site was included.
+- **Transaction type:** Unclear.
 - **Rights:** Citation only.
-- **Remaining work:** Find a contemporaneous report or buyer statement.
-- **SOH-TX-000042:** Reported sale to Interbrew (InBev) for $7M 'or more'. One account describes the seller letting the 'business' go, so whether it was domain-only is unclear.
+- **Remaining work:** Find a contemporaneous report.
+- **SOH-TX-000042** (REPORTED, unknown): Weakly documented: one list-style mention.
+  - Reviewed source: [Entrepreneur (citing DN Journal)](https://www.entrepreneur.com/article/219521), Article 'Multimillion Dollar Domains', 'Alcohol' section. Checked quote: “In 2004, Beer.com was purchased for $7 million, and two years later Vodka.com sold for $3 million.”
+  - Valuation caveat: Reviewed source is a summary list citing DN Journal; buyer and deal scope not stated.
+  - Lead (search index only, not evidence): [Wikipedia list (tertiary)](https://en.wikipedia.org/wiki/List_of_most_expensive_domain_names): Names Interbrew as buyer; not reviewed.
 
 ### 39. z.com
 
-- **Findings:** Reported in JPY; seed USD figure is a conversion.
+- **Findings:** Reported in JPY; seed USD is a conversion.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
-- **Remaining work:** Review GMO Internet's investor-relations release.
-- **SOH-TX-000043:** GMO Internet paid JPY 800 million to Nissan. USD figures ($6.78M-$6.8M) are conversions. GMO's own announcement was not reviewed.
+- **Remaining work:** Review GMO Internet's own release.
+- **SOH-TX-000043** (REPORTED, single domain): Nissan to GMO Internet. USD figures are conversions.
+  - Reviewed source: [Domain Name Wire](https://domainnamewire.com/2014/11/21/wow-nissan-sells-z-com-domain-name-to-gmo-for-6-8-million/), Article 'Wow: Nissan sells Z.com domain name to GMO for $6.8 million' (November 21, 2014), paragraph 1. Checked quote: “GMO Internet, operator of Japan’s largest domain name registrar, has acquired the one letter domain name Z.com for JPY800 million”
 
 ### 40. slots.com
 
 - **Findings:** Price matches; the sale was in May 2010, not 2013.
-- **Price/date conflicts:** Seed year 2013 vs reported May 2010.
+- **Price/date conflicts:** Seed year 2013 vs May 2010 (Domain Name Wire, May 13, 2010; DN Journal report for the week ending May 30, 2010).
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
 - **Remaining work:** Correct the seed year in Sprint 1B (not changed in Sprint 1A).
-- **SOH-TX-000044:** Moniker confirmed the sale to BodogBrand after a SnapNames auction failed to meet reserve.
+- **SOH-TX-000044** (REPORTED, single domain): Broker-confirmed sale (Moniker) to BodogBrand, completed in late May 2010.
+  - Reviewed source: [Domain Name Wire](https://domainnamewire.com/2010/05/13/jackpot-slots-com-domain-name-sells-for-5-5-million/), Article 'Jackpot! Slots.com Domain Name Sells for $5.5 Million' (May 13, 2010), paragraph 1. Checked quote: “I have received confirmation from domain name auctioneer Moniker.com that Slots.com has sold for $5.5 million”
+  - Also reviewed: [DN Journal](https://dnjournal.com/archive/domainsales/2010/20100609.htm), Weekly sales report (week ending May 30, 2010), lead story
 
 ### 41. toys.com
 
-- **Findings:** Reported court-approved auction sale.
+- **Findings:** Reported court-approved sale.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
-- **Remaining work:** Review the court approval order (U.S. Bankruptcy Court, D. Del.).
-- **SOH-TX-000045:** Bankruptcy auction of eToys' parent's assets; Toys 'R' Us (via Eagle, LLC) won at $5.1M and the Delaware bankruptcy court approved the sale. Court order not reviewed.
+- **Remaining work:** Review the court approval order.
+- **SOH-TX-000045** (REPORTED, single domain): Bankruptcy auction of eToys' parent's assets; court approval reported March 4, 2009. Court order not reviewed.
+  - Reviewed source: [Domain Name Wire](https://domainnamewire.com/2009/03/04/court-approves-toyscom-sale/), Article 'Court Approves Toys.com Sale' (March 4, 2009), paragraph 1. Checked quote: “Judge Brendan Shannon of the United States Bankruptcy Court District of Delaware has approved Toys ‘R’ Us purchase of the toys.com domain name for $5.1M.”
 
 ### 42. clothes.com
 
-- **Findings:** Verified from the buyer's financial statements ($4,864,000, May 2008).
+- **Findings:** Verified ($4,864,000, May 2008).
 - **Price/date conflicts:** None found.
 - **Transaction type:** Resolved: domain-only.
-- **Rights:** SEC filing: public record.
+- **Rights:** SEC filing: citation only.
 - **Remaining work:** None.
-- **SOH-TX-000046:** Buyer-side disclosure. Exact amount taken from the intangible-asset table ($4,864,000); the narrative rounds it to $4.9M.
-  - Verification basis: Primary document reviewed: Zappos.com notes in Amazon's 424B3: "In May 2008, we acquired the Clothes.com internet domain name from Idealab. ... The entire purchase price of $4.9 million was assigned to the price of the domain name intangible asset"; the intangible-asset table lists Clothes.com at 4,864 (thousands of dollars).
+- **SOH-TX-000046** (VERIFIED, single domain): Buyer-side disclosure; exact amount from the intangible-asset table.
+  - Reviewed source: [Amazon.com Form 424B3 (2009), Zappos.com consolidated financial statements](https://www.sec.gov/Archives/edgar/data/1018724/000119312509199231/d424b3.htm), Zappos.com notes to consolidated financial statements, 'Intangible Assets'. Checked quote: “In May 2008, we acquired the Clothes.com internet domain name from Idealab. The domain name was recognized as a purchased intangible asset with a useful life of 20 years. The entire purchase price of $4.9 million was assigned to the price of the domain name intangible asset”
+  - Verification basis: Buyer's financial statements in Amazon's 424B3, read in raw text: Clothes.com acquired from Idealab in May 2008; entire $4.9M purchase price assigned to the domain; intangible-asset table lists Clothes.com at 4,864 (thousands of dollars).
 
 ### 43. medicare.com
 
 - **Findings:** Verified from the buyer's 10-Q.
 - **Price/date conflicts:** None found.
-- **Transaction type:** Resolved: described by the buyer as a domain purchase.
-- **Rights:** SEC filing: public record.
+- **Transaction type:** Resolved: described as a domain purchase.
+- **Rights:** SEC filing: citation only.
 - **Remaining work:** None.
-- **SOH-TX-000047:** Buyer-side disclosure. The site was lightly developed (lead generation), but the buyer describes the purchase as a domain name.
-  - Verification basis: Primary document reviewed: eHealth Q1 2014 10-Q: "On March 31, 2014, we purchased an internet domain name, www.Medicare.com, for $4.8 million." "Cash consideration paid in connection with the purchase of the domain name totaled $4.5 million." The remainder was $0.3 million of receivables from the owner settled at closing.
+- **SOH-TX-000047** (VERIFIED, single domain): Buyer-side disclosure.
+  - Reviewed source: [eHealth, Inc. Form 10-Q (Q1 2014)](https://www.sec.gov/Archives/edgar/data/1333493/000133349314000043/ehth-20140331x10q.htm), Notes to Condensed Consolidated Financial Statements, 'Intangible Assets'. Checked quote: “On March 31, 2014, we purchased an internet domain name, www.Medicare.com, for $4.8 million. Cash consideration paid in connection with the purchase of the domain name totaled $4.5 million.”
+  - Verification basis: Buyer's Q1 2014 10-Q, read in raw text: Medicare.com purchased March 31, 2014 for $4.8M ($4.5M cash plus $0.3M of receivables from the owner settled at completion).
+  - Valuation caveat: The site was lightly developed (lead generation) but the buyer describes the purchase as a domain name.
 
 ### 44. whisky.com
 
-- **Findings:** Reported, seller-attributed.
+- **Findings:** Reported; domain-only; deal made January 1, 2014.
 - **Price/date conflicts:** None found.
 - **Transaction type:** Domain-only.
 - **Rights:** Citation only.
 - **Remaining work:** None.
-- **SOH-TX-000048:** Sold by Michael Castello to the owner of Whisky.de; the price was disclosed after an NDA period.
+- **SOH-TX-000048** (REPORTED, single domain): Sold by Michael Castello; the buyer owns Whisky.de. First announced by DN Journal (report date per Domain Name Wire).
+  - Reviewed source: [DN Journal](https://dnjournal.com/cover/2014/february.htm), Cover story 'The Amazing Ascent of Whisky.com ...' (February 2014), introduction. Checked quote: “the sale of Whisky.com for $3.1 million in a deal made on New Year's Day (2014). The blockbuster sale was for the domain name only”
+  - Also reviewed: [Domain Name Wire](https://domainnamewire.com/2014/02/27/whisky-com-domain-name-sells-for-3-1-million/), Article 'Whisky.com domain name sells for $3.1 million' (February 27, 2014), paragraph 1
 
 ### 45. candy.com
 
-- **Findings:** The headline matches the 2009 announcement, but the seller's later account of the realised payout conflicts with it.
-- **Price/date conflicts:** Headline $3M (plus revenue share) vs realised $1.7M payout reported in 2023.
-- **Transaction type:** Structured consideration.
+- **Findings:** $3M cash confirmed; equity consideration in addition.
+- **Price/date conflicts:** None found.
+- **Transaction type:** Domain-only; cash plus equity.
 - **Rights:** Citation only.
-- **Remaining work:** None useful; keep excluded.
-- **SOH-TX-000049:** Structured deal (headline price, revenue share, equity). The headline figure may not reflect cash realised.
+- **Remaining work:** None.
+- **SOH-TX-000049** (REPORTED, single domain): Correction: Sprint 1A v1 classified this DISPUTED from a search summary ('$1.7M payout vs $3M'). The reviewed 2023 article shows $3M cash plus equity, with $1.7M from a later share sale. There is no price conflict.
+  - Reviewed source: [Domain Name Wire](https://domainnamewire.com/2009/06/03/3m-candycom-sale-gives-domain-name-industry-a-boost/), Article '$3M Candy.com Sale Gives Domain Name Industry a Boost' (June 3, 2009), paragraph 1. Checked quote: “Candy.com has sold to G&J Holdings for $3 million (and may include some royalties).”
+  - Also reviewed: [DN Journal (2023)](https://dnjournal.com/articles/2023/rs-gr/rick-schwartz-candy.htm), Article on GreenRabbit's acquisition and Rick Schwartz's Candy.com stake
+  - Valuation caveat: $3M is the cash component; the seller also received equity, later sold in part for $1.7M and, on the buyer's 2023 acquisition, a further $6.8M.
+  - Valuation caveat: Total economic consideration therefore exceeded the $3M headline.

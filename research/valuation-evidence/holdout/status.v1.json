@@ -7,5 +7,28 @@
   "manifest_sha256": null,
   "record_count": null,
   "storage_location": null,
-  "storage_requirement": "Holdout records are stored outside this public repository; only this status file and the protocol are public."
+  "storage_requirement": "Holdout records are stored outside this public repository; only this status file and the protocol are public.",
+  "controls": {
+    "status_shape_and_null_fields_when_not_ready": "ENFORCED",
+    "frozen_fails_closed_without_private_manifest": "ENFORCED",
+    "frozen_metadata_valid_hash_count_date_storage": "ENFORCED",
+    "manifest_outside_repository": "ENFORCED",
+    "manifest_hash_matches_status": "ENFORCED",
+    "manifest_record_count_matches_and_minimum_150": "ENFORCED",
+    "manifest_record_eligibility": "ENFORCED",
+    "manifest_source_concentration_max_25_percent": "ENFORCED",
+    "overlap_with_registry_transactions_and_repeat_sales": "ENFORCED",
+    "overlap_with_published_seed_and_comps": "ENFORCED",
+    "overlap_with_normalised_name_variants": "ENFORCED",
+    "no_holdout_candidates_in_public_registry": "ENFORCED",
+    "no_holdout_manifest_files_in_repository": "ENFORCED",
+    "stratum_minimums": "NOT_IMPLEMENTED",
+    "chronological_split": "NOT_IMPLEMENTED",
+    "independent_naming_class_labels": "NOT_IMPLEMENTED",
+    "evaluation_budget_and_logging": "NOT_IMPLEMENTED",
+    "aggregate_only_access_for_developers": "NOT_IMPLEMENTED",
+    "backtest_second_level_overlap_check": "NOT_IMPLEMENTED",
+    "pages_artifact_excludes_research_files": "NOT_IMPLEMENTED"
+  },
+  "controls_note": "ENFORCED controls run in scripts/validate_evidence_registry.py. NOT_IMPLEMENTED controls are protocol requirements without code yet; they must be implemented before any FROZEN status is relied on for those properties."
 }

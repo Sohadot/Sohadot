@@ -336,3 +336,39 @@ primary documents, 18 with no traceable evidence, 4 with price or date
 conflicts, and 3 that were business acquisitions rather than domain sales.
 A registry that separates what the market demonstrated from what was merely
 repeated is the precondition for any credible calibration.
+
+---
+
+## DEC-2026-10-09-02 — Evidence Registry Remediation After Independent Review
+
+- **Status:** Accepted for research use; production use not authorised
+- **Date:** 2026-10-09
+- **Amends:** DEC-2026-10-09-01
+
+### Decision
+
+1. **Read, then check.** A source counts as evidence only if it was read
+   directly and its quoted passage was checked against the raw text. Each
+   source records its locator, access date, review method and document hash.
+   Search summaries are leads, never evidence.
+2. **Transactions vs valuations.** Verification describes the documented
+   transaction. A bundle or business price is never attributed to one
+   domain. Doubts about economic value are recorded as valuation caveats and
+   do not change the evidence status. Example: fund.com's 2007 purchase of
+   24 domain names and one trademark.
+3. **Four separate rights.** Citation, storage, commercial modelling and
+   redistribution are recorded separately, each with its basis. Public
+   accessibility grants citation at most. Unknown rights block calibration.
+4. **Fail-closed holdout.** A FROZEN holdout is never accepted without
+   verifying the private manifest outside the repository. Controls not yet
+   implemented are labelled NOT_IMPLEMENTED in the status file, and the
+   validator rejects any claim beyond what it enforces.
+5. **Pages exposure handled separately.** Excluding research files from the
+   GitHub Pages artifact is a separate change. Filtering never makes
+   repository files private.
+
+### Rationale
+
+The independent review found that search-only summaries, an unenforced
+holdout protocol and a single rights field could each overstate the evidence.
+Direct review also corrected candy.com, which a search summary had misread.

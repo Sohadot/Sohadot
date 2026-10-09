@@ -2,6 +2,9 @@
 
 - **Protocol version:** `holdout-protocol/v1`
 - **Status:** **NOT_READY**, recorded in `research/valuation-evidence/holdout/status.v1.json`
+- **Enforcement:** §9 lists which requirements `scripts/validate_evidence_registry.py`
+  enforces today and which are `NOT_IMPLEMENTED`. The status file carries the
+  same map, and the validator fails if the two differ.
 - **Why not ready:** no independently sourced transactions have been selected,
   obtained under usable rights, or frozen. The 45 published comps are
   calibration material and are never eligible as a holdout.
@@ -28,13 +31,15 @@ A transaction may enter the holdout only if all of the following hold:
 3. **Price:** `EXACT` or `ROUNDED`. No undisclosed, approximate, lower-bound
    or structured prices. Consideration is cash or unknown, never stock,
    crypto or revenue share.
-4. **Rights:** the record may be stored and used for internal evaluation
-   under the source's terms, with the basis recorded.
-5. **Independence:** the domain does not appear in any calibration set, in
-   any transaction (repeat-sale leakage).
-6. **Name independence:** no calibration domain shares the holdout domain's
-   second-level name on another extension (e.g. `example.com` vs
-   `example.net`).
+4. **Rights:** storage and commercial-modelling rights are granted, each with
+   a recorded basis. Unknown or restricted rights exclude the record.
+5. **Independence:** the domain does not appear in the registry, the
+   published comps seed or the published comps file, in any transaction
+   (repeat-sale leakage).
+6. **Name independence:** names are normalised (case, `www.`, trailing dot,
+   IDNA). The holdout domain must not share its second-level name, or a
+   hyphen-stripped variant of it, with any of those sources on any extension
+   (e.g. `example.com` vs `example.net` vs `ex-ample.io`).
 7. **Source independence:** no more than 25% of holdout records come from any
    single source, and none comes from a source that supplied calibration
    records in the same batch, unless documented and approved.
@@ -74,8 +79,25 @@ indicative only.
 4. Compute SHA-256 over the canonical manifest JSON.
 5. Update the status file to `status: FROZEN`, with `frozen_at`,
    `manifest_sha256`, `record_count` and `storage_location` (a description,
-   not a link to private data). The validator enforces this.
-6. Commit only the status change, through a reviewed pull request.
+   not a link or path).
+6. Commit only the status change, through a reviewed pull request. The
+   manifest declares `"kind": "sohadot-holdout-manifest"` and is hashed as
+   canonical JSON (sorted keys, compact separators).
+
+**Fail-closed verification.** A `FROZEN` status is never accepted on its own.
+The validator fails unless it is run with `--holdout-manifest <private path>`
+and the manifest:
+- lies outside the repository;
+- matches `manifest_sha256`;
+- has exactly `record_count` records, at least 150;
+- contains only eligible records under §2;
+- draws no more than 25% of its records from any single source;
+- does not overlap the registry, published seed or comps by domain, repeat
+  sale or normalised name.
+
+CI cannot see the private manifest, so a `FROZEN` status fails in CI by
+design. Evaluators run the private check, and its result is recorded in the
+review of the status change.
 
 After freezing, the manifest is immutable. Corrections create a new holdout
 version with its own hash. The old version's results are kept and labelled.
@@ -99,10 +121,17 @@ version with its own hash. The old version's results are kept and labelled.
 - Holdout records never appear in `data/` or anywhere the website serves.
 - The public registry rejects `HOLDOUT_CANDIDATE` records.
 - The validator rejects any file in `research/valuation-evidence/holdout/`
-  other than `status.v1.json`.
+  other than `status.v1.json`, any file anywhere in the repository whose
+  name looks like a holdout manifest, and any JSON file containing the
+  manifest marker.
+- Keeping research files out of the GitHub Pages artifact is handled by a
+  separate filtered-deployment change and is `NOT_IMPLEMENTED` here. Filtering
+  Pages never makes files in this public repository private, so holdout
+  records must never be committed at all.
 - Evaluation runs `scripts/valuation_backtest.mjs --holdout <private file>`.
-  That script already refuses a holdout that overlaps the calibration comps.
-  Its overlap check should be extended to second-level names in Sprint 1B.
+  That script refuses exact-domain overlap with the comps only. Its
+  second-level-name check is `NOT_IMPLEMENTED`; run the validator's manifest
+  check first.
 
 ## 7. Metrics, set before any results are seen
 
@@ -120,8 +149,39 @@ worsening in other strata is disclosed.
 | Requirement | State |
 | --- | --- |
 | Protocol documented | Done (this file) |
-| Status file and validator | Done (`NOT_READY`) |
+| Status file and fail-closed validator | Done (`NOT_READY`; see §9) |
 | Independent sources with usable rights identified | **Not done.** Owner decision on sources/licences needed |
 | Candidate set assembled under §2 | Not done |
 | Private storage arranged | **Not done.** Owner decision needed |
 | Manifest frozen and hash recorded | Not done |
+
+## 9. Implemented controls vs protocol requirements
+
+This table is generated from `HOLDOUT_CONTROLS` in
+`scripts/validate_evidence_registry.py`, and the status file must match it.
+`NOT_IMPLEMENTED` rows are protocol requirements with no code yet. They must
+be implemented, or checked manually and documented, before a `FROZEN` holdout
+is relied on for those properties.
+
+| Control | State |
+| --- | --- |
+| `status_shape_and_null_fields_when_not_ready` | ENFORCED |
+| `frozen_fails_closed_without_private_manifest` | ENFORCED |
+| `frozen_metadata_valid_hash_count_date_storage` | ENFORCED |
+| `manifest_outside_repository` | ENFORCED |
+| `manifest_hash_matches_status` | ENFORCED |
+| `manifest_record_count_matches_and_minimum_150` | ENFORCED |
+| `manifest_record_eligibility` | ENFORCED |
+| `manifest_source_concentration_max_25_percent` | ENFORCED |
+| `overlap_with_registry_transactions_and_repeat_sales` | ENFORCED |
+| `overlap_with_published_seed_and_comps` | ENFORCED |
+| `overlap_with_normalised_name_variants` | ENFORCED |
+| `no_holdout_candidates_in_public_registry` | ENFORCED |
+| `no_holdout_manifest_files_in_repository` | ENFORCED |
+| `stratum_minimums` | NOT_IMPLEMENTED |
+| `chronological_split` | NOT_IMPLEMENTED |
+| `independent_naming_class_labels` | NOT_IMPLEMENTED |
+| `evaluation_budget_and_logging` | NOT_IMPLEMENTED |
+| `aggregate_only_access_for_developers` | NOT_IMPLEMENTED |
+| `backtest_second_level_overlap_check` | NOT_IMPLEMENTED |
+| `pages_artifact_excludes_research_files` | NOT_IMPLEMENTED |

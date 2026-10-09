@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://sohadot.com/research/valuation-evidence/schema/transaction-evidence.v1.schema.json",
+  "$id": "https://github.com/Sohadot/Sohadot/research/valuation-evidence/schema/transaction-evidence.v1.schema.json",
   "title": "Sohadot Transaction Evidence Registry v1",
-  "description": "Structural schema. Cross-field evidence, rights, role and dataset rules are enforced by scripts/validate_evidence_registry.py and documented in docs/valuation-evidence/TRANSACTION_EVIDENCE_REGISTRY_V1.md.",
+  "description": "Structural schema. Cross-field evidence, provenance, rights, role, holdout and dataset rules are enforced by scripts/validate_evidence_registry.py and documented in docs/valuation-evidence/TRANSACTION_EVIDENCE_REGISTRY_V1.md.",
   "type": "object",
   "required": [
     "schema_version",
@@ -55,6 +55,8 @@
           "domain",
           "sale_price",
           "currency",
+          "price_scope",
+          "bundle",
           "sale_date",
           "sale_date_precision",
           "report_date",
@@ -67,16 +69,20 @@
           "source_type",
           "source_access_method",
           "source_accessed_at",
+          "review_method",
+          "document_locator",
+          "checked_quote",
+          "document_sha256",
           "additional_sources",
+          "leads",
           "price_disclosure_status",
           "price_claims",
           "conflicts",
+          "valuation_caveats",
           "evidence_status",
           "verification_basis",
           "verified_at",
-          "rights_status",
-          "rights_basis",
-          "rights_license",
+          "rights",
           "calibration_role",
           "notes"
         ],
@@ -87,8 +93,7 @@
             "description": "Stable identifier; never reused or renumbered."
           },
           "domain": {
-            "type": "string",
-            "description": "Lower-case domain name."
+            "type": "string"
           },
           "sale_price": {
             "type": [
@@ -96,7 +101,7 @@
               "null"
             ],
             "exclusiveMinimum": 0,
-            "description": "In `currency`. Null when undisclosed or unknown; claims go in price_claims."
+            "description": "In `currency`; scope given by price_scope. Null when undisclosed or unknown."
           },
           "currency": {
             "enum": [
@@ -110,12 +115,43 @@
               "USD"
             ]
           },
+          "price_scope": {
+            "enum": [
+              "BUNDLE_TOTAL",
+              "BUSINESS_TOTAL",
+              "SINGLE_DOMAIN",
+              "UNKNOWN"
+            ]
+          },
+          "bundle": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "domain_count": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "other_assets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "allocation": {
+                "const": "NOT_ALLOCATED"
+              }
+            },
+            "description": "Required when price_scope is BUNDLE_TOTAL."
+          },
           "sale_date": {
             "type": [
               "string",
               "null"
-            ],
-            "description": "ISO date at the stated precision (YYYY, YYYY-MM or YYYY-MM-DD)."
+            ]
           },
           "sale_date_precision": {
             "enum": [
@@ -130,7 +166,7 @@
               "string",
               "null"
             ],
-            "description": "When the sale was first publicly reported (partial ISO date)."
+            "description": "Publication date of the principal reviewed source (partial ISO date)."
           },
           "venue": {
             "enum": [
@@ -200,11 +236,36 @@
           "source_access_method": {
             "enum": [
               "DOCUMENT_REVIEWED",
-              "NOT_ACCESSED",
-              "SEARCH_INDEX_ONLY"
+              "NOT_ACCESSED"
             ]
           },
           "source_accessed_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "review_method": {
+            "enum": [
+              "NONE",
+              "RAW_TEXT_CHECKED",
+              "TOOL_EXTRACT_CHECKED_AGAINST_RAW",
+              "TOOL_EXTRACT_UNCHECKED"
+            ]
+          },
+          "document_locator": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "checked_quote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "document_sha256": {
             "type": [
               "string",
               "null"
@@ -214,12 +275,18 @@
             "type": "array",
             "items": {
               "type": "object",
+              "additionalProperties": false,
               "required": [
                 "source_name",
                 "source_url",
                 "source_type",
+                "published_date",
                 "source_access_method",
-                "source_accessed_at"
+                "source_accessed_at",
+                "review_method",
+                "document_locator",
+                "checked_quote",
+                "document_sha256"
               ],
               "properties": {
                 "source_name": {
@@ -242,21 +309,84 @@
                     "TRADE_PUBLICATION"
                   ]
                 },
-                "source_access_method": {
-                  "enum": [
-                    "DOCUMENT_REVIEWED",
-                    "NOT_ACCESSED",
-                    "SEARCH_INDEX_ONLY"
+                "published_date": {
+                  "type": [
+                    "string",
+                    "null"
                   ]
                 },
+                "source_access_method": {
+                  "const": "DOCUMENT_REVIEWED"
+                },
                 "source_accessed_at": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "review_method": {
+                  "enum": [
+                    "RAW_TEXT_CHECKED",
+                    "TOOL_EXTRACT_CHECKED_AGAINST_RAW"
+                  ]
+                },
+                "document_locator": {
+                  "type": "string",
+                  "minLength": 8
+                },
+                "checked_quote": {
+                  "type": "string",
+                  "minLength": 20,
+                  "description": "Verbatim text checked against the reviewed document."
+                },
+                "document_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$",
+                  "description": "SHA-256 of the bytes retrieved at review time."
+                }
+              }
+            }
+          },
+          "leads": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_name",
+                "source_url",
+                "source_type",
+                "observed_at",
+                "note"
+              ],
+              "properties": {
+                "source_name": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string",
+                  "pattern": "^https://"
+                },
+                "source_type": {
+                  "enum": [
+                    "AGGREGATOR_DATABASE",
+                    "COURT_RECORD",
+                    "GENERAL_NEWS",
+                    "MARKETPLACE_RECORD",
+                    "NONE",
+                    "PARTY_ANNOUNCEMENT",
+                    "REGULATORY_FILING",
+                    "TERTIARY_REFERENCE",
+                    "TRADE_PUBLICATION"
+                  ]
+                },
+                "observed_at": {
                   "type": "string",
                   "format": "date"
                 },
                 "note": {
                   "type": "string"
                 }
-              }
+              },
+              "description": "Search-index summary or unreviewed pointer. Never evidence."
             }
           },
           "price_disclosure_status": {
@@ -279,24 +409,7 @@
                 "currency",
                 "source",
                 "qualifier"
-              ],
-              "properties": {
-                "amount": {
-                  "type": "integer"
-                },
-                "currency": {
-                  "type": "string"
-                },
-                "date": {
-                  "type": "string"
-                },
-                "source": {
-                  "type": "string"
-                },
-                "qualifier": {
-                  "type": "string"
-                }
-              }
+              ]
             }
           },
           "conflicts": {
@@ -307,22 +420,16 @@
                 "field",
                 "description",
                 "material"
-              ],
-              "properties": {
-                "field": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "material": {
-                  "type": "boolean"
-                },
-                "resolution": {
-                  "type": "string"
-                }
-              }
-            }
+              ]
+            },
+            "description": "Contradictions about the transaction itself."
+          },
+          "valuation_caveats": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Limits on what the price says about value. Never change evidence status."
           },
           "evidence_status": {
             "enum": [
@@ -344,23 +451,173 @@
               "null"
             ]
           },
-          "rights_status": {
-            "enum": [
-              "LICENSED_REUSE",
-              "PERMISSION_REQUIRED",
-              "PUBLIC_RECORD",
-              "PUBLIC_VIEW_CITATION_ONLY",
-              "RESTRICTED_OR_UNKNOWN"
-            ]
-          },
-          "rights_basis": {
-            "type": "string"
-          },
-          "rights_license": {
-            "type": [
-              "string",
-              "null"
-            ]
+          "rights": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "citation",
+              "storage",
+              "commercial_modelling",
+              "redistribution"
+            ],
+            "properties": {
+              "citation": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "basis_type",
+                  "basis",
+                  "reference"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_ESTABLISHED",
+                      "NOT_PERMITTED",
+                      "PERMITTED",
+                      "PERMITTED_WITH_CONDITIONS"
+                    ]
+                  },
+                  "basis_type": {
+                    "enum": [
+                      "DOCUMENTED_LAWFUL_BASIS",
+                      "LICENSE",
+                      "NONE",
+                      "PUBLIC_FACT_CITATION",
+                      "PUBLIC_RECORD",
+                      "WRITTEN_PERMISSION"
+                    ]
+                  },
+                  "basis": {
+                    "type": "string",
+                    "minLength": 20
+                  },
+                  "reference": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "storage": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "basis_type",
+                  "basis",
+                  "reference"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_ESTABLISHED",
+                      "NOT_PERMITTED",
+                      "PERMITTED",
+                      "PERMITTED_WITH_CONDITIONS"
+                    ]
+                  },
+                  "basis_type": {
+                    "enum": [
+                      "DOCUMENTED_LAWFUL_BASIS",
+                      "LICENSE",
+                      "NONE",
+                      "PUBLIC_FACT_CITATION",
+                      "PUBLIC_RECORD",
+                      "WRITTEN_PERMISSION"
+                    ]
+                  },
+                  "basis": {
+                    "type": "string",
+                    "minLength": 20
+                  },
+                  "reference": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "commercial_modelling": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "basis_type",
+                  "basis",
+                  "reference"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_ESTABLISHED",
+                      "NOT_PERMITTED",
+                      "PERMITTED",
+                      "PERMITTED_WITH_CONDITIONS"
+                    ]
+                  },
+                  "basis_type": {
+                    "enum": [
+                      "DOCUMENTED_LAWFUL_BASIS",
+                      "LICENSE",
+                      "NONE",
+                      "PUBLIC_FACT_CITATION",
+                      "PUBLIC_RECORD",
+                      "WRITTEN_PERMISSION"
+                    ]
+                  },
+                  "basis": {
+                    "type": "string",
+                    "minLength": 20
+                  },
+                  "reference": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "redistribution": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "basis_type",
+                  "basis",
+                  "reference"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_ESTABLISHED",
+                      "NOT_PERMITTED",
+                      "PERMITTED",
+                      "PERMITTED_WITH_CONDITIONS"
+                    ]
+                  },
+                  "basis_type": {
+                    "enum": [
+                      "DOCUMENTED_LAWFUL_BASIS",
+                      "LICENSE",
+                      "NONE",
+                      "PUBLIC_FACT_CITATION",
+                      "PUBLIC_RECORD",
+                      "WRITTEN_PERMISSION"
+                    ]
+                  },
+                  "basis": {
+                    "type": "string",
+                    "minLength": 20
+                  },
+                  "reference": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            }
           },
           "calibration_role": {
             "enum": [

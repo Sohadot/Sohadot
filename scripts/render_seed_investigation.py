@@ -73,14 +73,15 @@ def render(registry, investigation):
         lines.append(f"| {key} | {n} |")
 
     lines += ["", "## Matrix", "",
-              "| # | Seed record | Transactions (status · price · date) | Agreement | Recommended role | Principal source |",
+              "| # | Seed record | Transactions (status · price · date) | Agreement | Recommended role | Principal reviewed source |",
               "| --- | --- | --- | --- | --- | --- |"]
     for n, r in enumerate(records, 1):
         parts, source = [], "None located"
         for tid in r["transaction_ids"]:
             t = txs[tid]
+            scope = "" if t["price_scope"] in ("SINGLE_DOMAIN", "UNKNOWN") else f", {t['price_scope'].lower().replace('_', ' ')}"
             parts.append(f"{tid}: {t['evidence_status']} · {money(t['sale_price'], t['currency'])} "
-                         f"({t['price_disclosure_status'].lower()}) · {t['sale_date'] or 'date unknown'}")
+                         f"({t['price_disclosure_status'].lower()}{scope}) · {t['sale_date'] or 'date unknown'}")
             if t["source_url"] and source == "None located":
                 source = f"[{t['source_name']}]({t['source_url']})"
         seed = f"{r['seed_domain']} — ${r['seed_price']:,} ({r['seed_year']})"
@@ -97,9 +98,19 @@ def render(registry, investigation):
                   f"- **Remaining work:** {r['remaining_work']}"]
         for tid in r["transaction_ids"]:
             t = txs[tid]
-            lines.append(f"- **{tid}:** {t['notes']}")
+            lines.append(f"- **{tid}** ({t['evidence_status']}, {t['price_scope'].lower().replace('_', ' ')}): {t['notes']}")
+            if t["source_url"]:
+                lines.append(f"  - Reviewed source: [{t['source_name']}]({t['source_url']}), {t['document_locator']}. "
+                             f"Checked quote: \u201c{t['checked_quote']}\u201d")
+            for extra in t["additional_sources"]:
+                lines.append(f"  - Also reviewed: [{extra['source_name']}]({extra['source_url']}), {extra['document_locator']}")
             if t["verification_basis"]:
                 lines.append(f"  - Verification basis: {t['verification_basis']}")
+            for caveat in t["valuation_caveats"]:
+                lines.append(f"  - Valuation caveat: {caveat}")
+            for lead in t["leads"]:
+                lead_text = f"[{lead['source_name']}]({lead['source_url']}): {lead['note']}"
+                lines.append(f"  - Lead (search index only, not evidence): {lead_text}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
