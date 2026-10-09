@@ -1,0 +1,21 @@
+name: Pages Artifact Check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build filtered Pages artifact (no deploy)
+        run: python3 scripts/build_pages_artifact.py --out _site --report pages-artifact-report.json
+
+      - name: Pages artifact regression tests
+        run: python3 -m unittest tests.test_pages_artifact -v
