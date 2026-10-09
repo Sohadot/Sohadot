@@ -39,9 +39,18 @@
      independently confirmed fact may be used, are separate legal questions
      left open for counsel (D1a, D1b). The answers could widen Workstreams A
      and F; they would not set aside a provider's terms that bind Sohadot.
-   - One permission from DN Journal, or two or three venue permissions,
-     could supply the first 500 with stratified coverage.
-   - The holdout needs another 150 or more from independent source
+   - **Venue permissions are the route.** Two or three venue permissions
+     that supply completion dates and completion status could supply the
+     first 500 with stratified coverage.
+   - **A relay is not enough on its own.** A DN Journal permission alone
+     yields no qualified sales:
+     - its rows carry reporting windows, not sale dates;
+     - its rows are reported prices without per-row completion evidence;
+     - venue-originated rows need upstream rights.
+
+     It remains valuable for discovery and cross-checking.
+   - The holdout needs another 150 or more from independent originating
+     source families. Venues named by one relay are not independent
      families.
    - Without permission, the realistic ceiling is tens of records.
 4. **Larger stages:** 2,000 needs at least one bulk permission. 10,000+
@@ -122,8 +131,14 @@ Detailed in `DATA_PIPELINE_ARCHITECTURE.md`.
   - holdout records are refused in public files;
   - engine labels cannot serve as naming classes.
 - **Detection:** duplicate reports, repeat sales, ambiguous same-domain
-  pairs, suspected bundles, asking prices, bids, unconfirmed auctions and
-  undisclosed prices.
+  pairs, suspected bundles, asking prices, bids, unpaid or unconfirmed
+  auctions, announced agreements and undisclosed prices.
+- **Integrity rules:**
+  - **Completion:** a stated price is never enough. `COMPLETED_SALE` needs
+    an explicit completion-evidence basis.
+  - **Sale dates:** a report date or reporting window is never a sale date.
+  - **Upstream rights:** rights granted by a secondary publisher do not
+    cover upstream venue data unless confirmed.
 - **Storage follows rights.** Licensed data without a redistribution right
   must live in private storage, never in this public repository. Only code,
   aggregates and counts are published.
@@ -138,10 +153,12 @@ Detailed in `FIRST_500_PLAN.md`.
 - **Target:** about 650 eligible records (500 for calibration and
   development, 150+ held out privately), stratified by price band (275
   under $10k), extension (30% other than .com), market side, naming class
-  and recency, from at least three source families.
+  and recency, from at least three originating source families (judged by
+  family and by relay).
 - **Workstreams:**
   - A: primary public records;
-  - B: DN Journal permission (first request);
+  - B: DN Journal permission (discovery and cross-check; asks about
+    upstream rights);
   - C: venue permissions;
   - D: NameBio licence enquiry, only if approved;
   - E: seller-consented submissions, later;

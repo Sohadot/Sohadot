@@ -37,7 +37,7 @@ DISCOVERED ──► SOURCE_REVIEWED ──► ELIGIBLE ──► CALIBRATION_AD
 | --- | --- | --- |
 | `DISCOVERED` | A lead or unsourced claim | No directly reviewed source |
 | `SOURCE_REVIEWED` | Evidence reviewed, but at least one blocker remains | Reviewed source (Registry v1 §3); no rejection reason |
-| `ELIGIBLE` | Meets every calibration condition | Reviewed; completed sale; single domain; exact or rounded price; known date; cash or unknown consideration; USD amount or a recorded FX basis; storage and modelling rights granted; no unresolved duplicate, conflict or bundle suspicion |
+| `ELIGIBLE` | Meets every calibration condition | Reviewed; `COMPLETED_SALE` **with explicit completion evidence**; single domain; exact or rounded price; a sale date **stated by the evidence** (not a report date or window); cash or unknown consideration; USD amount or a recorded FX basis; storage and modelling rights granted **by a party able to grant them** (§3.3); no unresolved duplicate, conflict or bundle suspicion |
 | `CALIBRATION_ADMITTED` | In a named calibration batch | `ELIGIBLE`, plus a second review and an admission record (batch, approver, decision reference). **Closed** (`ADMISSION_OPEN = False`). |
 | `HOLDOUT_RESERVED` | Set aside for the independent holdout | `ELIGIBLE`, selected under the holdout protocol, stored only in the private manifest. Never in this repository. |
 | `REJECTED` | Not a usable comparable | At least one rejection reason |
@@ -50,7 +50,7 @@ arrives. A reserved holdout record never returns to calibration.
 
 | Rejection (terminal unless reopened) | Trigger |
 | --- | --- |
-| `NOT_A_COMPLETED_SALE` | Asking price, auction bid, or auction result not confirmed as paid |
+| `NOT_A_COMPLETED_SALE` | Asking price, auction bid, or an auction result whose winner did not pay (`AUCTION_RESULT_UNPAID`) |
 | `PRICE_NOT_DISCLOSED` | Price never disclosed |
 | `IMPRECISE_PRICE` | Approximate or lower-bound price |
 | `NOT_SINGLE_DOMAIN` | Bundle, domain plus assets, or business |
@@ -62,11 +62,13 @@ arrives. A reserved holdout record never returns to calibration.
 | --- | --- |
 | `NO_REVIEWED_SOURCE` | Only leads or unsourced claims |
 | `MATERIAL_CONFLICT_UNRESOLVED` | `DISPUTED` evidence |
-| `PRICE_TYPE_UNKNOWN` | Not shown to be a completed sale |
+| `PRICE_TYPE_UNKNOWN` | Price not yet classified (§3.1) |
+| `COMPLETION_NOT_EVIDENCED` | Announced agreement, reported price or unconfirmed auction result; or `COMPLETED_SALE` without a valid completion-evidence basis |
 | `SCOPE_UNKNOWN` | Not shown to be a single-domain sale |
-| `SALE_DATE_UNKNOWN` | No sale date at any precision |
+| `SALE_DATE_UNKNOWN` | No sale date stated by the evidence (`sale_date_basis` is not `EXPLICIT_IN_SOURCE`). A report date or reporting window never satisfies it. |
 | `FX_BASIS_MISSING` | Non-USD amount with no conversion basis |
 | `RIGHTS_NOT_ESTABLISHED` | Storage or modelling right unknown |
+| `UPSTREAM_RIGHTS_UNCONFIRMED` | Rights granted by a secondary publisher (or with no named grantor), without confirmation that rights originating with the venue or other upstream owner are covered |
 | `DUPLICATE_UNRESOLVED` | Same domain as another record, relationship not yet resolved |
 | `BUNDLE_SUSPECTED` | Shares a source passage and amount with a different domain |
 
@@ -79,19 +81,74 @@ fields the Sprint 1B brief requires map as follows:
 | --- | --- |
 | Domain | `domain` (normalised: lower case, no `www.`, no trailing dot, IDNA) |
 | Amount, original currency | `pipeline.original_amount`, `pipeline.original_currency`; `pipeline.amount_usd` with `pipeline.fx_basis` (rate, source, date) |
-| Sale date | `sale_date`, `sale_date_precision` (DAY / MONTH / YEAR / UNKNOWN). For relayed reports without a sale date, the report window is recorded as the date at the precision it supports. |
-| Reporting date | `report_date` |
+| Sale date | `sale_date`, `sale_date_precision` (DAY / MONTH / YEAR / UNKNOWN), and `pipeline.sale_date_basis`: `EXPLICIT_IN_SOURCE` or `NOT_ESTABLISHED` (§3.2) |
+| Reporting date and window | `report_date` (publication date); `pipeline.reporting_window` {start, end, source} for reports that cover a period. Both are kept apart from the sale date. |
 | Venue | `venue` (AUCTION, MARKETPLACE, BROKER, PRIVATE, BANKRUPTCY_SALE, CORPORATE_TRANSACTION) plus the venue name in the source |
 | Wholesale or retail market side | `market_side` (INVESTOR_TRADE = wholesale; END_USER_ACQUISITION = retail; UNKNOWN) |
 | Transaction scope | `transaction_type`, `price_scope`, `bundle` |
 | Payment type | `consideration_type` (CASH, CASH_AND_STOCK, CASH_AND_NOTE, CRYPTOCURRENCY, STRUCTURED, …); instalment or lease-to-own recorded in `valuation_caveats` |
-| Price type | `pipeline.price_type` (COMPLETED_SALE, ASKING_PRICE, AUCTION_BID, AUCTION_RESULT_UNCONFIRMED, UNDISCLOSED, UNKNOWN) |
+| Price type and completion | `pipeline.price_type` and `pipeline.completion_evidence` {basis, locator, quote} (§3.1) |
 | Source, source reliability | principal and `additional_sources` (URL, locator, checked quote ≤300 characters, document SHA-256, review method); `pipeline.source_reliability_tier` (A–E) |
 | Reviewed evidence | `evidence_status`, `verification_basis`, `attesting_party`, `settlement_evidence` |
-| Data-use rights | `rights.{citation, storage, commercial_modelling, redistribution}`, each with status, basis type, basis and reference (licence or permission ID) |
+| Data-use rights | `rights.{citation, storage, commercial_modelling, redistribution}`, each with status, basis type, basis and reference (licence or permission ID); `pipeline.rights_provenance` {granted_by_role, grantor, upstream_origin, upstream_rights_confirmed} (§3.3) |
+| Source family and relay | `pipeline.source_family` (the originating data owner: venue, party, filer or court) and `pipeline.relay_publisher` (the publisher that relayed it, if any) (§5) |
 | Naming class | `pipeline.naming_class` with `naming_class_basis`: `HUMAN_RULES_V1` or `UNASSIGNED`. Engine labels are refused, so the model under test cannot label its own test data. |
 | Relationships | `pipeline.duplicate_of`, `pipeline.repeat_sale_of` |
 | Review and admission | `pipeline.second_review`, `pipeline.admission`, `pipeline.state_history` |
+
+### 3.1 Price type and completion evidence
+
+A stated price, even in a reviewed `VERIFIED` or `REPORTED` record, is not
+evidence that the sale closed.
+
+| `price_type` | Meaning | Effect |
+| --- | --- | --- |
+| `COMPLETED_SALE` | The transaction closed | Eligible only with `completion_evidence` (below); otherwise blocked, and the validator fails the record |
+| `ANNOUNCED_AGREEMENT` | Agreed or pending; closing not shown | Blocked: `COMPLETION_NOT_EVIDENCED` |
+| `REPORTED_PRICE` | A price is reported; completion not stated | Blocked: `COMPLETION_NOT_EVIDENCED` |
+| `AUCTION_RESULT_UNCONFIRMED` | Auction closed; payment not confirmed | Blocked: `COMPLETION_NOT_EVIDENCED` |
+| `AUCTION_RESULT_UNPAID` | Winner did not pay | Rejected: `NOT_A_COMPLETED_SALE` |
+| `AUCTION_BID`, `ASKING_PRICE` | Bid or list price | Rejected: `NOT_A_COMPLETED_SALE` |
+| `UNDISCLOSED` | Price never disclosed | Rejected: `PRICE_NOT_DISCLOSED` |
+| `UNKNOWN` | Not classified | Blocked: `PRICE_TYPE_UNKNOWN` |
+
+`completion_evidence.basis` must be one of the following, with a locator
+and a checked quote:
+- `SETTLEMENT_IN_FILING_OR_COURT_RECORD`
+- `VENUE_RECORD_OF_COMPLETION`
+- `PARTY_CONFIRMED_COMPLETION`
+- `SOURCE_STATES_COMPLETED`
+
+Registry v1 never recorded completion, so the pilot maps every priced
+registry record to `REPORTED_PRICE`, not `COMPLETED_SALE`.
+
+### 3.2 Sale-date provenance
+
+- A sale date counts only when the evidence states it
+  (`sale_date_basis: EXPLICIT_IN_SOURCE`).
+- A publication date (`report_date`) or a reporting window
+  (`reporting_window`) is never copied into `sale_date`. When only those
+  exist, `sale_date` stays null and the record is blocked with
+  `SALE_DATE_UNKNOWN`.
+- A sale date equal to a window boundary needs a `sale_date_note` citing
+  the explicit date; otherwise the validator fails the record.
+- Registry v1 did not record where its dates came from, so the pilot treats
+  every registry date as `NOT_ESTABLISHED` until re-reviewed.
+
+### 3.3 Rights provenance
+
+| `granted_by_role` | Can clear storage and modelling? |
+| --- | --- |
+| `ORIGINATING_VENUE`, `TRANSACTION_PARTY`, `PUBLIC_RECORD` | Yes, with a named grantor |
+| `SECONDARY_PUBLISHER` | Only with `upstream_rights_confirmed: true` |
+| `NONE` | No |
+
+A secondary publisher, for example a trade-press relay, can grant rights in
+its own compilation. That permission does not establish rights that
+originate with the marketplace, broker or other upstream data owner.
+Confirmation may come from the publisher's own warranty of upstream rights,
+or from the upstream owner directly. Either way it is recorded as a
+reference before the record can clear.
 
 ## 4. Detection rules
 
@@ -101,7 +158,7 @@ fields the Sprint 1B brief requires map as follows:
 | Repeat sale | Sale dates at least 180 days apart, or at least 2 calendar years apart at year precision. Linked through `repeat_sale_of`. |
 | Ambiguous | Anything else, including adjacent years at year precision (a late report of one sale) and records with an unknown date. Blocks both records until a reviewer links them. |
 | Bundle suspicion | Different domains citing the same source passage with the same amount |
-| Asking prices, bids | Venue listings, "make offer" and "buy now" prices, and auction bids are `ASKING_PRICE` or `AUCTION_BID`. Auction results are `AUCTION_RESULT_UNCONFIRMED` until the venue or a party confirms payment. |
+| Asking prices, bids, agreements | Venue listings, "make offer" and "buy now" prices, and auction bids are `ASKING_PRICE` or `AUCTION_BID`. Auction results are `AUCTION_RESULT_UNCONFIRMED` until the venue or a party confirms payment, and `AUCTION_RESULT_UNPAID` if the winner defaults. "Agreed to sell", "in escrow" and "pending" are `ANNOUNCED_AGREEMENT`. |
 | Undisclosed prices | "Undisclosed" or "seven figures" are `UNDISCLOSED`, with the claim kept in `price_claims` |
 
 Cross-source matching on a relayed report (for example a sale in both a
@@ -124,9 +181,25 @@ record becomes the principal source.
   - Reserved records go only to the private manifest. The public pipeline
     file never contains them; the public report shows only the count.
   - Holdout evaluation does not begin without explicit approval.
-- **Independence:** a holdout drawn from the same licensed feed as the
-  calibration data is weakly independent at best. The plan therefore needs
-  at least two independent source families.
+- **Source family vs reported venue diversity:**
+  - A source family is the originating data owner: a venue, a party, a
+    filer or a court.
+  - A relay that names many venues (for example a trade-press sales
+    report) adds venue diversity, but every row shares the relay's
+    selection, transcription errors and rights position.
+  - Rows from five venues received through one relay are therefore **one**
+    relay path, not five independent families.
+- **What the quality report shows:**
+  - the largest source-family share;
+  - the largest relay share;
+  - the unknown-origin share.
+- **Holdout design:**
+  - It should use at least two families obtained directly, not only
+    through the relay used for calibration.
+  - Concentration should be judged on the family and on the relay.
+  - The existing holdout validator's 25% limit applies per source as
+    recorded. Counting by family and relay is a design rule here; it is not
+    yet an enforced control.
 
 ## 6. Storage tiers decided by rights
 
@@ -152,7 +225,10 @@ same decision the holdout already needs.
 - coverage by price band against target, market side, venue, extension,
   sale decade, naming class and source tier;
 - same-domain relationships;
-- unresolved evidence: conflicts, duplicates, unknown scope, rights.
+- price type and sale-date basis;
+- source families and relay publishers, with independence shares;
+- unresolved evidence: conflicts, duplicates, unknown scope, rights,
+  completion and sale dates.
 
 **Pilot result:** run on the 49 Sprint 1A registry records, the pipeline
 gives:
@@ -160,7 +236,9 @@ gives:
 - 0 rights-cleared;
 - 0 eligible;
 - 17 rejected (bundles, non-cash, undisclosed or imprecise prices);
-- 4 same-domain pairs still to resolve.
+- 4 same-domain pairs still to resolve;
+- 25 priced records with completion not evidenced (all `REPORTED_PRICE`);
+- 49 records whose sale date is not established by evidence.
 
 ## 8. Not yet implemented
 

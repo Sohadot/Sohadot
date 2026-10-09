@@ -46,13 +46,14 @@
 
 | Blocker | Records |
 | --- | --- |
+| COMPLETION_NOT_EVIDENCED (no explicit evidence that the sale closed (agreed, reported or unconfirmed)) | 25 |
 | DUPLICATE_UNRESOLVED (possible duplicate or repeat sale needs review) | 8 |
 | FX_BASIS_MISSING (non-USD amount without a recorded conversion basis) | 1 |
 | MATERIAL_CONFLICT_UNRESOLVED (material conflict about the transaction itself) | 1 |
 | NO_REVIEWED_SOURCE (no directly reviewed source (leads or unsourced claims only)) | 20 |
-| PRICE_TYPE_UNKNOWN (not yet shown to be a completed sale) | 20 |
+| PRICE_TYPE_UNKNOWN (not yet classified (completed, agreed, reported, bid or asking)) | 20 |
 | RIGHTS_NOT_ESTABLISHED (storage or commercial-modelling right not established) | 49 |
-| SALE_DATE_UNKNOWN (sale date unknown) | 23 |
+| SALE_DATE_UNKNOWN (no sale date stated by evidence (report dates and windows do not count)) | 49 |
 | SCOPE_UNKNOWN (not yet shown to be a single-domain sale) | 21 |
 
 ## Price-band coverage
@@ -114,6 +115,54 @@
 | C | 21 |
 | none | 20 |
 
+## Price type (what the stated price is evidence of)
+
+| Price type | Records |
+| --- | --- |
+| REPORTED_PRICE | 25 |
+| UNDISCLOSED | 4 |
+| UNKNOWN | 20 |
+
+## Sale-date basis (report dates and windows never count)
+
+| Basis | Records |
+| --- | --- |
+| NOT_ESTABLISHED | 49 |
+
+## Source family (originating data owner) and relay publisher
+
+| Source family | Records |
+| --- | --- |
+| Amazon.com Form 424B3 (2009), Zappos.com consolidated financial statements | 1 |
+| Fund.com Inc. Form 10-Q/A (quarter ended March 31, 2009) | 1 |
+| GetYourDomain.com press release (PR Newswire) | 1 |
+| MicroStrategy Inc. Form 10-Q (Q3 2019) | 1 |
+| QuinStreet, Inc. Form 10-K (fiscal 2011) | 1 |
+| Sedo press release (newsroom) | 1 |
+| UNKNOWN_ORIGIN | 21 |
+| WebMediaBrands Inc. Form 8-K Ex. 99.1 | 1 |
+| eHealth, Inc. Form 10-Q (Q1 2014) | 1 |
+| none | 20 |
+
+| Relay publisher | Records |
+| --- | --- |
+| DN Journal | 5 |
+| DN Journal (The Lowdown) | 2 |
+| Domain Name Wire | 4 |
+| DomainInvesting | 3 |
+| DomainInvesting (quoting BBC) | 1 |
+| Entrepreneur (citing DN Journal) | 1 |
+| Fortune | 1 |
+| TechCrunch (quoting Reuters) | 1 |
+| The Register | 2 |
+| TheDomains (quoting the buyer's press release) | 1 |
+| none (direct) | 28 |
+
+Independence among reviewed, priced records: 24 records;
+largest known source family 0.042; largest relay
+0.208; unknown origin 0.667.
+Venues named by one relay are not independent source families.
+
 ## Same-domain relationships
 
 | Relationship | Pairs |
@@ -128,6 +177,8 @@
 | duplicates_or_repeats_unresolved | 8 |
 | scope_unknown | 21 |
 | rights_not_established | 49 |
+| completion_not_evidenced | 25 |
+| sale_date_not_evidenced | 49 |
 
 ## Reading
 
@@ -137,3 +188,6 @@
   ordinary-sales evidence the target needs.
 - Rights are the binding constraint: no record has storage and modelling
   rights on record, so none can become eligible whatever its evidence.
+- Registry v1 records neither completion evidence nor where its sale dates
+  come from, so every priced record is `REPORTED_PRICE` and every date basis
+  is `NOT_ESTABLISHED` until re-reviewed.

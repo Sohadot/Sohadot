@@ -32,6 +32,22 @@
 - Until counsel answers, Sohadot follows each provider's restrictions and
   treats rights it has not documented as not established.
 
+## 0a. Rights do not pass automatically through a relay
+
+- **What a relay can grant:** a trade-press relay or other secondary
+  publisher can grant permission for its own reports and compilation.
+- **What it may not hold:** the underlying sale data often originates with
+  a marketplace, broker or other upstream owner. Their terms may restrict
+  it independently: Sedo, for example, claims its database information as
+  its property.
+- **The rule:** permission from a secondary publisher does not by itself
+  establish rights that originate upstream. The pipeline records who
+  granted each right and blocks records whose upstream rights are not
+  confirmed (DATA_PIPELINE_ARCHITECTURE §3.3).
+- **Requests:** every permission request asks which data the grantor is
+  able to license and who holds any remaining upstream rights
+  (FIRST_500_PLAN §5).
+
 ## 1. Discovery is not ingestion
 
 | Use | Meaning | Rights needed |
@@ -79,7 +95,7 @@ Rules carried over from Sprint 1A:
 
 | Source | What it publishes | Sub-$100k coverage | Terms read | Key clause | Classification | Reliability |
 | --- | --- | --- | --- | --- | --- | --- |
-| **DN Journal** (Internet Edge, Inc.) | Bi-weekly sales report: domain, price (USD; conversions stated), venue and source. Archive of year index pages 2003–2025 (2017 missing from the index list). | Strong. One current report has about 204 unique domains, about 197 under $100k and about 170 under $10k (heuristic parse of one report). | Footer only; robots.txt returned HTTP 500 | ✔︎ "No photos, text or content of any kind may be copied from this site without expressed written consent." | `DISCOVERY_ONLY`; bulk `NEEDS_PERMISSION` | Secondary relay of venue- and party-reported sales; names the venue per row. No per-sale date, only the report window. The same sale can appear in several charts. LTO deals are excluded until paid. |
+| **DN Journal** (Internet Edge, Inc.) | Bi-weekly sales report: domain, price (USD; conversions stated), venue and source. A permission from DN Journal covers its reports; rights in venue-originated rows need upstream confirmation (§0a). Archive of year index pages 2003–2025 (2017 missing from the index list). | Strong. One current report has about 204 unique domains, about 197 under $100k and about 170 under $10k (heuristic parse of one report). | Footer only; robots.txt returned HTTP 500 | ✔︎ "No photos, text or content of any kind may be copied from this site without expressed written consent." | `DISCOVERY_ONLY`; bulk `NEEDS_PERMISSION` | Secondary relay of venue- and party-reported sales; names the venue per row. No per-sale date, only the report window. The same sale can appear in several charts. LTO deals are excluded until paid. |
 | NameBio | Large compiled database: domain, price, date, venue | The deepest sub-$10k history | ToS behind Cloudflare (403); robots.txt disallows ClaudeBot, GPTBot and others; API docs read | ✔︎ API: "You MAY NOT use our Paid API for a product or service, whether free or paid, without obtaining written permission." API access is "intended for large, established businesses." The ToS reportedly bars systematic extraction (second-hand, unverified). | `NEEDS_PERMISSION` (paid licence; purchase requires owner approval) | Aggregator of venue feeds and reported sales; wholesale- and auction-heavy |
 | Domain Name Wire | Weekly articles, e.g. Sedo end-user sales with buyer identification | Yes | Yes | ✔︎ users agree "To not use automated programs to access Domain Name Wire without express written permission" | `DISCOVERY_ONLY` / `CITATION_ONLY` (manual) | Relay plus editorial research |
 | DomainInvesting, DomainGang, OnlineDomain, TheDomains | Articles; TheDomains relays Sedo weekly reports | Some | Disclaimers or copyright notices only | e.g. DomainInvesting: no republishing "without express written permission" | `DISCOVERY_ONLY` | Relays |

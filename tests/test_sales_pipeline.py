@@ -43,6 +43,15 @@ def record(tid="SOH-TX-900001", domain="example-one.com", amount=4200, date="202
         "calibration_role": "UNDETERMINED", "notes": "fixture",
     }
     r = sp.pipeline_from_registry(r)
+    r["pipeline"].update(
+        price_type="COMPLETED_SALE",
+        completion_evidence={"basis": "VENUE_RECORD_OF_COMPLETION", "locator": "Weekly report table, row 3",
+                             "quote": f"{domain} sold and paid"},
+        sale_date_basis="EXPLICIT_IN_SOURCE",
+        source_family="Fixture venue", relay_publisher=None,
+        rights_provenance={"granted_by_role": "ORIGINATING_VENUE", "grantor": "Fixture venue",
+                           "upstream_origin": None, "upstream_rights_confirmed": False},
+    )
     for key, value in over.items():
         if key in r["pipeline"]:
             r["pipeline"][key] = value
@@ -61,7 +70,7 @@ class StateAssessment(unittest.TestCase):
         self.assertEqual((r["state"], r["blockers"], r["rejection_reasons"]), ("ELIGIBLE", [], []))
 
     def test_asking_prices_and_bids_are_rejected(self):
-        for kind in ("ASKING_PRICE", "AUCTION_BID", "AUCTION_RESULT_UNCONFIRMED"):
+        for kind in ("ASKING_PRICE", "AUCTION_BID", "AUCTION_RESULT_UNPAID"):
             r = assessed(record(price_type=kind))["SOH-TX-900001"]["pipeline"]
             self.assertEqual(r["state"], "REJECTED")
             self.assertIn("NOT_A_COMPLETED_SALE", r["rejection_reasons"])
@@ -108,6 +117,108 @@ class StateAssessment(unittest.TestCase):
         self.assertIn("FX_BASIS_MISSING", p["blockers"])
         r = record(currency="EUR", original_currency="EUR", amount_usd=4500, fx_basis="ECB reference rate 2025-03-14")
         self.assertEqual(assessed(r)["SOH-TX-900001"]["pipeline"]["state"], "ELIGIBLE")
+
+
+class CompletionEvidence(unittest.TestCase):
+    """A stated price is not evidence that a sale closed."""
+
+    def test_pending_sale_with_price_and_rights_is_not_eligible(self):
+        r = record(price_type="ANNOUNCED_AGREEMENT", completion_evidence=None,
+                   checked_quote="example-one.com is to be sold for $4200, closing expected next month")
+        self.assertTrue(sp._granted(r["rights"], "storage") and r["sale_price"] == 4200)
+        p = assessed(r)["SOH-TX-900001"]["pipeline"]
+        self.assertEqual(p["state"], "SOURCE_REVIEWED")
+        self.assertIn("COMPLETION_NOT_EVIDENCED", p["blockers"])
+
+    def test_pending_sale_cannot_be_declared_eligible(self):
+        r = sp.assess_all([record(price_type="ANNOUNCED_AGREEMENT", completion_evidence=None)])[0]
+        r["pipeline"].update(state="ELIGIBLE", blockers=[])
+        self.assertTrue(any("evidence supports SOURCE_REVIEWED" in e for e in sp.validate([r], [])))
+
+    def test_reported_price_and_unconfirmed_auction_are_blocked(self):
+        for kind in ("REPORTED_PRICE", "AUCTION_RESULT_UNCONFIRMED"):
+            p = assessed(record(price_type=kind, completion_evidence=None))["SOH-TX-900001"]["pipeline"]
+            self.assertEqual(p["state"], "SOURCE_REVIEWED", kind)
+            self.assertIn("COMPLETION_NOT_EVIDENCED", p["blockers"])
+
+    def test_completed_sale_label_without_evidence_fails(self):
+        r = record(completion_evidence=None)
+        p = assessed(r)["SOH-TX-900001"]["pipeline"]
+        self.assertIn("COMPLETION_NOT_EVIDENCED", p["blockers"])
+        r = sp.assess_all([r])[0]
+        self.assertTrue(any("needs completion_evidence" in e for e in sp.validate([r], [])))
+
+    def test_completion_basis_must_be_known(self):
+        r = record(completion_evidence={"basis": "PRICE_STATED", "locator": "Weekly report table", "quote": "sold for $4200"})
+        self.assertIn("COMPLETION_NOT_EVIDENCED", assessed(r)["SOH-TX-900001"]["pipeline"]["blockers"])
+
+    def test_registry_prices_never_map_to_completed_sale(self):
+        records = sp.pilot_records()
+        self.assertFalse(any(r["pipeline"]["price_type"] == "COMPLETED_SALE" for r in records))
+        self.assertTrue(all(r["pipeline"]["price_type"] == "REPORTED_PRICE"
+                            for r in records if r["sale_price"] is not None and r["evidence_status"] != "UNVERIFIED"
+                            and r["price_disclosure_status"] != "UNDISCLOSED"))
+
+
+class SaleDateProvenance(unittest.TestCase):
+    """Report dates and reporting windows are not sale dates."""
+
+    def test_reporting_window_alone_blocks(self):
+        r = record(sale_date=None, sale_date_precision="UNKNOWN", sale_date_basis="NOT_ESTABLISHED",
+                   reporting_window={"start": "2026-09-21", "end": "2026-10-04", "source": "relay report"})
+        p = assessed(r)["SOH-TX-900001"]["pipeline"]
+        self.assertEqual(p["state"], "SOURCE_REVIEWED")
+        self.assertIn("SALE_DATE_UNKNOWN", p["blockers"])
+        self.assertEqual(sp.validate([sp.assess_all([r])[0]], []), [])
+
+    def test_report_date_copied_into_sale_date_blocks(self):
+        r = record(sale_date="2026-10-04", report_date="2026-10-04", sale_date_basis="NOT_ESTABLISHED")
+        self.assertIn("SALE_DATE_UNKNOWN", assessed(r)["SOH-TX-900001"]["pipeline"]["blockers"])
+
+    def test_unknown_basis_value_fails(self):
+        r = sp.assess_all([record(sale_date_basis="REPORT_DATE")])[0]
+        self.assertTrue(any("sale_date_basis" in e for e in sp.validate([r], [])))
+
+    def test_window_boundary_needs_a_note(self):
+        r = record(sale_date="2026-10-04", reporting_window={"start": "2026-09-21", "end": "2026-10-04"})
+        r = sp.assess_all([r])[0]
+        self.assertTrue(any("reporting-window boundary" in e for e in sp.validate([r], [])))
+        r["pipeline"]["sale_date_note"] = "Venue record states the sale closed on 2026-10-04."
+        self.assertEqual(sp.validate([r], []), [])
+
+    def test_pilot_dates_are_not_treated_as_evidenced(self):
+        records = sp.pilot_records()
+        self.assertTrue(all(r["pipeline"]["sale_date_basis"] == "NOT_ESTABLISHED" for r in records))
+        self.assertTrue(all("SALE_DATE_UNKNOWN" in r["pipeline"]["blockers"] for r in records))
+
+
+class RightsProvenance(unittest.TestCase):
+    """A secondary publisher's permission does not carry upstream rights."""
+
+    def secondary(self, confirmed):
+        return record(relay_publisher="Fixture relay", source_family="Fixture venue",
+                      rights_provenance={"granted_by_role": "SECONDARY_PUBLISHER", "grantor": "Fixture relay",
+                                         "upstream_origin": "Fixture venue", "upstream_rights_confirmed": confirmed})
+
+    def test_publisher_permission_alone_blocks(self):
+        p = assessed(self.secondary(False))["SOH-TX-900001"]["pipeline"]
+        self.assertEqual(p["state"], "SOURCE_REVIEWED")
+        self.assertIn("UPSTREAM_RIGHTS_UNCONFIRMED", p["blockers"])
+
+    def test_confirmed_upstream_rights_clear(self):
+        self.assertEqual(assessed(self.secondary(True))["SOH-TX-900001"]["pipeline"]["state"], "ELIGIBLE")
+
+    def test_grant_without_grantor_blocks(self):
+        r = record(rights_provenance={"granted_by_role": "NONE", "grantor": None,
+                                      "upstream_origin": None, "upstream_rights_confirmed": False})
+        self.assertIn("UPSTREAM_RIGHTS_UNCONFIRMED", assessed(r)["SOH-TX-900001"]["pipeline"]["blockers"])
+
+    def test_relay_venue_diversity_is_not_family_independence(self):
+        rows = [record(f"SOH-TX-90000{i}", f"venue{i}.com", 3000 + i, source_family=f"Venue {i}",
+                       relay_publisher="One relay") for i in range(1, 5)]
+        ind = sp.independence_summary(sp.assess_all(rows))
+        self.assertEqual(ind["max_family_share"], 0.25)
+        self.assertEqual(ind["max_relay_share"], 1.0)
 
 
 class Duplicates(unittest.TestCase):

@@ -492,8 +492,18 @@ in the entries that cite them. They are not rewritten.
    the public repository.
 3. **Storage follows rights.** Records licensed for storage and modelling
    but not redistribution are kept in private storage, never in this public
-   repository.
-4. **No algorithm is selected yet.** The baseline shows that v2.5's
+   repository. A secondary publisher's permission does not establish rights
+   that originate with a venue or other upstream owner; those must be
+   confirmed.
+4. **Completion and dates are evidenced, not inferred.**
+   - A stated price is never evidence that a sale closed. `COMPLETED_SALE`
+     requires an explicit completion-evidence basis. Announced agreements,
+     reported prices and unconfirmed auction results are blocked; bids,
+     asking prices and unpaid results are rejected.
+   - A report date or reporting window is never a sale date. Without a
+     stated sale date, a record stays `SALE_DATE_UNKNOWN` and cannot become
+     eligible.
+5. **No algorithm is selected yet.** The baseline shows that v2.5's
    price-descending tie-breaker biases selection upward as a dataset grows.
    Candidate methods are compared on development data only. No production
    method is chosen before the independent holdout is frozen and evaluated
