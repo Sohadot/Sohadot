@@ -33,11 +33,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # Only files listed in deploy/pages-manifest.json are published. The build
+      # fails on unclassified files, missing required files, broken links or
+      # any excluded path in the artifact.
+      - name: Build filtered Pages artifact
+        run: python3 scripts/build_pages_artifact.py --out _site --report pages-artifact-report.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

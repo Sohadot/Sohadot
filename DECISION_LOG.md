@@ -387,6 +387,37 @@ Direct review also corrected candy.com, which a search summary had misread.
 
 ---
 
+## DEC-2026-10-09-03 — Filtered GitHub Pages Deployment
+
+- **Status:** Proposed (draft PR; not deployed)
+- **Date:** 2026-10-09
+
+### Decision
+
+1. sohadot.com publishes only the exact files listed in
+   `deploy/pages-manifest.json` (an approved inventory of pages, site files,
+   assets, JavaScript and runtime data, with no publish globs), built into
+   `_site/` by `scripts/build_pages_artifact.py`. The whole repository is no
+   longer uploaded. Generator inputs that no page fetches (the four seed or
+   candidate files under `data/`) are not published.
+2. Every tracked file must be classified as published or excluded. The build
+   fails on unclassified files, missing required files, excluded paths in the
+   artifact, link regressions and broken sitemap URLs.
+3. Research files, tests, scripts, internal documentation and repository-only
+   files are excluded. The exception is 11 specific `docs/` and `scripts/`
+   files that public pages link to on sohadot.com, kept published so those
+   links do not break.
+4. Filtering Pages does not make repository files private.
+
+### Rationale
+
+The whole-repository deployment would publish research registries and
+internal tooling on sohadot.com as soon as they were merged. An explicit,
+tested manifest keeps every existing route and free tool working while
+publishing only what the site needs.
+
+---
+
 ## DEC-2026-10-09-04 — Public-Repository Basis for the Research Registry
 
 - **Status:** Accepted for research use; production and calibration use not authorised
