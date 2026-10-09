@@ -389,8 +389,13 @@ Direct review also corrected candy.com, which a search summary had misread.
 
 ## DEC-2026-10-09-03 — Filtered GitHub Pages Deployment
 
-- **Status:** Proposed (draft PR; not deployed)
+- **Status:** Accepted and deployed. PR #46 merged into `main` as merge
+  commit `899c159`; the GitHub Pages deployment of the filtered artifact
+  completed successfully and is operational on sohadot.com.
 - **Date:** 2026-10-09
+- **Implementation:** `deploy/pages-manifest.json`,
+  `scripts/build_pages_artifact.py`, `.github/workflows/static.yml`,
+  `.github/workflows/pages-artifact-check.yml`
 
 ### Decision
 
@@ -444,8 +449,9 @@ publishing only what the site needs.
    `redistribution`) and are `NOT_ESTABLISHED` for every record until the
    owner documents a basis.
 4. **Not served on sohadot.com.** The research files are excluded from the
-   GitHub Pages artifact by the filtered deployment (DEC-2026-10-09-03, on
-   its own branch). They remain readable in the public repository.
+   GitHub Pages artifact by the filtered deployment (DEC-2026-10-09-03,
+   merged in `899c159` and operational). They remain readable in the public
+   repository.
 5. **Corrections and removal.** A source owner's request to correct, shorten
    or remove a quotation is honoured by replacing it with a locator only. The
    record is kept, downgraded if the evidence no longer meets its status.
