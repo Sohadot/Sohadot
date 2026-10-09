@@ -302,10 +302,100 @@ unsourced sales as verified.
 
 ---
 
+## DEC-2026-10-09-01 — Transaction Evidence Registry and Holdout Protocol (Sprint 1A)
+
+- **Status:** Accepted for research use; production use not authorised
+- **Date:** 2026-10-09
+- **Implementation:** Sprint 1A — `docs/valuation-evidence/`, `research/valuation-evidence/`
+- **Findings snapshot:** registry v1.0.0 at commit `62e4e25`. The counts
+  under Rationale are preserved exactly as recorded at that snapshot. They
+  are historical and superseded by v1.1.0 (`884e3ba`, DEC-2026-10-09-02) and
+  v1.2.0 (`af01a28`, addendum to DEC-2026-10-09-02). See the snapshot table
+  in DEC-2026-10-09-04.
+
+### Decision
+
+1. **Transactions, not names.** Comparable-sales evidence is recorded per
+   transaction with a stable `SOH-TX-` identifier. Repeat sales of a domain
+   are separate records.
+2. **Evidence status is earned per record.** `VERIFIED` requires a reviewed
+   primary document and a recorded basis. A URL or a search summary never
+   verifies. The registry asserts no dataset-level verification, which
+   extends DEC-2026-10-08-03.
+3. **Evidence, rights and role are independent.** Rights are recorded with
+   their basis. Analytical roles are assigned by review and never derived
+   from evidence status. Landmark sales are reference material, not
+   calibration data.
+4. **Research isolation.** The registry is research material. The
+   production engine, published comps and public pages are unchanged, and
+   the validator rejects any production reference to the research files.
+5. **Holdout first, privately.** No methodology change before an
+   independent holdout is frozen under `holdout-protocol/v1`. Holdout
+   records are never committed to the public repository. Status:
+   `NOT_READY`.
+
+### Rationale
+
+*Snapshot v1.0.0 (`62e4e25`), historical:* the investigation of the 45 published comps found 5 sales verifiable from
+primary documents, 18 with no traceable evidence, 4 with price or date
+conflicts, and 3 that were business acquisitions rather than domain sales.
+A registry that separates what the market demonstrated from what was merely
+repeated is the precondition for any credible calibration.
+
+---
+
+## DEC-2026-10-09-02 — Evidence Registry Remediation After Independent Review
+
+- **Status:** Accepted for research use; production use not authorised
+- **Date:** 2026-10-09
+- **Amends:** DEC-2026-10-09-01
+
+### Decision
+
+1. **Read, then check.** A source counts as evidence only if it was read
+   directly and its quoted passage was checked against the raw text. Each
+   source records its locator, access date, review method and document hash.
+   Search summaries are leads, never evidence.
+2. **Transactions vs valuations.** Verification describes the documented
+   transaction. A bundle or business price is never attributed to one
+   domain. Doubts about economic value are recorded as valuation caveats and
+   do not change the evidence status. Example: fund.com's 2007 purchase of
+   24 domain names and one trademark.
+3. **Four separate rights.** Citation, storage, commercial modelling and
+   redistribution are recorded separately, each with its basis. Public
+   accessibility grants citation at most. Unknown rights block calibration.
+4. **Fail-closed holdout.** A FROZEN holdout is never accepted without
+   verifying the private manifest outside the repository. Controls not yet
+   implemented are labelled NOT_IMPLEMENTED in the status file, and the
+   validator rejects any claim beyond what it enforces.
+5. **Pages exposure handled separately.** Excluding research files from the
+   GitHub Pages artifact is a separate change. Filtering never makes
+   repository files private.
+
+### Rationale
+
+*Snapshot v1.1.0 (`884e3ba`), historical:* the independent review found that search-only summaries, an unenforced
+holdout protocol and a single rights field could each overstate the evidence.
+Direct review also corrected candy.com, which a search summary had misread.
+
+**Addendum (second review, same day; snapshot v1.2.0, `af01a28`).**
+- VERIFIED records now state who vouches for them: `attesting_party`
+  and `settlement_evidence`. A party's own announcement is recorded as
+  `PARTY_ATTESTATION_ONLY`, never as confirmed settlement.
+- The holdout `readiness_gate` forbids FROZEN while any control is
+  NOT_IMPLEMENTED.
+
+---
+
 ## DEC-2026-10-09-03 — Filtered GitHub Pages Deployment
 
-- **Status:** Proposed (draft PR; not deployed)
+- **Status:** Accepted and deployed. PR #46 merged into `main` as merge
+  commit `899c159`; the GitHub Pages deployment of the filtered artifact
+  completed successfully and is operational on sohadot.com.
 - **Date:** 2026-10-09
+- **Implementation:** `deploy/pages-manifest.json`,
+  `scripts/build_pages_artifact.py`, `.github/workflows/static.yml`,
+  `.github/workflows/pages-artifact-check.yml`
 
 ### Decision
 
@@ -330,3 +420,52 @@ The whole-repository deployment would publish research registries and
 internal tooling on sohadot.com as soon as they were merged. An explicit,
 tested manifest keeps every existing route and free tool working while
 publishing only what the site needs.
+
+---
+
+## DEC-2026-10-09-04 — Public-Repository Basis for the Research Registry
+
+- **Status:** Accepted for research use; production and calibration use not authorised
+- **Date:** 2026-10-09
+- **Implementation:** `docs/valuation-evidence/SOURCE_RELIABILITY_AND_RIGHTS_MATRIX.md` (section "Basis for keeping research records in the public repository"); quotation limit enforced by `scripts/validate_evidence_registry.py`
+
+### Decision
+
+1. **What is kept publicly, and why.** The research registry, the seed-45
+   investigation and their short source quotations are kept in this public
+   GitHub repository so that anyone can check each evidence claim against
+   its source. Transparency and reproducibility are the purpose.
+2. **What a record may contain.**
+   - Facts (domain, price, date, parties) with attribution and a link.
+   - A document locator and a SHA-256 of the reviewed document.
+   - At most one short verbatim quotation per source, of 300 characters or
+     fewer (enforced by the validator), used only to show where a fact comes
+     from.
+   - Never: full article text, images, compiled sales charts or
+     third-party database extracts.
+3. **Separate from use rights.** Keeping a record here for verification is
+   not permission to store, model, calibrate or redistribute it commercially.
+   Those rights stay recorded per record (`storage`, `commercial_modelling`,
+   `redistribution`) and are `NOT_ESTABLISHED` for every record until the
+   owner documents a basis.
+4. **Not served on sohadot.com.** The research files are excluded from the
+   GitHub Pages artifact by the filtered deployment (DEC-2026-10-09-03,
+   merged in `899c159` and operational). They remain readable in the public
+   repository.
+5. **Corrections and removal.** A source owner's request to correct, shorten
+   or remove a quotation is honoured by replacing it with a locator only. The
+   record is kept, downgraded if the evidence no longer meets its status.
+6. **Not legal advice.** This basis is an operational policy. The owner
+   should confirm it with counsel before relying on it beyond research
+   verification.
+
+### Findings by registry snapshot
+
+| Snapshot | Commit | VERIFIED | REPORTED | DISPUTED | UNVERIFIED | Basis |
+| --- | --- | --- | --- | --- | --- | --- |
+| v1.0.0 | `62e4e25` | 5 | 20 | 4 | 20 | Search summaries plus 6 SEC documents |
+| v1.1.0 | `884e3ba` | 7 | 21 | 1 | 20 | Sources read directly, 40 checked passages |
+| v1.2.0 | `af01a28` | 8 | 20 | 1 | 20 | Adds the sex.com bundle and broker-attestation labels; 45 checked passages |
+
+Earlier snapshots are preserved in the Git history at the commits above and
+in the entries that cite them. They are not rewritten.

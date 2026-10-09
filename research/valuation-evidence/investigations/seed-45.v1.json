@@ -1,0 +1,732 @@
+{
+  "schema_version": "seed-investigation/v1",
+  "as_of": "2026-10-09",
+  "seed_file": "data/valuation_comps_seed.json",
+  "method": "Web search (2026-10-09) to locate candidate sources for each seed sale; every source used as evidence was then fetched and its quoted passage checked against the raw document text, with a SHA-256 of the retrieved bytes recorded. Search-index summaries are recorded only as leads. No paid databases, APIs or automated scraping of restricted services were used.",
+  "records": [
+    {
+      "seed_domain": "ai.com",
+      "seed_price": 11000000,
+      "seed_year": 2023,
+      "transaction_ids": [
+        "SOH-TX-000001",
+        "SOH-TX-000002"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "PRICE_AND_DATE_CONFLICT",
+      "price_date_conflicts": "Seed $11M/2023 matches no reviewed transaction; the documented sale is $70M (2025).",
+      "transaction_type_uncertainty": "2025 sale: domain-only; consideration in cryptocurrency.",
+      "rights_uncertainty": "Citation only; storage and modelling rights not established.",
+      "recommended_role": "UNDETERMINED (2023 claim); EXCLUDED from calibration (2025 sale, broker-attested, crypto consideration)",
+      "findings": "No reviewed source supports an $11M sale in 2023. A separate later sale (closed in 2025, exact date unknown; announced February 2026; $70M stated by the broker) is VERIFIED on broker attestation only; settlement is not independently confirmed.",
+      "remaining_work": "Search for a primary 2023 transfer record if one exists."
+    },
+    {
+      "seed_domain": "gpt.com",
+      "seed_price": 2000000,
+      "seed_year": 2023,
+      "transaction_ids": [
+        "SOH-TX-000003"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "PRICE_NOT_DISCLOSED",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown.",
+      "rights_uncertainty": "Unknown.",
+      "recommended_role": "EXCLUDED (no disclosed price)",
+      "findings": "No reviewed report of a sale or price. The seed figure has no traceable source.",
+      "remaining_work": "Look for a reputable acquisition report; otherwise retire the price."
+    },
+    {
+      "seed_domain": "agents.ai",
+      "seed_price": 400000,
+      "seed_year": 2023,
+      "transaction_ids": [
+        "SOH-TX-000004"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "PRICE_CONFLICT",
+      "price_date_conflicts": "Seed $400,000 vs reported $125,000.",
+      "transaction_type_uncertainty": "Described as a domain acquisition.",
+      "rights_uncertainty": "Citation only; storage and modelling rights not established.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "Reported price is $125,000 (DN Journal, July 13, 2023), not $400,000.",
+      "remaining_work": "Confirm the venue and that no later sale at $400,000 exists."
+    },
+    {
+      "seed_domain": "data.ai",
+      "seed_price": 500000,
+      "seed_year": 2022,
+      "transaction_ids": [
+        "SOH-TX-000005"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "App Annie rebranded to data.ai in February 2022. No reviewed report gives the domain's acquisition price.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "wallet.com",
+      "seed_price": 1500000,
+      "seed_year": 2022,
+      "transaction_ids": [
+        "SOH-TX-000006"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No reviewed report of a Wallet.com sale.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "trading.com",
+      "seed_price": 3000000,
+      "seed_year": 2019,
+      "transaction_ids": [
+        "SOH-TX-000007"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No reviewed report of a Trading.com sale.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "wealthlogic.com",
+      "seed_price": 24000,
+      "seed_year": 2024,
+      "transaction_ids": [
+        "SOH-TX-000008"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "stackscan.com",
+      "seed_price": 2711,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000009"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "weatherpulse.com",
+      "seed_price": 2607,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000010"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "fusionflare.com",
+      "seed_price": 1073,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000011"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "gogenie.com",
+      "seed_price": 2400,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000012"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "nightrocket.com",
+      "seed_price": 2974,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000013"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "upfolio.com",
+      "seed_price": 1676,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000014"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "aluren.com",
+      "seed_price": 1524,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000015"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "sojourner.com",
+      "seed_price": 10750,
+      "seed_year": 2025,
+      "transaction_ids": [
+        "SOH-TX-000016"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "veritas.com",
+      "seed_price": 95000,
+      "seed_year": 2021,
+      "transaction_ids": [
+        "SOH-TX-000017"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No reviewed report of a Veritas.com domain sale.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "lumen.com",
+      "seed_price": 250000,
+      "seed_year": 2020,
+      "transaction_ids": [
+        "SOH-TX-000018"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "CenturyLink rebranded as Lumen in 2020. No reviewed report gives a lumen.com acquisition price.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "echo.com",
+      "seed_price": 700000,
+      "seed_year": 2014,
+      "transaction_ids": [
+        "SOH-TX-000019"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No reviewed report of an Echo.com sale.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "nova.com",
+      "seed_price": 800000,
+      "seed_year": 2018,
+      "transaction_ids": [
+        "SOH-TX-000020"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No reviewed report of a Nova.com sale. Search summaries mention a 2014 auction bid that did not meet reserve (not reviewed).",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "emma.com",
+      "seed_price": 50000,
+      "seed_year": 2019,
+      "transaction_ids": [
+        "SOH-TX-000021"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "Indirect, from an unreviewed lead: reported ownership and asking price sit uneasily with a $50,000 sale in 2019.",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No sale found. Contrary indicator (lead, not reviewed): 2018-2019 coverage of a trademark dispute reports MicroStrategy owned Emma.com and offered it for $3 million.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "alex.ai",
+      "seed_price": 9000,
+      "seed_year": 2024,
+      "transaction_ids": [
+        "SOH-TX-000022"
+      ],
+      "evidence_found": false,
+      "seed_agreement": "NO_EVIDENCE_FOUND",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unknown: no reviewed transaction record.",
+      "rights_uncertainty": "Unknown: the original source of the seed figure is not recorded.",
+      "recommended_role": "UNDETERMINED",
+      "findings": "No reviewed report of an Alex.ai sale.",
+      "remaining_work": "Find a reviewable report or record, using only sources with permitted terms; otherwise retire the figure."
+    },
+    {
+      "seed_domain": "insurance.com",
+      "seed_price": 35600000,
+      "seed_year": 2010,
+      "transaction_ids": [
+        "SOH-TX-000023"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Resolved: website business.",
+      "rights_uncertainty": "SEC filing: citation; storage and modelling rights not established.",
+      "recommended_role": "EXCLUDED",
+      "findings": "Verified from the buyer's 10-K as a website-business acquisition ($33.0M cash + $2.6M note).",
+      "remaining_work": "None for verification."
+    },
+    {
+      "seed_domain": "vacationrentals.com",
+      "seed_price": 35000000,
+      "seed_year": 2007,
+      "transaction_ids": [
+        "SOH-TX-000024"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Business acquisition.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "EXCLUDED",
+      "findings": "Reported (CEO account) as about $35M for an operating website business; year not stated in the reviewed source.",
+      "remaining_work": "Review HomeAway's S-1 for the acquisition price and date."
+    },
+    {
+      "seed_domain": "privatejet.com",
+      "seed_price": 30180000,
+      "seed_year": 2012,
+      "transaction_ids": [
+        "SOH-TX-000025"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only; cash and stock.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "EXCLUDED (non-cash consideration of unknown value)",
+      "findings": "Headline matches the buyer's announcement; consideration largely stock of uncertain value.",
+      "remaining_work": "Locate the original release and any evidence of closing."
+    },
+    {
+      "seed_domain": "voice.com",
+      "seed_price": 30000000,
+      "seed_year": 2019,
+      "transaction_ids": [
+        "SOH-TX-000026"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Resolved: domain-only, cash.",
+      "rights_uncertainty": "SEC filing: citation; storage and modelling rights not established.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Verified from the seller's SEC filings.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "internet.com",
+      "seed_price": 18000000,
+      "seed_year": 2009,
+      "transaction_ids": [
+        "SOH-TX-000027"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Resolved: business assets.",
+      "rights_uncertainty": "SEC filing: citation only.",
+      "recommended_role": "EXCLUDED",
+      "findings": "Verified as an $18M business-asset sale.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "360.com",
+      "seed_price": 17000000,
+      "seed_year": 2015,
+      "transaction_ids": [
+        "SOH-TX-000028"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported via anonymous sources; not officially confirmed.",
+      "remaining_work": "Check Qihoo 360's Form 20-F for a disclosed purchase."
+    },
+    {
+      "seed_domain": "chat.com",
+      "seed_price": 15500000,
+      "seed_year": 2023,
+      "transaction_ids": [
+        "SOH-TX-000029",
+        "SOH-TX-000030"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY (2023); EXCLUDED (2024)",
+      "findings": "Seed matches Shah's 2023 purchase ($15.5M net, broker-confirmed). The 2024 sale to OpenAI (price undisclosed) is a separate transaction.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "sex.com",
+      "seed_price": 13000000,
+      "seed_year": 2010,
+      "transaction_ids": [
+        "SOH-TX-000031",
+        "SOH-TX-000032"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "Price matches; scope differs: the seed treats $13M as a domain-only price, but the sale included related trademarks.",
+      "transaction_type_uncertainty": "Resolved: domain plus related trademarks, court-supervised.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY (2010); EXCLUDED (2006)",
+      "findings": "Completed November 17, 2010 for $13M cash per the broker's own release (Sedo); court approval reported October 27-28, 2010. The sale included a couple of related trademarks, so the price is a bundle total. The earlier Escom purchase is disputed in price, date and consideration.",
+      "remaining_work": "Review the bankruptcy court approval order and any filing allocating the price between domain and trademarks."
+    },
+    {
+      "seed_domain": "crypto.com",
+      "seed_price": 12000000,
+      "seed_year": 2018,
+      "transaction_ids": [
+        "SOH-TX-000033"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "PRICE_NOT_DISCLOSED",
+      "price_date_conflicts": "Seed states an undisclosed price as fact.",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "EXCLUDED",
+      "findings": "Transaction reported; the $12M price is unconfirmed by the parties.",
+      "remaining_work": "None likely."
+    },
+    {
+      "seed_domain": "hotels.com",
+      "seed_price": 11000000,
+      "seed_year": 2001,
+      "transaction_ids": [
+        "SOH-TX-000034"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only per report.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Approximate figure recalled by an executive.",
+      "remaining_work": "Check Hotel Reservations Network SEC filings (2001-2002)."
+    },
+    {
+      "seed_domain": "fund.com",
+      "seed_price": 9990000,
+      "seed_year": 2008,
+      "transaction_ids": [
+        "SOH-TX-000035",
+        "SOH-TX-000036"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "Seed $9,990,000 (2008, single domain) vs filing: $9,999,950 total for a 24-domain + trademark bundle acquired in 2007.",
+      "transaction_type_uncertainty": "Resolved: multi-domain bundle with a trademark.",
+      "rights_uncertainty": "SEC filing: citation only.",
+      "recommended_role": "EXCLUDED",
+      "findings": "The SEC-documented transaction is a 2007 purchase of 24 domain names and one trademark for $9,999,950 in total; no part is allocated to fund.com. The seed treats it as a single-domain $9.99M sale in 2008.",
+      "remaining_work": "None; keep excluded."
+    },
+    {
+      "seed_domain": "porn.com",
+      "seed_price": 9500000,
+      "seed_year": 2007,
+      "transaction_ids": [
+        "SOH-TX-000037"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported as a lower bound.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "fb.com",
+      "seed_price": 8500000,
+      "seed_year": 2010,
+      "transaction_ids": [
+        "SOH-TX-000038"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Multi-domain sale; components unknown.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "The $8.5M was for 'a couple of domain names'; no amount is attributed to fb.com alone.",
+      "remaining_work": "Check Farm Bureau annual reports or Form 990."
+    },
+    {
+      "seed_domain": "we.com",
+      "seed_price": 8000000,
+      "seed_year": 2015,
+      "transaction_ids": [
+        "SOH-TX-000039"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported via an unnamed but vetted source.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "business.com",
+      "seed_price": 7500000,
+      "seed_year": 1999,
+      "transaction_ids": [
+        "SOH-TX-000040"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported at the time.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "diamond.com",
+      "seed_price": 7500000,
+      "seed_year": 2006,
+      "transaction_ids": [
+        "SOH-TX-000041"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "NOT_A_DOMAIN_ONLY_SALE",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain plus associated IP.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported $7.5M for the domain plus associated intellectual property.",
+      "remaining_work": "Review Odimo Inc. SEC filings (2006)."
+    },
+    {
+      "seed_domain": "beer.com",
+      "seed_price": 7000000,
+      "seed_year": 2004,
+      "transaction_ids": [
+        "SOH-TX-000042"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Unclear.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported only in a list-style article citing DN Journal; scope unclear.",
+      "remaining_work": "Find a contemporaneous report."
+    },
+    {
+      "seed_domain": "z.com",
+      "seed_price": 6800000,
+      "seed_year": 2014,
+      "transaction_ids": [
+        "SOH-TX-000043"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported in JPY; seed USD is a conversion.",
+      "remaining_work": "Review GMO Internet's own release."
+    },
+    {
+      "seed_domain": "slots.com",
+      "seed_price": 5500000,
+      "seed_year": 2013,
+      "transaction_ids": [
+        "SOH-TX-000044"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "DATE_CONFLICT",
+      "price_date_conflicts": "Seed year 2013 vs May 2010 (Domain Name Wire, May 13, 2010; DN Journal report for the week ending May 30, 2010).",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Price matches; the sale was in May 2010, not 2013.",
+      "remaining_work": "Correct the seed year in Sprint 1B (not changed in Sprint 1A)."
+    },
+    {
+      "seed_domain": "toys.com",
+      "seed_price": 5100000,
+      "seed_year": 2009,
+      "transaction_ids": [
+        "SOH-TX-000045"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported court-approved sale.",
+      "remaining_work": "Review the court approval order."
+    },
+    {
+      "seed_domain": "clothes.com",
+      "seed_price": 4900000,
+      "seed_year": 2008,
+      "transaction_ids": [
+        "SOH-TX-000046"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Resolved: domain-only.",
+      "rights_uncertainty": "SEC filing: citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Verified ($4,864,000, May 2008).",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "medicare.com",
+      "seed_price": 4800000,
+      "seed_year": 2014,
+      "transaction_ids": [
+        "SOH-TX-000047"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Resolved: described as a domain purchase.",
+      "rights_uncertainty": "SEC filing: citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Verified from the buyer's 10-Q.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "whisky.com",
+      "seed_price": 3100000,
+      "seed_year": 2014,
+      "transaction_ids": [
+        "SOH-TX-000048"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "REFERENCE_ONLY",
+      "findings": "Reported; domain-only; deal made January 1, 2014.",
+      "remaining_work": "None."
+    },
+    {
+      "seed_domain": "candy.com",
+      "seed_price": 3000000,
+      "seed_year": 2009,
+      "transaction_ids": [
+        "SOH-TX-000049"
+      ],
+      "evidence_found": true,
+      "seed_agreement": "CONSISTENT",
+      "price_date_conflicts": "",
+      "transaction_type_uncertainty": "Domain-only; cash plus equity.",
+      "rights_uncertainty": "Citation only.",
+      "recommended_role": "EXCLUDED (non-cash component)",
+      "findings": "$3M cash confirmed; equity consideration in addition.",
+      "remaining_work": "None."
+    }
+  ]
+}

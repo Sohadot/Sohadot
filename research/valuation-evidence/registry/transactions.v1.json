@@ -1,0 +1,3717 @@
+{
+  "schema_version": "transaction-evidence/v1",
+  "registry_version": "1.2.0",
+  "as_of": "2026-10-09",
+  "dataset_status": "RESEARCH_ONLY_NOT_FOR_PRODUCTION",
+  "description": "Sprint 1A research registry of individual domain-sale transactions and their evidence. Not used by the production valuation engine. Evidence status is assessed per transaction from sources read directly and checked against their raw text; search-index summaries are kept only as leads. No dataset-level status is asserted.",
+  "transaction_count": 49,
+  "status_counts": {
+    "DISPUTED": 1,
+    "REPORTED": 20,
+    "UNVERIFIED": 20,
+    "VERIFIED": 8
+  },
+  "role_counts": {
+    "CALIBRATION_CANDIDATE": 0,
+    "EXCLUDED": 12,
+    "HOLDOUT_CANDIDATE": 0,
+    "REFERENCE_ONLY": 17,
+    "UNDETERMINED": 20
+  },
+  "content_sha256": "aaa46a3b33ce796bf09354a79cf1c6819e0922a13e4013a6da8a9cf3fa22118c",
+  "transactions": [
+    {
+      "transaction_id": "SOH-TX-000001",
+      "domain": "ai.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "Kowatek blog",
+          "source_url": "https://blog.kowatek.com/?p=16030",
+          "source_type": "GENERAL_NEWS",
+          "observed_at": "2026-10-09",
+          "note": "2023 report that AI.com redirected to ChatGPT; no price observed."
+        }
+      ],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 11000000,
+          "currency": "USD",
+          "date": "2023",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed source states a 2023 sale price. 2023 coverage reported only that AI.com redirected to ChatGPT. The $11M figure appears only in an unattributed search summary and in the Sohadot seed. Absence of a reviewed report does not prove no 2023 transaction occurred."
+    },
+    {
+      "transaction_id": "SOH-TX-000002",
+      "domain": "ai.com",
+      "sale_price": 70000000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2025",
+      "sale_date_precision": "YEAR",
+      "report_date": "2026-02-09",
+      "venue": "BROKER",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "CRYPTOCURRENCY",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "GetYourDomain.com press release (PR Newswire)",
+      "source_url": "https://tools.prnewswire.com/en-us/live/20823/release/20260209EN83172",
+      "source_type": "PARTY_ANNOUNCEMENT",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Release headline and dateline 'NEW YORK, Feb. 9, 2026 /PRNewswire/'",
+      "checked_quote": "GetYourDomain.com Brokers the $70 Million Sale of AI.com, the Largest Domain Name Transaction in History",
+      "document_sha256": "c0a153c53e0ed8ee267d263ece250e8edf2647fe1716f9f38accf822047ee3bf",
+      "additional_sources": [
+        {
+          "source_name": "Domain Name Wire",
+          "source_url": "https://domainnamewire.com/2026/02/06/ai-com-domain-name-sold-70-million/",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2026-02-06",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'AI.com domain name sold for record-breaking $70 million', paragraph 1",
+          "checked_quote": "The blockbuster 2025 sale of ai.com set a record, the broker confirmed today. In a LinkedIn post, Larry Fischer of GetYourDomain said the sales price was $70 million, paid in equivalent cryptocurrency.",
+          "document_sha256": "79e51307022ab6f64e6babf6b9fb5a4f588178630ff7ce95b4a8ce9aead6bc3f"
+        },
+        {
+          "source_name": "DN Journal (The Lowdown)",
+          "source_url": "https://dnjournal.com/archive/lowdown/2026/posts/0206-2.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2026-02-06",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Post 'AI.com Sold for $70 Million in Biggest Domain Name Sale Ever Recorded', paragraph 1",
+          "checked_quote": "It was widely-known that the AI.com domain name was sold last spring to an unknown buyer for an undisclosed pri",
+          "document_sha256": "0fc2eab79f7776043d9c78f95b04959cdc658d7a2fe44e33ad69b3d8f8d6ce95"
+        }
+      ],
+      "leads": [
+        {
+          "source_name": "TechRadar",
+          "source_url": "https://techradar.com/pro/biggest-ever-website-domain-deal-sees-ai-com-bought-by-crypto-com-founder",
+          "source_type": "GENERAL_NEWS",
+          "observed_at": "2026-10-09",
+          "note": "Reports an April 2025 sale date; not confirmed by reviewed sources."
+        }
+      ],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Evidence is the broker's attestation; settlement has not been independently confirmed.",
+        "The price is the broker's statement of the USD value of cryptocurrency consideration.",
+        "The precise closing date is unknown: the release gives none, DN Journal says 'last spring' (2025), and an April 2025 date appears only in unreviewed secondary reports.",
+        "First public reports (Feb. 6, 2026) predate the release (Feb. 9, 2026)."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Broker attestation, not independently confirmed settlement: the broker of record's own release (GetYourDomain.com via PR Newswire, Feb. 9, 2026), read in raw text, states a $70 million sale of AI.com to Kris Marszalek (seller Arsyan Ismail). No buyer, seller, registry or regulatory record of the settlement was reviewed. The release states neither the closing date nor the form of payment; the 2025 year and cryptocurrency payment come from Domain Name Wire quoting the broker (Feb. 6, 2026).",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BROKER",
+      "settlement_evidence": "PARTY_ATTESTATION_ONLY",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Sale of AI.com to Crypto.com CEO Kris Marszalek, attested by broker GetYourDomain.com. Excluded from calibration (cryptocurrency consideration, strategic landmark); kept for reference context."
+    },
+    {
+      "transaction_id": "SOH-TX-000003",
+      "domain": "gpt.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNDISCLOSED",
+      "price_claims": [
+        {
+          "amount": 2000000,
+          "currency": "USD",
+          "date": "2023",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "No reputable report reviewed. A low-quality page reported an ownership change to OpenAI's registrar; no party disclosed a price."
+    },
+    {
+      "transaction_id": "SOH-TX-000004",
+      "domain": "agents.ai",
+      "sale_price": 125000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2023",
+      "sale_date_precision": "YEAR",
+      "report_date": "2023-07-13",
+      "venue": "UNKNOWN",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": "DN Journal (The Lowdown)",
+      "source_url": "https://www.dnjournal.com/archive/lowdown/2023/dailyposts/0713.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'Agents.ai Changes Hands for $125,000 ...' (Posted July 13, 2023), paragraph 1",
+      "checked_quote": "B21 Capital has acquired the Agents.ai domain name for $125,000 in the biggest publicly reported .AI domain sale to date.",
+      "document_sha256": "62af1e4268730c7969aa43fb0cb03a4c959e4749b32f926c207836108829306c",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "EXACT",
+      "price_claims": [
+        {
+          "amount": 125000,
+          "currency": "USD",
+          "date": "2023-07",
+          "source": "DN Journal",
+          "qualifier": "REPORTED"
+        },
+        {
+          "amount": 400000,
+          "currency": "USD",
+          "date": "2023",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "DN Journal reports B21 Capital acquired Agents.ai for $125,000. The seed's $400,000 has no traceable source."
+    },
+    {
+      "transaction_id": "SOH-TX-000005",
+      "domain": "data.ai",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "TLD Investors",
+          "source_url": "https://tldinvestors.com/2022/02/app-annie-rebrands-to-data-ai.html",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Rebrand context; no price observed."
+        }
+      ],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 500000,
+          "currency": "USD",
+          "date": "2022",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "App Annie rebranded to data.ai in February 2022. No reviewed report gives the domain's acquisition price."
+    },
+    {
+      "transaction_id": "SOH-TX-000006",
+      "domain": "wallet.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 1500000,
+          "currency": "USD",
+          "date": "2022",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed report of a Wallet.com sale."
+    },
+    {
+      "transaction_id": "SOH-TX-000007",
+      "domain": "trading.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 3000000,
+          "currency": "USD",
+          "date": "2019",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed report of a Trading.com sale."
+    },
+    {
+      "transaction_id": "SOH-TX-000008",
+      "domain": "wealthlogic.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 24000,
+          "currency": "USD",
+          "date": "2024",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000009",
+      "domain": "stackscan.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 2711,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000010",
+      "domain": "weatherpulse.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 2607,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000011",
+      "domain": "fusionflare.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 1073,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000012",
+      "domain": "gogenie.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 2400,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000013",
+      "domain": "nightrocket.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 2974,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000014",
+      "domain": "upfolio.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 1676,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000015",
+      "domain": "aluren.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 1524,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000016",
+      "domain": "sojourner.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 10750,
+          "currency": "USD",
+          "date": "2025",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No public report of this sale was found. Figures of this size usually come from marketplace or sales-database records, which were not consulted (their terms may restrict reuse)."
+    },
+    {
+      "transaction_id": "SOH-TX-000017",
+      "domain": "veritas.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 95000,
+          "currency": "USD",
+          "date": "2021",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed report of a Veritas.com domain sale."
+    },
+    {
+      "transaction_id": "SOH-TX-000018",
+      "domain": "lumen.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 250000,
+          "currency": "USD",
+          "date": "2020",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "CenturyLink rebranded as Lumen in 2020. No reviewed report gives a lumen.com acquisition price."
+    },
+    {
+      "transaction_id": "SOH-TX-000019",
+      "domain": "echo.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 700000,
+          "currency": "USD",
+          "date": "2014",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed report of an Echo.com sale."
+    },
+    {
+      "transaction_id": "SOH-TX-000020",
+      "domain": "nova.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 800000,
+          "currency": "USD",
+          "date": "2018",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed report of a Nova.com sale. Search summaries mention a 2014 auction bid that did not meet reserve (not reviewed)."
+    },
+    {
+      "transaction_id": "SOH-TX-000021",
+      "domain": "emma.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "NamePros blog",
+          "source_url": "https://thenamepros.com/blog/top-6-domains-owned-by-microstrategy.1110933/",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Indicates MicroStrategy ownership; not reviewed."
+        }
+      ],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 50000,
+          "currency": "USD",
+          "date": "2019",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No sale found. Contrary indicator (lead, not reviewed): 2018-2019 coverage of a trademark dispute reports MicroStrategy owned Emma.com and offered it for $3 million."
+    },
+    {
+      "transaction_id": "SOH-TX-000022",
+      "domain": "alex.ai",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": null,
+      "source_url": null,
+      "source_type": "NONE",
+      "source_access_method": "NOT_ACCESSED",
+      "source_accessed_at": null,
+      "review_method": "NONE",
+      "document_locator": null,
+      "checked_quote": null,
+      "document_sha256": null,
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 9000,
+          "currency": "USD",
+          "date": "2024",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "UNVERIFIED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No source located; the origin of the figure, and therefore any citation basis, is unknown.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "UNDETERMINED",
+      "notes": "No reviewed report of an Alex.ai sale."
+    },
+    {
+      "transaction_id": "SOH-TX-000023",
+      "domain": "insurance.com",
+      "sale_price": 35600000,
+      "currency": "USD",
+      "price_scope": "BUSINESS_TOTAL",
+      "bundle": null,
+      "sale_date": "2010-07",
+      "sale_date_precision": "MONTH",
+      "report_date": "2011-08",
+      "venue": "CORPORATE_TRANSACTION",
+      "transaction_type": "WEBSITE_BUSINESS",
+      "consideration_type": "CASH_AND_NOTE",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "QuinStreet, Inc. Form 10-K (fiscal 2011)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1117297/000095012311081083/f59231e10vk.htm",
+      "source_type": "REGULATORY_FILING",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Item 7 MD&A, 'Acquisitions in Fiscal Year 2011'",
+      "checked_quote": "In July 2010, we acquired the website business Insurance.com from Insurance.com Group, Inc., an Ohio-based online insurance business, in exchange for $33.0 million in cash and the issuance of a $2.6 million non-interest-bearing, unsecured promissory note",
+      "document_sha256": "63b8bbdad6cad9ff2cca619327ce3f22c8a789221e0388875891b748e826ae29",
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "DomainInvesting",
+          "source_url": "https://domaininvesting.com/quinstreet-paid-356-million-for-insurance-com",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Not reviewed."
+        },
+        {
+          "source_name": "TheDomains",
+          "source_url": "https://thedomains.com/2010/08/09/a-new-domain-name-record-insurance-com-36-5-million-dollars",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Early $36.5M report; not reviewed."
+        }
+      ],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "The consideration bought an operating website business; no amount is allocated to the domain name.",
+        "Accounting treatment is a business acquisition (cash plus note), kept separate from domain-only sales."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "QuinStreet FY2011 10-K, MD&A, read in raw text: website-business acquisition for $33.0M cash plus a $2.6M promissory note (total $35.6M, rounded components). Verifies a website-business acquisition, not a domain-only sale.",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_RECORD",
+          "basis": "Facts disclosed in a public SEC EDGAR filing are cited with attribution and a link; filing text is not republished.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Website-business acquisition, not a domain-only comparable."
+    },
+    {
+      "transaction_id": "SOH-TX-000024",
+      "domain": "vacationrentals.com",
+      "sale_price": 35000000,
+      "currency": "USD",
+      "price_scope": "BUSINESS_TOTAL",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": "2013-08-13",
+      "venue": "CORPORATE_TRANSACTION",
+      "transaction_type": "WEBSITE_BUSINESS",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DomainInvesting",
+      "source_url": "https://domaininvesting.com/homeaway-ceo-on-vacationsrental-com/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'HomeAway CEO: VacationRentals.com Domain Name Bought for $35 Million' (Elliot Silver, August 13, 2013)",
+      "checked_quote": "HomeAway CEO: VacationRentals.com Domain Name Bought for $35 Million",
+      "document_sha256": "75b890d74ee8f62e7b43002fa1b9d1241fde98012dd2190aa8263a40ef1dced1",
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "VentureBeat",
+          "source_url": "https://venturebeat.com/business/google-ventures-homeaway",
+          "source_type": "GENERAL_NEWS",
+          "observed_at": "2026-10-09",
+          "note": "Dates the acquisition to 2007; not reviewed."
+        }
+      ],
+      "price_disclosure_status": "APPROXIMATE",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "VacationRentals.com was an operating website; the CEO's account frames the purchase as defensive ('so Expedia couldn't have that url')."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "HomeAway's CEO said the purchase cost $35M. The reviewed article does not state the year; 2007 comes from an unreviewed lead."
+    },
+    {
+      "transaction_id": "SOH-TX-000025",
+      "domain": "privatejet.com",
+      "sale_price": 30180000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2012-02",
+      "sale_date_precision": "MONTH",
+      "report_date": "2012-02-21",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "CASH_AND_STOCK",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "TheDomains (quoting the buyer's press release)",
+      "source_url": "https://www.thedomains.com/2012/02/21/privatejet-com-sold-for-30-million-in-what-maybe-the-highest-priced-pure-domain-sale-ever/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'PrivateJet.com Sold For $30 Million ...', quoted press release",
+      "checked_quote": "Nations has acquired the domain name http://www.PrivateJet.com , from privately held Don’t Look Media.com, a leading intellectual property holding company, for $30.18 million in cash and stock.",
+      "document_sha256": "a4420de48a84d0a3d9466d246edf056fd8426ca3fb93a4cdf3962fc95132348c",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "EXACT",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Paid partly in stock of a little-known buyer; the stock's value and the closing were never independently confirmed.",
+        "Reader comments on the source cite DN Journal charts showing a $30,000 sale of the domain in 2005 (not reviewed)."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Announced by buyer Nations Luxury Transportation; text reviewed via TheDomains' quotation of the release."
+    },
+    {
+      "transaction_id": "SOH-TX-000026",
+      "domain": "voice.com",
+      "sale_price": 30000000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2019-05-30",
+      "sale_date_precision": "DAY",
+      "report_date": "2019-10",
+      "venue": "BROKER",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "CASH",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "MicroStrategy Inc. Form 10-Q (Q3 2019)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1050446/000156459019038406/mstr-10q_20190930.htm",
+      "source_type": "REGULATORY_FILING",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Notes to Consolidated Financial Statements, Note 12 'Sale of Domain Name'",
+      "checked_quote": "On May 30, 2019, the Company completed the sale of its Voice.com domain name for consideration of $ 30.0 million in cash",
+      "document_sha256": "b7b03a427f78070b7088f4144f59d42e294016d48d9b8ba57773576cb55b98c2",
+      "additional_sources": [
+        {
+          "source_name": "MicroStrategy press release, Form 8-K Ex. 99.1",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312519175320/d724928dex991.htm",
+          "source_type": "PARTY_ANNOUNCEMENT",
+          "published_date": "2019-06-18",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Exhibit 99.1, paragraph 1",
+          "checked_quote": "today announced that it has sold the Voice.com domain name for $30 million in cash in a transaction facilitated by GoDaddy",
+          "document_sha256": "e6690e40e9dcfb0c12e3a57e53e35f879787a17ac7be3a193521b57d5f13dc71"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "EXACT",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "GoDaddy's commission was paid separately and not disclosed."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Seller's 10-Q Note 12 and 8-K Ex. 99.1, both read in raw text: Voice.com sold for $30.0M in cash on May 30, 2019, facilitated by GoDaddy; Block.one named as the subsequent user.",
+      "verified_at": "2026-10-09",
+      "attesting_party": "SELLER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_RECORD",
+          "basis": "Facts disclosed in a public SEC EDGAR filing are cited with attribution and a link; filing text is not republished.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Domain-only cash sale by MicroStrategy to Block.one."
+    },
+    {
+      "transaction_id": "SOH-TX-000027",
+      "domain": "internet.com",
+      "sale_price": 18000000,
+      "currency": "USD",
+      "price_scope": "BUSINESS_TOTAL",
+      "bundle": null,
+      "sale_date": "2009-11-30",
+      "sale_date_precision": "DAY",
+      "report_date": "2009-11-30",
+      "venue": "CORPORATE_TRANSACTION",
+      "transaction_type": "BUSINESS_ASSETS",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "WebMediaBrands Inc. Form 8-K Ex. 99.1",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1083712/000101968709004323/webmedia_8k-ex9901.htm",
+      "source_type": "REGULATORY_FILING",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Exhibit 99.1 press release, paragraph 1",
+      "checked_quote": "completed the previously announced sale of the assets of the Internet.com business to QuinStreet, Inc. (“QuinStreet”) for $18 million, subject to certain post-closing adjustments",
+      "document_sha256": "aa373dca1cf537fd8bbd8184dcecfd09156ca569f5420782058e856f52f90dcf",
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "DomainInvesting",
+          "source_url": "https://domaininvesting.com/internet-com-related-assets-sold-for-18-million/",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Not reviewed."
+        }
+      ],
+      "price_disclosure_status": "STATED_SUBJECT_TO_ADJUSTMENT",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Price covers a network of sites and brands; no amount is allocated to the domain."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "WebMediaBrands' 8-K Ex. 99.1, read in raw text: sale of the assets of the Internet.com business to QuinStreet for $18M, subject to post-closing adjustments. Verifies a business-asset sale, not a domain sale.",
+      "verified_at": "2026-10-09",
+      "attesting_party": "SELLER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_RECORD",
+          "basis": "Facts disclosed in a public SEC EDGAR filing are cited with attribution and a link; filing text is not republished.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Commonly but wrongly listed as a domain sale."
+    },
+    {
+      "transaction_id": "SOH-TX-000028",
+      "domain": "360.com",
+      "sale_price": 17000000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2015-02",
+      "sale_date_precision": "MONTH",
+      "report_date": "2015-02",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DN Journal",
+      "source_url": "https://www.dnjournal.com/archive/domainsales/2015/20150211.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Weekly sales report (February 2015), passage on 360.com",
+      "checked_quote": "today several Chinese media outlets including TechWeb.cn , citing anonymous sources at Qihoo, said the company paid $17 million",
+      "document_sha256": "75ca27e4888073ffe81b5948af19a1d7580eac279312ddafd83e568301db388e",
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "TheDomains",
+          "source_url": "https://www.thedomains.com/2015/02/05/seekingalpha-com-covers-qihoo-purchase-of-360-com",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Not reviewed."
+        }
+      ],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Price attributed to anonymous Qihoo sources via Chinese media; not officially confirmed by buyer or seller."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "WHOIS moved from Vodafone to Qihoo in February 2015."
+    },
+    {
+      "transaction_id": "SOH-TX-000029",
+      "domain": "chat.com",
+      "sale_price": 15500000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2023",
+      "sale_date_precision": "YEAR",
+      "report_date": "2024-04-16",
+      "venue": "BROKER",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DN Journal (The Lowdown)",
+      "source_url": "https://dnjournal.com/archive/lowdown/2024/dailyposts/0416.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'Price Paid for Chat.com Last Year Confirmed to Be $15.5 Million ...'",
+      "checked_quote": "Andrew was able to share that the price of the domain was $15.5 million net for the name plus escrow and related costs.",
+      "document_sha256": "06f56cd0caedbd089d05c4cc4e0eef9cef8322f251444f71de3985bd65f387bf",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "$15.5M is net for the name; escrow and related costs were additional."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Dharmesh Shah's 2023 purchase; price confirmed by the sellers' broker Andrew Miller to DN Journal."
+    },
+    {
+      "transaction_id": "SOH-TX-000030",
+      "domain": "chat.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2024",
+      "sale_date_precision": "YEAR",
+      "report_date": "2024-11-07",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Fortune",
+      "source_url": "https://fortune.com/2024/11/07/sam-altman-15-million-dollar-url-chat-com/",
+      "source_type": "GENERAL_NEWS",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article on Sam Altman and chat.com, paragraphs on Shah's sale",
+      "checked_quote": "Following Altman’s tweet, Shah confirmed that OpenAI had purchased the domain name, which he said he had bought for $15.5 million.",
+      "document_sha256": "db3b8d8b9eb74ea2c6a11cc93935cab185a4add80e386ec17aaaa59ed8a1c657",
+      "additional_sources": [
+        {
+          "source_name": "heise online",
+          "source_url": "https://www.heise.de/news/OpenAI-hat-Chat-com-gekauft-10008295.html",
+          "source_type": "GENERAL_NEWS",
+          "published_date": "2024-11-07",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'OpenAI has bought Chat.com', standfirst",
+          "checked_quote": "Anyone visiting chat.com is redirected to ChatGPT. OpenAI bought the domain –. It is not known how much it cost.",
+          "document_sha256": "99efd39b51b432cb9baa037945bd013fe9b7d67756e4befcd76828579d246500"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "UNDISCLOSED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Price undisclosed; Fortune reports Shah implied he likely took OpenAI shares as payment."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Repeat sale: Shah to OpenAI. Shah announced an undisclosed-buyer sale earlier in 2024; OpenAI confirmed as buyer in November 2024."
+    },
+    {
+      "transaction_id": "SOH-TX-000031",
+      "domain": "sex.com",
+      "sale_price": 13000000,
+      "currency": "USD",
+      "price_scope": "BUNDLE_TOTAL",
+      "bundle": {
+        "domain_count": 1,
+        "other_assets": [
+          "a couple of trademarks related to the domain (per The Register, citing bankruptcy court documents)"
+        ],
+        "allocation": "NOT_ALLOCATED"
+      },
+      "sale_date": "2010-11-17",
+      "sale_date_precision": "DAY",
+      "report_date": "2011-02-22",
+      "venue": "BANKRUPTCY_SALE",
+      "transaction_type": "DOMAIN_PLUS_ASSETS",
+      "consideration_type": "CASH",
+      "market_side": "UNKNOWN",
+      "source_name": "Sedo press release (newsroom)",
+      "source_url": "https://sedo.com/us/about-us/news-press/newsroom/new-guinness-world-record-at-sedo/",
+      "source_type": "PARTY_ANNOUNCEMENT",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Release 'New Guinness World Record at Sedo!' (02/22/2011), paragraph 1",
+      "checked_quote": "Sex.com was sold for $13 million on November 17, 2010.",
+      "document_sha256": "164e1234df33d9b1b195f70f4636cdcf9de72045c565595ec1a2e2d2e9396676",
+      "additional_sources": [
+        {
+          "source_name": "The Register",
+          "source_url": "https://www.theregister.com/2010/10/20/domain_name_sale/",
+          "source_type": "GENERAL_NEWS",
+          "published_date": "2010-10-20",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'Sex.com sells for $13m' (20 Oct 2010), paragraphs 1 and 4",
+          "checked_quote": "The sale includes a couple of trademarks related to the domain. The negotiations were handled by Sedo.com, a domain name auction company.",
+          "document_sha256": "e8151e7c170c2a38ba31b23d8464dec8a7ea2a592c0866d1f2decdd8b4fa814a"
+        },
+        {
+          "source_name": "The Register",
+          "source_url": "https://www.theregister.com/2010/10/28/sx_dot_com_sale/",
+          "source_type": "GENERAL_NEWS",
+          "published_date": "2010-10-28",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'Sex.com sellers roll eyes at $13m price tag' (28 Oct 2010), paragraph 1",
+          "checked_quote": "will go ahead after being given formal approval by Judge Geraldine Mund in Los Angeles on Wednesday.",
+          "document_sha256": "0d9554850b6c0382201e014897ccf86a9a367038c9be61f5c4e2569630cf6040"
+        },
+        {
+          "source_name": "TheDomains",
+          "source_url": "https://www.thedomains.com/2010/11/17/sex-com-sale-for-13m-completes-previous-purchase-price-was-11-5-million",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-11-17",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Post 'Sex.com Sale For $13M Completes; Previous Purchase Price Was $11.5 Million' (November 17, 2010), paragraph 1",
+          "checked_quote": "Sedo.com just put out a press release announcing the completion of the sale the domain name Sex.com for $13 Million Dollars cash.",
+          "document_sha256": "77b9d4ea54562fe743ce28c226a61ad4674227443c806314fe7e323de905d5f1"
+        },
+        {
+          "source_name": "DN Journal",
+          "source_url": "https://dnjournal.com/archive/domainsales/2010/20101124.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-11-24",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Weekly sales report 'Sedo Completes Biggest Domain Sale Ever Reported as Sex.com Closes at $13 Million', paragraph 1",
+          "checked_quote": "Sex.com has officially changed hands for $13 million in the largest cash domain sale ever reported.",
+          "document_sha256": "fb339e22b1191cdfcf34c99d1f25dec2412a439c466742ee6cb3e95399e85c7d"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "The consideration covered the domain and a couple of related trademarks; no allocation to the domain is disclosed.",
+        "Completion is attested by the broker; the court approval order and settlement records were not reviewed.",
+        "Court-supervised sale out of bankruptcy; the Register reports a $1 million deposit with the remaining $12 million due within a fortnight."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Broker attestation, not independently confirmed settlement: Sedo, broker of record, states in its own release (read in raw text) that Sex.com was sold for $13 million on November 17, 2010; TheDomains (Nov. 17, 2010) reports Sedo's release announcing completion for $13 million cash. Court approval by Judge Geraldine Mund was reported by The Register (Oct. 28, 2010); the court order itself was not reviewed. The Register (Oct. 20, 2010), citing court documents, reports that the sale included a couple of trademarks, so the $13 million is not attributed to the domain alone.",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BROKER",
+      "settlement_evidence": "PARTY_ATTESTATION_ONLY",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Bankruptcy sale by Escom LLC to Clover Holdings, brokered by Sedo; agreed October 2010, approved by the court late October, completed November 17, 2010 per the broker."
+    },
+    {
+      "transaction_id": "SOH-TX-000032",
+      "domain": "sex.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": "2010-10-20",
+      "venue": "UNKNOWN",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": "The Register",
+      "source_url": "https://www.theregister.com/2010/10/20/domain_name_sale/",
+      "source_type": "GENERAL_NEWS",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article 'Sex.com sells for $13m', paragraph 3",
+      "checked_quote": "Escom purchased the domain from its previous owner in 2006. The price then was variously reported as being between $12m and $14m",
+      "document_sha256": "e8151e7c170c2a38ba31b23d8464dec8a7ea2a592c0866d1f2decdd8b4fa814a",
+      "additional_sources": [
+        {
+          "source_name": "DN Journal (May 2007 sales report)",
+          "source_url": "https://dnjournal.com/archive/domainsales/2007/domainsales05-22-07.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2007-05",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Porn.com sale report, paragraph 1",
+          "checked_quote": "second largest domain sale overall after Sex.com (which reportedly sold for approximately $12 million in cash and stock in January 2005)",
+          "document_sha256": "6e193868ef746d6ba94aa15b9e1ecb70563caed2164a7b4175feee8302c9a36d"
+        },
+        {
+          "source_name": "DN Journal",
+          "source_url": "https://dnjournal.com/archive/domainsales/2010/20101124.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-11-24",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Weekly sales report on the Sex.com sale, paragraph 1",
+          "checked_quote": "Sedo said Escom had paid $11.5 million for the domain in 2006. However that deal involved both cash and equity according to Gary Kremen",
+          "document_sha256": "fb339e22b1191cdfcf34c99d1f25dec2412a439c466742ee6cb3e95399e85c7d"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "UNKNOWN",
+      "price_claims": [
+        {
+          "amount": 12000000,
+          "currency": "USD",
+          "date": "2005-01",
+          "source": "DN Journal (2007)",
+          "qualifier": "APPROXIMATE_CASH_AND_STOCK"
+        },
+        {
+          "amount": 14000000,
+          "currency": "USD",
+          "date": "2006",
+          "source": "The Register (2010), upper end of reported range",
+          "qualifier": "REPORTED_RANGE"
+        },
+        {
+          "amount": 11500000,
+          "currency": "USD",
+          "date": "2006",
+          "source": "Sedo (2010), as reported by DN Journal",
+          "qualifier": "REPORTED"
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "sale_price",
+          "description": "Reported as $11.5M (Sedo, via DN Journal), $12M-$14M (The Register) and about $12M in cash and stock (DN Journal 2007); Gary Kremen said the deal involved cash and equity.",
+          "material": true,
+          "resolution": "Unresolved."
+        },
+        {
+          "field": "sale_date",
+          "description": "The Register says 2006; DN Journal says January 2005.",
+          "material": true,
+          "resolution": "Unresolved."
+        }
+      ],
+      "valuation_caveats": [
+        "Consideration reportedly mixed cash and equity, so no single cash price is established."
+      ],
+      "evidence_status": "DISPUTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Escom's earlier purchase. Not in the seed; recorded because repeat sales are separate transactions."
+    },
+    {
+      "transaction_id": "SOH-TX-000033",
+      "domain": "crypto.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2018",
+      "sale_date_precision": "YEAR",
+      "report_date": "2018-07-09",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DomainInvesting",
+      "source_url": "https://domaininvesting.com/cheddar-report-monaco-paid-12-million-for-crypto-com/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'Cheddar Report: Monaco Paid $12 Million for Crypto.com' (Elliot Silver, July 9, 2018)",
+      "checked_quote": "As far as I am aware, this $12 million figure is still unconfirmed by the parties involved in the deal",
+      "document_sha256": "f6caa7c99ea36572f874a24d4aa0a7e1cb75b58c713e0fc7e2b44cdabfd3e8bf",
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "Wikipedia (tertiary)",
+          "source_url": "https://en.wikipedia.org/wiki/Crypto.com",
+          "source_type": "TERTIARY_REFERENCE",
+          "observed_at": "2026-10-09",
+          "note": "Gives a $5-10M estimate attributed to domain sellers; not reviewed."
+        }
+      ],
+      "price_disclosure_status": "UNDISCLOSED",
+      "price_claims": [
+        {
+          "amount": 12000000,
+          "currency": "USD",
+          "date": "2018",
+          "source": "Cheddar, as reported by DomainInvesting",
+          "qualifier": "UNCONFIRMED"
+        },
+        {
+          "amount": 12000000,
+          "currency": "USD",
+          "date": "2018",
+          "source": "Sohadot comps seed (data/valuation_comps_seed.json), unsourced",
+          "qualifier": "UNSOURCED_CLAIM"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [
+        "No party disclosed the price; $12M is an unconfirmed media report and other estimates range lower."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Monaco (now Crypto.com) acquired the domain from Matt Blaze in 2018. Transaction reported; price undisclosed."
+    },
+    {
+      "transaction_id": "SOH-TX-000034",
+      "domain": "hotels.com",
+      "sale_price": 11000000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2001",
+      "sale_date_precision": "YEAR",
+      "report_date": "2012-11-02",
+      "venue": "UNKNOWN",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DomainInvesting (quoting BBC)",
+      "source_url": "https://domaininvesting.com/bbc-hotels-com-domain-name-originally-bought-for-11-million/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'BBC: Hotels.com Domain Name Originally Bought for $11 Million' (Elliot Silver, November 2, 2012), quoted BBC passage",
+      "checked_quote": "In 2001 the company purchased the name Hotels.com for around $11m and at the time this was thought to be “a crazy sum of money”.",
+      "document_sha256": "de07b2a2ae0a13120b1ddf4e22c123f0959a29aa2fd60fda2dceeccbdc266a1f",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "APPROXIMATE",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Approximate figure recalled by the company's president in a 2012 interview; the post notes he seemed unsure of the exact price."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Hotel Reservations Network bought the name and later renamed itself Hotels.com."
+    },
+    {
+      "transaction_id": "SOH-TX-000035",
+      "domain": "fund.com",
+      "sale_price": 9999950,
+      "currency": "USD",
+      "price_scope": "BUNDLE_TOTAL",
+      "bundle": {
+        "domain_count": 24,
+        "other_assets": [
+          "one trademark"
+        ],
+        "allocation": "NOT_ALLOCATED"
+      },
+      "sale_date": "2007",
+      "sale_date_precision": "YEAR",
+      "report_date": "2009-11-30",
+      "venue": "PRIVATE",
+      "transaction_type": "MULTIPLE_DOMAINS",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Fund.com Inc. Form 10-Q/A (quarter ended March 31, 2009)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1335795/000121390009003495/f10q0309a1_fund.htm",
+      "source_type": "REGULATORY_FILING",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Notes to the Consolidated Financial Statements, Note 3 'Intangible Asset'",
+      "checked_quote": "During 2007, the Company acquired 24 domain names including “fund.com” and one trademark for a total cost of $9,999,950.",
+      "document_sha256": "e21e3ebbbfa99a6eacdac6a945b487025caf1ff699be909166f6982daed935d2",
+      "additional_sources": [
+        {
+          "source_name": "Fund.com Inc. (Eastern Services Holdings) Form 8-K Ex. 99(a)",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1335795/000121390008000113/f8k011108ex99a_eastern.htm",
+          "source_type": "REGULATORY_FILING",
+          "published_date": "2008-01",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Exhibit 99(a), 'Intellectual Property Asset'",
+          "checked_quote": "The Company acquired the domain name “fund.com“ and other intangible assets related to intellectual property and trademarks for a total cost of $9,999,950.",
+          "document_sha256": "80f5ba4b842dedd2e3a0b8fa85d15b647907f550f30192c20019e2d7805492c1"
+        },
+        {
+          "source_name": "Fund.com Inc. Form 10-K (fiscal 2009)",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1335795/000121390010001617/f10k2009_fund.htm",
+          "source_type": "REGULATORY_FILING",
+          "published_date": "2010",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Notes, Note 3 'Intangible Asset'",
+          "checked_quote": "As of December 31, 2009, the Company tested the intangible assets for impairment under ASC 360-10-35-21 and determined that an impairment charge of $1,794,500 was necessary.",
+          "document_sha256": "af99e8dbe6d4b434bba8e8cac125f2b46b0d852d1d89e64afb91ddc771f25afb"
+        }
+      ],
+      "leads": [
+        {
+          "source_name": "DN Journal (March 2008)",
+          "source_url": "https://dnjournal.com/archive/domainsales/2008/domainsales03-18-08.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "observed_at": "2026-10-09",
+          "note": "Trade-press coverage attributing ~$10M to fund.com alone; not reviewed."
+        }
+      ],
+      "price_disclosure_status": "EXACT",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "The $9,999,950 bought 24 domain names and one trademark; no allocation to fund.com is disclosed, so the total must not be attributed to fund.com.",
+        "Trade press widely reported the figure as a ~$10M fund.com sale and questioned whether it reflected an arm's-length market price (economic valuation disputed).",
+        "The buyer recorded a $1,794,500 impairment on these intangibles at December 31, 2009."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Buyer's amended Q1 2009 10-Q, Note 3, read in raw text: in 2007 the company acquired 24 domain names including fund.com and one trademark for a total of $9,999,950. Verifies a bundle purchase. It does not establish fund.com's own price.",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_RECORD",
+          "basis": "Facts disclosed in a public SEC EDGAR filing are cited with attribution and a link; filing text is not republished.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Documented bundle transaction; the economic value of fund.com alone is undetermined and disputed."
+    },
+    {
+      "transaction_id": "SOH-TX-000036",
+      "domain": "fund.com",
+      "sale_price": null,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": null,
+      "sale_date_precision": "UNKNOWN",
+      "report_date": "2019-01-11",
+      "venue": "BROKER",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": "DomainInvesting",
+      "source_url": "https://domaininvesting.com/fund-com-sold-via-media-options/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Post 'Fund.com Sold via Media Options' (Elliot Silver, January 11, 2019)",
+      "checked_quote": "Andrew publicly confirmed that Media Options brokered the sale of Fund.com, in a tweet",
+      "document_sha256": "c6a928968b1af0f96b6b73c26e0ff162728f0c8db6c9cd1c177745b7ea3080b3",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "UNDISCLOSED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Price undisclosed; the reported asking price was $2.5M."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Later domain-only sale via Media Options; the transfer was observed by January 2, 2019, so the exact sale date is unknown."
+    },
+    {
+      "transaction_id": "SOH-TX-000037",
+      "domain": "porn.com",
+      "sale_price": 9500000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2007-05",
+      "sale_date_precision": "MONTH",
+      "report_date": "2007-05",
+      "venue": "BROKER",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "CASH",
+      "market_side": "UNKNOWN",
+      "source_name": "DN Journal",
+      "source_url": "https://dnjournal.com/archive/domainsales/2007/domainsales05-22-07.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Report 'Porn.com Sells for More Than $9.5 Million ...', paragraph 1",
+      "checked_quote": "Moniker.com announced today (May 15) that it has brokered the sale of Porn.com to MXN Limited for more than $9.5 million .",
+      "document_sha256": "6e193868ef746d6ba94aa15b9e1ecb70563caed2164a7b4175feee8302c9a36d",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "LOWER_BOUND",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Exact price not disclosed: the broker said 'more than $9.5 million'; the buyer said 'over $9 million'."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Broker-announced all-cash sale to MXN Ltd."
+    },
+    {
+      "transaction_id": "SOH-TX-000038",
+      "domain": "fb.com",
+      "sale_price": 8500000,
+      "currency": "USD",
+      "price_scope": "BUNDLE_TOTAL",
+      "bundle": {
+        "domain_count": null,
+        "other_assets": [],
+        "allocation": "NOT_ALLOCATED"
+      },
+      "sale_date": "2010",
+      "sale_date_precision": "YEAR",
+      "report_date": "2011-01-11",
+      "venue": "PRIVATE",
+      "transaction_type": "MULTIPLE_DOMAINS",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "TechCrunch (quoting Reuters)",
+      "source_url": "https://techcrunch.com/2011/01/11/facebook-paid-farm-bureau-8-5-million-to-acquire-fb-com/",
+      "source_type": "GENERAL_NEWS",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article 'Facebook Paid Farm Bureau $8.5 Million To Acquire Fb.com' (January 11, 2011), quoted Reuters passage",
+      "checked_quote": "At their annual meeting in Atlanta, Farm Bureau officials on Tuesday said the organization earned $8.5 million by selling a couple of domain names",
+      "document_sha256": "c910bf7473f23d681b6a9f3005ab5ea0d7e6eb37c2deca0e09fca3244a9bcc1a",
+      "additional_sources": [
+        {
+          "source_name": "InformationWeek",
+          "source_url": "https://www.informationweek.com/it-sectors/facebook-paid-8-5-million-for-fb-com",
+          "source_type": "GENERAL_NEWS",
+          "published_date": "2011-01-12",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'Facebook Paid $8.5 Million For FB.com' (January 12, 2011)",
+          "checked_quote": "revealed it earned $8.5 million from the sale of a couple of domain names, according to Reuters",
+          "document_sha256": "b087032af79dcb3b919320fdc86193830e8574277c8ce581c25668f860a0fbdd"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "The seller described $8.5M as earned from 'a couple of domain names' without naming the buyer; it is not attributable to fb.com alone."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Facebook announced the acquisition of fb.com from the American Farm Bureau Federation on November 15, 2010, without a price."
+    },
+    {
+      "transaction_id": "SOH-TX-000039",
+      "domain": "we.com",
+      "sale_price": 8000000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2015-06",
+      "sale_date_precision": "MONTH",
+      "report_date": "2016-01-27",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": "DN Journal",
+      "source_url": "https://dnjournal.com/archive/domainsales/2016/20160127.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Weekly sales report (January 27, 2016), introduction",
+      "checked_quote": "In August James Iles wrote in a NamePros post that the domain was sold for $8 million . We were unable to independently verify that at the time, but at NamesCon I connected with an unimpeachable source who confirmed",
+      "document_sha256": "55c417de0005520c169f289521f0f41a0571cc0ce0b166a55023de7a3cb81394",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Confirmed through an unnamed source; buyer not named in the reviewed source."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Private sale reported in June 2015; price confirmed by DN Journal in January 2016."
+    },
+    {
+      "transaction_id": "SOH-TX-000040",
+      "domain": "business.com",
+      "sale_price": 7500000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "1999-12-01",
+      "sale_date_precision": "DAY",
+      "report_date": "1999-12-02",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "The Register",
+      "source_url": "https://www.theregister.com/1999/12/02/big_bucks_url/",
+      "source_type": "GENERAL_NEWS",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article (Linda Harrison, 2 Dec 1999), paragraph 1",
+      "checked_quote": "Yesterday Ostrofsky sold the URL for a cool $7.5 million (£4.6 million), making it the universe's most expensive virtual address.",
+      "document_sha256": "b4fe046629f0cf859bf88c9adc9872a38047d550554c1b01088327e89623d8b9",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Marc Ostrofsky sold business.com to eCompanies (sale date taken as the day before the article)."
+    },
+    {
+      "transaction_id": "SOH-TX-000041",
+      "domain": "diamond.com",
+      "sale_price": 7500000,
+      "currency": "USD",
+      "price_scope": "BUNDLE_TOTAL",
+      "bundle": {
+        "domain_count": 1,
+        "other_assets": [
+          "associated intellectual property"
+        ],
+        "allocation": "NOT_ALLOCATED"
+      },
+      "sale_date": "2006-05",
+      "sale_date_precision": "MONTH",
+      "report_date": "2006-05",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_PLUS_ASSETS",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DN Journal",
+      "source_url": "https://www.dnjournal.com/archive/domainsales/2006/domainsales05_23_06.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Weekly sales report (May 2006), lead story",
+      "checked_quote": "Ice.com bought the domain from Odimo Inc. and both parties agreed that the $7.5 million was for the domain name and associated intellectual property only.",
+      "document_sha256": "5d960733613dcb141f92c5fb52c48a4c5674fe11e424f3092465000aa9ce4181",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Price covers the domain and associated intellectual property; inventory ($2M) was paid separately."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Odimo Inc. was a public company; its filings may disclose the sale (not reviewed)."
+    },
+    {
+      "transaction_id": "SOH-TX-000042",
+      "domain": "beer.com",
+      "sale_price": 7000000,
+      "currency": "USD",
+      "price_scope": "UNKNOWN",
+      "bundle": null,
+      "sale_date": "2004",
+      "sale_date_precision": "YEAR",
+      "report_date": null,
+      "venue": "UNKNOWN",
+      "transaction_type": "UNKNOWN",
+      "consideration_type": "UNKNOWN",
+      "market_side": "UNKNOWN",
+      "source_name": "Entrepreneur (citing DN Journal)",
+      "source_url": "https://www.entrepreneur.com/article/219521",
+      "source_type": "GENERAL_NEWS",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article 'Multimillion Dollar Domains', 'Alcohol' section",
+      "checked_quote": "In 2004, Beer.com was purchased for $7 million, and two years later Vodka.com sold for $3 million.",
+      "document_sha256": "99f9afabf5edc82c302a1236cd3b6b95b338deebdda50ab77aff7fca717707ea",
+      "additional_sources": [],
+      "leads": [
+        {
+          "source_name": "Wikipedia list (tertiary)",
+          "source_url": "https://en.wikipedia.org/wiki/List_of_most_expensive_domain_names",
+          "source_type": "TERTIARY_REFERENCE",
+          "observed_at": "2026-10-09",
+          "note": "Names Interbrew as buyer; not reviewed."
+        }
+      ],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "Reviewed source is a summary list citing DN Journal; buyer and deal scope not stated."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Weakly documented: one list-style mention."
+    },
+    {
+      "transaction_id": "SOH-TX-000043",
+      "domain": "z.com",
+      "sale_price": 800000000,
+      "currency": "JPY",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2014-11",
+      "sale_date_precision": "MONTH",
+      "report_date": "2014-11-21",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Domain Name Wire",
+      "source_url": "https://domainnamewire.com/2014/11/21/wow-nissan-sells-z-com-domain-name-to-gmo-for-6-8-million/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article 'Wow: Nissan sells Z.com domain name to GMO for $6.8 million' (November 21, 2014), paragraph 1",
+      "checked_quote": "GMO Internet, operator of Japan’s largest domain name registrar, has acquired the one letter domain name Z.com for JPY800 million",
+      "document_sha256": "2365c2a94b47415f677f3641872e3951c4fc28c9919f3cf78c53f7cf38f7f9b2",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [
+        {
+          "amount": 6800000,
+          "currency": "USD",
+          "date": "2014-11",
+          "source": "Trade press conversion",
+          "qualifier": "CURRENCY_CONVERSION"
+        }
+      ],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Nissan to GMO Internet. USD figures are conversions."
+    },
+    {
+      "transaction_id": "SOH-TX-000044",
+      "domain": "slots.com",
+      "sale_price": 5500000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2010-05",
+      "sale_date_precision": "MONTH",
+      "report_date": "2010-05-13",
+      "venue": "BROKER",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Domain Name Wire",
+      "source_url": "https://domainnamewire.com/2010/05/13/jackpot-slots-com-domain-name-sells-for-5-5-million/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article 'Jackpot! Slots.com Domain Name Sells for $5.5 Million' (May 13, 2010), paragraph 1",
+      "checked_quote": "I have received confirmation from domain name auctioneer Moniker.com that Slots.com has sold for $5.5 million",
+      "document_sha256": "9b793826ff774b212c98350ddcee115417d13bb9de583d4462493252aa9d1812",
+      "additional_sources": [
+        {
+          "source_name": "DN Journal",
+          "source_url": "https://dnjournal.com/archive/domainsales/2010/20100609.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2010-06",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Weekly sales report (week ending May 30, 2010), lead story",
+          "checked_quote": "Moniker.com completed their $5.5 million sale of Slots.com to BodogBrand this past week.",
+          "document_sha256": "27ef63d7b0f7d05e915674243b10f67b0807cfadc5cff370913170b9ff4d2cec"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Broker-confirmed sale (Moniker) to BodogBrand, completed in late May 2010."
+    },
+    {
+      "transaction_id": "SOH-TX-000045",
+      "domain": "toys.com",
+      "sale_price": 5100000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2009",
+      "sale_date_precision": "YEAR",
+      "report_date": "2009-03-04",
+      "venue": "BANKRUPTCY_SALE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Domain Name Wire",
+      "source_url": "https://domainnamewire.com/2009/03/04/court-approves-toyscom-sale/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article 'Court Approves Toys.com Sale' (March 4, 2009), paragraph 1",
+      "checked_quote": "Judge Brendan Shannon of the United States Bankruptcy Court District of Delaware has approved Toys ‘R’ Us purchase of the toys.com domain name for $5.1M.",
+      "document_sha256": "045e40a4442d9c100dbe2d4395cdd53b3e632756f960d25708741077abd65cd0",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Bankruptcy auction of eToys' parent's assets; court approval reported March 4, 2009. Court order not reviewed."
+    },
+    {
+      "transaction_id": "SOH-TX-000046",
+      "domain": "clothes.com",
+      "sale_price": 4864000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2008-05",
+      "sale_date_precision": "MONTH",
+      "report_date": "2009",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Amazon.com Form 424B3 (2009), Zappos.com consolidated financial statements",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312509199231/d424b3.htm",
+      "source_type": "REGULATORY_FILING",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Zappos.com notes to consolidated financial statements, 'Intangible Assets'",
+      "checked_quote": "In May 2008, we acquired the Clothes.com internet domain name from Idealab. The domain name was recognized as a purchased intangible asset with a useful life of 20 years. The entire purchase price of $4.9 million was assigned to the price of the domain name intangible asset",
+      "document_sha256": "9a8d71a9a133c86fa4c4bace55046c17216330bf562ae0d64319d53fde1bac60",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "EXACT",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Buyer's financial statements in Amazon's 424B3, read in raw text: Clothes.com acquired from Idealab in May 2008; entire $4.9M purchase price assigned to the domain; intangible-asset table lists Clothes.com at 4,864 (thousands of dollars).",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_RECORD",
+          "basis": "Facts disclosed in a public SEC EDGAR filing are cited with attribution and a link; filing text is not republished.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Buyer-side disclosure; exact amount from the intangible-asset table."
+    },
+    {
+      "transaction_id": "SOH-TX-000047",
+      "domain": "medicare.com",
+      "sale_price": 4800000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2014-03-31",
+      "sale_date_precision": "DAY",
+      "report_date": "2014-05",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "CASH_AND_OTHER",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "eHealth, Inc. Form 10-Q (Q1 2014)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1333493/000133349314000043/ehth-20140331x10q.htm",
+      "source_type": "REGULATORY_FILING",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Notes to Condensed Consolidated Financial Statements, 'Intangible Assets'",
+      "checked_quote": "On March 31, 2014, we purchased an internet domain name, www.Medicare.com, for $4.8 million. Cash consideration paid in connection with the purchase of the domain name totaled $4.5 million.",
+      "document_sha256": "3333f5023e6c97f253e2ab7a134747cf5fe801693acb812cc68d4a35924d868a",
+      "additional_sources": [],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "The site was lightly developed (lead generation) but the buyer describes the purchase as a domain name."
+      ],
+      "evidence_status": "VERIFIED",
+      "verification_basis": "Buyer's Q1 2014 10-Q, read in raw text: Medicare.com purchased March 31, 2014 for $4.8M ($4.5M cash plus $0.3M of receivables from the owner settled at completion).",
+      "verified_at": "2026-10-09",
+      "attesting_party": "BUYER",
+      "settlement_evidence": "REGULATED_FILING_OR_COURT_RECORD",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_RECORD",
+          "basis": "Facts disclosed in a public SEC EDGAR filing are cited with attribution and a link; filing text is not republished.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Buyer-side disclosure."
+    },
+    {
+      "transaction_id": "SOH-TX-000048",
+      "domain": "whisky.com",
+      "sale_price": 3100000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2014-01-01",
+      "sale_date_precision": "DAY",
+      "report_date": "2014-02-27",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "UNKNOWN",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "DN Journal",
+      "source_url": "https://dnjournal.com/cover/2014/february.htm",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Cover story 'The Amazing Ascent of Whisky.com ...' (February 2014), introduction",
+      "checked_quote": "the sale of Whisky.com for $3.1 million in a deal made on New Year's Day (2014). The blockbuster sale was for the domain name only",
+      "document_sha256": "d4c698817d150b9531a8018a462d6937106e8b7471421d018e0e5fb2ead75247",
+      "additional_sources": [
+        {
+          "source_name": "Domain Name Wire",
+          "source_url": "https://domainnamewire.com/2014/02/27/whisky-com-domain-name-sells-for-3-1-million/",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2014-02-27",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article 'Whisky.com domain name sells for $3.1 million' (February 27, 2014), paragraph 1",
+          "checked_quote": "has sold the domain name Whisky.com for $3.1 million, DNJournal reported today",
+          "document_sha256": "9c7ac20d63448576d182977ad746e090a060bdb8dfdf06ed5ff10378ebb3ebdb"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "ROUNDED",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "REFERENCE_ONLY",
+      "notes": "Sold by Michael Castello; the buyer owns Whisky.de. First announced by DN Journal (report date per Domain Name Wire)."
+    },
+    {
+      "transaction_id": "SOH-TX-000049",
+      "domain": "candy.com",
+      "sale_price": 3000000,
+      "currency": "USD",
+      "price_scope": "SINGLE_DOMAIN",
+      "bundle": null,
+      "sale_date": "2009-06",
+      "sale_date_precision": "MONTH",
+      "report_date": "2009-06-03",
+      "venue": "PRIVATE",
+      "transaction_type": "DOMAIN_ONLY",
+      "consideration_type": "CASH_AND_STOCK",
+      "market_side": "END_USER_ACQUISITION",
+      "source_name": "Domain Name Wire",
+      "source_url": "https://domainnamewire.com/2009/06/03/3m-candycom-sale-gives-domain-name-industry-a-boost/",
+      "source_type": "TRADE_PUBLICATION",
+      "source_access_method": "DOCUMENT_REVIEWED",
+      "source_accessed_at": "2026-10-09",
+      "review_method": "RAW_TEXT_CHECKED",
+      "document_locator": "Article '$3M Candy.com Sale Gives Domain Name Industry a Boost' (June 3, 2009), paragraph 1",
+      "checked_quote": "Candy.com has sold to G&J Holdings for $3 million (and may include some royalties).",
+      "document_sha256": "6201817693d7cdba78ee457dd166dc5881d704b70e243a76ca7d99fc4b267113",
+      "additional_sources": [
+        {
+          "source_name": "DN Journal (2023)",
+          "source_url": "https://dnjournal.com/articles/2023/rs-gr/rick-schwartz-candy.htm",
+          "source_type": "TRADE_PUBLICATION",
+          "published_date": "2023",
+          "source_access_method": "DOCUMENT_REVIEWED",
+          "source_accessed_at": "2026-10-09",
+          "review_method": "RAW_TEXT_CHECKED",
+          "document_locator": "Article on GreenRabbit's acquisition and Rick Schwartz's Candy.com stake",
+          "checked_quote": "crafted the Candy.com deal to give him not only $3 million in cash, but also equity in the company that acquired the domain. Three years ago Rick sold some shares for $1.7 million",
+          "document_sha256": "7aa75b0e1ea1a320dcd40548404eb9cfac0def5a83136ce7750ec1f6e95d3a46"
+        }
+      ],
+      "leads": [],
+      "price_disclosure_status": "EXACT",
+      "price_claims": [],
+      "conflicts": [],
+      "valuation_caveats": [
+        "$3M is the cash component; the seller also received equity, later sold in part for $1.7M and, on the buyer's 2023 acquisition, a further $6.8M.",
+        "Total economic consideration therefore exceeded the $3M headline."
+      ],
+      "evidence_status": "REPORTED",
+      "verification_basis": null,
+      "verified_at": null,
+      "attesting_party": "NONE",
+      "settlement_evidence": "NOT_ESTABLISHED",
+      "rights": {
+        "citation": {
+          "status": "PERMITTED_WITH_CONDITIONS",
+          "basis_type": "PUBLIC_FACT_CITATION",
+          "basis": "Individual reported facts are cited with attribution and a link; article text and compiled charts are not copied.",
+          "reference": null
+        },
+        "storage": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for systematic storage has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "commercial_modelling": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for commercial modelling or calibration has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        },
+        "redistribution": {
+          "status": "NOT_ESTABLISHED",
+          "basis_type": "NONE",
+          "basis": "No licence, written permission or documented lawful basis for redistribution has been recorded. Owner review pending; unknown rights block calibration.",
+          "reference": null
+        }
+      },
+      "calibration_role": "EXCLUDED",
+      "notes": "Correction: Sprint 1A v1 classified this DISPUTED from a search summary ('$1.7M payout vs $3M'). The reviewed 2023 article shows $3M cash plus equity, with $1.7M from a later share sale. There is no price conflict."
+    }
+  ]
+}
