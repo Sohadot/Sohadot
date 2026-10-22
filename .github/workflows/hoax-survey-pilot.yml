@@ -1,0 +1,24 @@
+name: Hoax survey pilot checks
+on:
+  pull_request:
+    paths:
+      - "hoax-ai-survey/**"
+      - "survey-service/**"
+      - ".github/workflows/hoax-survey-pilot.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate JavaScript syntax
+        run: |
+          node --check hoax-ai-survey/survey.js
+          node --check survey-service/worker.mjs
+      - name: Test independent survey endpoint
+        run: npm test --prefix survey-service

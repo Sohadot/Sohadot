@@ -1,0 +1,18 @@
+# TEMPLATE ONLY. Keep actual wrangler.toml and all secrets off GitHub.
+name = "sohadot-hoax-interpretation"
+main = "worker.mjs"
+compatibility_date = "2026-10-22"
+workers_dev = true
+
+[vars]
+FRONTEND_ORIGIN = "https://sohadot.com"
+TURNSTILE_SITE_KEY = "REPLACE_PUBLIC_SITE_KEY"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hoax-interpretation-private"
+database_id = "REPLACE_D1_DATABASE_UUID"
+
+[triggers]
+crons = ["0 3 * * *"]
+# Secret: npx wrangler secret put TURNSTILE_SECRET
