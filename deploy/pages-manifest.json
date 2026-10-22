@@ -43,7 +43,8 @@
     "strategic-brief.html",
     "terms.html",
     "top-75-queue.html",
-    "valuation.html"
+    "valuation.html",
+    "hoax-ai-survey/index.html"
   ],
   "site_files": [
     ".nojekyll",
@@ -54,13 +55,15 @@
     "favicon.svg",
     "llms.txt",
     "robots.txt",
-    "sitemap.xml"
+    "sitemap.xml",
+    "hoax-ai-survey/config.json"
   ],
   "assets": [
     "assets/brand/sohadot-mark-header.png",
     "assets/brand/sohadot-mark.png",
     "assets/og-image.png",
-    "assets/og/dropping-watchlist.png"
+    "assets/og/dropping-watchlist.png",
+    "hoax-ai-survey/survey.css"
   ],
   "javascript": [
     "js/asset-meanings.js",
@@ -69,7 +72,8 @@
     "js/strategic-brief.js",
     "js/top-75-queue.js",
     "js/valuation-engine.js",
-    "js/valuation-ui.js"
+    "js/valuation-ui.js",
+    "hoax-ai-survey/survey.js"
   ],
   "runtime_data": [
     "data/acronym-glossary.json",
@@ -110,7 +114,6 @@
     ".gitignore",
     "deploy/**",
     "docs/**",
-    "hoax-ai-survey/**",
     "research/**",
     "scripts/**",
     "survey-service/**",
