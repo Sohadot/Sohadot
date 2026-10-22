@@ -56,9 +56,15 @@ class RealArtifact(unittest.TestCase):
     def test_required_site_files_and_routes_are_published(self):
         for path in MANIFEST["required"]:
             self.assertIn(path, self.files)
-        tracked_html = [f for f in pages.tracked_files() if f.endswith(".html") and not f.startswith(("docs/", "research/", "tests/"))]
+        tracked_html = [f for f in pages.tracked_files() if f.endswith(".html")]
+        # Public HTML must be published unless the manifest explicitly excludes it.
+        # A staged, unlaunched page can remain tracked without entering the Pages artifact.
         for path in tracked_html:
-            self.assertIn(path, self.files)
+            explicitly_excluded = any(pages.matches(path, pattern) for pattern in MANIFEST["exclude"])
+            if explicitly_excluded and path not in MANIFEST["publish_exceptions"]:
+                self.assertNotIn(path, self.files, f"excluded HTML leaked into Pages artifact: {path}")
+            else:
+                self.assertIn(path, self.files, f"approved public HTML missing: {path}")
         self.assertEqual((self.out / "CNAME").read_bytes(), (ROOT / "CNAME").read_bytes())
         self.assertIn(".well-known/security.txt", self.files)
         self.assertIn(".nojekyll", self.files)
