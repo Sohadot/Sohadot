@@ -63,3 +63,17 @@ test('invalid prior exposure blocked',async()=>{
  const r=await worker.fetch(request('/complete',{...finish,prior_exposure:'not-verified'}),env);
  assert.equal(r.status,400);
 });
+
+test('single survey keeps all five original questions and the exposure metadata item',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const {resolve}=await import('node:path');
+ const html=readFileSync(resolve(import.meta.dirname,'../../hoax-ai-survey/index.html'),'utf8');
+ const js=readFileSync(resolve(import.meta.dirname,'../../hoax-ai-survey/survey.js'),'utf8');
+ for(const q of ['q1','q2','q3','q4'])assert.ok(html.includes('name="'+q+'"'));
+ assert.match(html,/id="q5"/);
+ assert.match(html,/name="prior_exposure"/);
+ assert.match(js,/sourceDetail/);
+ assert.match(js,/instrumentRevision!==2/);
+ assert.match(js,/instrument_revision:2/);
+ assert.match(js,/prior_exposure:pick/);
+});
