@@ -3,6 +3,7 @@
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -25,6 +26,10 @@ PRODUCTION = (
 
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _powershell_executable():
+    return shutil.which("powershell") or shutil.which("pwsh")
 
 
 def _envelope(record, partition="calibration"):
@@ -385,13 +390,14 @@ class ValuationVault(unittest.TestCase):
             self.assertEqual(summary["stored"], 0)
             self.assertFalse(list(root.rglob("CON.json")))
 
+    @unittest.skipUnless(_powershell_executable(), "PowerShell is not installed")
     def test_setup_script_rejects_a_git_root_before_creating_directories(self):
         with tempfile.TemporaryDirectory() as tmp:
             repo = Path(tmp) / "repo"
             repo.mkdir()
             subprocess.check_call(["git", "init"], cwd=repo, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             proc = subprocess.run(
-                ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+                [_powershell_executable(), "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
                  str(ROOT / "scripts" / "setup_valuation_vault.ps1"), "-VaultPath", str(repo)],
                 capture_output=True, text=True, encoding="utf-8", errors="replace",
             )
