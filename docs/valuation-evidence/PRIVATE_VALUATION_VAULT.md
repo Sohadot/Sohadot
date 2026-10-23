@@ -30,6 +30,8 @@ Public CI does not read `SOHADOT_PRIVATE_ROOT`. Tests use a temporary directory.
 
 Real-data import is disabled. A reference string inside a JSON record is not treated as proof of a licence. Import of a non-synthetic file is refused until licence binding is implemented and separately approved.
 
+`synthetic: true` is a self-declared dataset label. It is not cryptographic proof that the records are synthetic, and it does not authorise a real or licensed import. The prohibition is `REAL_IMPORT_PERMITTED`, which remains `False`.
+
 ## Rights and export
 
 Five permissions are separate. A grant for one does not imply the next.

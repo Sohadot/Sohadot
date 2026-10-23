@@ -239,6 +239,31 @@ def _audit(root: Path, event: dict) -> None:
         handle.write(line + "\n")
 
 
+def _link_count(path: Path) -> int:
+    try:
+        return path.stat().st_nlink
+    except OSError as exc:
+        raise SystemExit(f"Refusing unreadable vault path: {path}") from exc
+
+
+def _create_private_temp(temporary: Path) -> int:
+    """Create a new file at this path. Do not follow a link or share an outside inode."""
+    if temporary.exists() or temporary.is_symlink():
+        if _reparse_point(temporary):
+            raise SystemExit(f"Refusing reparse point: {temporary}")
+        if _link_count(temporary) > 1:
+            raise SystemExit(f"Refusing hard link: {temporary}")
+        temporary.unlink()
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    nofollow = getattr(os, "O_NOFOLLOW", 0)
+    if nofollow:
+        flags |= nofollow
+    try:
+        return os.open(temporary, flags, 0o600)
+    except OSError as exc:
+        raise SystemExit(f"Refusing unsafe temporary file: {temporary}") from exc
+
+
 def _write_json(root: Path, path: Path, payload, *, exclusive: bool = False) -> None:
     """Write JSON inside the vault. exclusive refuses to replace an existing file."""
     parent = path.parent
@@ -246,19 +271,29 @@ def _write_json(root: Path, path: Path, payload, *, exclusive: bool = False) -> 
     if path.exists() or path.is_symlink():
         if _reparse_point(path):
             raise SystemExit(f"Refusing reparse point: {path}")
+        if _link_count(path) > 1:
+            raise SystemExit(f"Refusing hard link: {path}")
         if exclusive:
             raise SystemExit(f"Refusing to overwrite {path.name}")
     parent.mkdir(parents=True, exist_ok=True)
     require_inside(root, parent)
     temporary = path.with_name(f".{path.name}.partial")
     data = json.dumps(payload, indent=2, ensure_ascii=True) + "\n"
+    fd = None
     try:
-        temporary.write_text(data, encoding="utf-8")
-        if exclusive and path.exists():
+        fd = _create_private_temp(temporary)
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
+            fd = None
+            handle.write(data)
+        if exclusive and (path.exists() or path.is_symlink()):
             raise SystemExit(f"Refusing to overwrite {path.name}")
+        if (path.exists() or path.is_symlink()) and (_reparse_point(path) or _link_count(path) > 1):
+            raise SystemExit(f"Refusing unsafe destination: {path}")
         os.replace(temporary, path)
     finally:
-        if temporary.exists():
+        if fd is not None:
+            os.close(fd)
+        if not _reparse_point(temporary) and temporary.exists() and _link_count(temporary) == 1:
             temporary.unlink()
 
 
@@ -398,13 +433,22 @@ def _can_assess(record: dict) -> bool:
     return True
 
 
-def _policy_block(record: dict, partition: str, protected: list[dict]) -> str | None:
+def _holdout_side(record: dict, partition: str | None = None) -> bool:
+    part = partition if partition is not None else (record.get("vault") or {}).get("partition")
+    return part == "holdout" or record.get("calibration_role") == "HOLDOUT_CANDIDATE"
+
+
+def _policy_block(record: dict, partition: str, counterparts: list[dict]) -> str | None:
+    """Refuse a same-domain pair that would put one side in calibration and the other in holdout.
+
+    The check runs for both import directions. A holdout partition is not exempt.
+    """
     if record.get("calibration_role") == "HOLDOUT_CANDIDATE" and partition != "holdout":
         return "HOLDOUT_CANDIDATE"
-    if partition == "holdout" or not protected:
+    if not counterparts:
         return None
     try:
-        related = sp.find_relationships(protected + [record])
+        related = sp.find_relationships([*counterparts, record])
     except Exception:
         return "HOLDOUT_OVERLAP"
     tid = record.get("transaction_id")
@@ -450,8 +494,15 @@ def export_decision(record: dict, partition: str) -> dict:
         "RIGHTS_INVALID", "REDISTRIBUTION_NOT_GRANTED", "UPSTREAM_RIGHTS_NOT_CONFIRMED",
         "SECRET_MATERIAL",
     ))
-    derived_ok = derived and not holdout and not secret
-    aggregate_ok = aggregate and not holdout and not secret and pipeline.get("state") == "ELIGIBLE" and "RIGHTS_INVALID" not in reasons
+    # Derived publication and aggregate disclosure stay separate from redistribution.
+    # An ineligible, blocked, rights-invalid, or upstream-uncleared record cannot
+    # receive either publication approval, even when that grant is present.
+    publication_blocked = (
+        holdout or secret or pipeline.get("state") != "ELIGIBLE"
+        or "RIGHTS_INVALID" in reasons or "UPSTREAM_RIGHTS_NOT_CONFIRMED" in reasons
+    )
+    derived_ok = derived and not publication_blocked
+    aggregate_ok = aggregate and not publication_blocked
     return {
         "transaction_id": _safe_id(record.get("transaction_id")),
         "partition": partition,
@@ -501,6 +552,8 @@ def import_batch(root: Path, path: Path, *, require_synthetic: bool = False) -> 
         raise SystemExit("Demo import refused: dataset is not marked synthetic.")
     if header["synthetic"] and "SYNTHETIC" not in header["dataset_label"].upper():
         raise SystemExit("Synthetic dataset_label must say SYNTHETIC.")
+    # synthetic is a self-declared file label, not proof the bytes are synthetic.
+    # REAL_IMPORT_PERMITTED stays False until licence-document binding is approved.
     if not header["synthetic"]:
         raise SystemExit(
             "Real-data import is disabled. A JSON reference is not a licence, "
@@ -548,18 +601,24 @@ def import_batch(root: Path, path: Path, *, require_synthetic: bool = False) -> 
         accepted_partitions.append(partition)
 
     existing = collect_stored(root) if root.exists() else []
-    protected = [
-        item for item in existing
-        if (item.get("vault") or {}).get("partition") == "holdout"
-        or item.get("calibration_role") == "HOLDOUT_CANDIDATE"
+    stored_holdout = [item for item in existing if _holdout_side(item)]
+    stored_other = [item for item in existing if not _holdout_side(item)]
+    incoming_holdout = [
+        record for record, partition in zip(accepted, accepted_partitions)
+        if _holdout_side(record, partition)
+    ]
+    incoming_other = [
+        record for record, partition in zip(accepted, accepted_partitions)
+        if not _holdout_side(record, partition)
     ]
     kept_records = []
     kept_partitions = []
     for record, partition in zip(accepted, accepted_partitions):
-        if partition == "holdout":
-            protected.append(record)
-    for record, partition in zip(accepted, accepted_partitions):
-        block = _policy_block(record, partition, protected)
+        if _holdout_side(record, partition):
+            counterparts = [*stored_other, *incoming_other]
+        else:
+            counterparts = [*stored_holdout, *incoming_holdout]
+        block = _policy_block(record, partition, counterparts)
         if block:
             _reject(root, rejected, None, record.get("transaction_id"), [block], block)
             continue
@@ -650,6 +709,11 @@ def _load_stage(root: Path, stage: str) -> list[dict]:
     require_inside(root, directory)
     records = []
     for path in sorted(directory.glob("*.json")):
+        if path.is_symlink() or _reparse_point(path):
+            raise SystemExit(f"Refusing reparse point: {path}")
+        require_inside(root, path)
+        if _link_count(path) > 1:
+            raise SystemExit(f"Refusing hard link: {path}")
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -715,7 +779,7 @@ def write_report(root: Path, stored: list[dict], rejected: list[dict], synthetic
         "# Local valuation quality report",
         "",
         "Private vault report. This file is not a publication.",
-        f"Synthetic dataset: {synthetic}. Calibration admission: closed. Holdout evaluation: unauthorized.",
+        f"Synthetic dataset: {synthetic}. The synthetic flag repeats a self-declared label; it is not cryptographic proof that the records are synthetic. Calibration admission: closed. Holdout evaluation: unauthorized.",
         "",
         f"- Imported records: {report['imported_records']}",
         f"- Reviewed transactions: {report['reviewed_transactions']}",
@@ -773,6 +837,37 @@ def write_report(root: Path, stored: list[dict], rejected: list[dict], synthetic
     return report
 
 
+def _publication_relationship_denials(stored: list[dict]) -> dict[str, list[str]]:
+    """Recalculate cross-record exclusions. Stored pipeline state is not enough."""
+    reasons: dict[str, list[str]] = {}
+
+    def add(tid, code: str) -> None:
+        if isinstance(tid, str) and tid:
+            bucket = reasons.setdefault(tid, [])
+            if code not in bucket:
+                bucket.append(code)
+
+    if not stored:
+        return reasons
+    try:
+        unresolved = sp.unresolved_duplicates(stored)
+        holdout = [item for item in stored if _holdout_side(item)]
+        other = [item for item in stored if not _holdout_side(item)]
+        related = sp.find_relationships(holdout + other) if holdout and other else []
+    except Exception:
+        for item in stored:
+            add(item.get("transaction_id"), "DUPLICATE_UNRESOLVED")
+        return reasons
+    for tid in unresolved:
+        add(tid, "DUPLICATE_UNRESOLVED")
+    holdout_ids = {item.get("transaction_id") for item in holdout}
+    for left, right, _kind in related:
+        if (left in holdout_ids) != (right in holdout_ids):
+            add(left, "HOLDOUT_OVERLAP")
+            add(right, "HOLDOUT_OVERLAP")
+    return reasons
+
+
 def export_approved(root: Path) -> dict:
     """Write a manifest and, only where rights allow, a copy under export/approved.
 
@@ -794,8 +889,17 @@ def export_approved(root: Path) -> dict:
     decisions = []
     approved_ids = []
     aggregate_ids = []
+    relationship_denials = _publication_relationship_denials(candidates)
     for tid, (partition, record) in sorted(chosen.items()):
         decision = export_decision(record, partition or "")
+        extra = relationship_denials.get(tid) or []
+        if extra:
+            decision["record_export"] = "DENY"
+            decision["derived_valuation_publication"] = "DENY"
+            decision["aggregate_disclosure"] = "DENY"
+            for code in extra:
+                if code not in decision["reasons"]:
+                    decision["reasons"].append(code)
         decisions.append(decision)
         _audit(root, {
             "event": "export",

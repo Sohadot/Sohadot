@@ -404,3 +404,223 @@ class ValuationVault(unittest.TestCase):
             self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
             self.assertFalse((repo / "sources").exists())
             self.assertFalse((repo / "raw-sales").exists())
+
+    def test_holdout_cannot_overlap_an_existing_calibration_record(self):
+        calibration = _one("SYN-TX-PUBLIC")
+        holdout = _one("SYN-TX-HOLDOUT")
+        holdout["domain"] = calibration["domain"]
+        holdout["transaction_id"] = "SYN-TX-HOLDOUT-REV"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "vault"
+            vault.import_batch(root, _write_batch(Path(tmp), "c.json", [_envelope(calibration)]))
+            original = _sha(root / "calibration" / "SYN-TX-PUBLIC.json")
+            self.assertEqual(vault.export_approved(root)["approved_record_ids"], ["SYN-TX-PUBLIC"])
+            summary = vault.import_batch(root, _write_batch(Path(tmp), "h.json", [
+                _envelope(holdout, "holdout"),
+            ]))
+            self.assertEqual(summary["stored"], 0)
+            self.assertFalse((root / "holdout" / "SYN-TX-HOLDOUT-REV.json").exists())
+            self.assertEqual(_sha(root / "calibration" / "SYN-TX-PUBLIC.json"), original)
+            manifest = vault.export_approved(root)
+            self.assertEqual(manifest["approved_record_ids"], ["SYN-TX-PUBLIC"])
+            report = json.loads((root / "evaluation" / "quality-report.json").read_text(encoding="utf-8"))
+            self.assertEqual(report["holdout_separation"]["overlap"], [])
+
+    def test_same_batch_cannot_store_a_calibration_holdout_overlap(self):
+        calibration = _one("SYN-TX-PUBLIC")
+        holdout = _one("SYN-TX-HOLDOUT")
+        holdout["domain"] = calibration["domain"]
+        holdout["transaction_id"] = "SYN-TX-HOLDOUT-REV"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "vault"
+            summary = vault.import_batch(root, _write_batch(Path(tmp), "both.json", [
+                _envelope(calibration),
+                _envelope(holdout, "holdout"),
+            ]))
+            self.assertEqual(summary["stored"], 0)
+            self.assertFalse((root / "calibration" / "SYN-TX-PUBLIC.json").exists())
+            self.assertFalse((root / "holdout" / "SYN-TX-HOLDOUT-REV.json").exists())
+            self.assertEqual(vault.export_approved(root)["approved_record_ids"], [])
+
+    def test_stored_holdout_overlap_is_not_exportable(self):
+        calibration = _one("SYN-TX-PUBLIC")
+        holdout = _one("SYN-TX-HOLDOUT")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "vault"
+            vault.import_batch(root, _write_batch(Path(tmp), "c.json", [_envelope(calibration)]))
+            vault.import_batch(root, _write_batch(Path(tmp), "h.json", [_envelope(holdout, "holdout")]))
+            self.assertEqual(vault.export_approved(root)["approved_record_ids"], ["SYN-TX-PUBLIC"])
+            planted = json.loads((root / "holdout" / "SYN-TX-HOLDOUT.json").read_text(encoding="utf-8"))
+            planted["domain"] = calibration["domain"]
+            (root / "holdout" / "SYN-TX-HOLDOUT.json").write_text(
+                json.dumps(planted, indent=2) + "\n", encoding="utf-8")
+            manifest = vault.export_approved(root)
+            by_id = {item["transaction_id"]: item for item in manifest["decisions"]}
+            self.assertEqual(manifest["approved_record_ids"], [])
+            self.assertEqual(manifest["aggregate_record_ids"], [])
+            self.assertFalse((root / "export" / "approved" / "SYN-TX-PUBLIC.json").exists())
+            for tid in ("SYN-TX-PUBLIC", "SYN-TX-HOLDOUT"):
+                self.assertEqual(by_id[tid]["record_export"], "DENY")
+                self.assertEqual(by_id[tid]["derived_valuation_publication"], "DENY")
+                self.assertIn("HOLDOUT_OVERLAP", by_id[tid]["reasons"])
+
+    def test_unresolved_duplicate_is_removed_from_export(self):
+        first = _one("SYN-TX-PUBLIC")
+        second = _one("SYN-TX-PUBLIC")
+        second["transaction_id"] = "SYN-TX-LATER"
+        second["pipeline"]["duplicate_of"] = None
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "vault"
+            vault.import_batch(root, _write_batch(Path(tmp), "one.json", [_envelope(first)]))
+            self.assertEqual(vault.export_approved(root)["approved_record_ids"], ["SYN-TX-PUBLIC"])
+            original = _sha(root / "calibration" / "SYN-TX-PUBLIC.json")
+            vault.import_batch(root, _write_batch(Path(tmp), "two.json", [_envelope(second)]))
+            self.assertEqual(_sha(root / "calibration" / "SYN-TX-PUBLIC.json"), original)
+            manifest = vault.export_approved(root)
+            by_id = {item["transaction_id"]: item for item in manifest["decisions"]}
+            self.assertEqual(manifest["approved_record_ids"], [])
+            self.assertEqual(manifest["aggregate_record_ids"], [])
+            self.assertFalse((root / "export" / "approved" / "SYN-TX-PUBLIC.json").exists())
+            for tid in ("SYN-TX-PUBLIC", "SYN-TX-LATER"):
+                self.assertEqual(by_id[tid]["record_export"], "DENY")
+                self.assertEqual(by_id[tid]["derived_valuation_publication"], "DENY")
+                self.assertEqual(by_id[tid]["aggregate_disclosure"], "DENY")
+                self.assertIn("DUPLICATE_UNRESOLVED", by_id[tid]["reasons"])
+            self.assertEqual(by_id["SYN-TX-PUBLIC"]["rights_status"]["redistribution"], "PERMITTED")
+            self.assertEqual(by_id["SYN-TX-PUBLIC"]["state"], "ELIGIBLE")
+
+    def test_publication_requires_an_eligible_record_without_merging_grants(self):
+        public = _one("SYN-TX-PUBLIC")
+        publication = public["pipeline"]["publication_authorization"]
+        derived_only = _one("SYN-TX-VALID")
+        derived_only["pipeline"]["publication_authorization"] = {
+            "serve_derived_valuations_publicly": publication["serve_derived_valuations_publicly"],
+        }
+        derived_only = sp.assess_all([derived_only])[0]
+        separated = vault.export_decision(derived_only, "calibration")
+        self.assertEqual(separated["state"], "ELIGIBLE")
+        self.assertEqual(separated["record_export"], "DENY")
+        self.assertEqual(separated["derived_valuation_publication"], "ALLOW")
+        self.assertEqual(separated["aggregate_disclosure"], "DENY")
+        self.assertIn("REDISTRIBUTION_NOT_GRANTED", separated["reasons"])
+
+        rejected = _one("SYN-TX-UNPAID")
+        rejected["pipeline"]["publication_authorization"] = publication
+        rejected["rights"]["redistribution"] = public["rights"]["redistribution"]
+        rejected = sp.assess_all([rejected])[0]
+        rejected_decision = vault.export_decision(rejected, "calibration")
+        self.assertEqual(rejected_decision["state"], "REJECTED")
+        self.assertEqual(rejected_decision["derived_valuation_publication"], "DENY")
+        self.assertEqual(rejected_decision["aggregate_disclosure"], "DENY")
+
+        blocked = _one("SYN-TX-NODATE")
+        blocked["pipeline"]["publication_authorization"] = publication
+        blocked = sp.assess_all([blocked])[0]
+        blocked_decision = vault.export_decision(blocked, "calibration")
+        self.assertNotEqual(blocked_decision["state"], "ELIGIBLE")
+        self.assertEqual(blocked_decision["derived_valuation_publication"], "DENY")
+
+        invalid = _one("SYN-TX-PUBLIC")
+        invalid["rights"]["storage"] = {"status": "PERMITTED"}
+        invalid["pipeline"]["state"] = "ELIGIBLE"
+        invalid_decision = vault.export_decision(invalid, "calibration")
+        self.assertIn("RIGHTS_INVALID", invalid_decision["reasons"])
+        self.assertEqual(invalid_decision["derived_valuation_publication"], "DENY")
+        self.assertEqual(invalid_decision["aggregate_disclosure"], "DENY")
+
+        upstream = _one("SYN-TX-SECONDARY")
+        upstream["pipeline"]["publication_authorization"] = publication
+        upstream["rights"]["redistribution"] = public["rights"]["redistribution"]
+        upstream["pipeline"]["state"] = "ELIGIBLE"
+        upstream_decision = vault.export_decision(upstream, "calibration")
+        self.assertIn("UPSTREAM_RIGHTS_NOT_CONFIRMED", upstream_decision["reasons"])
+        self.assertEqual(upstream_decision["derived_valuation_publication"], "DENY")
+        self.assertEqual(upstream_decision["aggregate_disclosure"], "DENY")
+        self.assertEqual(upstream_decision["record_export"], "DENY")
+
+    def test_linked_file_cannot_read_or_write_outside_the_vault(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            root = tmp / "vault"
+            outside = tmp / "outside"
+            outside.mkdir()
+            secret = outside / "secret.json"
+            original = '{"transaction_id":"OUTSIDE","notes":"OUTSIDE-SECRET-SENTENCE"}\n'
+            secret.write_text(original, encoding="utf-8")
+            vault.ensure_layout(root)
+            exercised = []
+
+            def remove_link(link: Path) -> None:
+                if link.is_symlink() or (link.exists() and vault._reparse_point(link) and link.is_dir()):
+                    if link.is_dir() and not link.is_symlink():
+                        os.rmdir(link)
+                        return
+                if link.exists() or link.is_symlink():
+                    link.unlink()
+
+            def assert_outside_unchanged() -> None:
+                self.assertEqual(secret.read_text(encoding="utf-8"), original)
+                self.assertEqual(sorted(path.name for path in outside.iterdir()), ["secret.json"])
+
+            read_link = root / "calibration" / "LEAK.json"
+            try:
+                os.link(secret, read_link)
+            except OSError:
+                pass
+            else:
+                exercised.append("hardlink-read")
+                with self.assertRaises(SystemExit):
+                    vault._load_stage(root, "calibration")
+                assert_outside_unchanged()
+                remove_link(read_link)
+
+            partial = root / "calibration" / ".PLANTED.json.partial"
+            try:
+                os.link(secret, partial)
+            except OSError:
+                pass
+            else:
+                exercised.append("hardlink-temp")
+                with self.assertRaises(SystemExit):
+                    vault._write_json(root, root / "calibration" / "PLANTED.json", {"transaction_id": "PLANTED"})
+                assert_outside_unchanged()
+                remove_link(partial)
+
+            try:
+                read_link.symlink_to(secret)
+            except OSError:
+                pass
+            else:
+                exercised.append("symlink-read")
+                with self.assertRaises(SystemExit):
+                    vault._load_stage(root, "calibration")
+                assert_outside_unchanged()
+                remove_link(read_link)
+                try:
+                    partial.symlink_to(secret)
+                except OSError:
+                    pass
+                else:
+                    exercised.append("symlink-temp")
+                    with self.assertRaises(SystemExit):
+                        vault._write_json(root, root / "calibration" / "PLANTED.json", {"transaction_id": "PLANTED"})
+                    assert_outside_unchanged()
+                    remove_link(partial)
+
+            if os.name == "nt":
+                proc = subprocess.run(
+                    ["cmd", "/c", "mklink", "/J", str(partial), str(outside)],
+                    capture_output=True, text=True,
+                )
+                if proc.returncode == 0:
+                    exercised.append("junction-temp")
+                    with self.assertRaises(SystemExit):
+                        vault._write_json(root, root / "calibration" / "PLANTED.json", {"transaction_id": "PLANTED"})
+                    assert_outside_unchanged()
+                    remove_link(partial)
+
+            self.assertIn("hardlink-temp", exercised)
+            if os.name != "nt":
+                self.assertIn("symlink-read", exercised)
+                self.assertIn("symlink-temp", exercised)
+            self.assertFalse(list(root.rglob("*.partial")))
