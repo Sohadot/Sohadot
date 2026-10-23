@@ -10,7 +10,7 @@ const finish={version:1,id:'5ed2ed7f-4619-4b3e-9af6-494214341bcb',secret:'c120c0
  q2:'evidence',q3:'sources',q4:'conditional',q5:'Useful'};
 const request=(path,data,from=origin)=>new Request(base+path,{method:'POST',headers:{Origin:from,'Content-Type':'application/json'},body:JSON.stringify(data)});
 test('unconfigured service fails closed',async()=>{assert.equal((await worker.fetch(new Request(base+'/status'),{})).status,503);});
-test('status advertises only the public key',async()=>{const r=await worker.fetch(new Request(base+'/status',{headers:{Origin:origin}}),env);const x=await r.json();assert.equal(r.status,200);assert.equal(x.siteKey,'public-test-key');assert.equal(JSON.stringify(x).includes('private-test-key'),false);});
+test('status advertises only the public key',async()=>{const r=await worker.fetch(new Request(base+'/status',{headers:{Origin:origin}}),env);const x=await r.json();assert.equal(r.status,200);assert.equal(x.siteKey,'public-test-key');assert.equal(x.instrumentRevision,2);assert.equal(JSON.stringify(x).includes('private-test-key'),false);});
 test('cross-origin write rejected',async()=>{assert.equal((await worker.fetch(request('/start',start,'https://bad.example'),env)).status,403);});
 test('preflight rejects untrusted origin',async()=>{
  const r=await worker.fetch(new Request(base+'/start',{method:'OPTIONS',headers:{Origin:'https://bad.example'}}),env);
@@ -32,4 +32,44 @@ test('invalid second-stage choice blocked',async()=>{assert.equal((await worker.
 test('no false success when row was not updated',async()=>{
  const absent={...env,DB:{prepare(){return {bind(){return {async run(){return {meta:{changes:0}};}};}};}}};
  assert.equal((await worker.fetch(request('/complete',finish),absent)).status,409);
+});
+
+test('Hoax-origin and X-origin source detail stored with legacy referral group',async()=>{
+ const old=globalThis.fetch;
+ globalThis.fetch=async()=>Response.json({success:true,hostname:'sohadot.com',action:'hoax_first_impression'});
+ const seen=[];
+ const custom={...env,DB:{prepare(sql){assert.match(sql,/source_detail,instrument_revision/);return {bind(...args){seen.push(args);return {async run(){return {meta:{changes:1}};}};}};}}};
+ try{
+  for(const source_detail of ['hoax','x','linkedin']){
+   const r=await worker.fetch(request('/start',{...start,referral:'other',source_detail,instrument_revision:2}),custom);
+   assert.equal(r.status,201);
+  }
+  assert.deepEqual(seen.map(args=>args[5]),['hoax','x','linkedin']);
+  assert.deepEqual(seen.map(args=>args[6]),[2,2,2]);
+ }finally{globalThis.fetch=old;}
+});
+test('referral cannot pretend to be discord when source detail indicates hoax',async()=>{
+ const r=await worker.fetch(request('/start',{...start,referral:'discord',source_detail:'hoax',instrument_revision:2}),env);
+ assert.equal(r.status,400);
+});
+test('prior exposure saved with completed feedback, separate from Q1',async()=>{
+ let vals;
+ const custom={...env,DB:{prepare(sql){assert.match(sql,/prior_exposure/);return {bind(...args){vals=args;return {async run(){return {meta:{changes:1}};}};}};}}};
+ const r=await worker.fetch(request('/complete',{...finish,prior_exposure:'yes'}),custom);
+ assert.equal(r.status,200);
+ assert.equal(vals[4],'yes');
+});
+test('invalid prior exposure blocked',async()=>{
+ const r=await worker.fetch(request('/complete',{...finish,prior_exposure:'not-verified'}),env);
+ assert.equal(r.status,400);
+});
+test('new question and same original five questions remain on the public page',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const {resolve}=await import('node:path');
+ const html=readFileSync(resolve(import.meta.dirname,'../../hoax-ai-survey/index.html'),'utf8');
+ const js=readFileSync(resolve(import.meta.dirname,'../../hoax-ai-survey/survey.js'),'utf8');
+ for(const q of ['q1','q2','q3','q4'])assert.ok(html.includes('name="'+q+'"'));
+ assert.match(html,/name="prior_exposure"/);
+ assert.match(js,/sourceDetail/);
+ assert.match(js,/instrumentRevision!==2/);
 });
