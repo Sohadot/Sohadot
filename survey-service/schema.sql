@@ -5,6 +5,9 @@ CREATE TABLE IF NOT EXISTS survey_responses (
  version INTEGER NOT NULL CHECK(version=1),
  q1 TEXT NOT NULL CHECK(q1 IN ('detector','guidance','news','other','unsure')),
  referral TEXT NOT NULL CHECK(referral IN ('rick','discord','direct','other')),
+ source_detail TEXT CHECK(source_detail IN ('rick','discord','direct','other','hoax','x','linkedin')),
+ instrument_revision INTEGER NOT NULL DEFAULT 1 CHECK(instrument_revision IN (1,2)),
+ prior_exposure TEXT CHECK(prior_exposure IN ('yes','no','unsure'))
  q2 TEXT CHECK(q2 IN ('evidence','detector','reporting','unsure')),
  q3 TEXT CHECK(q3 IN ('checklist','sources','synthetic','gaps')),
  q4 TEXT CHECK(q4 IN ('regular','occasional','conditional','unlikely')),
