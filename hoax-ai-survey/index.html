@@ -12,7 +12,7 @@
 <main>
 <p class="eyebrow">HOAX.AI / INDEPENDENT FEEDBACK</p>
 <h1 id="title">What would you expect from <em>Hoax.ai</em>?</h1>
-<p id="subtitle">Please answer based only on the name. Do not visit the site before recording your first impression.</p>
+<p id="subtitle">Answer based on the name alone. If you have already seen the website, recall what the name initially suggested — or choose “I'm not sure.”</p>
 <div class="steps"><span id="p1" class="on">01 — Name</span><span id="p2">02 — Explore</span><span id="p3">03 — Feedback</span></div>
 <div id="notice" role="status" aria-live="polite">Checking survey availability…</div>
 <form id="survey" hidden novalidate>
@@ -25,11 +25,11 @@
 <label><input name="q1" type="radio" value="unsure">I'm not sure</label></fieldset>
 <div id="challenge"></div>
 <button type="button" id="start" disabled>Save first impression →</button>
-<p class="note">Your answer is saved privately before you visit the main website and cannot be changed.</p>
+<p class="note">Your name-based answer is recorded before this survey invites you to explore the site. If you have visited before, we will record that separately.</p>
 </section>
 <section id="visit" class="panel" hidden>
 <h2>Explore the actual site.</h2>
-<p>Open Hoax.ai in a separate tab. Read the introduction and explore at least one reference or manual utility, then return here.</p>
+<p>Open Hoax.ai in a separate tab. Read the introduction and explore at least one reference or manual utility, then return here. You can revisit the site even if you have seen it before.</p>
 <a class="button secondary" href="https://hoax.ai/" target="_blank" rel="noopener noreferrer">Explore Hoax.ai ↗</a>
 <label class="confirm"><input id="visited" type="checkbox">I have explored the website.</label>
 <button type="button" id="next" disabled>Continue to feedback →</button>
@@ -54,6 +54,12 @@
 <label for="q5"><strong>5. What would make Hoax.ai more useful to you?</strong> (Optional)</label>
 <textarea id="q5" maxlength="400" placeholder="Your feedback (up to 400 characters)"></textarea>
 <p class="note">Please do not include personal or sensitive information.</p>
+<fieldset><legend>Before starting this survey, had you already visited the Hoax.ai website?</legend>
+<label><input name="prior_exposure" type="radio" value="yes">Yes</label>
+<label><input name="prior_exposure" type="radio" value="no">No</label>
+<label><input name="prior_exposure" type="radio" value="unsure">I'm not sure</label>
+</fieldset>
+<p class="note">This helps us distinguish name-first impressions from feedback provided after earlier website exposure.</p>
 <button type="submit" id="finish">Submit feedback →</button>
 </section></form>
 <section id="thanks" class="panel" hidden><h2>Thank you for your perspective.</h2><p>Your response has been saved.</p><a class="button secondary" href="https://hoax.ai/">Return to Hoax.ai ↗</a></section>
