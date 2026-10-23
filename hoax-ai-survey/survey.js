@@ -4,7 +4,9 @@ const $=id=>document.getElementById(id);
 const fields=['q2','q3','q4'];let api='',turnstileResponse='',secretSession=null,busy=false;
 const storage='hoax-survey-v1';
 const ref=new URLSearchParams(location.search).get('ref')||'direct';
-const referral=['rick','discord','direct','other'].includes(ref)?ref:'other';
+// Referral labels are self-reported URL routing hints, not proof of page exposure.
+const sourceDetail=['rick','discord','direct','other','hoax','x','linkedin'].includes(ref)?ref:'other';
+const referral=['rick','discord','direct','other'].includes(sourceDetail)?sourceDetail:'other';
 function say(msg,error=false){$('notice').hidden=false;$('notice').textContent=msg;$('notice').className=error?'error':'';}
 function clear(){ $('notice').hidden=true; }
 function pick(q){return document.querySelector('input[name="'+q+'"]:checked')?.value||'';}
@@ -35,7 +37,7 @@ async function init(){
  if(typeof settings.apiBase!=='string'||!/^https:\/\/[a-z0-9.-]+\.workers\.dev\/?$/i.test(settings.apiBase))throw new Error('Not configured');
  api=settings.apiBase.replace(/\/$/,'');
  const status=await call('/status');
- if(status.ready!==true||!status.siteKey)throw new Error('Not ready');
+ if(status.ready!==true||!status.siteKey||status.instrumentRevision!==2)throw new Error('New survey version is not ready');
  $('survey').hidden=false;secretSession=previous();
  if(secretSession){move(1);return;}
  move(0);
@@ -56,7 +58,7 @@ $('start').addEventListener('click',async()=>{
  if(busy||!turnstileResponse||!pick('q1'))return;
  busy=true;refresh();
  try{
- const saved=await call('/start',{version:1,q1:pick('q1'),referral,verification:turnstileResponse});
+ const saved=await call('/start',{version:1,instrument_revision:2,q1:pick('q1'),referral,source_detail:sourceDetail,verification:turnstileResponse});
  if(!saved.saved||!saved.id||!saved.secret)throw new Error('Could not confirm first answer');
  secretSession={id:saved.id,secret:saved.secret};
  sessionStorage.setItem(storage,JSON.stringify(secretSession));move(1);
@@ -69,9 +71,10 @@ $('next').addEventListener('click',()=>{if(secretSession&&$('visited').checked)m
 $('survey').addEventListener('submit',async(e)=>{
  e.preventDefault();if(busy||!secretSession)return;
  if(fields.some(q=>!pick(q))){say('Please answer questions 2, 3 and 4.',true);return;}
+ if(!pick('prior_exposure')){say('Please indicate whether you had visited Hoax.ai before starting the survey.',true);return;}
  busy=true;$('finish').disabled=true;
  try{
- const r=await call('/complete',{version:1,id:secretSession.id,secret:secretSession.secret,q2:pick('q2'),q3:pick('q3'),q4:pick('q4'),q5:$('q5').value.trim()});
+ const r=await call('/complete',{version:1,id:secretSession.id,secret:secretSession.secret,q2:pick('q2'),q3:pick('q3'),q4:pick('q4'),q5:$('q5').value.trim(),prior_exposure:pick('prior_exposure')});
  if(!r.saved)throw new Error('Saving could not be confirmed');
  sessionStorage.removeItem(storage);$('survey').hidden=true;$('thanks').hidden=false;
  $('title').textContent='Feedback received';$('subtitle').hidden=true;clear();
