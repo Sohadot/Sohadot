@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 _site/
+
+# Private valuation records must never be committed, even by accident.
+/valuation-vault/
