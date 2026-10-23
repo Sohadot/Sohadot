@@ -1,6 +1,32 @@
 # Hoax.ai public interpretation survey — operational release notes
 
-**Status: STAGED ONLY. No live submission endpoint exists yet. Do not distribute the survey URL.**
+**Status as of 2026-10-23:** The initial survey is live and a first end-to-end response was verified in private D1. Cohort metadata extension below is **proposed and not yet deployed**. Existing 2026-10-22 test responses must be retained but excluded from analysis.
+
+## Rollout for source and prior-exposure metadata (Revision 2)
+
+The public questionnaire remains one survey with the original five questions. The optional source referral label alone does **not** prove whether someone saw the site before completing Q1. Revision 2 adds an explicit self-report item at the end, after the original substantive questions. Name-only results from previously exposed visitors are retrospective and must **not** be compared as blind first impressions.
+
+**Required order, to preserve existing participants:**
+
+1. In Cloudflare D1 `hoax-interpretation-private`, run `survey-service/migrations/2026-10-23-source-exposure.sql` **once only** via Console. It uses additive columns and preserves existing records. Running it twice produces a duplicate-column error; never delete or recreate the table.
+2. Update the existing `sohadot-hoax-interpretation` Worker in its dashboard from this repository's `survey-service/worker.mjs`. Keep `DB`, `FRONTEND_ORIGIN`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET` unchanged. This revision accepts legacy clients and returns `instrumentRevision: 2` on `GET /status`.
+3. Confirm old survey `https://sohadot.com/hoax-ai-survey/` still works after the Worker update (legacy request payloads are supported), and inspect a private D1 record.
+4. Only then merge and publish the Sohadot front-end revision that sends `instrument_revision:2`, `source_detail`, and the self-reported `prior_exposure`. Test end-to-end using `?ref=hoax`, `?ref=rick`, `?ref=discord`, as well as direct entrance.
+5. Only after the new survey is confirmed should the separate HoaxAI homepage banner PR be merged, linking to `https://sohadot.com/hoax-ai-survey/?ref=hoax`. No changes to Hoax.ai's DNS, form, or data store.
+
+**Storage and interpretation:** `referral` retains its legacy CHECK constraint. For `hoax`, `x`, and `linkedin`, the Worker stores `referral='other'` and the more precise `source_detail`. Old responses remain `instrument_revision=1`; later ones are 2. `prior_exposure` is a voluntarily self-reported yes/no/unsure field for completed responses. `source_detail` is a URL hint and can be modified by visitors; neither proves actual exposure or verified visitor identity.
+
+**Private aggregate query example** (exclude known operational test IDs explicitly when reporting):
+
+```sql
+SELECT source_detail, prior_exposure, COUNT(*) AS completed
+FROM survey_responses
+WHERE completed_at IS NOT NULL
+GROUP BY source_detail, prior_exposure
+ORDER BY completed DESC;
+```
+
+
 
 The standalone page is planned at `https://sohadot.com/hoax-ai-survey/`. It does not alter `hoax.ai`, its DNS, or its GitHub repository. The page has `noindex` and is not linked from Sohadot navigation or sitemap.
 
