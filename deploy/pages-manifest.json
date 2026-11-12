@@ -54,10 +54,11 @@
     "CNAME",
     "_headers",
     "favicon.svg",
+    "hoax-ai-survey/config.json",
     "llms.txt",
     "robots.txt",
     "sitemap.xml",
-    "hoax-ai-survey/config.json"
+    "validation/aec-engineering/submission-config.json"
   ],
   "assets": [
     "assets/brand/sohadot-mark-header.png",
