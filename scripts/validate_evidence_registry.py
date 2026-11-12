@@ -32,6 +32,9 @@ Checks:
     outside the repository and pass hash, count, eligibility,
     source-concentration and overlap checks against the registry, the
     published seed and comps, repeat sales and normalised name variants;
+  - pages artifact: when pages_artifact_excludes_research_files is ENFORCED,
+    build the deployable Pages artifact and fail closed if research/** can
+    enter it or if the artifact cannot be inspected;
   - isolation: production code never references the research files, and no
     holdout manifest is committed anywhere in the repository;
   - determinism: files are in canonical form (--write rewrites them).
@@ -48,6 +51,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 from datetime import date
 from pathlib import Path
 
@@ -152,8 +156,11 @@ HOLDOUT_CONTROLS = {
     "evaluation_budget_and_logging": "NOT_IMPLEMENTED",
     "aggregate_only_access_for_developers": "NOT_IMPLEMENTED",
     "backtest_second_level_overlap_check": "NOT_IMPLEMENTED",
-    "pages_artifact_excludes_research_files": "NOT_IMPLEMENTED",
+    "pages_artifact_excludes_research_files": "ENFORCED",
 }
+
+RESEARCH_PAGES_EXCLUDE = "research/**"
+PAGES_MANIFEST_PATH = REPO_ROOT / "deploy" / "pages-manifest.json"
 
 def readiness_gate(controls=None):
     """FROZEN is permitted only when every protocol control is implemented.
@@ -555,7 +562,108 @@ def calibration_name_index(registry, seed, comps):
     return index
 
 
-def check_holdout(status, registry, errors, manifest=None, manifest_path=None, seed=None, comps=None, as_of=None):
+def verify_pages_artifact_excludes_research(
+    errors,
+    *,
+    pages_manifest=None,
+    files=None,
+    source_root=None,
+    out_dir=None,
+):
+    """Fail-closed: research files must not appear in the deployable Pages artifact.
+
+    Evidence is produced by building the artifact through
+    scripts/build_pages_artifact.py and inspecting the output. Declaring
+    research/** in the exclude list alone is not enough.
+    """
+    prefix = "holdout: pages_artifact_excludes_research_files"
+    try:
+        scripts_dir = str(Path(__file__).resolve().parent)
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        import build_pages_artifact as pages
+    except Exception as exc:
+        errors.append(f"{prefix}: cannot import Pages builder ({exc.__class__.__name__})")
+        return
+
+    cleanup = None
+    try:
+        if pages_manifest is None:
+            if not PAGES_MANIFEST_PATH.is_file():
+                errors.append(f"{prefix}: Pages manifest is missing at deploy/pages-manifest.json")
+                return
+            try:
+                pages_manifest = json.loads(PAGES_MANIFEST_PATH.read_text(encoding="utf-8"))
+            except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+                errors.append(f"{prefix}: Pages manifest cannot be read ({exc.__class__.__name__})")
+                return
+
+        exclude = pages_manifest.get("exclude")
+        if not isinstance(exclude, list) or RESEARCH_PAGES_EXCLUDE not in exclude:
+            errors.append(f"{prefix}: Pages manifest must exclude {RESEARCH_PAGES_EXCLUDE!r}")
+
+        for rel in pages_manifest.get("publish_exceptions") or {}:
+            if rel == "research" or rel.startswith("research/"):
+                errors.append(f"{prefix}: publish exception permits research file {rel}")
+
+        for rel in pages.publish_inventory(pages_manifest):
+            if rel == "research" or rel.startswith("research/"):
+                errors.append(f"{prefix}: publication inventory lists research file {rel}")
+
+        if out_dir is None:
+            cleanup = tempfile.TemporaryDirectory(prefix="sohadot-holdout-pages-")
+            out_path = Path(cleanup.name) / "_site"
+        else:
+            out_path = Path(out_dir)
+
+        fails, report = pages.build(
+            out_path,
+            manifest=pages_manifest,
+            files=files,
+            source_root=source_root,
+        )
+        if fails:
+            for item in fails:
+                errors.append(f"{prefix}: artifact build failed: {item}")
+            return
+        if not isinstance(report, dict) or "artifact_sha256" not in report:
+            errors.append(f"{prefix}: artifact report is incomplete")
+            return
+
+        artifact_files = sorted(
+            str(path.relative_to(out_path)).replace("\\", "/")
+            for path in out_path.rglob("*")
+            if path.is_file()
+        )
+        if not artifact_files:
+            errors.append(f"{prefix}: artifact could not be inspected (no published files)")
+            return
+        leaked = [
+            rel for rel in artifact_files
+            if rel == "research" or rel.startswith("research/")
+        ]
+        if leaked:
+            sample = ", ".join(leaked[:5])
+            more = "" if len(leaked) <= 5 else f" (+{len(leaked) - 5} more)"
+            errors.append(f"{prefix}: research files present in Pages artifact: {sample}{more}")
+    except Exception as exc:
+        errors.append(f"{prefix}: artifact could not be inspected ({exc.__class__.__name__}: {exc})")
+    finally:
+        if cleanup is not None:
+            cleanup.cleanup()
+
+
+def check_holdout(
+    status,
+    registry,
+    errors,
+    manifest=None,
+    manifest_path=None,
+    seed=None,
+    comps=None,
+    as_of=None,
+    verify_pages_artifact=None,
+):
     as_of = as_of or date.today()
     state = status.get("status")
     if state not in {"NOT_READY", "FROZEN"}:
@@ -568,6 +676,14 @@ def check_holdout(status, registry, errors, manifest=None, manifest_path=None, s
     gate = readiness_gate()
     if status.get("readiness_gate") != gate:
         errors.append(f"holdout: readiness_gate must be {gate!r} (computed from the implemented controls)")
+
+    if HOLDOUT_CONTROLS.get("pages_artifact_excludes_research_files") == "ENFORCED":
+        if verify_pages_artifact is False:
+            pass
+        elif callable(verify_pages_artifact):
+            verify_pages_artifact(errors)
+        else:
+            verify_pages_artifact_excludes_research(errors)
 
     if state == "NOT_READY":
         for key in ("frozen_at", "manifest_sha256", "record_count", "storage_location"):
