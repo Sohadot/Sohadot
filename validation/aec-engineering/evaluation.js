@@ -155,7 +155,7 @@
     exportStatus.textContent="Opening a draft only. You choose whether to send it.";
     window.location.href="mailto:agent@sohadot.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   });
-  document.getElementById("reset").addEventListener("click",()=>{
+  document.getElementById("clear-evaluation").addEventListener("click",()=>{
     if(!window.confirm("Clear every answer from this tab?"))return;
     form.reset();issueVisibility();exportStatus.textContent="";render(0);
   });
