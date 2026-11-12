@@ -133,7 +133,7 @@ class EngineeringEvaluationBrowserTest(unittest.TestCase):
             self.assertIn("formal_acceptance_rc12", csvtext)
 
         self.page.once("dialog", lambda dialog: dialog.accept())
-        self.page.locator("#reset").click()
+        self.page.locator("#clear-evaluation").click()
         self.assertTrue(self.page.locator('.stage[data-stage="0"]').is_visible())
         self.assertEqual(self.page.locator('input[name="role"]:checked').count(), 0)
         self.assertEqual(self.errors, [])
