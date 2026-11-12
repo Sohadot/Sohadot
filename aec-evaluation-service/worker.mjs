@@ -152,14 +152,14 @@ export default{
    return fail("Not found",404);
   }
   if(path==="/v1/status"&&req.method==="GET"){
-   const ready=!!(env.DB&&env.TURNSTILE_SECRET&&env.TURNSTILE_SITE_KEY&&env.FRONTEND_ORIGIN===fixedOrigin);
+   const ready=!!(env.DB&&env.TURNSTILE_SECRET&&env.TURNSTILE_SITE_KEY&&env.FRONTEND_ORIGIN===fixedOrigin&&env.ACCESS_TEAM_DOMAIN&&/^[a-z0-9-]+\.cloudflareaccess\.com$/.test(env.ACCESS_TEAM_DOMAIN)&&env.ACCESS_AUD);
    return json({ready,site_key:ready?env.TURNSTILE_SITE_KEY:null,action:"aec_engineering_eval"},ready?200:503,origin);
   }
   if(path!=="/v1/evaluations")return fail("Not found",404,origin);
   if(req.method==="OPTIONS")return origin===fixedOrigin?new Response(null,{status:204,headers:{...noCache,...cors(origin)}}):fail("Forbidden origin",403);
   if(req.method!=="POST")return fail("Method not allowed",405,origin);
   if(origin!==fixedOrigin)return fail("Forbidden origin",403);
-  if(!env.DB||!env.TURNSTILE_SECRET||!env.TURNSTILE_SITE_KEY||env.FRONTEND_ORIGIN!==fixedOrigin)return fail("Not configured",503,origin);
+  if(!env.DB||!env.TURNSTILE_SECRET||!env.TURNSTILE_SITE_KEY||env.FRONTEND_ORIGIN!==fixedOrigin||!(env.ACCESS_TEAM_DOMAIN&&/^[a-z0-9-]+\.cloudflareaccess\.com$/.test(env.ACCESS_TEAM_DOMAIN)&&env.ACCESS_AUD))return fail("Not configured",503,origin);
   let body;try{body=await parseRequest(req);}catch(_){return fail("Invalid request",400,origin);}
   if(!requireKeys(body,["submission_id","consent","consent_version","turnstile_token","report"])||
    !uuid.test(body.submission_id||"")||body.consent!==true||body.consent_version!=="2026-11-12")return fail("Consent or receipt identifier missing",400,origin);
