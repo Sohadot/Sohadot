@@ -184,7 +184,7 @@ test("cryptographically verified Cloudflare Access token unlocks private summary
   assert.equal(r.status,200);
   const html=await r.text();
   assert.match(html,/private results/);
-  assert.match(html,/nonce-/);
+  assert.match(html,/<script nonce="[a-z0-9]+">/);
   assert.doesNotMatch(html,/private-test-secret/);
   r=await worker.fetch(new Request(host+"/admin/api/overview",{headers}),e);
   assert.equal(r.status,200);
