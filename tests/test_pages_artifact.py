@@ -103,7 +103,7 @@ def small_site(tmp, extra=None):
     }.items():
         (src / rel).parent.mkdir(parents=True, exist_ok=True)
         (src / rel).write_text(text)
-    files = sorted(str(p.relative_to(src)) for p in src.rglob("*") if p.is_file())
+    files = sorted(p.relative_to(src).as_posix() for p in src.rglob("*") if p.is_file())
     return src, files
 
 

@@ -396,7 +396,11 @@ class HoldoutFailClosed(unittest.TestCase):
 
     def run_check(self, status, manifest=None, path="/tmp/outside-repo/manifest.json"):
         errors = []
-        reg.check_holdout(status, self.registry, errors, manifest, path, self.seed, self.comps, AS_OF)
+        # Focused holdout-schema tests skip the Pages build; PagesArtifactHoldoutControl covers it.
+        reg.check_holdout(
+            status, self.registry, errors, manifest, path, self.seed, self.comps, AS_OF,
+            verify_pages_artifact=False,
+        )
         return joined(errors)
 
     def all_enforced(self):
@@ -508,6 +512,140 @@ class HoldoutFailClosed(unittest.TestCase):
             self.assertIn("holdout-manifest-2026.json", text)
             self.assertIn("contains a holdout manifest", text)
             self.assertIn("records.json must not be committed", text)
+
+
+class PagesArtifactHoldoutControl(unittest.TestCase):
+    """Fail-closed Pages exclusion for research/**. Fixtures are synthetic only."""
+
+    def setUp(self):
+        self.assertEqual(reg.HOLDOUT_CONTROLS["pages_artifact_excludes_research_files"], "ENFORCED")
+        self.pages = load_module("build_pages_artifact")
+
+    def fixture_manifest(self, **changes):
+        manifest = {
+            "version": 2,
+            "pages": ["index.html"],
+            "site_files": ["sitemap.xml"],
+            "assets": [],
+            "javascript": [],
+            "runtime_data": ["data/app.json"],
+            "publish_exceptions": {},
+            "exclude": ["scripts/**", "research/**"],
+            "required": ["index.html"],
+        }
+        manifest.update(changes)
+        return manifest
+
+    def fixture_site(self, tmp, extra=None):
+        src = Path(tmp) / "src"
+        files = {
+            "index.html": '<a href="/sitemap.xml">s</a>',
+            "sitemap.xml": "<urlset><url><loc>https://sohadot.com/</loc></url></urlset>",
+            "data/app.json": "{}",
+            "scripts/tool.py": "print(1)",
+            "research/valuation-evidence/secret.json": '{"private":true}',
+        }
+        files.update(extra or {})
+        for rel, text in files.items():
+            path = src / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        tracked = sorted(p.relative_to(src).as_posix() for p in src.rglob("*") if p.is_file())
+        return src, tracked
+
+    def probe(self, tmp, manifest, extra=None, out_name="out"):
+        src, tracked = self.fixture_site(tmp, extra)
+        errors = []
+        reg.verify_pages_artifact_excludes_research(
+            errors,
+            pages_manifest=manifest,
+            files=tracked,
+            source_root=src,
+            out_dir=Path(tmp) / out_name,
+        )
+        return joined(errors), Path(tmp) / out_name
+
+    def test_valid_artifact_without_research_passes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            text, out = self.probe(tmp, self.fixture_manifest())
+            self.assertEqual(text, "")
+            self.assertTrue((out / "index.html").is_file())
+            self.assertFalse((out / "research").exists())
+
+    def test_artifact_containing_research_file_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            # Drop research/** exclusion and deliberately publish a research path.
+            manifest = self.fixture_manifest(
+                exclude=["scripts/**"],
+                site_files=["sitemap.xml", "research/valuation-evidence/secret.json"],
+            )
+            text, out = self.probe(tmp, manifest)
+            self.assertIn("Pages manifest must exclude 'research/**'", text)
+            self.assertIn("publication inventory lists research file", text)
+            self.assertIn("research files present in Pages artifact", text)
+            self.assertTrue((out / "research" / "valuation-evidence" / "secret.json").is_file())
+
+    def test_manifest_change_that_permits_research_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            text, _ = self.probe(tmp, self.fixture_manifest(exclude=["scripts/**", "docs/**"]))
+            self.assertIn("Pages manifest must exclude 'research/**'", text)
+
+            exception_manifest = self.fixture_manifest(
+                publish_exceptions={"research/valuation-evidence/secret.json": "test"},
+            )
+            text, out = self.probe(tmp, exception_manifest, out_name="exc")
+            self.assertIn("publish exception permits research file", text)
+            # The Pages builder may still copy an exception; the holdout control must fail closed.
+            self.assertIn("pages_artifact_excludes_research_files", text)
+
+    def test_missing_or_unverifiable_artifact_fails_closed(self):
+        errors = []
+        reg.verify_pages_artifact_excludes_research(
+            errors,
+            pages_manifest=self.fixture_manifest(),
+            files=["index.html"],
+            source_root=Path(tempfile.gettempdir()) / "sohadot-missing-pages-source-does-not-exist",
+        )
+        text = joined(errors)
+        self.assertIn("artifact could not be inspected", text)
+
+        broken = []
+        reg.verify_pages_artifact_excludes_research(
+            broken,
+            pages_manifest={"exclude": ["research/**"], "required": ["index.html"]},
+            files=[],
+            source_root=Path(tempfile.gettempdir()),
+        )
+        self.assertTrue(any("pages_artifact_excludes_research_files" in item for item in broken))
+
+    def test_committed_repository_artifact_excludes_research(self):
+        errors = []
+        reg.verify_pages_artifact_excludes_research(errors)
+        self.assertEqual(errors, [])
+        status = json.loads(reg.HOLDOUT_STATUS_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(status["status"], "NOT_READY")
+        self.assertFalse(status["readiness_gate"]["frozen_permitted"])
+        self.assertEqual(status["controls"]["pages_artifact_excludes_research_files"], "ENFORCED")
+        self.assertNotIn("pages_artifact_excludes_research_files", status["readiness_gate"]["blocking_controls"])
+        for control in (
+            "stratum_minimums",
+            "chronological_split",
+            "independent_naming_class_labels",
+            "evaluation_budget_and_logging",
+            "aggregate_only_access_for_developers",
+            "backtest_second_level_overlap_check",
+        ):
+            self.assertEqual(status["controls"][control], "NOT_IMPLEMENTED")
+            self.assertIn(control, status["readiness_gate"]["blocking_controls"])
+
+    def test_holdout_check_runs_pages_control_when_enabled(self):
+        status = json.loads(reg.HOLDOUT_STATUS_PATH.read_text(encoding="utf-8"))
+        registry = json.loads(reg.REGISTRY_PATH.read_text(encoding="utf-8"))
+        seed = json.loads(reg.SEED_PATH.read_text(encoding="utf-8"))
+        comps = json.loads(reg.COMPS_PATH.read_text(encoding="utf-8"))
+        errors = []
+        reg.check_holdout(status, registry, errors, seed=seed, comps=comps, as_of=AS_OF)
+        self.assertEqual(errors, [])
 
 
 class PublishedResearchFiles(unittest.TestCase):
