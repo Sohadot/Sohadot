@@ -1,0 +1,52 @@
+name: AEC Evaluation Private Collection — Unit and Security
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  service:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify Worker syntax
+        run: node --check aec-evaluation-service/worker.mjs
+
+      - name: Run isolated Worker security and integration tests
+        run: node --test aec-evaluation-service/test/*.test.mjs
+
+      - name: Verify private D1 schema with SQLite engine
+        run: |
+          python3 - <<'PY'
+          import sqlite3
+          from pathlib import Path
+          sql=Path('aec-evaluation-service/schema.sql').read_text()
+          db=sqlite3.connect(':memory:')
+          db.executescript(sql)
+          db.execute("INSERT INTO aec_engineering_evaluations(id,consent_version,payload) VALUES(?,?,?)",
+                     ("27b2ea5b-4e7f-4f15-9cda-08cdfcf52ad9","2026-11-12",'{"protocol":"AEC-UAT-ENG-001"}'))
+          assert db.execute("SELECT count(*) FROM aec_engineering_evaluations").fetchone()[0] == 1
+          db.execute("DELETE FROM aec_engineering_evaluations WHERE id=?",("27b2ea5b-4e7f-4f15-9cda-08cdfcf52ad9",))
+          assert db.execute("SELECT count(*) FROM aec_engineering_evaluations").fetchone()[0] == 0
+          print("PASS: isolated D1-compatible schema, write and deletion")
+          PY
+
+      - name: Confirm public collection remains disabled until operator activation
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('validation/aec-engineering/submission-config.json').read_text())
+          assert c['enabled'] is False and c['apiBase'] is None
+          print('PASS: fail-closed pilot configuration')
+          PY
