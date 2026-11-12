@@ -153,6 +153,85 @@ class EngineeringEvaluationBrowserTest(unittest.TestCase):
         self.assertEqual(self.page.evaluate("sessionStorage.length"), 0)
         self.assertEqual(self.context.cookies(), [])
 
+    def test_explicit_consent_secure_receipt_with_mocked_backend(self):
+        # Synthetic integration test: not an actual Cloudflare deployment or reviewer response.
+        from urllib.parse import urlsplit
+        submitted = []
+        allowed_origin = f"http://127.0.0.1:{self.server.server_port}"
+        cors = {
+            "Access-Control-Allow-Origin": allowed_origin,
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application/json",
+            "Cache-Control": "no-store",
+        }
+
+        self.page.route("**/validation/aec-engineering/submission-config.json",
+            lambda route: route.fulfill(status=200, content_type="application/json",
+                body=json.dumps({"version": 2, "enabled": True,
+                                 "apiBase": "https://aec-evaluation.sohadot.com"})))
+
+        def service(route):
+            req = route.request
+            if req.method == "OPTIONS":
+                route.fulfill(status=204, headers=cors)
+                return
+            if req.url.endswith("/v1/status"):
+                route.fulfill(status=200, headers=cors,
+                    body=json.dumps({"ready": True,
+                                     "site_key": "0x4AAAAAAABBBBBBCCCCCCDDDDEE",
+                                     "action": "aec_engineering_eval"}))
+                return
+            if req.url.endswith("/v1/evaluations") and req.method == "POST":
+                payload = req.post_data_json
+                submitted.append(payload)
+                route.fulfill(status=201, headers=cors,
+                    body=json.dumps({"saved": True, "receipt": payload["submission_id"]}))
+                return
+            route.fulfill(status=404, headers=cors, body='{"error":"missing"}')
+
+        self.page.route("https://aec-evaluation.sohadot.com/**", service)
+        mock_turnstile = (
+            'window.turnstile={render:function(host,opts){'
+            'setTimeout(function(){opts.callback("synthetic-challenge-token")},20);'
+            'return "mock-widget"},reset:function(){},remove:function(){}};'
+        )
+        self.page.route("https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit",
+                        lambda route: route.fulfill(status=200,
+                            content_type="application/javascript", body=mock_turnstile))
+
+        self.choose("role", "electrical_engineering")
+        self.choose("prior_exposure", "no")
+        self.next(0)
+        self.choose("power_completion", "completed")
+        self.next(1)
+        self.choose("acceptance_completion", "partial")
+        self.choose("acceptance_distinction", "clear")
+        self.next(2)
+        self.choose("access_completion", "completed")
+        self.choose("access_boundary", "yes")
+        self.next(3)
+        self.choose("issue_flag", "no")
+        self.choose("professional_intent", "with_improvements")
+        self.next(4)
+
+        self.page.locator("#submit-review").click()
+        self.assertIn("Please review and accept", self.page.locator("#submission-status").inner_text())
+        self.assertEqual(submitted, [])
+        self.page.locator("#submission-consent").check()
+        self.page.locator("#submit-review").click()
+        self.page.wait_for_function("() => document.getElementById('submission-status').textContent.includes('Evaluation received and stored privately')")
+        self.assertEqual(len(submitted), 1)
+        row = submitted[0]
+        self.assertTrue(row["consent"])
+        self.assertEqual(row["consent_version"], "2026-11-12")
+        self.assertEqual(row["report"]["protocol"], "AEC-UAT-ENG-001")
+        self.assertEqual(row["report"]["tasks"]["formal_acceptance_rc12"]["completion"], "partial")
+        self.assertEqual(row["turnstile_token"], "synthetic-challenge-token")
+        self.assertIn(row["submission_id"], self.page.locator("#submission-status").inner_text())
+        self.assertTrue(self.page.locator("#submit-review").is_disabled())
+        self.assertEqual(self.errors, [])
+
     def test_mobile_layout_and_fresh_reload(self):
         self.page.set_viewport_size({"width": 390, "height": 844})
         self.choose("role", "other_or_undisclosed")
