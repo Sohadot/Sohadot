@@ -23,7 +23,7 @@ function cors(origin){return origin===fixedOrigin?{"Access-Control-Allow-Origin"
 function json(x,status=200,origin){return new Response(JSON.stringify(x),{status,headers:{"Content-Type":"application/json; charset=utf-8",...noCache,...cors(origin)}});}
 function fail(error,status=400,origin){return json({error},status,origin);}
 function choice(v,options,optional=false){return (optional&&v===null)||typeof v==="string"&&options.includes(v);}
-function shortText(v,max){return typeof v==="string"&&v.length<=max&&!/[\u0000-\u001f\u007f]/.test(v);}
+function shortText(v,max){return typeof v==="string"&&v.length<=max&&!/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(v);}
 function requireKeys(obj,keys){return !!obj&&!Array.isArray(obj)&&typeof obj==="object"&&Object.keys(obj).every(k=>keys.includes(k))&&keys.every(k=>Object.hasOwn(obj,k));}
 function normalize(raw){
  if(!requireKeys(raw,["format","protocol","format_version","generated_at_utc","context","tasks","evaluation","boundaries"]))throw Error("schema");
@@ -93,7 +93,7 @@ async function authorized(req,env){
   if(header.alg!=="RS256"||!header.kid||claims.iss!=="https://"+host||
      !(Array.isArray(claims.aud)?claims.aud.includes(aud):claims.aud===aud))return false;
   const now=Math.floor(Date.now()/1000);
-  if(!Number.isFinite(claims.exp)||claims.exp<=now||claims.exp>now+86400||
+  if(!Number.isFinite(claims.exp)||claims.exp<=now||
      claims.nbf!==undefined&&(!Number.isFinite(claims.nbf)||claims.nbf>now+60))return false;
   const res=await fetch("https://"+host+"/cdn-cgi/access/certs",{headers:{"Accept":"application/json"}});
   if(!res.ok)return false;
