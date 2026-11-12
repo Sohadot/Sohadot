@@ -99,7 +99,7 @@ class EngineeringEvaluationTests(unittest.TestCase):
         self.assertIsNone(cfg["apiBase"])
         self.assertIn("mailto:agent@sohadot.com", self.js)
         self.assertIn('getElementById("compose-email").addEventListener("click"', self.js)
-        self.assertIn('getElementById("submit-review").addEventListener("click"', self.js)
+        self.assertIn('submitButton.addEventListener("click"', self.js)
         self.assertIn('if(!consent.checked)', self.js)
         self.assertIn("Nothing was sent", self.js)
         self.assertIn("window.confirm", self.js)
