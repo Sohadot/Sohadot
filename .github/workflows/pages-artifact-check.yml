@@ -25,3 +25,11 @@ jobs:
 
       - name: Engineering evaluation JavaScript syntax
         run: node --check validation/aec-engineering/evaluation.js
+
+      - name: Install Chromium acceptance test runtime
+        run: |
+          python3 -m pip install playwright==1.56.0
+          python3 -m playwright install --with-deps chromium
+
+      - name: Engineering evaluation real-browser acceptance
+        run: python3 -m unittest tests.test_engineering_evaluation_browser -v
