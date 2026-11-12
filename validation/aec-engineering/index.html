@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; connect-src 'self' https://aec-evaluation.sohadot.com; frame-src https://challenges.cloudflare.com; object-src 'none'">
 <meta name="theme-color" content="#112b55">
 <title>Independent Engineering Evaluation | Sohadot</title>
 <meta name="description" content="Voluntary engineer-led evaluation of AIElectronicChips.com documentary preflight: real tasks, technical feedback and an exportable report.">
@@ -202,7 +202,7 @@
         <section class="stage" data-stage="5" aria-labelledby="stage-5-title">
           <p class="stage-index">06 / YOUR EVALUATION</p>
           <h2 id="stage-5-title" tabindex="-1">Review and share only if you choose</h2>
-          <p>The summary below is based solely on your self-reported selections. No submission has occurred, and Sohadot cannot see your answers unless you deliberately send them.</p>
+          <p>The summary below is based solely on your self-reported selections. No submission has occurred. Your answers remain in this tab unless you explicitly choose private submission or send an email.</p>
           <div class="report-card"><pre id="report-preview" aria-label="Evaluation summary"></pre></div>
           <p class="small">We recommend downloading the full JSON report. If you choose the email option, attach that file to the message yourself. Opening an email draft does not send it.</p>
           <div class="export-actions">
@@ -212,10 +212,21 @@
             <button type="button" class="secondary" id="compose-email">Compose email (optional)</button>
           </div>
           <p id="export-status" role="status" aria-live="polite" class="small"></p>
-          <div class="actions"><button class="secondary back" type="button">Back to edit answers</button><button class="linkish" type="button" id="clear-evaluation">Clear all answers</button></div>
+          <section class="secure-collection" aria-labelledby="secure-title">
+            <p class="stage-index">OPTIONAL / PRIVATE SUBMISSION</p>
+            <h3 id="secure-title">Submit your evaluation securely</h3>
+            <p>With your explicit consent, Sohadot can store this self-reported evaluation in a separate private database for up to <strong>90 days</strong> and use it only to identify tool-quality issues and aggregate pilot observations. Authorized Sohadot operators can review individual feedback; responses are never published automatically.</p>
+            <p class="small">No names, accounts, documents, or real facility identifiers are requested. Do not include confidential material in free-text answers. Cloudflare will process verification and connection metadata when you choose to submit. You can still download or email your answers instead.</p>
+            <label class="consent-label"><input id="submission-consent" type="checkbox"> <span>I voluntarily agree to submit my evaluation for the limited purpose and retention period described above. I understand this is not an engineering certification.</span></label>
+            <div id="turnstile-slot" class="challenge-slot" aria-label="Verification challenge" aria-live="polite"></div>
+            <button type="button" class="primary" id="submit-review">Submit evaluation securely</button>
+            <p id="submission-status" class="submission-status" role="status" aria-live="polite">Secure submission is available only after the collection service has been configured and verified. Local download and optional email remain available.</p>
+            <p class="small">If you request deletion of a previously submitted response, contact <a href="mailto:agent@sohadot.com">agent@sohadot.com</a> and provide the receipt code. Clearing this form does not delete any stored submission.</p>
+          </section>
+          <div class="actions"><button class="secondary back" type="button">Back to edit answers</button><button class="linkish" type="button" id="clear-evaluation">Clear answers in this tab</button></div>
         </section>
       </form>
-      <div class="footnote">Sohadot operates this voluntary evaluation of a tool it develops; it is not independent third-party certification. The three situations are hypothetical. This page does not use analytics, trackers, uploads or remote form submission. AIElectronicChips.com is a separate website. <a href="/privacy.html">Sohadot privacy information</a>.</div>
+      <div class="footnote">Sohadot operates this voluntary evaluation of a tool it develops; it is not independent third-party certification. The three situations are hypothetical. This page does not use analytics, trackers or uploads; remote submission is strictly opt-in and inactive until configured. AIElectronicChips.com is a separate website. <a href="/privacy.html">Sohadot privacy information</a>.</div>
     </div>
   </div>
 </main>

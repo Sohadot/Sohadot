@@ -1,0 +1,21 @@
+# Copy locally to wrangler.toml and insert your dedicated private D1 database ID.
+# Do not commit deployed configuration, account identifiers or secrets.
+name = "sohadot-aec-engineering-evaluation"
+main = "worker.mjs"
+compatibility_date = "2026-11-12"
+workers_dev = false
+routes = [{ pattern = "aec-evaluation.sohadot.com", custom_domain = true }]
+
+[vars]
+FRONTEND_ORIGIN = "https://sohadot.com"
+TURNSTILE_SITE_KEY = "REPLACE_WITH_PUBLIC_TURNSTILE_SITE_KEY"
+ACCESS_TEAM_DOMAIN = "REPLACE_WITH_TEAM.cloudflareaccess.com"
+ACCESS_AUD = "REPLACE_WITH_ACCESS_APP_AUDIENCE_TAG"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sohadot-aec-engineering-private"
+database_id = "REPLACE_WITH_PRIVATE_D1_DATABASE_UUID"
+
+[triggers]
+crons = ["10 2 * * *"]

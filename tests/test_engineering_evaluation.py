@@ -54,7 +54,8 @@ class EngineeringEvaluationTests(unittest.TestCase):
     def test_unindexed_standalone_page_and_protocol(self):
         self.assertIn('name="robots" content="noindex,nofollow,noarchive,noimageindex"', self.html)
         self.assertIn('name="referrer" content="no-referrer"', self.html)
-        self.assertIn("connect-src 'none'", self.html)
+        self.assertIn("connect-src 'self' https://aec-evaluation.sohadot.com", self.html)
+        self.assertIn("frame-src https://challenges.cloudflare.com", self.html)
         self.assertIn("script-src 'self'", self.html)
         self.assertIn("form-action 'none'", self.html)
         self.assertIn(PROTOCOL, self.html)
@@ -83,15 +84,26 @@ class EngineeringEvaluationTests(unittest.TestCase):
             self.assertEqual(a.get("target"), "_blank")
             self.assertIn("noreferrer", a.get("rel", ""))
 
-    def test_no_tracking_backend_or_data_retention(self):
-        for forbidden in ("fetch(", "XMLHttpRequest", "sendBeacon", "WebSocket(",
+    def test_opt_in_collection_only_and_no_surveillance(self):
+        for forbidden in ("XMLHttpRequest", "sendBeacon", "WebSocket(",
                           "localStorage", "sessionStorage", "indexedDB", "document.cookie",
                           "innerHTML", "eval(", "navigator.geolocation"):
             self.assertNotIn(forbidden, self.js)
+        # Only the three explicitly scoped requests may be made after opt-in.
+        self.assertEqual(self.js.count("fetch("), 3)
+        for permitted in ('fetch("./submission-config.json"', 'fetch(apiOrigin+"/v1/status"',
+                          'fetch(apiOrigin+"/v1/evaluations"'):
+            self.assertIn(permitted, self.js)
+        cfg = json.loads((ROOT / "validation/aec-engineering/submission-config.json").read_text())
+        self.assertEqual(cfg["enabled"], False)
+        self.assertIsNone(cfg["apiBase"])
         self.assertIn("mailto:agent@sohadot.com", self.js)
-        self.assertIn("document.getElementById(\"compose-email\").addEventListener(\"click\"", self.js)
+        self.assertIn('getElementById("compose-email").addEventListener("click"', self.js)
+        self.assertIn('submitButton.addEventListener("click"', self.js)
+        self.assertIn('if(!consent.checked)', self.js)
+        self.assertIn("Nothing was sent", self.js)
         self.assertIn("window.confirm", self.js)
-        self.assertIn("Nothing was submitted", self.js)
+        self.assertIn("Clearing this form does not delete any stored submission", self.html)
 
     def test_no_certification_or_report_score(self):
         for phrase in ("respondent_self_reported:true", "evidence_state_established:null",
@@ -104,7 +116,7 @@ class EngineeringEvaluationTests(unittest.TestCase):
         self.assertIn('selected("issue_flag")==="yes"', self.js)
 
     def test_export_actions_and_csv_formula_safety(self):
-        for field in ("export-json", "export-csv", "copy-summary", "compose-email"):
+        for field in ("export-json", "export-csv", "copy-summary", "compose-email", "submit-review"):
             self.assertIn(f'id="{field}"', self.html)
             self.assertIn(f'getElementById("{field}")', self.js)
         for s in ("JSON.stringify(report(),null,2)", "URL.createObjectURL", "s.replace(/", "csvCell", "document.createTextNode"):

@@ -54,10 +54,11 @@
     "CNAME",
     "_headers",
     "favicon.svg",
+    "hoax-ai-survey/config.json",
     "llms.txt",
     "robots.txt",
     "sitemap.xml",
-    "hoax-ai-survey/config.json"
+    "validation/aec-engineering/submission-config.json"
   ],
   "assets": [
     "assets/brand/sohadot-mark-header.png",
@@ -115,19 +116,20 @@
   "exclude": [
     ".github/**",
     ".gitignore",
+    "DECISION_LOG.md",
+    "LICENSE",
+    "README.md",
+    "aec-evaluation-service/**",
+    "data/drops_candidates.csv",
+    "data/keywords_seed.json",
+    "data/site-navigation.json",
+    "data/valuation_comps_seed.json",
     "deploy/**",
     "docs/**",
     "research/**",
     "scripts/**",
     "survey-service/**",
-    "tests/**",
-    "README.md",
-    "DECISION_LOG.md",
-    "LICENSE",
-    "data/drops_candidates.csv",
-    "data/keywords_seed.json",
-    "data/site-navigation.json",
-    "data/valuation_comps_seed.json"
+    "tests/**"
   ],
   "exclusion_notes": {
     "data/drops_candidates.csv": "Input to scripts/generate_drops.py; no page or script fetches it.",
