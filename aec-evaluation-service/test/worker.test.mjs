@@ -89,6 +89,14 @@ test("public status fails closed when D1 or Turnstile absent",async()=>{
  assert.equal(r.status,503);const v=await r.json();assert.equal(v.ready,false);
  assert.equal(JSON.stringify(v).includes("private-test-secret"),false);
 });
+test("public collection stays unavailable if operator Access settings are absent",async()=>{
+ const e=env();delete e.ACCESS_AUD;
+ let r=await worker.fetch(new Request(host+"/v1/status",{headers:{Origin:origin}}),e);
+ assert.equal(r.status,503);
+ r=await worker.fetch(post(),e);
+ assert.equal(r.status,503);
+ assert.equal(e.DB.rows.size,0);
+});
 test("status advertises only public site key and rejects other origins in CORS",async()=>{
  const e=env();
  const r=await worker.fetch(new Request(host+"/v1/status",{headers:{Origin:origin}}),e);
