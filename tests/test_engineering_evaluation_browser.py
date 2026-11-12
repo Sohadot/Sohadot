@@ -137,7 +137,7 @@ class EngineeringEvaluationBrowserTest(unittest.TestCase):
         self.assertIn("Please review and accept", self.page.locator("#submission-status").inner_text())
         self.page.locator("#submission-consent").check()
         self.page.locator("#submit-review").click()
-        self.assertIn("not activated", self.page.locator("#submission-status").inner_text())
+        self.page.wait_for_function("() => document.getElementById('submission-status').textContent.includes('not activated')")
         self.assertFalse(any("aec-evaluation.sohadot.com" in url for _, url in self.requests))
         self.assertFalse(any("challenges.cloudflare.com" in url for _, url in self.requests))
         self.assertTrue(any("submission-config.json" in url for _, url in self.requests))
