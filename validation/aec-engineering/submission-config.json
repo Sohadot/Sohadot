@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "enabled": false,
+  "apiBase": null,
+  "note": "Secure submission activates only after separate Cloudflare D1, Turnstile, Access and production acceptance gates. Keep disabled until operator-authorized rollout."
+}
