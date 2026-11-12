@@ -20,6 +20,7 @@
     "geo-domains/equipment-new-york/index.html",
     "geo-domains/index.html",
     "google28b5398e4140f820.html",
+    "hoax-ai-survey/index.html",
     "how-to-buy.html",
     "hygieneroll/index.html",
     "index.html",
@@ -43,8 +44,8 @@
     "strategic-brief.html",
     "terms.html",
     "top-75-queue.html",
-    "valuation.html",
-    "hoax-ai-survey/index.html"
+    "validation/aec-engineering/index.html",
+    "valuation.html"
   ],
   "site_files": [
     ".nojekyll",
@@ -63,9 +64,11 @@
     "assets/brand/sohadot-mark.png",
     "assets/og-image.png",
     "assets/og/dropping-watchlist.png",
-    "hoax-ai-survey/survey.css"
+    "hoax-ai-survey/survey.css",
+    "validation/aec-engineering/evaluation.css"
   ],
   "javascript": [
+    "hoax-ai-survey/survey.js",
     "js/asset-meanings.js",
     "js/category-clusters.js",
     "js/conceptual-inventory.js",
@@ -73,7 +76,7 @@
     "js/top-75-queue.js",
     "js/valuation-engine.js",
     "js/valuation-ui.js",
-    "hoax-ai-survey/survey.js"
+    "validation/aec-engineering/evaluation.js"
   ],
   "runtime_data": [
     "data/acronym-glossary.json",
