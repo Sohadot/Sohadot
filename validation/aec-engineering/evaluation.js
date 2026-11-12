@@ -1,12 +1,17 @@
 "use strict";
-/* AEC-UAT-ENG-001: client-only voluntary engineer feedback.
-   No network submission, analytics, or browser storage. */
+/* AEC-UAT-ENG-001: self-reported engineering feedback.
+   No analytics or browser storage. Remote submission requires explicit consent,
+   configured separate service, and on-demand verification. */
 (function(){
   const form=document.getElementById("evaluation");if(!form)return;
   const stages=Array.from(form.querySelectorAll(".stage"));
   const names=["Reviewer context","Electrical redundancy","Formal acceptance","Access boundaries","Professional evaluation","Review and export"];
   const status=document.getElementById("form-status"),exportStatus=document.getElementById("export-status");
   let current=0;
+  let receivedReceipt=null;
+  let submissionId=null;
+  let submitting=false;
+  let challengeWidget=null;
   const selected=name=>{const n=form.querySelector('input[name="'+name+'"]:checked');return n?n.value:null;};
   const note=name=>{const n=form.elements.namedItem(name);return n&&typeof n.value==="string"?n.value.trim():"";};
   function report(){
@@ -29,7 +34,7 @@
       boundaries:{respondent_self_reported:true,tool_activity_observed_by_survey:false,
         engineering_or_scientific_review_certified:false,evidence_state_established:null,
         records_examined_by_sohadot:false,
-        transmission:"No submission; the participant may explicitly export or compose a separate email."}
+        transmission:"Stored only after separate informed consent and verified submission; downloads and email remain voluntary."}
     };
   }
   function summary(r){
@@ -57,7 +62,7 @@
       "Suggested improvement: "+(e.suggested_improvement||"—"),
       "",
       "No engineering assessment or certification is produced.",
-      "Nothing has been transmitted to Sohadot."
+      "Private submission: "+(receivedReceipt?"Saved; receipt "+receivedReceipt:"not submitted by this form.")
     ].join("\n");
   }
   function render(i){
@@ -125,17 +130,17 @@
   }
   document.getElementById("export-json").addEventListener("click",()=>{
     download("json","application/json;charset=utf-8",JSON.stringify(report(),null,2)+"\n");
-    exportStatus.textContent="JSON prepared for download. Nothing was submitted.";
+    exportStatus.textContent="JSON prepared for download locally. Exporting never submits data.";
   });
   document.getElementById("export-csv").addEventListener("click",()=>{
     download("csv","text/csv;charset=utf-8",csv(report()));
-    exportStatus.textContent="CSV prepared for download. Nothing was submitted.";
+    exportStatus.textContent="CSV prepared for download locally. Exporting never submits data.";
   });
   document.getElementById("copy-summary").addEventListener("click",async()=>{
     if(!navigator.clipboard||!navigator.clipboard.writeText){
       exportStatus.textContent="Clipboard unavailable; download the report instead.";return;
     }
-    try{await navigator.clipboard.writeText(summary(report()));exportStatus.textContent="Summary copied locally, not submitted.";}
+    try{await navigator.clipboard.writeText(summary(report()));exportStatus.textContent="Summary copied locally; copy action never submits data.";}
     catch(_){exportStatus.textContent="Clipboard denied; download the report instead.";}
   });
   document.getElementById("compose-email").addEventListener("click",()=>{
@@ -156,8 +161,99 @@
     window.location.href="mailto:agent@sohadot.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   });
   document.getElementById("clear-evaluation").addEventListener("click",()=>{
-    if(!window.confirm("Clear every answer from this tab?"))return;
-    form.reset();issueVisibility();exportStatus.textContent="";render(0);
+    if(!window.confirm("Clear answers in this tab? This does not delete responses already stored by Sohadot."))return;
+    form.reset();receivedReceipt=null;submissionId=null;submitting=false;
+    document.getElementById("submit-review").disabled=false;
+    document.getElementById("submission-status").textContent="No secure submission has been made in this tab.";
+    if(window.turnstile&&challengeWidget!==null){window.turnstile.remove(challengeWidget);challengeWidget=null;}
+    issueVisibility();exportStatus.textContent="";render(0);
   });
+
+  /* Explicit-consent private submission: never calls a remote host on page load.
+     Config is intentionally disabled until infrastructure verification is complete. */
+  const apiOrigin="https://aec-evaluation.sohadot.com";
+  const receiptStatus=document.getElementById("submission-status");
+  const consent=document.getElementById("submission-consent");
+  const submitButton=document.getElementById("submit-review");
+  const challengeSlot=document.getElementById("turnstile-slot");
+  let pendingSnapshot=null;
+  function submissionMessage(message){receiptStatus.textContent=message;}
+  function validConfig(cfg){return cfg&&cfg.version===2&&cfg.enabled===true&&cfg.apiBase===apiOrigin;}
+  function loadChallengeScript(){
+    if(window.turnstile)return Promise.resolve();
+    return new Promise((resolve,reject)=>{
+      const script=document.createElement("script");
+      script.src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async=true;
+      script.onload=()=>{if(window.turnstile)resolve();else reject(Error("Verification unavailable"));};
+      script.onerror=()=>reject(Error("Verification could not load"));
+      document.head.appendChild(script);
+    });
+  }
+  async function transmit(token){
+    if(receivedReceipt||submitting)return;
+    if(!consent.checked||!pendingSnapshot||current!==5){
+      submissionMessage("Consent and the completed evaluation are required. Nothing was sent.");return;
+    }
+    submitting=true;submitButton.disabled=true;
+    submissionMessage("Verifying and securely saving your evaluation…");
+    try{
+      const payload={
+        submission_id:submissionId,consent:true,consent_version:"2026-11-12",
+        turnstile_token:token,report:pendingSnapshot
+      };
+      const response=await fetch(apiOrigin+"/v1/evaluations",{
+        method:"POST",mode:"cors",cache:"no-store",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+      });
+      const data=await response.json();
+      if(!response.ok||data.saved!==true||data.receipt!==submissionId)throw Error("Receipt could not be confirmed");
+      receivedReceipt=data.receipt;
+      submissionMessage("Evaluation received and stored privately. Receipt: "+receivedReceipt+
+        ". Keep this code to request deletion. Submitting does not imply scientific or engineering approval.");
+      document.getElementById("report-preview").textContent=summary(report());
+      submitButton.disabled=true;
+    }catch(_){
+      submitButton.disabled=false;
+      submissionMessage("Saving could not be confirmed. Your answers remain in this tab; you may retry or download the report.");
+      if(window.turnstile&&challengeWidget!==null)window.turnstile.reset(challengeWidget);
+    }finally{submitting=false;}
+  }
+  submitButton.addEventListener("click",async()=>{
+    if(receivedReceipt){submissionMessage("Already received. Receipt: "+receivedReceipt);return;}
+    if(submitting)return;
+    if(!consent.checked){submissionMessage("Please review and accept the voluntary data collection terms first.");consent.focus();return;}
+    if(current!==5){submissionMessage("Complete the evaluation before submitting.");return;}
+    submitButton.disabled=true;submissionMessage("Checking whether secure collection is active…");
+    try{
+      const configResponse=await fetch("./submission-config.json",{cache:"no-store"});
+      if(!configResponse.ok)throw Error("Configuration unavailable");
+      const cfg=await configResponse.json();
+      if(!validConfig(cfg))throw Error("Secure collection is not activated. Download or email your report instead.");
+      const statusResponse=await fetch(apiOrigin+"/v1/status",{mode:"cors",cache:"no-store"});
+      if(!statusResponse.ok)throw Error("Collection service is unavailable");
+      const service=await statusResponse.json();
+      if(service.ready!==true||typeof service.site_key!=="string"||
+         !/^[a-zA-Z0-9_-]{10,100}$/.test(service.site_key)||
+         service.action!=="aec_engineering_eval")throw Error("Secure collection is not ready");
+      pendingSnapshot=report();
+      if(!submissionId)submissionId=crypto.randomUUID();
+      await loadChallengeScript();
+      submissionMessage("Complete the Cloudflare verification challenge to submit. No response has been saved yet.");
+      if(challengeWidget!==null)window.turnstile.remove(challengeWidget);
+      challengeWidget=window.turnstile.render(challengeSlot,{
+        sitekey:service.site_key,action:"aec_engineering_eval",appearance:"interaction-only",
+        callback:token=>{transmit(token);},
+        "error-callback":()=>{submissionMessage("Verification failed. Please retry or download your report.");submitButton.disabled=false;},
+        "expired-callback":()=>{submissionMessage("Verification expired. Please retry.");submitButton.disabled=false;}
+      });
+      submitButton.disabled=false;
+    }catch(error){
+      submitButton.disabled=false;
+      submissionMessage(error.message||"Secure submission is currently unavailable. Download or email your report instead.");
+    }
+  });
+
   issueVisibility();render(0);
 })();
