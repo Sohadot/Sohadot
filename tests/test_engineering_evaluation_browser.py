@@ -132,6 +132,16 @@ class EngineeringEvaluationBrowserTest(unittest.TestCase):
             self.assertIn("'=HYPERLINK", csvtext)
             self.assertIn("formal_acceptance_rc12", csvtext)
 
+        # Secure collection is opt-in. Until configured, consent alone never transmits.
+        self.page.locator("#submit-review").click()
+        self.assertIn("Please review and accept", self.page.locator("#submission-status").inner_text())
+        self.page.locator("#submission-consent").check()
+        self.page.locator("#submit-review").click()
+        self.assertIn("not activated", self.page.locator("#submission-status").inner_text())
+        self.assertFalse(any("aec-evaluation.sohadot.com" in url for _, url in self.requests))
+        self.assertFalse(any("challenges.cloudflare.com" in url for _, url in self.requests))
+        self.assertTrue(any("submission-config.json" in url for _, url in self.requests))
+
         self.page.once("dialog", lambda dialog: dialog.accept())
         self.page.locator("#clear-evaluation").click()
         self.assertTrue(self.page.locator('.stage[data-stage="0"]').is_visible())
