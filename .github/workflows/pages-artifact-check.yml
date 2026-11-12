@@ -19,3 +19,9 @@ jobs:
 
       - name: Pages artifact regression tests
         run: python3 -m unittest tests.test_pages_artifact -v
+
+      - name: Engineering evaluation pilot contract tests
+        run: python3 -m unittest tests.test_engineering_evaluation -v
+
+      - name: Engineering evaluation JavaScript syntax
+        run: node --check validation/aec-engineering/evaluation.js
