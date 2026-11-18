@@ -191,4 +191,14 @@ is relied on for those properties.
 | `evaluation_budget_and_logging` | NOT_IMPLEMENTED |
 | `aggregate_only_access_for_developers` | NOT_IMPLEMENTED |
 | `backtest_second_level_overlap_check` | NOT_IMPLEMENTED |
-| `pages_artifact_excludes_research_files` | NOT_IMPLEMENTED |
+| `pages_artifact_excludes_research_files` | ENFORCED |
+
+`pages_artifact_excludes_research_files` is enforced by building the deployable
+Pages artifact through `scripts/build_pages_artifact.py` during
+`scripts/validate_evidence_registry.py`. The control fails closed if
+`research/**` is absent from the Pages exclude list, if a research path is
+listed for publication or as a publish exception, if the artifact cannot be
+inspected, or if any `research/` path is present in the built artifact. A
+static exclude declaration alone is not treated as sufficient evidence.
+Enforcing this control does not freeze the holdout, open calibration
+admission, or authorise licensed-data import.
