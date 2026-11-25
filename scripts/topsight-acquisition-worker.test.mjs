@@ -1,0 +1,44 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { webcrypto } from 'node:crypto';
+import worker from './topsight-acquisition-worker.mjs';
+if (!globalThis.crypto) globalThis.crypto=webcrypto;
+const url='https://sohadot.com/api/acquisition/topsight';
+const payload={name:'Test User',email:'test@example.com',company:'Example',message:'Test inquiry',token:'mock-token'};
+test('TopSight API request and delivery gates',async()=>{
+  const original=globalThis.fetch;
+  let calls=0, sent=[];
+  let verification={success:true,hostname:'sohadot.com',action:'topsight_acquisition'};
+  globalThis.fetch=async()=>{calls++;return Response.json(verification);};
+  const env={TURNSTILE_SECRET:'mock-secret',EMAIL:{send:async v=>{sent.push(v);return {messageId:'mock-message'};}}};
+  const request=(data=payload,origin='https://sohadot.com',target=url)=>new Request(target,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(data)});
+  try{
+    assert.equal((await worker.fetch(new Request(url),env)).status,405);
+    assert.equal((await worker.fetch(request(payload,'https://other.example'),env)).status,403);
+    assert.equal((await worker.fetch(request(payload,'https://sohadot.com',url+'/other'),env)).status,404);
+    assert.equal((await worker.fetch(request({...payload,email:'x\nBCC:other@example.com'}),env)).status,400);
+    assert.equal((await worker.fetch(request({...payload,message:'x'.repeat(2501)}),env)).status,400);
+    assert.equal((await worker.fetch(request({...payload,website:'spam'}),env)).status,400);
+    assert.equal(calls,0);
+    verification={success:false};
+    assert.equal((await worker.fetch(request(),env)).status,403);
+    verification={success:true,hostname:'other.example',action:'topsight_acquisition'};
+    assert.equal((await worker.fetch(request(),env)).status,403);
+    verification={success:true,hostname:'sohadot.com',action:'other'};
+    assert.equal((await worker.fetch(request(),env)).status,403);
+    assert.equal(sent.length,0);
+    verification={success:true,hostname:'sohadot.com',action:'topsight_acquisition'};
+    const result=await worker.fetch(request({...payload,to:'other@example.com'}),env);
+    assert.equal(result.status,200);
+    assert.equal((await result.json()).ok,true);
+    assert.equal(sent.length,1);
+    assert.equal(sent[0].to,'agent@sohadot.com');
+    assert.equal(sent[0].from,'acquisition@notify.sohadot.com');
+    assert.equal(sent[0].replyTo,payload.email);
+    for(const domain of ['AITopSight.com','ARTopSight.com','VRTopSight.com']) assert.ok(sent[0].text.includes(domain));
+    env.EMAIL.send=async()=>{throw new Error('delivery failed');};
+    assert.equal((await worker.fetch(request(),env)).status,503);
+    env.EMAIL.send=async()=>({});
+    assert.equal((await worker.fetch(request(),env)).status,503);
+  }finally{globalThis.fetch=original;}
+});

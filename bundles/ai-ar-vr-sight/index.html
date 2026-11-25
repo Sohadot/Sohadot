@@ -267,6 +267,29 @@ footer a:hover{text-decoration:underline;}
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important;}
   .btn-primary:hover{transform:none;}
 }
+
+/* Acquisition contact: a browser-based alternative to mailto. */
+.contact-options{margin-top:22px;padding-top:18px;border-top:1px solid rgba(160,180,210,.24);scroll-margin-top:100px;min-width:0}
+.contact-options h3{font-size:1.12rem;margin:0 0 8px}
+.contact-options p,.contact-options label{font-size:.85rem;line-height:1.6;color:#b8c5d7}
+.contact-options label{display:block;margin-top:12px;margin-bottom:5px}
+.contact-address-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.contact-address-row input{flex:1 1 160px;min-width:0;width:100%;box-sizing:border-box;padding:10px;border:1px solid #60758e;border-radius:6px;background:#101b2c;color:#f4f7fc;font:inherit;font-size:.92rem}
+.contact-address-row button,.contact-links a{padding:10px 12px;border:1px solid #60758e;border-radius:6px;background:#1c304a;color:#f4f7fc;font:inherit;font-size:.85rem;line-height:1.4;cursor:pointer;text-decoration:none}
+.contact-address-row button[hidden]{display:none}
+.contact-links{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.contact-status:empty{display:none}
+.contact-options :focus-visible{outline:2px solid #fbbf24;outline-offset:3px}
+
+#bundle-inquiry[hidden]{display:none}
+#bundle-inquiry input,#bundle-inquiry textarea{display:block;width:100%;min-width:0;box-sizing:border-box;padding:11px;border:1px solid #60758e;border-radius:6px;background:#101b2c;color:#f4f7fc;font:inherit;font-size:1rem}
+#bundle-inquiry textarea{resize:vertical}
+#bundle-inquiry .btn-primary{width:100%;border:0;cursor:pointer;margin-top:12px}
+#bundle-inquiry .btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none}
+#inquiry-challenge{margin-top:12px;min-width:0}
+#inquiry-status{overflow-wrap:anywhere;min-height:1.4em}
+.inquiry-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.contact-alternatives{margin-top:24px!important}
 </style>
 </head>
 <body>
@@ -415,7 +438,7 @@ footer a:hover{text-decoration:underline;}
       </div>
 
       <div class="cta-row">
-        <a class="btn-primary" href="mailto:agent@sohadot.com?subject=Acquisition%20Inquiry%20%E2%80%94%20AI%20%2F%20AR%20%2F%20VR%20Sight%20Domain%20Set&amp;body=Hello%20Sohadot%2C%0A%0AI%20would%20like%20to%20discuss%20acquiring%20the%20complete%20three-domain%20set%3A%0A-%20AITopSight.com%0A-%20ARTopSight.com%0A-%20VRTopSight.com%0A%0AListed%20complete-set%20price%3A%20USD%205%2C780.%0A%0AName%3A%0ACompany%3A%0A">Acquire the Complete Set — USD&nbsp;5,780</a>
+        <a class="btn-primary" href="#acquisition-contact">Acquire the Complete Set — USD&nbsp;5,780</a>
         <a class="btn-secondary" href="#architecture">Explore the Architecture <span aria-hidden="true">↓</span></a>
       </div>
       <p class="trust">Terms confirmed in writing. Payment and transfer completed through a protected escrow process.</p>
@@ -590,10 +613,43 @@ footer a:hover{text-decoration:underline;}
       <p class="acq-price"><span>USD</span>5,780</p>
       <p class="acq-copy">One coordinated transaction for three exact-match .com domains spanning artificial intelligence, augmented reality and virtual reality.</p>
       <div class="acq-actions">
-        <a class="btn-primary" href="mailto:agent@sohadot.com?subject=Acquisition%20Inquiry%20%E2%80%94%20AI%20%2F%20AR%20%2F%20VR%20Sight%20Domain%20Set&amp;body=Hello%20Sohadot%2C%0A%0AI%20would%20like%20to%20discuss%20acquiring%20the%20complete%20three-domain%20set%3A%0A-%20AITopSight.com%0A-%20ARTopSight.com%0A-%20VRTopSight.com%0A%0AListed%20complete-set%20price%3A%20USD%205%2C780.%0A%0AName%3A%0ACompany%3A%0A">Start Bundle Acquisition</a>
-        <a class="acq-email" href="mailto:agent@sohadot.com?subject=Acquisition%20Inquiry%20%E2%80%94%20AI%20%2F%20AR%20%2F%20VR%20Sight%20Domain%20Set">agent@sohadot.com</a>
+        <a class="btn-primary" href="#acquisition-contact">Start Bundle Acquisition</a>
+        <a class="acq-email" href="#acquisition-contact">agent@sohadot.com</a>
       </div>
-      <p class="acq-hint">Opens a pre-addressed email to agent@sohadot.com. Nothing is sent until you review and send the message.</p>
+      <p class="acq-hint">Choose a contact method below. No payment or purchase commitment is made at this stage.</p>
+      <div class="contact-options" id="acquisition-contact" tabindex="-1" aria-labelledby="contact-title">
+        <h3 id="contact-title">Contact Sohadot</h3>
+        <p>Send an inquiry about the complete three-domain set directly to Sohadot. No payment or purchase commitment is required.</p>
+        <form id="bundle-inquiry" hidden>
+          <label for="inquiry-name">Full name (required)</label>
+          <input id="inquiry-name" name="name" autocomplete="name" required maxlength="120">
+          <label for="inquiry-email">Email (required)</label>
+          <input id="inquiry-email" name="email" type="email" autocomplete="email" required maxlength="254">
+          <label for="inquiry-company">Company (optional)</label>
+          <input id="inquiry-company" name="company" autocomplete="organization" maxlength="160">
+          <label for="inquiry-message">Inquiry (required)</label>
+          <textarea id="inquiry-message" name="message" rows="5" required maxlength="2500">I am interested in acquiring the complete AI–AR–VR Sight Domain Set.</textarea>
+          <div class="inquiry-trap" aria-hidden="true"><label for="inquiry-website">Leave this blank</label><input id="inquiry-website" name="website" tabindex="-1" autocomplete="off"></div>
+          <p>We use these details to respond to your acquisition inquiry by email. Cloudflare processes the security check. Do not include payment details or sensitive information.</p>
+          <div id="inquiry-challenge"></div>
+          <button class="btn-primary" type="submit" id="inquiry-submit" disabled>Send Acquisition Inquiry</button>
+          <p id="inquiry-status" role="status" aria-live="polite"></p>
+        </form>
+        <noscript><p>JavaScript is required for the direct inquiry form. Use the email options below instead.</p></noscript>
+        <h3 class="contact-alternatives">Other contact options</h3>
+        <p>Use Gmail in your browser, your own email application, or copy our address into your preferred email service.</p>
+        <label for="contact-address">Acquisition email</label>
+        <div class="contact-address-row">
+          <input id="contact-address" type="text" value="agent@sohadot.com" readonly spellcheck="false" autocomplete="off">
+          <button type="button" id="copy-contact" hidden>Copy email</button>
+        </div>
+        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+        <div class="contact-links">
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=agent%40sohadot.com&amp;su=Acquisition%20Inquiry%20%E2%80%94%20AI%20%2F%20AR%20%2F%20VR%20Sight%20Domain%20Set&amp;body=Hello%20Sohadot%2C%0A%0AI%20would%20like%20to%20discuss%20acquiring%20the%20complete%20three-domain%20set%3A%0A-%20AITopSight.com%0A-%20ARTopSight.com%0A-%20VRTopSight.com%0A%0AListed%20complete-set%20price%3A%20USD%205%2C780.%0A%0AName%3A%0ACompany%3A%0A" rel="noopener noreferrer" target="_blank">Open Gmail (web)</a>
+          <a href="mailto:agent@sohadot.com?subject=Acquisition%20Inquiry%20%E2%80%94%20AI%20%2F%20AR%20%2F%20VR%20Sight%20Domain%20Set&amp;body=Hello%20Sohadot%2C%0A%0AI%20would%20like%20to%20discuss%20acquiring%20the%20complete%20three-domain%20set%3A%0A-%20AITopSight.com%0A-%20ARTopSight.com%0A-%20VRTopSight.com%0A%0AListed%20complete-set%20price%3A%20USD%205%2C780.%0A%0AName%3A%0ACompany%3A%0A">Open email app</a>
+        </div>
+        <p>These email links open your chosen email service. Review and send your message there.</p>
+      </div>
     </div>
     <div>
       <ol class="steps">
@@ -635,11 +691,85 @@ footer a:hover{text-decoration:underline;}
 
 <footer>
   © 2026 <a href="/">Sohadot.com</a> &nbsp;·&nbsp; Offered as one complete set &nbsp;·&nbsp;
-  <a href="mailto:agent@sohadot.com">agent@sohadot.com</a> &nbsp;·&nbsp;
+  <a href="#acquisition-contact">agent@sohadot.com</a> &nbsp;·&nbsp;
   <a href="/portfolio.html">Portfolio</a> &nbsp;·&nbsp;
   <a href="/category-artifacts.html#artopsight-com">ARTopSight.com Category Artifact</a> &nbsp;·&nbsp;
   <a href="/escrow-closing.html">Escrow Closing</a>
 </footer>
 
+<script>
+(function () {
+  'use strict';
+  var button = document.getElementById('copy-contact');
+  var address = document.getElementById('contact-address');
+  var status = document.getElementById('contact-status');
+  if (!button || !address || !status) return;
+  button.hidden = false;
+  button.addEventListener('click', async function () {
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(address.value);
+      status.textContent = 'Email address copied.';
+    } catch (_) {
+      address.focus();
+      address.select();
+      address.setSelectionRange(0, address.value.length);
+      status.textContent = 'Select and copy the email address manually.';
+    }
+  });
+}());
+</script>
+<script>
+(function(){
+  'use strict';
+  const form=document.getElementById('bundle-inquiry');
+  const submit=document.getElementById('inquiry-submit');
+  const status=document.getElementById('inquiry-status');
+  if(!form || !submit || !status || !window.fetch) return;
+  form.hidden=false;
+  let token='', widget=null, sending=false, complete=false;
+  const sync=()=>{submit.disabled=!token||sending||complete;};
+  const clear=()=>{token='';sync();};
+  const reset=()=>{clear();if(widget!==null && window.turnstile){try{window.turnstile.reset(widget);}catch(_){}}};
+  status.textContent='Loading security check…';
+  window.sohadotTopSightTurnstile=function(){
+    try{
+      widget=window.turnstile.render('#inquiry-challenge',{
+        sitekey:'0x4AAAAAAGSNMw2D6EUAvzWo',
+        action:'topsight_acquisition',theme:'dark',size:'flexible',
+        callback:function(value){token=value;if(!sending&&!complete)status.textContent='Security check complete.';sync();},
+        'expired-callback':function(){clear();if(!sending&&!complete)status.textContent='Security check expired. Please complete it again.';},
+        'timeout-callback':function(){clear();if(!sending&&!complete)status.textContent='Security check timed out. Please retry or use email below.';},
+        'error-callback':function(){clear();if(!sending&&!complete)status.textContent='Security check unavailable. Please retry or use email below.';}
+      });
+    }catch(_){clear();status.textContent='Security check unavailable. Please use email below.';}
+  };
+  const loader=document.createElement('script');
+  loader.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=sohadotTopSightTurnstile';
+  loader.async=true;
+  loader.onerror=()=>{clear();status.textContent='Security check unavailable. Please use email below.';};
+  document.head.appendChild(loader);
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    if(sending||complete||!token||!form.reportValidity())return;
+    const data=Object.fromEntries(new FormData(form));
+    const payload={name:data.name,email:data.email,company:data.company,message:data.message,website:data.website,token:token};
+    sending=true;sync();status.textContent='Sending your inquiry…';
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),20000);
+    try{
+      const response=await fetch('/api/acquisition/topsight',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
+      const result=await response.json();
+      if(!response.ok||result.ok!==true||typeof result.reference!=='string')throw new Error('not confirmed');
+      complete=true;form.reset();
+      status.textContent='Your inquiry was submitted. Reference: '+result.reference+'. Thank you.';
+    }catch(_){
+      status.textContent='We could not confirm submission. Your text is still here. Please retry or use the email options below.';
+    }finally{
+      clearTimeout(timeout);sending=false;reset();sync();
+    }
+  });
+}());
+</script>
 </body>
 </html>
