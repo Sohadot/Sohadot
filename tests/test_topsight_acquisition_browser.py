@@ -5,7 +5,10 @@ import json
 import threading
 import unittest
 from pathlib import Path
-from playwright.sync_api import sync_playwright, expect
+try:
+    from playwright.sync_api import sync_playwright, expect
+except ImportError:
+    sync_playwright = None
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -13,6 +16,7 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *_args):
         pass
 
+@unittest.skipUnless(sync_playwright is not None, "Playwright is required for the dedicated browser gate")
 class TopSightAcquisitionBrowserTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
