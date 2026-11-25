@@ -36,3 +36,6 @@ jobs:
 
       - name: Engineering evaluation real-browser acceptance
         run: python3 -m unittest tests.test_engineering_evaluation_browser -v
+
+      - name: TopSight acquisition browser acceptance (mocked delivery)
+        run: python3 -m unittest tests.test_topsight_acquisition_browser -v
